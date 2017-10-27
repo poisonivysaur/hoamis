@@ -38,3 +38,5 @@ DatabaseUtils.java
 ehthumbs.db
 Thumbs.db
 /build/
+
+*.xml
