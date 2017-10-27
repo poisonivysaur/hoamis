@@ -2,9 +2,25 @@
 package model;
 
 /**
- *
+ * Occupation Object
+ * A <b>Occupation<b> object contains the different attributes of 
+ * a occupation ...
+ * 
  * @author justine
+ * @version 1.001
+ * @since 2017-10-27
  */
+
+/* Documentation for developer courtesy of Ivy Lim
+ * COMMENTS:
+ * Please seek Justine first before updating this code. -Ivy 10-27-17
+ * 
+ *
+ * 
+ *
+ * original code: 10-27-17
+ * last update:
+*/
 public class Occupation {
     protected int occupationID;
     protected String occupation;
