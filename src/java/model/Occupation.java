@@ -1,5 +1,5 @@
 
-package classes;
+package model;
 
 /**
  *
@@ -9,12 +9,9 @@ public class Occupation {
     protected int occupationID;
     protected String occupation;
 
-    public Occupation(int occupationID, String occupation) {
-        this.occupationID = occupationID;
+    public Occupation(String occupation) {
         this.occupation = occupation;
     }
-    
-    
 
     public int getOccupationID() {
         return occupationID;

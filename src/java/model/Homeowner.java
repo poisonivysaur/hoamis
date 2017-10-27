@@ -1,5 +1,5 @@
 
-package classes;
+package model;
 
 import java.sql.Date;
 
@@ -11,29 +11,12 @@ public class Homeowner extends User{
     
     protected int blocknum;
     protected int lotnum;
-    
-    public Homeowner(String fName, String lName, String mName,
-            String userID, String passwd, int usertypeID, Date bDate,
-            int photoID, int occupationID, Date movingIn,
-            int movingOutclearID, int trxID, int blocknum, int lotnum) {
-        super(fName, lName, mName, userID, passwd, usertypeID, bDate, photoID, occupationID, movingIn, movingOutclearID, trxID);
+
+    // Make this readable by making it fit in the screen lang
+
+    public Homeowner(int blocknum, int lotnum, String fName, String lName, String mName, String passwd, UserType usertype, Date bDate, Document photo, Occupation occupation, Date movingIn, MovingOutClearance movingOutclear, TransactionReference trx) {
+        super(fName, lName, mName, passwd, usertype, bDate, photo, occupation, movingIn, movingOutclear, trx);
         this.blocknum = blocknum;
-        this.lotnum = lotnum;
-    }
-
-    public int getBlocknum() {
-        return blocknum;
-    }
-
-    public void setBlocknum(int blocknum) {
-        this.blocknum = blocknum;
-    }
-
-    public int getLotnum() {
-        return lotnum;
-    }
-
-    public void setLotnum(int lotnum) {
         this.lotnum = lotnum;
     }
     
