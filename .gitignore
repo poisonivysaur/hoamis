@@ -40,3 +40,5 @@ Thumbs.db
 /build/
 
 *.xml
+
+/nbproject/
