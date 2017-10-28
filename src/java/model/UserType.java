@@ -22,7 +22,7 @@ package model;
 */
 public class UserType {
     
-    protected int usertypeid;
+    private int usertypeid;
     protected String usertype;
 
     public UserType(String usertype) {

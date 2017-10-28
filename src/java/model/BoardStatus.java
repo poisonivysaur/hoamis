@@ -23,7 +23,7 @@ package model;
 */
 public class BoardStatus {
     
-    protected int statusID;
+    private int statusID;
     protected String status;
 
     public BoardStatus(String status) {

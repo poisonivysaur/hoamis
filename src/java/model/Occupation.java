@@ -22,7 +22,7 @@ package model;
  * last update: 10-28-17 by I. Lim - added getters & setters
 */
 public class Occupation {
-    protected int occupationID;
+    private int occupationID;
     protected String occupation;
 
     public Occupation(String occupation) {

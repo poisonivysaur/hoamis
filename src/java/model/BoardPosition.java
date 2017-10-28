@@ -23,7 +23,7 @@ package model;
 */
 public class BoardPosition {
     
-    protected int positionID;
+    private int positionID;
     protected String position;
 
     public BoardPosition(int positionID, String position) {

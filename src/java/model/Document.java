@@ -27,7 +27,7 @@ public class Document {
     /**
      * Primary key of the document
      */
-    protected int documentID;
+    private int documentID;
     protected String description;
     /**
      * The absolute path of the document with respect to the root directory

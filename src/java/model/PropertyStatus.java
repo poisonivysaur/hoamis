@@ -21,7 +21,7 @@ package model;
  * last update:
 */
 public class PropertyStatus {
-    protected int statusID;
+    private int statusID;
     protected String status;
 
     public PropertyStatus(String status) {
