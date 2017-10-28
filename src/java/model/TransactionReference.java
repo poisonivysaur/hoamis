@@ -8,17 +8,17 @@ package model;
  * 
  * @author justine
  * @version 1.001
- * @since 2017-10-27
+ * @since 2017-10-28
  */
 
 /* Documentation for developer courtesy of Ivy Lim
  * COMMENTS (please comment any concerns and attach your names thanks!):
- * Please seek Justine first before updating major parts of this code.
+ * Please notify justine first before updating major parts of this code.
  * 
  *
  * 
  *
- * original code: 10-27-17
+ * original code: 10-28-17
  * last update: 10-28-17 by I. Lim - added getters & setters
 */
 public class TransactionReference {
