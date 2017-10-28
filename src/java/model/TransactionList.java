@@ -20,6 +20,6 @@ package model;
  * original code: 10-28-17 by I. Lim
  * last update:
 */
-public class MapPoint {
+public class TransactionList {
     
 }

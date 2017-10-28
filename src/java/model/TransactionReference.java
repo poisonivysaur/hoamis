@@ -3,8 +3,8 @@ package model;
 
 /**
  * TransactionReference Object
- * A <b>transaction reference<b> is a reference to all the transactions made
- * in the system
+ * A <b>transaction reference<b> is a reference to all the transactions made across 
+ * different types of transactions in the system
  * 
  * @author justine
  * @version 1.001

@@ -2,9 +2,8 @@
 package model;
 
 /**
- * MapPoint Object
- * A <b>MapPoint<b> object contains the ID of the property status type and
- * the property status description
+ * TransactionJournal Object
+ * A <b>TransactionJournal<b> object records the paid fees and dues of transactions
  * 
  * @author ivy
  * @version 1.001
@@ -20,6 +19,6 @@ package model;
  * original code: 10-28-17 by I. Lim
  * last update:
 */
-public class MapPoint {
+public class TransactionJournal {
     
 }
