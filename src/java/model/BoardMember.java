@@ -6,7 +6,7 @@ import java.sql.Date;
 /**
  * BoardMember Object
  * A <b>board member<b> object contains the different attributes of 
- * a board member and the different functions it can perform on the system
+ * a board member and the different functions it can perform on the system.
  * 
  * @author justine
  * @version 1.002

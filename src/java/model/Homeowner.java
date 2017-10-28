@@ -6,7 +6,7 @@ import java.sql.Date;
 /**
  * Homeowner Object
  * A <b>Homeowner<b> object contains the different attributes of 
- * a homeowner of the system and is a child class of the User parent class ...
+ * a homeowner and the different functions it can perform on the system.
  * 
  * @author justine
  * @version 1.001

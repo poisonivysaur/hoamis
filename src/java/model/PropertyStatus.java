@@ -1,0 +1,30 @@
+
+package model;
+
+/**
+ * PropertyStatus Object
+ * A <b>PropertyStatus<b> object contains the ID of the property status type and
+ * the property status description
+ * 
+ * @author ivy
+ * @version 1.001
+ * @since 2017-10-28
+ */
+
+/* Documentation for developer courtesy of Ivy Lim
+ * COMMENTS (please comment any concerns and attach your names thanks!):
+ * Please seek Ivy first before updating any major parts of this code.
+ *
+ * 
+ *
+ * original code: 10-28-17 by I. Lim
+ * last update:
+*/
+public class PropertyStatus {
+    protected int statusID;
+    protected String status;
+
+    public PropertyStatus(String status) {
+        this.status = status;
+    }
+}
