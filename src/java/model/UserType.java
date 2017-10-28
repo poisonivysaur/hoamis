@@ -30,13 +30,12 @@ public class UserType {
     }
 
     /**
-     * Method: getUsertypeID
      * returns the user type ID of the object
      * 
      * @param nothing
      * @return int containing the user type ID of the object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public int getUsertypeID() {
@@ -44,13 +43,12 @@ public class UserType {
     }
 
     /**
-     * Method: setUsertypeID
      * sets the user type ID of the object
      * 
      * @param usertypeid
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setUsertypeID(int usertypeid) {
@@ -58,13 +56,12 @@ public class UserType {
     }
 
     /**
-     * Method: getUsertype
      * returns the user type of the object
      * 
      * @param nothing
      * @return String containing the user type of the object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public String getUsertype() {
@@ -72,13 +69,12 @@ public class UserType {
     }
 
     /**
-     * Method: setUsertype
      * sets the user type of the object
      * 
      * @param usertype
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setUsertype(String usertype) {

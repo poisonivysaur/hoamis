@@ -41,7 +41,6 @@ public class BoardMember extends User{
     }
 
     /**
-     * Method: getPosition
      * returns the board position of the object
      * 
      * @return BoardPosition object
@@ -52,7 +51,6 @@ public class BoardMember extends User{
     }
 
     /**
-     * Method: setTrx
      * sets the board position of the object
      * 
      * @param position position of the board member
@@ -63,7 +61,6 @@ public class BoardMember extends User{
     }
 
     /**
-     * Method: getEffectiveDate
      * returns date of effectivity of the object
      * 
      * @return Date object
@@ -74,7 +71,6 @@ public class BoardMember extends User{
     }
 
     /**
-     * Method: setEffectiveDate
      * sets the date of effectivity of the object
      * 
      * @param effectiveDate
@@ -85,7 +81,6 @@ public class BoardMember extends User{
     }
 
     /**
-     * Method: getEndDate
      * returns the end date of effectivity of the object
      * 
      * @return Date object
@@ -96,7 +91,6 @@ public class BoardMember extends User{
     }
 
     /**
-     * Method: setEndDate
      * sets the end date of effectivity of the object
      * 
      * @param endDate
@@ -107,7 +101,6 @@ public class BoardMember extends User{
     }
 
     /**
-     * Method: getStatus
      * returns the status of the object
      * 
      * @return BoardStatus object
@@ -118,7 +111,6 @@ public class BoardMember extends User{
     }
 
     /**
-     * Method: setStatus
      * sets the status of effectivity of the object
      * 
      * @param status
@@ -129,7 +121,6 @@ public class BoardMember extends User{
     }
 
     /**
-     * Method: getElection
      * returns the election attribute of the object
      * 
      * @return Election object
@@ -140,7 +131,6 @@ public class BoardMember extends User{
     }
 
     /**
-     * Method: setElection
      * sets the election attribute of the object
      * 
      * @param election

@@ -34,13 +34,12 @@ public class TransactionJournal {
     }
 
     /**
-     * Method: getJournalID
      * returns the journal ID of the object
      * 
      * @param nothing
      * @return int containing the journal ID of the object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public int getJournalID() {
@@ -48,13 +47,12 @@ public class TransactionJournal {
     }
 
     /**
-     * Method: setJournalID
      * sets the journal ID of the object
      * 
      * @param journalID
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setJournalID(int journalID) {
@@ -62,13 +60,12 @@ public class TransactionJournal {
     }
 
     /**
-     * Method: getJournal
      * returns the transaction journal attribute of the object
      * 
      * @param nothing
      * @return TransactionJournal object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public Date getTrxDate() {

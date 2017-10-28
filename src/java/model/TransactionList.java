@@ -30,13 +30,12 @@ public class TransactionList {
     }
 
     /**
-     * Method: getJournal
      * returns the transaction journal attribute of the object
      * 
      * @param nothing
      * @return TransactionJournal object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public TransactionJournal getJournal() {
@@ -44,13 +43,12 @@ public class TransactionList {
     }
 
     /**
-     * Method: setJournal
      * sets the transaction journal of the object
      * 
      * @param journal
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setJournal(TransactionJournal journal) {
@@ -58,13 +56,12 @@ public class TransactionList {
     }
 
     /**
-     * Method: getTrx
      * returns transaction reference of the object
      * 
      * @param nothing
      * @return TransactionReference of the object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public TransactionReference getTrx() {
@@ -72,13 +69,12 @@ public class TransactionList {
     }
 
     /**
-     * Method: setTrx
      * sets the transaction reference of the object
      * 
      * @param trx
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setTrx(TransactionReference trx) {
@@ -86,13 +82,12 @@ public class TransactionList {
     }
 
     /**
-     * Method: getAmountPaid
      * returns the amount paid
      * 
      * @param nothing
      * @return double 
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public double getAmountPaid() {
@@ -100,13 +95,12 @@ public class TransactionList {
     }
 
     /**
-     * Method: setAmountPaid
      * sets the amount paid
      * 
      * @param amountPaid
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setAmountPaid(double amountPaid) {

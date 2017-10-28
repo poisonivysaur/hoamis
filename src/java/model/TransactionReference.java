@@ -34,13 +34,12 @@ public class TransactionReference {
     }
 
     /**
-     * Method: getTrxID
      * returns the transaction ID of the object
      * 
      * @param nothing
      * @return int containing the transaction ID of the object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public int getTrxID() {
@@ -48,13 +47,12 @@ public class TransactionReference {
     }
 
     /**
-     * Method: setTrxID
      * sets the transaction ID of the object
      * 
      * @param trxID
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setTrxID(int trxID) {
@@ -62,13 +60,12 @@ public class TransactionReference {
     }
 
     /**
-     * Method: getAmount
      * returns the amount of the transaction
      * 
      * @param nothing
      * @return Double containing the amount of the transaction
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public Double getAmount() {
@@ -76,13 +73,12 @@ public class TransactionReference {
     }
 
     /**
-     * Method: setAmount
      * sets the amount of the transaction
      * 
      * @param amount
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setAmount(Double amount) {
@@ -90,13 +86,12 @@ public class TransactionReference {
     }
 
     /**
-     * Method: getInterest
      * returns the interest of the transaction
      * 
      * @param nothing
      * @return double containing the interest of the transaction
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public Double getInterest() {
@@ -104,13 +99,12 @@ public class TransactionReference {
     }
 
     /**
-     * Method: setInterest
      * sets the interest of the transaction
      * 
      * @param interest
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setInterest(Double interest) {
@@ -118,13 +112,12 @@ public class TransactionReference {
     }
 
     /**
-     * Method: getTotalamount
      * returns the total amount of the transaction
      * 
      * @param nothing
      * @return Double containing the total amount of the transaction
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public Double getTotalamount() {
@@ -132,13 +125,12 @@ public class TransactionReference {
     }
 
     /**
-     * Method: setTotalamount
      * sets the total amount of the transaction
      * 
      * @param totalamount
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setTotalamount(Double totalamount) {

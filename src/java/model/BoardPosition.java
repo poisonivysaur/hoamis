@@ -32,13 +32,12 @@ public class BoardPosition {
     }
 
     /**
-     * Method: getPositionID
      * returns the position ID of the object
      * 
      * @param nothing
      * @return int containing the position ID of the object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public int getPositionID() {
@@ -46,13 +45,12 @@ public class BoardPosition {
     }
 
     /**
-     * Method: setPositionID
      * sets the position ID of the object
      * 
      * @param positionID
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setPositionID(int positionID) {
@@ -60,13 +58,12 @@ public class BoardPosition {
     }
 
     /**
-     * Method: getPosition
      * returns the position of the object
      * 
      * @param nothing
      * @return String containing the position description of the object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public String getPosition() {
@@ -74,13 +71,12 @@ public class BoardPosition {
     }
 
     /**
-     * Method: setPosition
      * sets the position of the object
      * 
      * @param position
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setPosition(String position) {

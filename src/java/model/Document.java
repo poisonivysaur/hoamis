@@ -44,13 +44,12 @@ public class Document {
     }
     
     /**
-     * Method: getDocumentID
      * returns the document ID of the object
      * 
      * @param nothing
      * @return int containing the ID number of the object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public int getDocumentID() {
@@ -58,13 +57,12 @@ public class Document {
     }
 
     /**
-     * Method: setDocumentID
      * sets the document ID of the object
      * 
      * @param documentID
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setDocumentID(int documentID) {
@@ -72,13 +70,12 @@ public class Document {
     }
 
     /**
-     * Method: getDescription
      * returns the description of the object
      * 
      * @param nothing
      * @return String containing the description of the document
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public String getDescription() {
@@ -86,13 +83,12 @@ public class Document {
     }
 
     /**
-     * Method: setDescription
      * sets the description of the object
      * 
      * @param description
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setDescription(String description) {
@@ -100,13 +96,12 @@ public class Document {
     }
 
     /**
-     * Method: getDocumentLocation
      * returns the directory path of the object
      * 
      * @param nothing
      * @return String containing the directory path of the document 
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public String getDocumentLocation() {
@@ -114,13 +109,12 @@ public class Document {
     }
 
     /**
-     * Method: setDocumentLocation
      * sets the document location attribute of the object
      * 
      * @param documentLocation
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setDocumentLocation(String documentLocation) {
@@ -128,13 +122,12 @@ public class Document {
     }
 
     /**
-     * Method: getFolder
      * returns the folder containing the object
      * 
      * @param nothing
      * @return Folder object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public Folder getFolder() {
@@ -142,13 +135,12 @@ public class Document {
     }
 
     /**
-     * Method: setFolder
      * sets the folder attribute of the object
      * 
      * @param folder
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setFolder(Folder folder) {
@@ -156,13 +148,12 @@ public class Document {
     }
 
     /**
-     * Method: getCreateUser
      * returns the user who created the document
      * 
      * @param nothing
      * @return User object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public User getCreateUser() {
@@ -170,13 +161,12 @@ public class Document {
     }
 
     /**
-     * Method: setCreateUser
      * sets the user who created the document
      * 
      * @param createUser
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setCreateUser(User createUser) {

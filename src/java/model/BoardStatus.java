@@ -31,13 +31,9 @@ public class BoardStatus {
     }
 
     /**
-     * Method: getStatusID
      * returns the status ID of the object
      * 
-     * @param nothing
      * @return int containing the status ID of the object
-     * @throws nothing
-     * @exception nothing
      * @since 10-28-17
      */
     public int getStatusID() {
@@ -45,13 +41,12 @@ public class BoardStatus {
     }
 
     /**
-     * Method: setStatusID
      * sets the status ID of the object
      * 
      * @param statusID
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setStatusID(int statusID) {
@@ -59,13 +54,12 @@ public class BoardStatus {
     }
 
     /**
-     * Method: getStatus
      * returns the status of the object
      * 
      * @param nothing
      * @return String containing the status description of the object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public String getStatus() {
@@ -73,13 +67,12 @@ public class BoardStatus {
     }
 
     /**
-     * Method: setStatus
      * sets the status of the object
      * 
      * @param status
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setStatus(String status) {

@@ -59,13 +59,12 @@ public class User {
     }
     
     /**
-     * Method: getTrx
      * returns the transaction reference of the User object when it first registers into the system
      * 
      * @param nothing
      * @return TransactioniReference object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public TransactionReference getTrx() {
@@ -73,13 +72,12 @@ public class User {
     }
     
     /**
-     * Method: setTrx
      * sets the transaction reference of the User object when it first registers into the system
      * 
      * @param trx
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setTrx(TransactionReference trx) {
@@ -102,13 +100,12 @@ public class User {
     }
 
     /**
-     * Method: getfName
      * returns the first name of the User object
      * 
      * @param nothing
      * @return String containing the first name of the object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public String getfName() {
@@ -116,13 +113,12 @@ public class User {
     }
 
     /**
-     * Method: setTrx
      * sets the first name of the User object
      * 
      * @param fName
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setfName(String fName) {
@@ -130,13 +126,12 @@ public class User {
     }
 
     /**
-     * Method: getlName
      * returns the last name of the User object
      * 
      * @param nothing
      * @return String containing the last name of the object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public String getlName() {
@@ -144,13 +139,12 @@ public class User {
     }
 
     /**
-     * Method: setlName
      * sets the last name of the User object
      * 
      * @param lName
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setlName(String lName) {
@@ -158,13 +152,12 @@ public class User {
     }
 
     /**
-     * Method: getmName
      * returns the middle name of the User object
      * 
      * @param nothing
      * @return String containing the middle name of the object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public String getmName() {
@@ -172,13 +165,12 @@ public class User {
     }
 
     /**
-     * Method: setmName
      * sets the middle name of the User object
      * 
      * @param mName
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setmName(String mName) {
@@ -186,13 +178,12 @@ public class User {
     }
 
     /**
-     * Method: getUserID
      * returns the user ID of the object
      * 
      * @param nothing
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public String getUserID() {
@@ -200,13 +191,12 @@ public class User {
     }
 
     /**
-     * Method: setUserID
      * sets the user ID of the object
      * 
      * @param userID
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setUserID(String userID) {
@@ -214,13 +204,12 @@ public class User {
     }
 
     /**
-     * Method: getPasswd
      * returns the password of the object
      * 
      * @param nothing
      * @return String containing the password of the object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public String getPasswd() {
@@ -228,13 +217,12 @@ public class User {
     }
 
     /**
-     * Method: setPasswd
      * sets the password of the object
      * 
      * @param passwd
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setPasswd(String passwd) {
@@ -242,13 +230,12 @@ public class User {
     }
 
     /**
-     * Method: getUsertype
      * returns the user type of the object
      * 
      * @param nothing
      * @return UserType
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public UserType getUsertype() {
@@ -256,13 +243,12 @@ public class User {
     }
 
     /**
-     * Method: setUsertype
      * sets the user type of the object
      * 
      * @param usertype
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setUsertype(UserType usertype) {
@@ -270,13 +256,12 @@ public class User {
     }
 
     /**
-     * Method: getbDate
      * returns the birth date of the object
      * 
      * @param nothing
      * @return Date containing the birth date of the object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public Date getbDate() {
@@ -284,13 +269,12 @@ public class User {
     }
 
     /**
-     * Method: setbDate
      * sets birthday of the object
      * 
      * @param bDate
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setbDate(Date bDate) {
@@ -298,13 +282,12 @@ public class User {
     }
 
     /**
-     * Method: getPhoto
      * returns the photo document of the object
      * 
      * @param nothing
      * @return Document object containing the photo of the user object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public Document getPhoto() {
@@ -312,13 +295,12 @@ public class User {
     }
 
     /**
-     * Method: setPhoto
      * sets the photo document object of the User object
      * 
      * @param photo
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setPhoto(Document photo) {
@@ -326,13 +308,12 @@ public class User {
     }
 
     /**
-     * Method: getOccupation
      * returns the occupation of the object
      * 
      * @param nothing
      * @return Occupation object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public Occupation getOccupation() {
@@ -340,13 +321,12 @@ public class User {
     }
 
     /**
-     * Method: setOccupation
      * sets the occupation of the User object
      * 
      * @param occupation
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setOccupation(Occupation occupation) {
@@ -354,13 +334,12 @@ public class User {
     }
 
     /**
-     * Method: getMovingIn
      * returns the date of when the User object moved in
      * 
      * @param nothing
      * @return Date object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public Date getMovingIn() {
@@ -368,13 +347,12 @@ public class User {
     }
 
     /**
-     * Method: setMovingIn
      * sets the date of when the User object moved in
      * 
      * @param movingIn
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setMovingIn(Date movingIn) {
@@ -382,13 +360,12 @@ public class User {
     }
 
     /**
-     * Method: getMovingOutclear
      * returns the moving out clearance of the User object
      * 
      * @param nothing
      * @return MovingOutClearance object
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public MovingOutClearance getMovingOutclear() {
@@ -396,13 +373,12 @@ public class User {
     }
 
     /**
-     * Method: setMovingOutclear
      * sets the moving out clearance attribute of the User object
      * 
      * @param movinOutclear
      * @return nothing
      * @throws nothing
-     * @exception nothing
+     * 
      * @since 10-28-17
      */
     public void setMovingOutclear(MovingOutClearance movingOutclear) {
