@@ -23,11 +23,11 @@ package model;
 public class TransactionReference {
     
     protected int trxID;
-    protected Double amount;
-    protected Double interest;
-    protected Double totalamount;
+    protected double amount;
+    protected double interest;
+    protected double totalamount;
 
-    public TransactionReference(Double amount, Double interest, Double totalamount) {
+    public TransactionReference(double amount, double interest, double totalamount) {
         this.amount = amount;
         this.interest = interest;
         this.totalamount = totalamount;
@@ -68,7 +68,7 @@ public class TransactionReference {
      * 
      * @since 10-28-17
      */
-    public Double getAmount() {
+    public double getAmount() {
         return amount;
     }
 
@@ -94,7 +94,7 @@ public class TransactionReference {
      * 
      * @since 10-28-17
      */
-    public Double getInterest() {
+    public double getInterest() {
         return interest;
     }
 
@@ -120,7 +120,7 @@ public class TransactionReference {
      * 
      * @since 10-28-17
      */
-    public Double getTotalamount() {
+    public double getTotalamount() {
         return totalamount;
     }
 

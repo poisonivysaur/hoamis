@@ -25,4 +25,13 @@ public class Street {
     public Street(String st){
         this.street = st;
     }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+    
 }
