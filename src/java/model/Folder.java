@@ -35,5 +35,45 @@ public class Folder {
         this.parentFolder = parentFolder;
         this.createUser = createUser;
     }
+
+    public int getFolderID() {
+        return folderID;
+    }
+
+    public void setFolderID(int folderID) {
+        this.folderID = folderID;
+    }
+
+    public String getFolderName() {
+        return folderName;
+    }
+
+    public void setFolderName(String folderName) {
+        this.folderName = folderName;
+    }
+
+    public String getFolderdesc() {
+        return folderdesc;
+    }
+
+    public void setFolderdesc(String folderdesc) {
+        this.folderdesc = folderdesc;
+    }
+
+    public Folder getParentFolder() {
+        return parentFolder;
+    }
+
+    public void setParentFolder(Folder parentFolder) {
+        this.parentFolder = parentFolder;
+    }
+
+    public User getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(User createUser) {
+        this.createUser = createUser;
+    }
     
 }

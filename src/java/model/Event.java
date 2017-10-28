@@ -49,4 +49,94 @@ public class Event {
         this.fee = fee;
         this.requestDate = requestDate;
     }
+
+    public int getEventID() {
+        return eventID;
+    }
+
+    public void setEventID(int eventID) {
+        this.eventID = eventID;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getHeadcount() {
+        return headcount;
+    }
+
+    public void setHeadcount(int headcount) {
+        this.headcount = headcount;
+    }
+
+    public Date getDateHeld() {
+        return dateHeld;
+    }
+
+    public void setDateHeld(Date dateHeld) {
+        this.dateHeld = dateHeld;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public User getOrganizer() {
+        return organizer;
+    }
+
+    public void setOrganizer(User organizer) {
+        this.organizer = organizer;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public TransactionReference getFee() {
+        return fee;
+    }
+
+    public void setFee(TransactionReference fee) {
+        this.fee = fee;
+    }
+
+    public Date getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
+    }
+    
+    
 }

@@ -40,6 +40,54 @@ public class MovingOutClearance {
         this.trx = trx;
     }
 
+    public int getClearanceID() {
+        return clearanceID;
+    }
+
+    public void setClearanceID(int clearanceID) {
+        this.clearanceID = clearanceID;
+    }
+
+    public Date getMovingoutdate() {
+        return movingoutdate;
+    }
+
+    public void setMovingoutdate(Date movingoutdate) {
+        this.movingoutdate = movingoutdate;
+    }
+
+    public BoardMember getFinanceclear() {
+        return financeclear;
+    }
+
+    public void setFinanceclear(BoardMember financeclear) {
+        this.financeclear = financeclear;
+    }
+
+    public BoardMember getSecurityclear() {
+        return securityclear;
+    }
+
+    public void setSecurityclear(BoardMember securityclear) {
+        this.securityclear = securityclear;
+    }
+
+    public BoardMember getViolationsclear() {
+        return violationsclear;
+    }
+
+    public void setViolationsclear(BoardMember violationsclear) {
+        this.violationsclear = violationsclear;
+    }
+
+    public TransactionReference getTrx() {
+        return trx;
+    }
+
+    public void setTrx(TransactionReference trx) {
+        this.trx = trx;
+    }
+
     
     
 }

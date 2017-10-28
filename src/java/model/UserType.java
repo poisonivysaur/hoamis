@@ -29,18 +29,58 @@ public class UserType {
         this.usertype = usertype;
     }
 
-    public int getUsertypeid() {
+    /**
+     * Method: getUsertypeID
+     * returns the user type ID of the object
+     * 
+     * @param nothing
+     * @return int containing the user type ID of the object
+     * @throws nothing
+     * @excepiton nothing
+     * @since 10-28-17
+     */
+    public int getUsertypeID() {
         return usertypeid;
     }
 
-    public void setUsertypeid(int usertypeid) {
+    /**
+     * Method: setUsertypeID
+     * sets the user type ID of the object
+     * 
+     * @param usertypeid
+     * @return nothing
+     * @throws nothing
+     * @excepiton nothing
+     * @since 10-28-17
+     */
+    public void setUsertypeID(int usertypeid) {
         this.usertypeid = usertypeid;
     }
 
+    /**
+     * Method: getUsertype
+     * returns the user type of the object
+     * 
+     * @param nothing
+     * @return String containing the user type of the object
+     * @throws nothing
+     * @excepiton nothing
+     * @since 10-28-17
+     */
     public String getUsertype() {
         return usertype;
     }
 
+    /**
+     * Method: setUsertype
+     * sets the user type of the object
+     * 
+     * @param usertype
+     * @return nothing
+     * @throws nothing
+     * @excepiton nothing
+     * @since 10-28-17
+     */
     public void setUsertype(String usertype) {
         this.usertype = usertype;
     }

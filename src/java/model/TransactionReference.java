@@ -33,6 +33,118 @@ public class TransactionReference {
         this.interest = interest;
         this.totalamount = totalamount;
     }
+
+    /**
+     * Method: getTrxID
+     * returns the transaction ID of the object
+     * 
+     * @param nothing
+     * @return int containing the transaction ID of the object
+     * @throws nothing
+     * @excepiton nothing
+     * @since 10-28-17
+     */
+    public int getTrxID() {
+        return trxID;
+    }
+
+    /**
+     * Method: setTrxID
+     * sets the transaction ID of the object
+     * 
+     * @param trxID
+     * @return nothing
+     * @throws nothing
+     * @excepiton nothing
+     * @since 10-28-17
+     */
+    public void setTrxID(int trxID) {
+        this.trxID = trxID;
+    }
+
+    /**
+     * Method: getAmount
+     * returns the amount of the transaction
+     * 
+     * @param nothing
+     * @return Double containing the amount of the transaction
+     * @throws nothing
+     * @excepiton nothing
+     * @since 10-28-17
+     */
+    public Double getAmount() {
+        return amount;
+    }
+
+    /**
+     * Method: setAmount
+     * sets the amount of the transaction
+     * 
+     * @param amount
+     * @return nothing
+     * @throws nothing
+     * @excepiton nothing
+     * @since 10-28-17
+     */
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    /**
+     * Method: getInterest
+     * returns the interest of the transaction
+     * 
+     * @param nothing
+     * @return double containing the interest of the transaction
+     * @throws nothing
+     * @excepiton nothing
+     * @since 10-28-17
+     */
+    public Double getInterest() {
+        return interest;
+    }
+
+    /**
+     * Method: setInterest
+     * sets the interest of the transaction
+     * 
+     * @param interest
+     * @return nothing
+     * @throws nothing
+     * @excepiton nothing
+     * @since 10-28-17
+     */
+    public void setInterest(Double interest) {
+        this.interest = interest;
+    }
+
+    /**
+     * Method: getTotalamount
+     * returns the total amount of the transaction
+     * 
+     * @param nothing
+     * @return Double containing the total amount of the transaction
+     * @throws nothing
+     * @excepiton nothing
+     * @since 10-28-17
+     */
+    public Double getTotalamount() {
+        return totalamount;
+    }
+
+    /**
+     * Method: setTotalamount
+     * sets the total amount of the transaction
+     * 
+     * @param totalamount
+     * @return nothing
+     * @throws nothing
+     * @excepiton nothing
+     * @since 10-28-17
+     */
+    public void setTotalamount(Double totalamount) {
+        this.totalamount = totalamount;
+    }
     
     
 }

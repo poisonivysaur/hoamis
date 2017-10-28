@@ -34,5 +34,21 @@ public class Homeowner extends User{
         this.blocknum = blocknum;
         this.lotnum = lotnum;
     }
+
+    public int getBlocknum() {
+        return blocknum;
+    }
+
+    public void setBlocknum(int blocknum) {
+        this.blocknum = blocknum;
+    }
+
+    public int getLotnum() {
+        return lotnum;
+    }
+
+    public void setLotnum(int lotnum) {
+        this.lotnum = lotnum;
+    }
     
 }
