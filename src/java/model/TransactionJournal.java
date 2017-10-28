@@ -1,6 +1,7 @@
 
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -18,19 +19,18 @@ import java.util.Date;
  * 
  *
  * original code: 10-28-17 by I. Lim
- * last update:
+ * last update: 10-28-17 by I. Lim - changed attributes and access specifiers
 */
 public class TransactionJournal {
     protected int journalID;
-    protected Date trxDate;
-    protected double trxAmount;
-    protected double trxAmountPaid;
+    public Date trxDate;
+    public ArrayList<TransactionList> trxList;
     
-    public TransactionJournal(int journalID, Date trxDate, double trxAmount, double trxAmountPaid){
+    
+    public TransactionJournal(int journalID, Date trxDate){
         this.journalID = journalID;
         this.trxDate = trxDate;
-        this.trxAmount = trxAmount;
-        this.trxAmountPaid = trxAmountPaid;
+        this.trxList = null;
     }
 
     /**
@@ -74,22 +74,6 @@ public class TransactionJournal {
 
     public void setTrxDate(Date trxDate) {
         this.trxDate = trxDate;
-    }
-
-    public double getTrxAmount() {
-        return trxAmount;
-    }
-
-    public void setTrxAmount(double trxAmount) {
-        this.trxAmount = trxAmount;
-    }
-
-    public double getTrxAmountPaid() {
-        return trxAmountPaid;
-    }
-
-    public void setTrxAmountPaid(double trxAmountPaid) {
-        this.trxAmountPaid = trxAmountPaid;
     }
     
     

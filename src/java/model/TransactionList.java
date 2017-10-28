@@ -16,15 +16,15 @@ package model;
  * 
  *
  * original code: 10-28-17 by I. Lim
- * last update:
+ * last update: 10-28-17 by I. Lim - changed access specifiers
 */
 public class TransactionList {
-    protected TransactionJournal journal;
+    protected int journalID;
     protected TransactionReference trx;
-    protected double amountPaid;
+    public double amountPaid;
     
-    public TransactionList(TransactionJournal journal, TransactionReference trx, double amountPaid){
-        this.journal = journal;
+    public TransactionList(int journal, TransactionReference trx, double amountPaid){
+        this.journalID = journal;
         this.trx = trx;
         this.amountPaid = amountPaid;
     }
@@ -38,8 +38,8 @@ public class TransactionList {
      * 
      * @since 10-28-17
      */
-    public TransactionJournal getJournal() {
-        return journal;
+    public int getJournal() {
+        return journalID;
     }
 
     /**
@@ -52,7 +52,7 @@ public class TransactionList {
      * @since 10-28-17
      */
     public void setJournal(TransactionJournal journal) {
-        this.journal = journal;
+        this.journalID = journal.journalID;
     }
 
     /**

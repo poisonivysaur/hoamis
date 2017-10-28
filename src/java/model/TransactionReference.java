@@ -18,14 +18,14 @@ package model;
  * 
  *
  * original code: 10-28-17
- * last update: 10-28-17 by I. Lim - added getters & setters
+ * last update: 10-28-17 by I. Lim - changed access specifiers
 */
 public class TransactionReference {
     
     protected int trxID;
-    protected double amount;
-    protected double interest;
-    protected double totalamount;
+    public double amount;
+    public double interest;
+    public double totalamount;
 
     public TransactionReference(double amount, double interest, double totalamount) {
         this.amount = amount;
