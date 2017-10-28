@@ -15,7 +15,7 @@ import java.sql.Date;
 
 /* Documentation for developer courtesy of Ivy Lim
  * COMMENTS (please comment any concerns and attach your names thanks!):
- * Please seek Justine first before updating any major parts of this code. -Ivy
+ * Please seek Justine first before updating any major parts of this code.
  *
  * 
  *

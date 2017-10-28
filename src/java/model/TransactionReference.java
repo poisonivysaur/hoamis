@@ -13,13 +13,13 @@ package model;
 
 /* Documentation for developer courtesy of Ivy Lim
  * COMMENTS (please comment any concerns and attach your names thanks!):
- * Please seek Justine first before updating major parts of this code. -Ivy
- * No methods so far, just constructor and attributes.  -Ivy
+ * Please seek Justine first before updating major parts of this code.
+ * 
  *
  * 
  *
  * original code: 10-27-17
- * last update:
+ * last update: 10-28-17 by I. Lim - added getters & setters
 */
 public class TransactionReference {
     

@@ -4,7 +4,8 @@ import java.sql.Date;
 /**
  * User Object
  * A <b>user<b> object contains the different attributes of 
- * a user of the system ...
+ * a user of the system and the different functions it can perform on the system,
+ * and User is the parent class of HomeOwner, HomeMember, Kasambahay, BoardMember.
  * 
  * @author justine
  * @version 1.002
@@ -13,13 +14,13 @@ import java.sql.Date;
 
 /* Documentation for developer courtesy of Ivy Lim
  * COMMENTS (please comment any concerns and attach your names thanks!):
- * Please seek Justine first before updating any major parts of this code. -Ivy
- * generated getters & setters, please add triggers/checkers for the setters/ delete unnecessary setters, etc. - Ivy 10-28-17
+ * Please seek Justine first before updating any major parts of this code. 
+ * generated getters & setters, note that adding of triggers/checkers for the setters/ delete unnecessary setters, etc. are still needed
  *
  * 
  *
  * original code: 10-27-17 by J. Singca
- * last update: 10-28-17 by I. Lim
+ * last update: 10-28-17 by I. Lim - added getters & setters
 */
 public class User {
     // not everyone has a setter, please consider when generating getters and setter
@@ -56,6 +57,7 @@ public class User {
     public User(String fName, String lName, String mName, String passwd, UserType usertype, Date bDate, TransactionReference trx){
         this(fName, lName, mName, passwd, usertype, bDate, null, null, null, null, trx);
     }
+    
     /**
      * Method: getTrx
      * returns the transaction reference of the User object when it first registers into the system

@@ -13,13 +13,13 @@ package model;
 
 /* Documentation for developer courtesy of Ivy Lim
  * COMMENTS:
- * Please seek Justine first before updating this code. -Ivy 10-27-17
+ * Please seek Justine first before updating this code.
  * 
  *
  * 
  *
  * original code: 10-27-17
- * last update:
+ * last update: 10-28-17 by I. Lim - added getters & setters
 */
 public class Occupation {
     protected int occupationID;

@@ -15,13 +15,13 @@ import java.sql.Date;
 
 /* Documentation for developer courtesy of Ivy Lim
  * COMMENTS (please comment any concerns and attach your names thanks!):
- * Please seek Justine first before updating any major parts of this code. -Ivy 10-27-17
- * No methods so far, just constructor and attributes.  -Ivy 10-27-17
+ * Please seek Justine first before updating any major parts of this code.
+ * 
  *
  * 
  *
  * original code: 10-27-17
- * last update:
+ * last update: 10-28-17 by I. Lim - added getters & setters
 */
 public class MovingOutClearance {
     

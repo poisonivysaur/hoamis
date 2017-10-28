@@ -14,7 +14,7 @@ package model;
 /* Documentation for developer courtesy of Ivy Lim
  * COMMENTS (please comment any concerns and attach your names thanks!):
  * Please seek Justine first before updating any major parts of this code. -Ivy
- * No methods so far, just constructor and attributes.  -Ivy
+ * 
  *
  * 
  *

@@ -6,7 +6,7 @@ import java.sql.Date;
 /**
  * Election Object
  * A <b>Election<b> object contains the different attributes of 
- * an election ...
+ * an election and the different functions it can perform on the system
  * 
  * @author justine
  * @version 1.001
@@ -15,8 +15,7 @@ import java.sql.Date;
 
 /* Documentation for developer courtesy of Ivy Lim
  * COMMENTS (please comment any concerns and attach your names thanks!):
- * Please seek Justine first before updating any major parts of this code. -Ivy
- * No methods so far, just constructor and attributes.  -Ivy
+ * Please seek Justine first before updating any major parts of this code. 
  *
  * 
  *
@@ -40,4 +39,54 @@ public class Election {
     }
     
     // add choices as a method na lang
+
+    public int getElectionID() {
+        return electionID;
+    }
+
+    public void setElectionID(int electionID) {
+        this.electionID = electionID;
+    }
+
+    public Date getElectDate() {
+        return electDate;
+    }
+
+    public void setElectDate(Date electDate) {
+        this.electDate = electDate;
+    }
+
+    public ElectType getElectType() {
+        return electType;
+    }
+
+    public void setElectType(ElectType electType) {
+        this.electType = electType;
+    }
+
+    public Document getElectDoc() {
+        return electDoc;
+    }
+
+    public void setElectDoc(Document electDoc) {
+        this.electDoc = electDoc;
+    }
+
+    public BoardMember getEnablingBoardMember() {
+        return enablingBoardMember;
+    }
+
+    public void setEnablingBoardMember(BoardMember enablingBoardMember) {
+        this.enablingBoardMember = enablingBoardMember;
+    }
+
+    public String[] getChoices() {
+        return choices;
+    }
+
+    public void setChoices(String[] choices) {
+        this.choices = choices;
+    }
+    
+    
 }

@@ -13,8 +13,8 @@ package model;
 
 /* Documentation for developer courtesy of Ivy Lim
  * COMMENTS (please comment any concerns and attach your names thanks!):
- * Please seek Justine first before updating any major parts of this code. -Ivy 10-27-17
- * No methods so far, just constructor and attributes.  -Ivy 10-27-17
+ * Please seek Justine first before updating any major parts of this code.
+ * 
  *
  * 
  *
