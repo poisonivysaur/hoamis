@@ -2,9 +2,7 @@
 package model;
 
 /**
- * MapPoint Object
- * A <b>MapPoint<b> object contains the ID of the property status type and
- * the property status description
+ * A <b>TransactionList</b> object contains a journal entry ID and a transaction ID as well as the amount paid
  * 
  * @author ivy
  * @version 1.001
@@ -21,5 +19,99 @@ package model;
  * last update:
 */
 public class TransactionList {
+    protected TransactionJournal journal;
+    protected TransactionReference trx;
+    protected double amountPaid;
+    
+    public TransactionList(TransactionJournal journal, TransactionReference trx, double amountPaid){
+        this.journal = journal;
+        this.trx = trx;
+        this.amountPaid = amountPaid;
+    }
+
+    /**
+     * Method: getJournal
+     * returns the transaction journal attribute of the object
+     * 
+     * @param nothing
+     * @return TransactionJournal object
+     * @throws nothing
+     * @exception nothing
+     * @since 10-28-17
+     */
+    public TransactionJournal getJournal() {
+        return journal;
+    }
+
+    /**
+     * Method: setJournal
+     * sets the transaction journal of the object
+     * 
+     * @param journal
+     * @return nothing
+     * @throws nothing
+     * @exception nothing
+     * @since 10-28-17
+     */
+    public void setJournal(TransactionJournal journal) {
+        this.journal = journal;
+    }
+
+    /**
+     * Method: getTrx
+     * returns transaction reference of the object
+     * 
+     * @param nothing
+     * @return TransactionReference of the object
+     * @throws nothing
+     * @exception nothing
+     * @since 10-28-17
+     */
+    public TransactionReference getTrx() {
+        return trx;
+    }
+
+    /**
+     * Method: setTrx
+     * sets the transaction reference of the object
+     * 
+     * @param trx
+     * @return nothing
+     * @throws nothing
+     * @exception nothing
+     * @since 10-28-17
+     */
+    public void setTrx(TransactionReference trx) {
+        this.trx = trx;
+    }
+
+    /**
+     * Method: getAmountPaid
+     * returns the amount paid
+     * 
+     * @param nothing
+     * @return double 
+     * @throws nothing
+     * @exception nothing
+     * @since 10-28-17
+     */
+    public double getAmountPaid() {
+        return amountPaid;
+    }
+
+    /**
+     * Method: setAmountPaid
+     * sets the amount paid
+     * 
+     * @param amountPaid
+     * @return nothing
+     * @throws nothing
+     * @exception nothing
+     * @since 10-28-17
+     */
+    public void setAmountPaid(double amountPaid) {
+        this.amountPaid = amountPaid;
+    }
+    
     
 }

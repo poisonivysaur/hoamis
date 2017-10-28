@@ -5,7 +5,7 @@ import java.sql.Date;
 
 /**
  * Election Object
- * A <b>Election<b> object contains the different attributes of 
+ * A <b>Election</b> object contains the different attributes of 
  * an election and the different functions it can perform on the system
  * 
  * @author justine

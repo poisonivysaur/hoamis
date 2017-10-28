@@ -3,7 +3,7 @@ package model;
 
 /**
  * Document Object
- * A <b>Document<b> object contains the different attributes of 
+ * A <b>Document</b> object contains the different attributes of 
  * a document of the system such as the folder containing the document,
  * its directory path.
  * 
@@ -50,7 +50,7 @@ public class Document {
      * @param nothing
      * @return int containing the ID number of the object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public int getDocumentID() {
@@ -64,7 +64,7 @@ public class Document {
      * @param documentID
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setDocumentID(int documentID) {
@@ -78,7 +78,7 @@ public class Document {
      * @param nothing
      * @return String containing the description of the document
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public String getDescription() {
@@ -92,7 +92,7 @@ public class Document {
      * @param description
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setDescription(String description) {
@@ -106,7 +106,7 @@ public class Document {
      * @param nothing
      * @return String containing the directory path of the document 
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public String getDocumentLocation() {
@@ -120,7 +120,7 @@ public class Document {
      * @param documentLocation
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setDocumentLocation(String documentLocation) {
@@ -134,7 +134,7 @@ public class Document {
      * @param nothing
      * @return Folder object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public Folder getFolder() {
@@ -148,7 +148,7 @@ public class Document {
      * @param folder
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setFolder(Folder folder) {
@@ -162,7 +162,7 @@ public class Document {
      * @param nothing
      * @return User object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public User getCreateUser() {
@@ -176,7 +176,7 @@ public class Document {
      * @param createUser
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setCreateUser(User createUser) {

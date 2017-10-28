@@ -3,7 +3,7 @@ package model;
 
 /**
  * Occupation Object
- * A <b>Occupation<b> object contains the different attributes of 
+ * A <b>Occupation</b> object contains the different attributes of 
  * a occupation ...
  * 
  * @author justine

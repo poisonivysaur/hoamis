@@ -3,7 +3,7 @@ package model;
 
 /**
  * Street Object
- * A <b>Street<b> object contains the street name of the streets in Saint Mary's Homes community
+ * A <b>Street</b> object contains the street name of the streets in Saint Mary's Homes community
  * 
  * @author ivy
  * @version 1.001

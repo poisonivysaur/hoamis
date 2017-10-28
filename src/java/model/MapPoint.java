@@ -3,7 +3,7 @@ package model;
 
 /**
  * MapPoint Object
- * A <b>MapPoint<b> object contains the ID of the property status type and
+ * A <b>MapPoint</b> object contains the ID of the property status type and
  * the property status description
  * 
  * @author ivy

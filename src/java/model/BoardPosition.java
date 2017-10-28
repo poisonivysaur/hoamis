@@ -3,7 +3,7 @@ package model;
 
 /**
  * BoardPosition Object
- * A <b>BoardPosition<b> object contains the ID of the board position type and
+ * A <b>BoardPosition</b> object contains the ID of the board position type and
  * the board position description
  * 
  * @author justine
@@ -38,7 +38,7 @@ public class BoardPosition {
      * @param nothing
      * @return int containing the position ID of the object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public int getPositionID() {
@@ -52,7 +52,7 @@ public class BoardPosition {
      * @param positionID
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setPositionID(int positionID) {
@@ -66,7 +66,7 @@ public class BoardPosition {
      * @param nothing
      * @return String containing the position description of the object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public String getPosition() {
@@ -80,7 +80,7 @@ public class BoardPosition {
      * @param position
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setPosition(String position) {

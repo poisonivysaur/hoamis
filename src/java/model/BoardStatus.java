@@ -3,7 +3,7 @@ package model;
 
 /**
  * BoardStatus Object
- * A <b>BoardStatus<b> object contains the ID of the board status type and
+ * A <b>BoardStatus</b> object contains the ID of the board status type and
  * the board status description
  * 
  * @author justine
@@ -37,7 +37,7 @@ public class BoardStatus {
      * @param nothing
      * @return int containing the status ID of the object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public int getStatusID() {
@@ -51,7 +51,7 @@ public class BoardStatus {
      * @param statusID
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setStatusID(int statusID) {
@@ -65,7 +65,7 @@ public class BoardStatus {
      * @param nothing
      * @return String containing the status description of the object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public String getStatus() {
@@ -79,7 +79,7 @@ public class BoardStatus {
      * @param status
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setStatus(String status) {

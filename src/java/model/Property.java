@@ -3,7 +3,7 @@ package model;
 
 /**
  * Property Object
- * A <b>Property<b> object contains the different attributes of 
+ * A <b>Property</b> object contains the different attributes of 
  * a property that a home owner possesses
  * 
  * @author ivy

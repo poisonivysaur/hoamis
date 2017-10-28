@@ -3,7 +3,7 @@ package model;
 
 /**
  * PropertyStatus Object
- * A <b>PropertyStatus<b> object contains the ID of the property status type and
+ * A <b>PropertyStatus</b> object contains the ID of the property status type and
  * the property status description
  * 
  * @author ivy

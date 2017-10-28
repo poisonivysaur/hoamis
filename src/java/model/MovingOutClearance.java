@@ -5,7 +5,7 @@ import java.sql.Date;
 
 /**
  * MovingOutClearance Object
- * A <b>MovingOutClearance<b> object contains the different attributes of 
+ * A <b>MovingOutClearance</b> object contains the different attributes of 
  * a moving out clearance ...
  * 
  * @author justine

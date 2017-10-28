@@ -5,7 +5,7 @@ import java.sql.Date;
 
 /**
  * BoardMember Object
- * A <b>board member<b> object contains the different attributes of 
+ * A <b>board member</b> object contains the different attributes of 
  * a board member and the different functions it can perform on the system.
  * 
  * @author justine
@@ -44,10 +44,7 @@ public class BoardMember extends User{
      * Method: getPosition
      * returns the board position of the object
      * 
-     * @param nothing
      * @return BoardPosition object
-     * @throws nothing
-     * @excepiton nothing
      * @since 10-28-17
      */
     public BoardPosition getPosition() {
@@ -58,10 +55,7 @@ public class BoardMember extends User{
      * Method: setTrx
      * sets the board position of the object
      * 
-     * @param position
-     * @return nothing
-     * @throws nothing
-     * @excepiton nothing
+     * @param position position of the board member
      * @since 10-28-17
      */
     public void setPosition(BoardPosition position) {
@@ -72,10 +66,7 @@ public class BoardMember extends User{
      * Method: getEffectiveDate
      * returns date of effectivity of the object
      * 
-     * @param nothing
      * @return Date object
-     * @throws nothing
-     * @excepiton nothing
      * @since 10-28-17
      */
     public Date getEffectiveDate() {
@@ -87,9 +78,6 @@ public class BoardMember extends User{
      * sets the date of effectivity of the object
      * 
      * @param effectiveDate
-     * @return nothin
-     * @throws nothing
-     * @excepiton nothing
      * @since 10-28-17
      */
     public void setEffectiveDate(Date effectiveDate) {
@@ -100,10 +88,7 @@ public class BoardMember extends User{
      * Method: getEndDate
      * returns the end date of effectivity of the object
      * 
-     * @param nothing
      * @return Date object
-     * @throws nothing
-     * @excepiton nothing
      * @since 10-28-17
      */
     public Date getEndDate() {
@@ -115,9 +100,6 @@ public class BoardMember extends User{
      * sets the end date of effectivity of the object
      * 
      * @param endDate
-     * @return nothing
-     * @throws nothing
-     * @excepiton nothing
      * @since 10-28-17
      */
     public void setEndDate(Date endDate) {
@@ -128,10 +110,7 @@ public class BoardMember extends User{
      * Method: getStatus
      * returns the status of the object
      * 
-     * @param nothing
      * @return BoardStatus object
-     * @throws nothing
-     * @excepiton nothing
      * @since 10-28-17
      */
     public BoardStatus getStatus() {
@@ -143,9 +122,6 @@ public class BoardMember extends User{
      * sets the status of effectivity of the object
      * 
      * @param status
-     * @return nothing
-     * @throws nothing
-     * @excepiton nothing
      * @since 10-28-17
      */
     public void setStatus(BoardStatus status) {
@@ -156,10 +132,7 @@ public class BoardMember extends User{
      * Method: getElection
      * returns the election attribute of the object
      * 
-     * @param nothing
      * @return Election object
-     * @throws nothing
-     * @excepiton nothing
      * @since 10-28-17
      */
     public Election getElection() {
@@ -171,9 +144,6 @@ public class BoardMember extends User{
      * sets the election attribute of the object
      * 
      * @param election
-     * @return nothing
-     * @throws nothing
-     * @excepiton nothing
      * @since 10-28-17
      */
     public void setElection(Election election) {

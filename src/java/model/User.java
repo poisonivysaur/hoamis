@@ -3,9 +3,9 @@ package model;
 import java.sql.Date;
 /**
  * User Object
- * A <b>user<b> object contains the different attributes of 
- * a user of the system and the different functions it can perform on the system,
- * and User is the parent class of HomeOwner, HomeMember, Kasambahay, BoardMember.
+ * A <b>user</b> object contains the different attributes of 
+ * a user of the system and the different functions it can perform on the system.
+ * User is the parent class of HomeOwner, HomeMember, Kasambahay, BoardMember.
  * 
  * @author justine
  * @version 1.002
@@ -65,7 +65,7 @@ public class User {
      * @param nothing
      * @return TransactioniReference object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public TransactionReference getTrx() {
@@ -79,7 +79,7 @@ public class User {
      * @param trx
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setTrx(TransactionReference trx) {
@@ -108,7 +108,7 @@ public class User {
      * @param nothing
      * @return String containing the first name of the object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public String getfName() {
@@ -122,7 +122,7 @@ public class User {
      * @param fName
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setfName(String fName) {
@@ -136,7 +136,7 @@ public class User {
      * @param nothing
      * @return String containing the last name of the object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public String getlName() {
@@ -150,7 +150,7 @@ public class User {
      * @param lName
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setlName(String lName) {
@@ -164,7 +164,7 @@ public class User {
      * @param nothing
      * @return String containing the middle name of the object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public String getmName() {
@@ -178,7 +178,7 @@ public class User {
      * @param mName
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setmName(String mName) {
@@ -192,7 +192,7 @@ public class User {
      * @param nothing
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public String getUserID() {
@@ -206,7 +206,7 @@ public class User {
      * @param userID
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setUserID(String userID) {
@@ -220,7 +220,7 @@ public class User {
      * @param nothing
      * @return String containing the password of the object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public String getPasswd() {
@@ -234,7 +234,7 @@ public class User {
      * @param passwd
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setPasswd(String passwd) {
@@ -248,7 +248,7 @@ public class User {
      * @param nothing
      * @return UserType
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public UserType getUsertype() {
@@ -262,7 +262,7 @@ public class User {
      * @param usertype
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setUsertype(UserType usertype) {
@@ -276,7 +276,7 @@ public class User {
      * @param nothing
      * @return Date containing the birth date of the object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public Date getbDate() {
@@ -290,7 +290,7 @@ public class User {
      * @param bDate
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setbDate(Date bDate) {
@@ -304,7 +304,7 @@ public class User {
      * @param nothing
      * @return Document object containing the photo of the user object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public Document getPhoto() {
@@ -318,7 +318,7 @@ public class User {
      * @param photo
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setPhoto(Document photo) {
@@ -332,7 +332,7 @@ public class User {
      * @param nothing
      * @return Occupation object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public Occupation getOccupation() {
@@ -346,7 +346,7 @@ public class User {
      * @param occupation
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setOccupation(Occupation occupation) {
@@ -360,7 +360,7 @@ public class User {
      * @param nothing
      * @return Date object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public Date getMovingIn() {
@@ -374,7 +374,7 @@ public class User {
      * @param movingIn
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setMovingIn(Date movingIn) {
@@ -388,7 +388,7 @@ public class User {
      * @param nothing
      * @return MovingOutClearance object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public MovingOutClearance getMovingOutclear() {
@@ -402,7 +402,7 @@ public class User {
      * @param movinOutclear
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setMovingOutclear(MovingOutClearance movingOutclear) {

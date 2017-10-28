@@ -3,7 +3,7 @@ package model;
 
 /**
  * UserType Object
- * A <b>user type<b> is a reference to the possible values for the usertype field of the User Class
+ * A <b>user type</b> is a reference to the possible values for the usertype field of the User Class
  * 
  * @author justine
  * @version 1.002
@@ -36,7 +36,7 @@ public class UserType {
      * @param nothing
      * @return int containing the user type ID of the object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public int getUsertypeID() {
@@ -50,7 +50,7 @@ public class UserType {
      * @param usertypeid
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setUsertypeID(int usertypeid) {
@@ -64,7 +64,7 @@ public class UserType {
      * @param nothing
      * @return String containing the user type of the object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public String getUsertype() {
@@ -78,7 +78,7 @@ public class UserType {
      * @param usertype
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setUsertype(String usertype) {

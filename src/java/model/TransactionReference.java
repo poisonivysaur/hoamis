@@ -2,8 +2,7 @@
 package model;
 
 /**
- * TransactionReference Object
- * A <b>transaction reference<b> is a reference to all the transactions made across 
+ * A <b>transaction reference</b> is a reference to all the transactions made across 
  * different types of transactions in the system
  * 
  * @author justine
@@ -41,7 +40,7 @@ public class TransactionReference {
      * @param nothing
      * @return int containing the transaction ID of the object
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public int getTrxID() {
@@ -55,7 +54,7 @@ public class TransactionReference {
      * @param trxID
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setTrxID(int trxID) {
@@ -69,7 +68,7 @@ public class TransactionReference {
      * @param nothing
      * @return Double containing the amount of the transaction
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public Double getAmount() {
@@ -83,7 +82,7 @@ public class TransactionReference {
      * @param amount
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setAmount(Double amount) {
@@ -97,7 +96,7 @@ public class TransactionReference {
      * @param nothing
      * @return double containing the interest of the transaction
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public Double getInterest() {
@@ -111,7 +110,7 @@ public class TransactionReference {
      * @param interest
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setInterest(Double interest) {
@@ -125,7 +124,7 @@ public class TransactionReference {
      * @param nothing
      * @return Double containing the total amount of the transaction
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public Double getTotalamount() {
@@ -139,7 +138,7 @@ public class TransactionReference {
      * @param totalamount
      * @return nothing
      * @throws nothing
-     * @excepiton nothing
+     * @exception nothing
      * @since 10-28-17
      */
     public void setTotalamount(Double totalamount) {

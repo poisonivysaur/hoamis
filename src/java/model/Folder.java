@@ -3,7 +3,7 @@ package model;
 
 /**
  * Folder Object
- * A <b>Folder<b> object contains the different attributes of 
+ * A <b>Folder</b> object contains the different attributes of 
  * a folder ...
  * 
  * @author justine

@@ -3,7 +3,7 @@ package model;
 
 /**
  * ElectType Object
- * A <b>ElectType<b> object contains the different attributes of 
+ * A <b>ElectType</b> object contains the different attributes of 
  * a user of the system ...
  * 
  * @author justine

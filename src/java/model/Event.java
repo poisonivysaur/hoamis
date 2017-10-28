@@ -5,7 +5,7 @@ import java.sql.Date;
 
 /**
  * Event Object
- * A <b>Event<b> object contains the different attributes of 
+ * A <b>Event</b> object contains the different attributes of 
  * an event ...
  * 
  * @author justine
