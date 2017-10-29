@@ -20,9 +20,14 @@ package model;
 */
 public class BillingDetail {
 
-    private Billing billing;
-    private TransactionReference trx;
+    protected Billing billing;
+    protected TransactionReference trx;
 
+    public BillingDetail(Billing billing, TransactionReference trx){
+        this.billing = billing;
+        this.trx = trx;
+    }
+    
     public Billing getBilling() {
         return billing;
     }

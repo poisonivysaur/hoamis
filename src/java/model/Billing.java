@@ -18,26 +18,25 @@ package model;
  * 
  *
  * original code: 10-28-17 by J. Doctolero 
- * last update: 
+ * last update: 10-28-17 by I. Lim - added constructor & changed attribute datatypes
 */
 public class Billing {
     private int billingID;
-    protected int blockNum;
-    protected int lotNum;
+    protected Property property;
     protected int precedentBilling;
     protected double totalDue;
     protected double totalPaid;
+    
+    public Billing(int billingID, Property property, int precedentBilling, double totalDue, double totalPaid){
+        this.billingID = billingID;
+        this.property = property;
+        this.precedentBilling = precedentBilling;
+        this.totalDue = totalDue;
+        this.totalPaid = totalPaid;
+    }
 
     public int getBillingID(){
         return billingID;
-    }
-
-    public int getBlockNum(){
-        return blockNum;
-    }
-
-    public int getLotNum(){
-        return lotNum;
     }
 
     public int getPrecedentBilling(){
@@ -54,14 +53,6 @@ public class Billing {
 
     public void setBillingID(int billingID){
         this.billingID = billingID;
-    }
-
-    public void setBlockNum(int blockNum){
-        this.blockNum = blockNum;
-    }
-
-    public void setLotNum(int lotNum){
-        this.lotNum = lotNum;
     }
 
     public void setPrecedentBilling(int precedentBilling){

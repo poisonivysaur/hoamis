@@ -17,18 +17,23 @@ package model;
  * 
  *
  * original code: 10-28-17 by J. Doctolero 
- * last update: 
+ * last update: 10-28-17 by I. Lim - changed access specifiers
 */
 public class PaymentDetail {
-    private Billing billingID;
-    private TransactionList trxList;
+    protected int billingID;
+    protected TransactionList trxList;
 
-    public Billing getBillingID() {
+    public PaymentDetail(Billing billing, TransactionList trxList){
+        this.billingID = billing.getBillingID();
+        this.trxList = trxList;
+    }
+    
+    public int getBillingID() {
         return billingID;
     }
 
     public void setBillingID(Billing billingID) {
-        this.billingID = billingID;
+        this.billing = billingID;
     }
 
     public TransactionList getTrxList() {
