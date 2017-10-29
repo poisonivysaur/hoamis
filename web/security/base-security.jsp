@@ -33,7 +33,7 @@
             </div>
             <div class="w3-col s8 w3-bar">
                 <h4><span>Welcome, <strong><%= "user goes here"%></strong></span></h4>
-              <p>Homeowner account</p>
+              <p>Security Officer account</p>
               <a href="#" class="w3-bar-item w3-button">Log out</a>
             </div>
           </div>
@@ -45,55 +45,10 @@
           <div class="w3-bar-block">
             <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
             <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-home fa-fw"></i>  Overview</a>
+            <a href="#" class="w3-bar-item w3-button">Visitor Pass</a>
+            <a href="#" class="w3-bar-item w3-button">Vehicle Pass</a>
+            <a href="#" class="w3-bar-item w3-button">Security Reports & Violations</a>
             
-            <div class="w3-bar-item w3-button" onclick="myAccFunc('account')">
-                <i class="fa fa-user fa-fw"></i>   Account <i class="fa fa-caret-down"></i></div>
-                <div id="account" class="w3-hide w3-white w3-card-4">
-                  <a href="#" class="w3-bar-item w3-button">Directory</a>
-                  <a href="#" class="w3-bar-item w3-button">Dues & Fees</a>
-                  <a href="#" class="w3-bar-item w3-button">Registration</a>
-                  <a href="#" class="w3-bar-item w3-button">Vacation & Moving Out</a>
-            </div>
-            <div class="w3-bar-item w3-button" onclick="myAccFunc('finance')">
-                <i class="fa fa-money fa-fw"></i>  Finance <i class="fa fa-caret-down"></i></div>
-                <div id="finance" class="w3-hide w3-white w3-card-4">
-                  <a href="#" class="w3-bar-item w3-button">Accounting</a>
-                  <a href="#" class="w3-bar-item w3-button">Financial Reports</a>
-            </div>
-            <div class="w3-bar-item w3-button" onclick="myAccFunc('facilities')">
-                <i class="fa fa-university fa-fw"></i>  Reserve Facilities  <i class="fa fa-caret-down"></i></div>
-                <div id="facilities" class="w3-hide w3-white w3-card-4">
-                  <a href="#" class="w3-bar-item w3-button">Reserve Facilities</a>
-                  <a href="#" class="w3-bar-item w3-button">Reserve Equipment & Inventory</a>
-            </div>
-            <div class="w3-bar-item w3-button" onclick="myAccFunc('activities')">
-                <i class="fa fa-users fa-fw"></i>  Community Activities  <i class="fa fa-caret-down"></i></div>
-                <div id="activities" class="w3-hide w3-white w3-card-4">
-                  <a href="#" class="w3-bar-item w3-button">Bulletin Board</a>
-                  <a href="#" class="w3-bar-item w3-button">Community Forum</a>
-                  <a href="#" class="w3-bar-item w3-button">Community Groups</a>
-                  <a href="#" class="w3-bar-item w3-button">Events</a>
-                  <a href="#" class="w3-bar-item w3-button">Public Information Reference</a>
-                  <a href="#" class="w3-bar-item w3-button">Business Establishment & Services</a>
-                  <a href="#" class="w3-bar-item w3-button">Election & Voting</a>
-                  <a href="#" class="w3-bar-item w3-button">Community Map</a>
-                  <a href="#" class="w3-bar-item w3-button">Grievance & Complaints</a>
-                  
-            </div>
-            <div class="w3-bar-item w3-button" onclick="myAccFunc('maintenance')">
-                <i class="fa fa-wrench fa-fw"></i>  Community Maintenance  <i class="fa fa-caret-down"></i></div>
-                <div id="maintenance" class="w3-hide w3-white w3-card-4">
-                  <a href="#" class="w3-bar-item w3-button">Maintenance Request</a>
-                  <a href="#" class="w3-bar-item w3-button">Construction Permit</a>
-            </div>
-            <div class="w3-bar-item w3-button" onclick="myAccFunc('security')">
-                <i class="fa fa-lock fa-fw"></i>  Security  <i class="fa fa-caret-down"></i></div>
-                <div id="security" class="w3-hide w3-white w3-card-4">
-                  <a href="#" class="w3-bar-item w3-button">Visitor Pass</a>
-                  <a href="#" class="w3-bar-item w3-button">Vehicle Pass</a>
-                  <a href="#" class="w3-bar-item w3-button">Security Reports & Violations</a>
-            </div>
-            <br><br><br><br><br><br>
         </nav>
 
 
@@ -105,8 +60,7 @@
             
 
             
-            
-        <!-- End page content -->
+          <!-- End page content -->
         </div>
 
         <script>
