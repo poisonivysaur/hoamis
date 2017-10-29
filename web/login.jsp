@@ -1,7 +1,7 @@
 <%-- 
     Document   : login
     Created on : Oct 29, 2017, 4:39:57 PM
-    Author     : Robin
+    Author     : Ivy Lim
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
