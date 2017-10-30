@@ -33,7 +33,7 @@ public class PaymentDetail {
     }
 
     public void setBillingID(Billing billingID) {
-        this.billing = billingID;
+        this.billingID = billingID.getBillingID();
     }
 
     public TransactionList getTrxList() {
