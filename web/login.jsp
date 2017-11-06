@@ -81,7 +81,7 @@
 
             <form action="/action_page.php">
               <div class="imgcontainer">
-                <img src="img_avatar2.png" alt="Avatar" class="avatar">
+                <img src="img_avatar2.png" alt="" class="avatar">
               </div>
 
               <div class="container">
@@ -96,8 +96,9 @@
               </div>
 
               <div class="container" style="background-color:#f1f1f1">
-                <button type="button" class="cancelbtn">Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
+                <!--<button type="button" class="cancelbtn">Cancel</button>-->
+                <!--<span class="psw">Forgot <a href="#">password?</a></span>-->
+                <span class="psw">No account yet? <a href="#">Sign up</a></span>
               </div>
             </form>
     </body>
