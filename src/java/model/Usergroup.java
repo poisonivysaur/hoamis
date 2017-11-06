@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import java.util.*;
-import DAO.User;
+import DAO.User.getUserID;
 import java.io.PrintWriter;
 
 /**
@@ -77,14 +77,14 @@ public class Usergroup {
     /**
      * Overloaded constructor to be able to be  <b> instantiated and called </b> by other objects without parameters.
      */
-    public Group() {
+    public Usergroup() {
     }
     /**
      * Overloaded constructor to serve as <b> setters</b>
      * 
      * @param groupname - group's name
      */
-    public Group(String groupname) {
+    public Usergroup(String groupname) {
         //super constructor!
         this.groupname = groupname;
         try{
