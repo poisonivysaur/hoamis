@@ -11,6 +11,6 @@
     </session-config>
     <error-page>
         <error-code>404</error-code>
-        <location>/Error404.html</location>
+        <location>/error.jsp</location>
     </error-page>
 </web-app>
