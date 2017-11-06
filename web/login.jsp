@@ -76,12 +76,12 @@
             </style>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <h2>Login Form</h2>
+        <!--<h1>Hello World!</h1>-->
+        <h2>Log in</h2>
 
             <form action="/action_page.php">
-              <div class="imgcontainer">
-                <img src="img_avatar2.png" alt="" class="avatar">
+                <div class="imgcontainer">
+                <img src="SKRA_logo.png" width="300" alt="SKRA Group" class="">
               </div>
 
               <div class="container">
@@ -92,13 +92,12 @@
                 <input type="password" placeholder="Enter Password" name="psw" required>
 
                 <button type="submit">Login</button>
-                <input type="checkbox" checked="checked"> Remember me
+                <!--<input type="checkbox" checked="checked"> Remember me-->
               </div>
 
               <div class="container" style="background-color:#f1f1f1">
-                <!--<button type="button" class="cancelbtn">Cancel</button>-->
-                <!--<span class="psw">Forgot <a href="#">password?</a></span>-->
-                <span class="psw">No account yet? <a href="#">Sign up</a></span>
+                <button type="button" class="cancelbtn">Cancel</button>
+                <span class="psw">No account yet? <a href="#">Sign Up</a></span>
               </div>
             </form>
     </body>
