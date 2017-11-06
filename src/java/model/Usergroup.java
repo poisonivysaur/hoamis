@@ -7,9 +7,8 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import java.util.*;
-import static DAO.User.getUserID;
+import DAO.User;
 import java.io.PrintWriter;
-
 
 /**
  *
