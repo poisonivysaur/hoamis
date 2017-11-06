@@ -20,25 +20,35 @@ import java.sql.Date;
  * 
  *
  * original code: 10-27-17 by J. Singca
- * last update: 10-28-17 by I. Lim - added getters & setters
+ * last update: 
+ *   10-28-17 by I. Lim - added getters & setters
+ *   11-06-17 by Y. Inoue - Changed userType's Data type to int. Added fields for type of users.
 */
 public class User {
     // not everyone has a setter, please consider when generating getters and setter
+    
+    public static final String USERTYPE1 = "Homeowner";
+    public static final String USERTYPE2 = "Board Member";
+    public static final String USERTYPE3 = "Security Administrator";
+    public static final String USERTYPE4 = "System Administrator";
+    
     private String fName;
     private String lName;
     private String mName;
     private String userID;
     private String passwd;
-    private UserType usertype;
+    private int usertype;
     private Date bDate;
     private Document photo;
     private Occupation occupation;
     private Date movingIn;
     private MovingOutClearance movingOutclear;
     private TransactionReference trx;
+    
+    public User(){}
 
     public User(String fName, String lName, String mName,
-            String passwd, UserType usertype, Date bDate, Document photo,
+            String passwd, int usertype, Date bDate, Document photo,
             Occupation occupation, Date movingIn, MovingOutClearance movingOutclear,
             TransactionReference trx) {
         this.fName = fName;
@@ -54,7 +64,7 @@ public class User {
         this.trx = trx;
     }
     // Overloaded constructor to support null values
-    public User(String fName, String lName, String mName, String passwd, UserType usertype, Date bDate, TransactionReference trx){
+    public User(String fName, String lName, String mName, String passwd, int usertype, Date bDate, TransactionReference trx){
         this(fName, lName, mName, passwd, usertype, bDate, null, null, null, null, trx);
     }
     
@@ -238,7 +248,7 @@ public class User {
      * 
      * @since 10-28-17
      */
-    public UserType getUsertype() {
+    public int getUsertype() {
         return usertype;
     }
 
@@ -251,7 +261,7 @@ public class User {
      * 
      * @since 10-28-17
      */
-    public void setUsertype(UserType usertype) {
+    public void setUsertype(int usertype) {
         this.usertype = usertype;
     }
 
@@ -383,5 +393,24 @@ public class User {
      */
     public void setMovingOutclear(MovingOutClearance movingOutclear) {
         this.movingOutclear = movingOutclear;
+    }
+    
+    public String getUserTypeString(){
+        String userType = "";
+        switch (this.usertype){
+            case 1:
+                userType = USERTYPE1;
+                break;
+            case 2:
+                userType = USERTYPE2;
+                break;
+            case 3:
+                userType = USERTYPE3;
+                break;
+            case 4:
+                userType = USERTYPE4;
+                break;
+        }
+        return userType;
     }
 }

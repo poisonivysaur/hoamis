@@ -3,7 +3,9 @@
     Created on : Oct 29, 2017, 4:39:57 PM
     Author     : Ivy Lim
 --%>
-
+<%
+String msg = (String) request.getAttribute("msg");
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -66,39 +68,31 @@
             /* Change styles for span and cancel button on extra small screens */
             @media screen and (max-width: 300px) {
                 span.psw {
-                   display: block;
-                   float: none;
+                    display: block;
+                    float: none;
                 }
                 .cancelbtn {
-                   width: 100%;
+                    width: 100%;
                 }
             }
-            </style>
+        </style>
     </head>
     <body>
         <h1>Hello World!</h1>
         <h2>Login Form</h2>
-
-            <form action="/action_page.php">
-              <div class="imgcontainer">
-                <img src="img_avatar2.png" alt="Avatar" class="avatar">
-              </div>
-
-              <div class="container">
+        <% if(msg != null){%>
+        <p><strong><%= msg %></strong></p>
+        <% } %>
+        <form action="Login" method="post">
+            <div class="container">
                 <label><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
+                <input type="text" placeholder="Enter Username" name="username" required>
 
                 <label><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <input type="password" placeholder="Enter Password" name="password" required>
 
                 <button type="submit">Login</button>
-                <input type="checkbox" checked="checked"> Remember me
-              </div>
-
-              <div class="container" style="background-color:#f1f1f1">
-                <button type="button" class="cancelbtn">Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
-              </div>
-            </form>
+            </div>
+        </form>
     </body>
 </html>
