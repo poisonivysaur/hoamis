@@ -91,7 +91,11 @@ public class Usergroup {
      * last update: 11/07/17 by L. Barraquias - updated query code for hoamis DB
      */
     public Usergroup(String groupname) {
+<<<<<<< HEAD
         //super constructor! straight fram da DB
+=======
+        //super constructor!
+>>>>>>> af3297a6fd408382c42fb4d79bc14e4a3e702ebe
         this.groupname = groupname;
         try {
             Class.forName("com.mysql.jdbc.Driver");
