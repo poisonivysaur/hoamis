@@ -19,7 +19,7 @@ package model;
  * 
  *
  * original code: 10-27-17
- * last update:
+ * last update: 10/07/17 by L. Barraquias - Added a overloaded constructor
 */
 public class Folder {
     
@@ -34,6 +34,19 @@ public class Folder {
         this.folderdesc = folderdesc;
         this.parentFolder = parentFolder;
         this.createUser = createUser;
+    }
+    /**
+     * mark did this two constructors below
+     * @return 
+     */
+    public Folder(String folderName, String folderdesc,  User createUser) {
+        this.folderName = folderName;
+        this.folderdesc = folderdesc;
+        this.parentFolder = null;
+        this.createUser = createUser;
+    }
+    public Folder() {
+        
     }
 
     public int getFolderID() {

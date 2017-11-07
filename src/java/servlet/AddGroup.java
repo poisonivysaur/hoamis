@@ -5,9 +5,9 @@
  */
 package servlet;
 
-import DAO.User;
+import model.dao.User;
 
-import DAO.Group;
+import model.Usergroup;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -50,14 +50,14 @@ public class AddGroup extends HttpServlet {
         
             HttpSession session=request.getSession();  
             User user = new User();
-            Group g = new Group();
+            Usergroup g = new Usergroup();
             
             String groupname = request.getParameter("groupname");
             String username = request.getParameter("uname");
             String settings = request.getParameter("settings");
-            String[] members = request.getParameterValues("members");
+            int[] members = Integer.parseInt(request.getParameterValues("members"));
             String[] groups = request.getParameterValues("groups");
-            boolean a = Group.AddGroup(groupname, username, members,groups,Integer.parseInt(settings));
+            boolean a = Usergroup.AddGroup(groupname, username, members,groups,Integer.parseInt(settings));
             
             // setting sessions
             user.setUser_id(user.getUserID(request.getParameter("uname")));

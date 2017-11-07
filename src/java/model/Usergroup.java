@@ -197,7 +197,7 @@ public class Usergroup {
 
     /**
      * Gets result set of groups from the database who are public or the user is
-     * part of.
+     * a member of.
      *
      * @param user_id - selected user identification number
      * @return
@@ -224,7 +224,7 @@ public class Usergroup {
     /**
      * Gets result set of user's groups from the database.
      *
-     * @param username - user's username
+     * @param userID - user's username
      * @return
      * 
      * last update: 11/07/17 by L. Barraquias - updated query code for hoamis DB
@@ -311,7 +311,7 @@ public class Usergroup {
      *
      * @param groupname - group's name
      * @param userID - creator's ID
-     * @param members - array of members to be added to new group
+     * @param members - array of user ids of members to be added to new group
      * @param groups - array of groups to be added to the new group
      * @param settings - privacy settings of the new group
      * @return

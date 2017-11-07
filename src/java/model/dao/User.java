@@ -63,6 +63,38 @@ public class User {
         this.movingOutclear = movingOutclear;
         this.trx = trx;
     }
+    public User(String fName, String lName){
+        
+        this.fName = fName;
+        this.lName = lName;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis", "root", "root");
+            PreparedStatement st = con.prepareStatement("select * from hoamis.USERS where fname=? and lname=?");
+            st.setString(1, fName);
+            st.setString(2, lName);
+            
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                this.userID = rs.getString("userID");
+                this.mName = rs.getString("userID");
+                this.userID = rs.getString("userID");
+                this.passwd = rs.getString("userID");
+                this.usertype = new UserType(rs.getString("userID"));
+                this.bDate = rs.getDate("userID");
+                //this.photo = rs.getString("userID");
+                //this.occupation = rs.getString("userID");
+                //this.movingIn = rs.getString("userID");
+                //this.movingOutclear = rs.getString("userID");
+                //this.trx = rs.getInt("userID");
+            }
+        } catch (Exception E) {
+            E.printStackTrace();
+        }
+    }
+    public User(){
+    }
     public String getfName() {
         return fName;
     }
@@ -78,6 +110,21 @@ public class User {
     public String getPasswd() {
         return passwd;
     }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
+
+  
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
+    
     
     /*
     public static int getUserID(String userID){
@@ -169,18 +216,7 @@ public class User {
      * @param fName
      * @param lName
      * @return nothing
-     * this.fName = fName;
-        this.lName = lName;
-        this.mName = mName;
-        this.userID = userID;
-        this.passwd = passwd;
-        this.usertype = usertype;
-        this.bDate = bDate;
-        this.photo = photo;
-        this.occupation = occupation;
-        this.movingIn = movingIn;
-        this.movingOutclear = movingOutclear;
-        this.trx = trx;
+     * 
      */
      public static boolean fbLog(String fName, String lName){
         try{
