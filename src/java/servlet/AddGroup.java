@@ -55,17 +55,16 @@ public class AddGroup extends HttpServlet {
             String groupname = request.getParameter("groupname");
             String username = request.getParameter("uname");
             String settings = request.getParameter("settings");
-            int[] members = Integer.parseInt(request.getParameterValues("members"));
+            String[] Str_members = request.getParameterValues("members");
+            
+            
             String[] groups = request.getParameterValues("groups");
-            boolean a = Usergroup.AddGroup(groupname, username, members,groups,Integer.parseInt(settings));
+            boolean a = Usergroup.AddGroup(groupname, username, Str_members,groups,Integer.parseInt(settings));
             
             // setting sessions
-            user.setUser_id(user.getUserID(request.getParameter("uname")));
-            user.setUsername(request.getParameter("uname"));
-            session.setAttribute("groups", g.getAllGroups(user.getUser_id()));
+            user.setUserID(request.getParameter("uname"));
+            session.setAttribute("groups", g.getAllGroups(user.getUserID()));
             response.sendRedirect("Home.jsp");
-           
-                
     }
 
  

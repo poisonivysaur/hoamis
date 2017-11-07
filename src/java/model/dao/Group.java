@@ -98,7 +98,7 @@ public class Group {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis", "root", "root");
             PreparedStatement st = con.prepareStatement("select * from hoamis.USERGROUPS where groupname=?");
             st.setString(1, groupname);
-
+            
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 this.userGroupID = rs.getInt("group_id");

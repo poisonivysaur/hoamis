@@ -7,15 +7,15 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%@ page import="DAO.User"%>
+<%@ page import="model.dao.User"%>
 
-<%@ page import="DAO.Group"%>
+<%@ page import="model.Usergroup"%>
 <% 
    
     ResultSet rst = (ResultSet)session.getAttribute("groups");
     ResultSet groupsAvailable = (ResultSet)session.getAttribute("groups");
     ResultSet rstt = (ResultSet)session.getAttribute("users");
-    Group q = new Group();
+    Usergroup q = new Usergroup();
     User user = (User)session.getAttribute("UserObj");
 %>
 
@@ -67,10 +67,10 @@
                                
                            {
                                
-                               if(rstt.getString("username").toString() != user.getUsername().toString()){
+                               if(rstt.getString("userID").toString() != user.getUserID().toString()){
                                    
                         %> 
-                            <option value="<%= rstt.getString("username")%>"><%= rstt.getString("username")%></option>
+                            <option value="<%= rstt.getString("userID")%>"><%= rstt.getString("userID")%></option>
                         
                         <%   
                                 }

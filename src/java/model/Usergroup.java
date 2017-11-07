@@ -204,13 +204,13 @@ public class Usergroup {
      * 
      * last update: 11/07/17 by L. Barraquias - updated query code for hoamis DB
      */
-    public static ResultSet getAllGroups(int user_id) {
+    public static ResultSet getAllGroups(String user_id) {
         ResultSet as = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis", "root", "root");
-            PreparedStatement st = con.prepareStatement("select DISTINCT a.* from hoamis.group a left join hoamis.usergroupmembers b on a.group_id = b.userGroupID where a.privacy_set = 1 or b.userID = ? group by 1,2,3;");
-            st.setInt(1, user_id);
+            PreparedStatement st = con.prepareStatement("select DISTINCT a.* from hoamis.usergroups a left join hoamis.usergroupmembers b on a.userGroupID = b.userGroupID where a.privacy_set = 1 or b.userID = ? group by 1,2,3;");
+            st.setString(1, user_id);
             ResultSet rs = st.executeQuery();
 
             return rs;
@@ -284,13 +284,13 @@ public class Usergroup {
      * 
      * last update: 11/07/17 by L. Barraquias - updated query code for hoamis DB
      */
-    public static boolean isAMember(int user_id, int group_id) {
+    public static boolean isAMember(String user_id, int group_id) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis", "root", "root");
             PreparedStatement st = con.prepareStatement("select * from usergroupmembers where userGroupID=? and userID=?");
             st.setInt(1, group_id);
-            st.setInt(2, user_id);
+            st.setString(2, user_id);
 
             ResultSet rs = st.executeQuery();
 
@@ -318,7 +318,7 @@ public class Usergroup {
      * 
      * last update: 11/07/17 by L. Barraquias - updated query code for hoamis DB | Change username to userID
      */
-    public static boolean AddGroup(String groupname, int userID, int[] members, String[] groups, int settings) {
+    public static boolean AddGroup(String groupname, String userID, String[] members, String[] groups, int settings) {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -337,15 +337,15 @@ public class Usergroup {
 
             PreparedStatement stt = con.prepareStatement("INSERT INTO hoamis.usergroupmembers(userID, userGroupID) VALUES (?,?);");
 
-            stt.setInt(1, userID);
+            stt.setString(1, userID);
             stt.setInt(2, group_id);
             stt.executeUpdate();
 
             PreparedStatement sttt = con.prepareStatement("INSERT INTO hoamis.usergroupmembers(userID, userGroupID) VALUES (?,?);");
             if (members != null) {
-                for (int member_id : members) {
+                for (String member_id : members) {
 
-                    sttt.setInt(1, member_id);
+                    sttt.setString(1, member_id);
                     sttt.setInt(2, group_id);
                     sttt.executeUpdate();
                 }
@@ -356,9 +356,9 @@ public class Usergroup {
                     System.out.println("HOOooooooooy ptuangina nyo");
                     ResultSet group_members = g.getMembers(g.getUserGroupID());
                     while (group_members.next()) {
-                        sttt.setInt(1, group_members.getInt("userID"));
+                        sttt.setString(1, group_members.getString("userID"));
                         sttt.setInt(2, group_id);
-                        if (!(g.isAMember(group_members.getInt("userID"), group_id))) {
+                        if (!(g.isAMember(group_members.getString("userID"), group_id))) {
                             sttt.executeUpdate();
                         }
                     }
@@ -379,7 +379,7 @@ public class Usergroup {
      * @param members array of members to be added
      * @return
      */
-    public static boolean AddMembers(int group_id, int[] members) {
+    public static boolean AddMembers(int group_id, String[] members) {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -388,9 +388,9 @@ public class Usergroup {
             PreparedStatement sttt = con.prepareStatement("INSERT INTO hoamis.usergroupmembers(userID, userGroupID) VALUES (?,?);");
 
             // TO-DO Array of MemberID instead of names
-            for (int member_id : members) {
+            for (String member_id : members) {
 
-                sttt.setInt(1, member_id);
+                sttt.setString(1, member_id);
                 sttt.setInt(2, group_id);
                 sttt.executeUpdate();
             }

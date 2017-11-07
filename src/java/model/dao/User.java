@@ -63,26 +63,26 @@ public class User {
         this.movingOutclear = movingOutclear;
         this.trx = trx;
     }
-    public User(String fName, String lName){
+    public User(String userID){
         
-        this.fName = fName;
-        this.lName = lName;
+        
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis", "root", "root");
-            PreparedStatement st = con.prepareStatement("select * from hoamis.USERS where fname=? and lname=?");
-            st.setString(1, fName);
-            st.setString(2, lName);
+            PreparedStatement st = con.prepareStatement("select * from hoamis.USERS where userID=?");
+            st.setString(1, userID);
             
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                this.userID = rs.getString("userID");
+                this.userID = userID;
+                this.fName = rs.getString("fname");
+                this.lName = rs.getString("lname");
                 this.mName = rs.getString("userID");
                 this.userID = rs.getString("userID");
                 this.passwd = rs.getString("userID");
-                this.usertype = new UserType(rs.getString("userID"));
-                this.bDate = rs.getDate("userID");
+                //this.usertype = new UserType(rs.getString("userID"));
+                //this.bDate = rs.getDate("userID");
                 //this.photo = rs.getString("userID");
                 //this.occupation = rs.getString("userID");
                 //this.movingIn = rs.getString("userID");
@@ -119,33 +119,15 @@ public class User {
         this.lName = lName;
     }
 
-  
-
     public void setPasswd(String passwd) {
         this.passwd = passwd;
+        
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
     
-    
-    /*
-    public static int getUserID(String userID){
-        int res =-1;
-        try{
-            Class.forName("com.mysql.jdbc.Driver"); 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis","root","root"); 
-            PreparedStatement st = con.prepareStatement("select * from USERS where userID=?"); 
-            st.setString(1, userID);
-
-            ResultSet rs = st.executeQuery();
-             if(rs.next()){
-                 return Integer.parseInt(rs.getString("user_id"));
-             }
-
-        }catch(Exception E){
-            E.printStackTrace();
-        }
-        return res;
-    }
-    */
 
     /**
      * Returns all the users of the database
@@ -174,13 +156,13 @@ public class User {
      * @param group_id group identification number
      * @return
      */
-    public static boolean joinGroup(int user_id, int group_id){
+    public static boolean joinGroup(String user_id, int group_id){
          
          try{
            Class.forName("com.mysql.jdbc.Driver"); 
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis","root","root"); 
-            PreparedStatement st = con.prepareStatement("INSERT INTO hoamis.USERGROUPS(user_user_id, group_group_id,membership_type) VALUES (?,?,1);"); 
-            st.setInt(1, user_id);
+            PreparedStatement st = con.prepareStatement("INSERT INTO hoamis.USERGROUPS(userID, userGroupID) VALUES (?,?);"); 
+            st.setString(1, user_id);
             st.setInt(2, group_id);
        
             st.executeUpdate();

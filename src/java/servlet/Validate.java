@@ -20,8 +20,8 @@ public class Validate {
     public static boolean checkUser(String username, String password){
         try{
             Class.forName("com.mysql.jdbc.Driver"); 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestForumDB","root","root"); 
-            PreparedStatement st = con.prepareStatement("select * from user where username=? and password=?"); 
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis","root","root"); 
+            PreparedStatement st = con.prepareStatement("select * from hoamis.USERS where userID=? and passwd=?"); 
             st.setString(1, username);
             st.setString(2, password);
 
