@@ -47,7 +47,7 @@ public class AddGroup extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+            System.out.println("GAGOGGGGGadjfakjdsfklajsdfkajsdfkjasdkfjaksdfjkaldjfklajsdfklsjdklfjaskdl");
             HttpSession session=request.getSession();  
             User user = new User();
             Usergroup g = new Usergroup();
@@ -64,7 +64,7 @@ public class AddGroup extends HttpServlet {
             // setting sessions
             user.setUserID(request.getParameter("uname"));
             session.setAttribute("groups", g.getAllGroups(user.getUserID()));
-            response.sendRedirect("Home.jsp");
+            response.sendRedirect("Home");
     }
 
  

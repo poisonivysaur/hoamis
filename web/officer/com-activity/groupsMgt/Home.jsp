@@ -1,14 +1,13 @@
 <%-- 
     Document   : Home
     Created on : Oct 16, 2017, 1:41:14 AM
-    Author     : Leebet-PC
+    Author     : Leebet Barraquias
 --%>
 
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@ page import="model.dao.User"%>
-
 <%@ page import="model.Usergroup"%>
 <% 
    
@@ -32,9 +31,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home Page</title>
     </head>
-
-    <link rel="stylesheet" href="base.css">
-    <link rel="stylesheet" href="grid.css">
+    <link href="${pageContext.request.contextPath}/grid.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="commons/res/base.css">
+    <link rel="stylesheet" href="commons/res/grid.css">
     <div id="myModal" class="modal">
 
         <!-- Modal content -->
@@ -43,7 +43,7 @@
           <h1>Add Group</h1>
           <hr>
           <form action="AddGroup" method="POST">
-              <input type="hidden" name="uname" value="<%= session.getAttribute("uname") %>">
+              <input type="hidden" name="uname" value="<%= user.getUserID() %>">
                     Group Name:<br>
                     <input type="text" class="group" name="groupname"><br>
                     Privacy Setting:
@@ -70,7 +70,7 @@
                                if(rstt.getString("userID").toString() != user.getUserID().toString()){
                                    
                         %> 
-                            <option value="<%= rstt.getString("userID")%>"><%= rstt.getString("userID")%></option>
+                            <option value="<%= rstt.getString("userID")%>"><%= rstt.getString("fname")+" "+rstt.getString("lname")%></option>
                         
                         <%   
                                 }
@@ -118,13 +118,13 @@
                 <div class="col-3" style="text-align: right; display: inline-block">
                     
                         <% if (session.getAttribute("uname")=="null") response.sendRedirect("index.jsp");
-                           else out.println(session.getAttribute("uname"));%> <img src="assets/fuckboi.png" class="img-circle"  width="5%" height="5%">
+                           else out.println(user.getfName() +" "+user.getlName());%> <img src="commons/assets/fuckboi.png" class="img-circle"  width="5%" height="5%">
              
-                <form id="logout" action="LogoutServ" method="post" style="display: inline-block">
+                <form id="logout" action="" method="post" style="display: inline-block">
                  <a href="javascript:{}" onclick="document.getElementById('logout').submit();">
                                                 Logout</a>
                 
-             </form>  
+                </form>  
                  
                 </div>
 
@@ -138,7 +138,7 @@
                             <center>
                                 <h1 style="display: inline-block">Your Groups</h1>
                                 <button class="button-src" style="display: inline-block" id="myBtn">Create a Group 
-                                    <img src="assets/groupa.png" alt="Avatar" width="15%" height="15%">
+                                    <img src="commons/assets/groupa.png" alt="Avatar" width="15%" height="15%">
                                 </button>
                             </center>
                         </div>      
@@ -149,7 +149,7 @@
                            
                             <div class="col-1">
                                 <div class="card">
-                                    <img src="assets/img_avatar.png" alt="Avatar" width="100%">
+                                    <img src="commons/assets/img_avatar.png" alt="Avatar" width="100%">
                                     <div class="container-card">
                                         <form method="GET" action="GroupDet" id="<% out.print(rst.getString("groupname"));%>">
                                             <a href="javascript:{}" onclick="document.getElementById('<% out.print(rst.getString("groupname"));%>').submit();">

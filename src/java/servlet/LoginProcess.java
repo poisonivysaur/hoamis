@@ -50,8 +50,8 @@ public class LoginProcess extends HttpServlet {
             session.setAttribute("groups", Usergroup.getAllGroups(user.getUserID()));
             
             session.setAttribute("UserObj",user);
-            response.sendRedirect("officer/com-activity/groupsMgt/Home.jsp");
-            
+            //response.sendRedirect("officer/com-activity/groupsMgt/Home.jsp");
+            response.sendRedirect("Home");
         }
         else{
             

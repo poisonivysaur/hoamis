@@ -28,14 +28,18 @@ public class Home extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        //response.sendRedirect("officer/com-activity/groupsMgt/Home.jsp");
         request.getRequestDispatcher("officer/com-activity/groupsMgt/Home.jsp").forward(request, response);
         System.out.println("THIS IS HOME");
+        
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        request.getRequestDispatcher("officer/com-activity/groupsMgt/Home.jsp").forward(request, response);
+        System.out.println("THIS IS HOME");
     }
 
     @Override
