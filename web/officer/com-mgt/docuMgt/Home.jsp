@@ -35,84 +35,12 @@
     <link href="${pageContext.request.contextPath}/base.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="commons/res/base.css">
     <link rel="stylesheet" href="commons/res/grid.css">
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h1>Add Group</h1>
-          <hr>
-          <form action="AddGroup" method="POST">
-              <input type="hidden" name="uname" value="<%= user.getUserID() %>">
-                    Group Name:<br>
-                    <input type="text" class="group" name="groupname"><br>
-                    Privacy Setting:
-                    <select name="settings" id="soflow">
-                        <option value="1">Public</option>
-                        <option value="2">Closed</option>
-                    </select><br>
-                    Add Members:<br>
-                    <select name="members" style=" 
-                                    border: 1px solid #AAA;
-                                    color: #555;
-                                    font-size: inherit;
-                                    margin: 20px;
-                                    overflow: scroll;
-                                    padding: 5px 10px;
-                                    text-overflow: ellipsis;
-                                    white-space: nowrap;
-                                    width: 300px;" multiple>
-                        <%
-                           while(rstt.next())
-                               
-                           {
-                               
-                               if(rstt.getString("userID").toString() != user.getUserID().toString()){
-                                   
-                        %> 
-                            <option value="<%= rstt.getString("userID")%>"><%= rstt.getString("fname")+" "+rstt.getString("lname")%></option>
-                        
-                        <%   
-                                }
-                        }
-                            rstt.beforeFirst();
-                        %>
-                    </select>
-                    <br>
-                    Add Groups:<br>
-                    <select name="groups" style=" 
-                                    border: 1px solid #AAA;
-                                    color: #555;
-                                    font-size: inherit;
-                                    margin: 20px;
-                                    overflow: scroll;
-                                    padding: 5px 10px;
-                                    text-overflow: ellipsis;
-                                    white-space: nowrap;
-                                    width: 300px;" multiple>
-                        <%
-                           while(groupsAvailable.next())
-                           {     
-                        %> 
-                            <option value="<%= groupsAvailable.getString("groupname")%>"><%= groupsAvailable.getString("groupname")%></option>
-                        <%   
-                                
-                        }
-                            groupsAvailable.beforeFirst();
-                        %>
-                    </select>
-                    
-                    <br>
-                    <button class="button-src" type="submit">Create</button>
-                </form>
-        </div>
-
-      </div>
+    
     <body>
         <div class="template">    
             <div class="action-bar">
                 <div class="col-3" style="display: inline-block">
-                    Hoamis Community Groups
+                    HOAMIS DRIVE
                         <input type="text" class="search" style="margin-left: 20px" name="search" placeholder="Search For Groups!">
                 </div>
                 <div class="col-3" style="text-align: right; display: inline-block">
@@ -136,8 +64,8 @@
                     <div class="col-6">
                         <div class="row">
                             <center>
-                                <h1 style="display: inline-block">Your Groups</h1>
-                                <button class="button-src" style="display: inline-block" id="myBtn">Create a Group 
+                                <h1 style="display: inline-block">Your Drive</h1>
+                                <button class="button-src" style="display: inline-block" id="myBtn">Upload File 
                                     <img src="commons/assets/groupa.png" alt="Avatar" width="15%" height="15%">
                                 </button>
                             </center>

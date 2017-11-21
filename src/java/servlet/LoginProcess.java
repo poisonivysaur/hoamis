@@ -51,7 +51,12 @@ public class LoginProcess extends HttpServlet {
             
             session.setAttribute("UserObj",user);
             //response.sendRedirect("officer/com-activity/groupsMgt/Home.jsp");
-            response.sendRedirect("Home");
+            if (request.getParameter("module").equals( "groups-management"))
+                response.sendRedirect("Home");
+            else if(request.getParameter("module").equals( "document-management"))
+                response.sendRedirect("HomeDocu");
+                
+                
         }
         else{
             

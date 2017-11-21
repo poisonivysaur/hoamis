@@ -13,6 +13,9 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <a href="Main?action=markLogin">Login(Mark)</a>
+        <a href="Main?action=markGroups">Login(Mark|Groups)</a>
+        <a href="Main?action=markDocu">Login(Mark|Docu)</a>
+        
+        
     </body>
 </html>

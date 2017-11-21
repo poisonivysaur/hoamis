@@ -35,9 +35,13 @@ public class Main extends HttpServlet {
         String forward = "";
         String action = request.getParameter("action");
         
-        if(action.equals("markLogin")){
+        if(action.equals("markGroups")){
             forward = "officer/com-activity/groupsMgt/index.jsp";
         }
+        if(action.equals("markDocu")){
+            forward = "officer/com-mgt/docuMgt/index.jsp";
+        }
+        
         
         request.getRequestDispatcher(forward).forward(request, response);
     }

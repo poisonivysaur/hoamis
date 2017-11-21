@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" href="assets/uts.png">
-        <title>LOGING DOGING</title>
+        <title>DOCUMENT MANAGEMENT DRIVE</title>
     </head>
     <body>
  <script>
@@ -93,13 +93,13 @@
  }
 </script> 
 
-        <h1>Hello User!</h1>
+        <h1>HOAMIS DRIVE</h1>
             <form action="LoginProcess" method="POST">
             <fieldset>
-                <legend>Community Group Management</legend>
+                <legend>Document Management </legend>
                 Username: <input type="text" name="username"/><br>
                 Password:<input type="text" name="password"/><br>
-                <input name="module" value="groups-management" type="hidden"/>
+                <input name="module" value="document-management" type="hidden"/>
                 <input type="submit" value="submit"/>
             </fieldset>    
             </form>

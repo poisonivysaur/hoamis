@@ -324,8 +324,8 @@ public class Usergroup {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis", "root", "root");
             PreparedStatement st = con.prepareStatement("INSERT INTO hoamis.usergroups(userGroupID,description,privacy_set,groupname) VALUES (NULL,'ah qqo',?,?);");
-            st.setString(1, groupname);
-            st.setInt(2, settings);
+            st.setInt(1, settings);
+            st.setString(2, groupname);
 
             st.executeUpdate();
             ResultSet rst = st.getGeneratedKeys();
