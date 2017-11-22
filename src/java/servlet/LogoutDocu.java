@@ -20,15 +20,15 @@ import javax.servlet.http.HttpSession;
  * @version 1.0 
  * @since 10/30/2017
  */
-@WebServlet(name = "LogoutServ", urlPatterns = {"/LogoutServ"})
-public class LogoutServ extends HttpServlet {
+@WebServlet(name = "LogoutDocu", urlPatterns = {"/LogoutDocu"})
+public class LogoutDocu extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("Main?action=markDocu");
         }
     }
 

@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -35,9 +36,13 @@ public class Main extends HttpServlet {
         String forward = "";
         String action = request.getParameter("action");
         
-        if(action.equals("markLogin")){
+        if(action.equals("markGroups")){
             forward = "officer/com-activity/groupsMgt/index.jsp";
         }
+        if(action.equals("markDocu")){
+            forward = "officer/com-mgt/docuMgt/index.jsp";
+        }
+        
         
         request.getRequestDispatcher(forward).forward(request, response);
     }
@@ -52,5 +57,14 @@ public class Main extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {}
+            throws ServletException, IOException {
+        String forward = "";
+        String action = request.getParameter("action");
+        
+        if(action.equals("markLogin")){
+            forward = "officer/com-activity/groupsMgt/index.jsp";
+        }
+        
+        request.getRequestDispatcher(forward).forward(request, response);
+    }
 }

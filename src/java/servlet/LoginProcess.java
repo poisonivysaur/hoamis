@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 import javax.sql.*;
-import DAO.Group;
+import model.Usergroup;
 
-import DAO.User;
+import model.dao.User;
 
 /**
  *
@@ -43,23 +43,25 @@ public class LoginProcess extends HttpServlet {
         
         if (Validate.checkUser(username, password)){
             HttpSession session=request.getSession();  
-            User user = new User();
-            
-            user.setUser_id(user.getUserID(request.getParameter("username")));
-            user.setUsername(request.getParameter("username"));
+            User user = new User(request.getParameter("username"));
             
             session.setAttribute("uname",request.getParameter("username"));
             session.setAttribute("users", user.getUsers());
-            session.setAttribute("groups", Group.getAllGroups(user.getUser_id()));
+            session.setAttribute("groups", Usergroup.getAllGroups(user.getUserID()));
             
             session.setAttribute("UserObj",user);
-            response.sendRedirect("officer/com-activity/groupsMgt/Home.jsp");
-            
+            //response.sendRedirect("officer/com-activity/groupsMgt/Home.jsp");
+            if (request.getParameter("module").equals( "groups-management"))
+                response.sendRedirect("Home");
+            else if(request.getParameter("module").equals( "document-management"))
+                response.sendRedirect("HomeDocu");
+                
+                
         }
         else{
             
 	    request.setAttribute("gago","Login unZUCCED");
-            response.sendRedirect("Home");
+            response.sendRedirect("index.jsp");
         }
     }
     @Override
