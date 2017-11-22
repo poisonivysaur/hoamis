@@ -31,11 +31,32 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home Page</title>
     </head>
-    <link href="${pageContext.request.contextPath}/grid.css" rel="stylesheet" type="text/css"/>
-    <link href="${pageContext.request.contextPath}/base.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="commons/res/base.css">
-    <link rel="stylesheet" href="commons/res/grid.css">
-    
+    <link rel="stylesheet" href="commons/res/ba.css">
+    <link rel="stylesheet" href="commons/res/gr.css">
+    <style>
+        .hide input[type=file]{
+            
+            display: block;
+        }
+        .hide {
+            display: inline-block ;
+            padding: 2px 20px;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: #4CAF50;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #5a6c89;    
+        }
+        .hide input[type=file]:active + label{
+            display: block;
+            background-image: none;
+            background-color: #5a6c89;
+            color: white;
+        }
+    </style>
     <body>
         <div class="template">    
             <div class="action-bar">
@@ -64,10 +85,27 @@
                     <div class="col-6">
                         <div class="row">
                             <center>
-                                <h1 style="display: inline-block">Your Drive</h1>
-                                <button class="button-src" style="display: inline-block" id="myBtn">Upload File 
-                                    <img src="commons/assets/groupa.png" alt="Avatar" width="15%" height="15%">
-                                </button>
+                                   
+
+                                
+                                <form action="upload" method="post" enctype="multipart/form-data">
+                                    
+                          
+                                <div id="result">
+                                    <h3>${requestScope["message"]}</h3>
+                                </div>
+                                      <h1 style="display: inline-block">Your Drive</h1>
+                                
+                                   <div class="hide"style="display: inline-block">
+                                       
+                                       <label style="cursor: pointer; display:inline-block">
+                                            <b>UPLOAD</b>
+                                                <input style="display: none;" type="file" name="file"/>
+                                        </label >   
+                                   </div>
+                                   <input class="button-src" type="submit" style="border-radius: 70%;padding:5px" value="✓" />
+                                </form>         
+
                             </center>
                         </div>      
                            <%

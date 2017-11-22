@@ -31,17 +31,14 @@ public class HomeDocu extends HttpServlet {
         
         //response.sendRedirect("officer/com-activity/groupsMgt/Home.jsp");
         request.getRequestDispatcher("officer/com-mgt/docuMgt/Home.jsp").forward(request, response);
-        System.out.println("THIS IS HOME");
-        
+        System.out.println("THIS IS HOME");   
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("officer/com-mgt/docuMgt/Home.jsp").forward(request, response);
         System.out.println("THIS IS HOME");
     }
-
     @Override
     public String getServletInfo() {
         return "A servlet for forwarding user information into home page.";

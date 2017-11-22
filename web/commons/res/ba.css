@@ -27,7 +27,7 @@ html *
     }
 
 body {
-  color: #595959;
+  color: #5a6c89;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 300;
@@ -184,7 +184,7 @@ body {
     padding: 8px 12px 4px 36px;
 }
 .button-src {
-    background-color: #4CAF50;
+    background-color: #5a6c89;
     border: none;
     color: white;
     padding: 5px 20px;

@@ -1,0 +1,12 @@
+Signup:
+Error Handling sa passwords, error handling sa email formatting, empty data at error handling same accounts
+iAdopt logo redirects to homepageViewer.scss
+
+AddPetAdoption:
+Walang input type ung mga input boxes, error handling sa age
+Error handling sa breed according to animal type
+Signout button redirects to its html
+
+
+
+
