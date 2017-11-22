@@ -31,6 +31,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home Page</title>
     </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="commons/res/ba.css">
     <link rel="stylesheet" href="commons/res/gr.css">
     <style>
@@ -69,7 +72,7 @@
                         <% if (session.getAttribute("uname")=="null") response.sendRedirect("index.jsp");
                            else out.println(user.getfName() +" "+user.getlName());%> <img src="commons/assets/fuckboi.png" class="img-circle"  width="5%" height="5%">
              
-                <form id="logout" action="" method="post" style="display: inline-block">
+                <form id="logout" action="LogoutDocu" method="post" style="display: inline-block">
                  <a href="javascript:{}" onclick="document.getElementById('logout').submit();">
                                                 Logout</a>
                 
@@ -85,27 +88,25 @@
                     <div class="col-6">
                         <div class="row">
                             <center>
-                                   
-
-                                
                                 <form action="upload" method="post" enctype="multipart/form-data">
-                                    
-                          
-                                <div id="result">
-                                    <h3>${requestScope["message"]}</h3>
-                                </div>
-                                      <h1 style="display: inline-block">Your Drive</h1>
+                                    <input type="hidden" name="action" value="upload"/>
+                                    <div id="result">
+                                        <h3>${requestScope["message"]}</h3>
+                                    </div>
+                                    <h1 style="display: inline-block">Your Drive</h1>
                                 
-                                   <div class="hide"style="display: inline-block">
-                                       
+                                    <div class="hide"style="display: inline-block">
                                        <label style="cursor: pointer; display:inline-block">
                                             <b>UPLOAD</b>
-                                                <input style="display: none;" type="file" name="file"/>
-                                        </label >   
-                                   </div>
-                                   <input class="button-src" type="submit" style="border-radius: 70%;padding:5px" value="✓" />
-                                </form>         
-
+                                                <input style="display: none;" type="file" id="fileSelect2" onchange="showImage(this);" name="file"/>
+                                                
+                                       </label>   
+                                    </div>
+                                    <input class="button-src" type="submit" style="border-radius: 70%;padding:5px" value="✓" />
+                                </form>
+                                    <br>
+                                    <h3 id="fileName"></h3>
+                                    <img id="fileImage" src="" alt="" style="max-width: 300px; max-height: 300px" min-width="0px" min-height="0px" />
                             </center>
                         </div>      
                            <%
@@ -146,7 +147,9 @@
         </div>
     </body>
 </html>
+
 <script>
+/*
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -172,4 +175,34 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+*/
+ function showImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            var files = input.files[0];
+            var fileType = files["type"];
+            var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+            if ($.inArray(fileType, ValidImageTypes) < 0) {
+                 $('#fileImage')
+                        .attr('src', 'commons/assets/default.png').style="display: inline;"
+                 ;
+                 $('#fileName')
+                        .html(files["name"]);
+                 ;
+            }
+            else
+            {
+                reader.onload = function (e) {
+                    $('#fileImage')
+                        .attr('src', e.target.result).style="display: inline;"
+                    ;
+                    $('#fileName')
+                        .html(files["name"]);
+                    ;
+                };
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
 </script>s
