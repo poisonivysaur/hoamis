@@ -9,7 +9,10 @@
 <%@page import="model.dao.BillingDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-ArrayList<Billing> bills = BillingDAO.getBillings();
+    /*
+String hoId = request.getParameter("userid");
+ArrayList<Billing> bills = BillingDAO.getBillings(hoId);*/
+    
 %>
 <!DOCTYPE html>
 <html>
@@ -63,7 +66,7 @@ ArrayList<Billing> bills = BillingDAO.getBillings();
             
             </div>
             <div class="w3-container">
-            <table class="w3-table w3-striped w3-white">
+            <table class="w3-table w3-striped w3-white w3-hoverable">
                 <tr>
                     <th>Billing ID</th>
                     <th>Block</th>
