@@ -23,6 +23,7 @@ import java.sql.Date;
  * last update: 
  *   10-28-17 by I. Lim - added getters & setters
  *   11-06-17 by Y. Inoue - Changed userType's Data type to int. Added fields for type of users.
+ *   11-24-17 by Y. Inoue - Added status to the class.
 */
 public class User {
     // not everyone has a setter, please consider when generating getters and setter
@@ -31,6 +32,8 @@ public class User {
     public static final String USERTYPE2 = "Board Member";
     public static final String USERTYPE3 = "Security Administrator";
     public static final String USERTYPE4 = "System Administrator";
+    public static final String USERTYPE5 = "Home Member";
+    public static final String USERTYPE6 = "Kasambahay";
     
     private String fName;
     private String lName;
@@ -44,6 +47,7 @@ public class User {
     private Date movingIn;
     private MovingOutClearance movingOutclear;
     private TransactionReference trx;
+    private int status;
     
     public User(){}
 
@@ -395,6 +399,39 @@ public class User {
         this.movingOutclear = movingOutclear;
     }
     
+    /**
+     * Manages the status of the user corresponding to an event.
+     * 
+     * @param event
+     * @return nothing
+     * @throws nothing
+     * 
+     * 
+     */
+    public void statusManager(String event){
+        //Change status according to the event
+    }
+    
+    /**
+     * returns the status in int.
+     * 
+     * @param nothing
+     * @thorws nothing
+     * @return int
+     */
+    public int getStatus(){
+        return this.status;
+    }
+    
+    /**
+     * returns the user type in string value.
+     * 
+     * @param nothing
+     * @return String
+     * @throws nothing
+     * 
+     * @since 11-07-17
+     */
     public String getUserTypeString(){
         String userType = "";
         switch (this.usertype){
