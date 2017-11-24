@@ -12,7 +12,6 @@ package model;
 
 /* Documentation for developer courtesy of Ivy Lim
  * COMMENTS:
- * Please seek Justine first before updating this code. 
  * generated getters & setters, note that adding of triggers/checkers for the setters/ delete unnecessary setters, etc. are still needed
  *
  * 
@@ -22,14 +21,21 @@ package model;
 */
 public class Billing {
     private int billingID;
-    protected Property property;
+    protected int blocknum;
+    protected int lotnum;
     protected int precedentBilling;
     protected double totalDue;
     protected double totalPaid;
     
-    public Billing(int billingID, Property property, int precedentBilling, double totalDue, double totalPaid){
+    public Billing(){
+        
+    }
+
+    
+    public Billing(int billingID, int blocknum, int lotnum, int precedentBilling, double totalDue, double totalPaid){
         this.billingID = billingID;
-        this.property = property;
+        this.blocknum = blocknum;
+        this.lotnum = lotnum;
         this.precedentBilling = precedentBilling;
         this.totalDue = totalDue;
         this.totalPaid = totalPaid;
@@ -37,6 +43,22 @@ public class Billing {
 
     public int getBillingID(){
         return billingID;
+    }
+    
+    public int getBlocknum() {
+        return blocknum;
+    }
+
+    public void setBlocknum(int blocknum) {
+        this.blocknum = blocknum;
+    }
+
+    public int getLotnum() {
+        return lotnum;
+    }
+
+    public void setLotnum(int lotnum) {
+        this.lotnum = lotnum;
     }
 
     public int getPrecedentBilling(){
@@ -66,4 +88,6 @@ public class Billing {
     public void setTotalPaid(double totalPaid){
         this.totalPaid = totalPaid;
     }
+    
+    
 }
