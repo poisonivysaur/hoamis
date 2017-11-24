@@ -9,11 +9,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import model.Billing;
+import model.User;
+import model.Homeowner;
 import java.util.ArrayList;
 
 /**
- * A <b>BillingDAO</b> data access object contains the different queries to access
- * the billing table in the database
+ * A <b>BillingDAO</b> data access object contains the different 
+ * queries related to the Billing and Collection module to access
+ * the tables in the database.
  * 
  * @author ivy lim
  * @version 1.001
@@ -30,6 +33,8 @@ import java.util.ArrayList;
  * last update: 11-24-17 by I. Lim - added queries
 */
 public class BillingDAO {
+    protected static ArrayList<User> users = new ArrayList();
+    protected static ArrayList<Homeowner> homeowners = new ArrayList();
     public static ArrayList<Billing> getBillings(){
         ArrayList<Billing> billings = new ArrayList();
         Connection conn = null;
@@ -52,15 +57,7 @@ public class BillingDAO {
                 int paid = rs.getInt(6);
                 Billing sampleBill = new model.Billing(id ,block, lot, prevBill, due, paid);
                 billings.add(sampleBill);
-                /*
-                loginUser = new model.User();
-                loginUser.setUserID(rs.getString(1));
-                loginUser.setPasswd(rs.getString(2));
-                loginUser.setUsertype(rs.getInt(3));
-                loginUser.setlName(rs.getString(4));
-                loginUser.setfName(rs.getString(5));
-                loginUser.setmName(rs.getString(6));
-*/
+            
             }
             
         }catch(Exception e){
@@ -105,15 +102,7 @@ public class BillingDAO {
                 
                 //Billing sampleBill = new model.Billing(one ,two, three, four, five);
                 billings.add(sample);
-                /*
-                loginUser = new model.User();
-                loginUser.setUserID(rs.getString(1));
-                loginUser.setPasswd(rs.getString(2));
-                loginUser.setUsertype(rs.getInt(3));
-                loginUser.setlName(rs.getString(4));
-                loginUser.setfName(rs.getString(5));
-                loginUser.setmName(rs.getString(6));
-*/
+               
             }
             
         }catch(Exception e){
@@ -129,10 +118,82 @@ public class BillingDAO {
         return billings;
     }
     
+    public static void getUserHomeowners(){
+        // reset array lists and select from database again
+        users = new ArrayList();
+        homeowners = new ArrayList();
+        if(users.size() ==0 ){
+            Connection conn = null;
+            PreparedStatement pStmt = null;
+            String sql = "SELECT U.USERID, U.FNAME, U.LNAME, U.MNAME, HO.BLOCKNUM, HO.LOTNUM"
+                    + " FROM USERS U JOIN HOMEOWNER HO ON HO.USERID = U.USERID";
+            try{
+                conn = DatabaseUtils.retrieveConnection();
+                pStmt = conn.prepareStatement(sql);
+                //pStmt.setString(1, userid);
+                //pStmt.setString(2, tryLogin.getPasswd());
+
+                ResultSet rs = pStmt.executeQuery();
+                
+                while(rs.next()){
+                    String id = rs.getString(1);
+                    String fname = rs.getString(2);
+                    String lname = rs.getString(3);
+                    String mname = rs.getString(4);
+                    int block = rs.getInt(5);
+                    int lot = rs.getInt(6);
+                    
+                    User user = new User();
+                    Homeowner ho = new Homeowner();
+                    System.out.println(id+"after querying");
+                    
+                    ho.setBlocknum(block);
+                    ho.setLotnum(lot);
+                    ho.setUserID(id);
+                    homeowners.add(ho);
+                    
+                    user.setUserID(id);
+                    user.setfName(fname);
+                    user.setlName(lname);
+                    user.setmName(mname);
+                    users.add(user);
+
+                }
+
+            }catch(Exception e){
+                e.printStackTrace();
+
+            }finally{
+                if(conn != null){
+                    try{
+                        conn.close();
+                    }catch(Exception e){}
+                }
+            }  
+        }
+    }
+    
+    public static ArrayList<User> getUsers(){
+        return users;
+    }
+    
+    public static ArrayList<Homeowner> getHomeowners(){
+        return homeowners;
+    }
+    
     public static void main(String[] args) {
         System.out.println("Start");
         for(Billing b : BillingDAO.getBillings("yutainoue")){
             System.out.println(b.getBillingID());
+        }
+        BillingDAO.getUserHomeowners();
+        
+        for(User b : BillingDAO.getUsers()){
+            System.out.println(b.getUserID());
+        }
+        
+        for(Homeowner b : BillingDAO.getHomeowners()){
+            System.out.println(b.getUserID());
         }
         System.out.println("End");
     }

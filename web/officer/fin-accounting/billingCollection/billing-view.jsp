@@ -4,14 +4,18 @@
     Author     : Ivy
 --%>
 
-<%@page import="model.Billing"%>
+<%@page import="model.User"%>
+<%@page import="model.Homeowner"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.dao.BillingDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    /*
-String hoId = request.getParameter("userid");
-ArrayList<Billing> bills = BillingDAO.getBillings(hoId);*/
+    
+//String hoId = request.getParameter("userid");
+//ArrayList<Billing> bills = BillingDAO.getBillings(hoId);
+BillingDAO.getUserHomeowners();
+ArrayList<Homeowner> ho = BillingDAO.getHomeowners();
+ArrayList<User> users = BillingDAO.getUsers();
     
 %>
 <!DOCTYPE html>
@@ -29,24 +33,6 @@ ArrayList<Billing> bills = BillingDAO.getBillings(hoId);*/
             <div class="w3-container">
                 <h1>Billing, Collection & Payments </h1>
               <div class="w3-row w3-large w3-light-grey">
-                  
-                  <!--
-                <div class="w3-col s2">
-                  <a href="#" class="w3-button w3-block">Menu Tab 1</a>
-                </div>
-                <div class="w3-col s2">
-                  <a href="#" class="w3-button w3-block">Menu Tab 2</a>
-                </div>
-                <div class="w3-col s2">
-                  <a href="#" class="w3-button w3-block">Menu Tab 3</a>
-                </div>
-                <div class="w3-col s3">
-                  <a href="#" class="w3-button w3-block">Menu Tab 4</a>
-                </div>
-                <div class="w3-col s3">
-                  <a href="#" class="w3-button w3-block">Menu Tab 5</a>
-                </div>-->
-                
                 <div class="w3-col s4">
                   <a href="billing-view.jsp" class="w3-button w3-block w3-grey">View Billings</a>
                 </div>
@@ -62,32 +48,64 @@ ArrayList<Billing> bills = BillingDAO.getBillings(hoId);*/
             
 
             <div class="w3-container">
-            <h2>Billings</h2>
-            
+            <h2 style="text-align: center; float: left;">View Billings of Homeowners</h2>
+            <form style="float: right; margin: 10px 20px;">
+                    <!-- SEARCH BAR-->
+                    <input type="text" id="myInput" onkeyup="filter()" placeholder="Search for homeowner" size="50">
+            </form>
             </div>
             <div class="w3-container">
-            <table class="w3-table w3-striped w3-white w3-hoverable">
+            <table class="w3-table w3-striped w3-white w3-hoverable" id="userTable">
                 <tr>
+                    <!--
                     <th>Billing ID</th>
                     <th>Block</th>
                     <th>Lot</th>
                     <th>Precedent Billing</th>
                     <th>Total Due</th>
                     <th>Total Paid</th>
+                    -->
+                    <th>Homeowner ID</th>
+                    <th>Name</th>
+                    <th>Block</th>
+                    <th>Lot</th>
+                    
                 </tr>
-            <% for(Billing b : bills){ %>
-                <tr>
-                    <td><%= b.getBillingID()%></td>
-                    <td><%= b.getBlocknum()%></td>
-                    <td><%= b.getLotnum()%></td>
-                    <td><%= b.getPrecedentBilling()%></td>
-                    <td><%= b.getTotalDue()%></td>
-                    <td><%= b.getTotalPaid()%></td>
+            <% 
+                
+                for(int i = 0; i < users.size(); i++){     
+            %>
+                <tr onmouseover="this.style.cursor='pointer'" onclick="location.href='billing-view-details.jsp?userid=<%= users.get(i).getUserID() %>'">
+                    <td><%= users.get(i).getUserID() %></td>
+                    <td><%= users.get(i).getlName()+", "+users.get(i).getfName()+" "+users.get(i).getmName()+"." %></td>
+                    <td><%= ho.get(i).getBlocknum() %></td>
+                    <td><%= ho.get(i).getLotnum() %></td>
                 </tr>
             
             <% } %>
             </table>
             </div>
-          
+    <script>
+       function filter() {
+            // Declare variables 
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("userTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                } 
+            }
+        }
+    </script>
     </body>
 </html>
