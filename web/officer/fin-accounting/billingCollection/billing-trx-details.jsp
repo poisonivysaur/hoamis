@@ -16,6 +16,7 @@ String hoId = request.getParameter("userid");
 String fname = request.getParameter("fname");
 String lname = request.getParameter("lname");
 String mname = request.getParameter("mname");
+
 int billID = Integer.parseInt(request.getParameter("billingID"));
 double totalDue = Double.parseDouble(request.getParameter("totalDue"));
 double totalPaid = Double.parseDouble(request.getParameter("totalPaid"));
