@@ -41,7 +41,19 @@ public class OfficerMain extends HttpServlet {
             if(loginUser.getUsertype() != 2){
                 response.sendError(403, "You have no permission for this Page");
             }else{
-                request.getRequestDispatcher("officer/dashboard.jsp").forward(request, response);
+                if(request.getParameter("action") == null || request.getParameter("action").equals("")){
+                    request.getRequestDispatcher("officer/dashboard.jsp").forward(request, response);
+                }else{
+                    String action = request.getParameter("action");
+                    String forward = "officer/dashboard.jsp";
+                    if(action.equals("register")){
+                        forward = "officer/accounts/registration/registration.jsp";
+                    }
+                    if(action.equals("directory")){
+                        forward = "officer/accounts/directory/directory.jsp";
+                    }
+                    request.getRequestDispatcher(forward).forward(request, response);
+                }
                 /*
                 out.print("<p>This is OfficerMain.java</p>");
                 out.print("<p>First Name:" + loginUser.getfName()  + "</p>");

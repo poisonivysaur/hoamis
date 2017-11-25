@@ -20,8 +20,10 @@ String mname = request.getParameter("mname");
 int billID = Integer.parseInt(request.getParameter("billingID"));
 double totalDue = Double.parseDouble(request.getParameter("totalDue"));
 double totalPaid = Double.parseDouble(request.getParameter("totalPaid"));
-ArrayList<String> datesPaid = BillingDAO.getDatesPaid();
+
+
 ArrayList<TransactionReference> transactions = BillingDAO.getTrxRef(billID);
+ArrayList<String> datesPaid = BillingDAO.getDatesPaid();
 %>
 <!DOCTYPE html>
 <html>
@@ -40,10 +42,10 @@ ArrayList<TransactionReference> transactions = BillingDAO.getTrxRef(billID);
               <div class="w3-row w3-large w3-light-grey">
                 <div class="w3-col s4">
                   <a href="billing-view.jsp" class="w3-button w3-block w3-grey">View Billings</a>
-                </div>
+                </div><!--
                 <div class="w3-col s4">
                   <a href="billing-generate.jsp" class="w3-button w3-block">Generate Billings</a>
-                </div>
+                </div>-->
                 <div class="w3-col s4">
                   <a href="billing-update.jsp" class="w3-button w3-block">Update Payments</a>
                 </div>

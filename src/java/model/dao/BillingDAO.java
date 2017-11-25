@@ -131,6 +131,7 @@ public class BillingDAO {
     
     public static ArrayList<TransactionReference> getTrxRef(int billID){
         ArrayList<TransactionReference> transactions = new ArrayList();
+        datesPaid = new ArrayList<>();
         Connection conn = null;
         PreparedStatement pStmt = null;
         String sql = "SELECT TR.TRXID, TR.AMOUNT, TR.INTEREST, TR.TOTALAMOUNT, TR.DESCRIPTION, TR.DATECREATED,TL.journalID, TJ.trxDate" 
@@ -138,13 +139,7 @@ public class BillingDAO {
                 + " FROM TRXREFERENCES JOIN BILLINGDETAILS BD ON BD.TRXID = trxReferences.TRXID "
                 + " WHERE BD.BILLINGID = ?) TR"
                 + " LEFT JOIN TRXLIST TL ON TL.TRXID = TR.TRXID"
-                + " LEFT JOIN TRANSACTION_JOURNAL TJ ON TJ.JournalID = TL.journalID;"; /*
-        String sql = "SELECT TR.TRXID, TR.AMOUNT, TR.INTEREST, TR.TOTALAMOUNT, TR.DESCRIPTION, TR.DATECREATED, TJ.TRXDATE "
-                + " FROM TRXREFERENCES TR JOIN BILLINGDETAILS BD ON BD.TRXID = TR.TRXID "
-                + " LEFT JOIN TRXLIST TL ON TL.TRXID = TR.TRXID"
-                + " LEFT JOIN TRANSACTION_JOURNAL TJ ON TJ.JOURNALID = TJ.JOURNALID"
-                + " WHERE BD.BILLINGID = ?"
-                + " ORDER BY TR.DATECREATED DESC;"; //WHERE USERID = ? AND PASSWD = ?;";*/
+                + " LEFT JOIN TRANSACTION_JOURNAL TJ ON TJ.JournalID = TL.journalID;"; 
         try{
             conn = DatabaseUtils.retrieveConnection();
             pStmt = conn.prepareStatement(sql);
@@ -194,7 +189,8 @@ public class BillingDAO {
             Connection conn = null;
             PreparedStatement pStmt = null;
             String sql = "SELECT U.USERID, U.FNAME, U.LNAME, U.MNAME, HO.BLOCKNUM, HO.LOTNUM"
-                    + " FROM USERS U JOIN HOMEOWNER HO ON HO.USERID = U.USERID";
+                    + " FROM USERS U JOIN HOMEOWNER HO ON HO.USERID = U.USERID"
+                    + " WHERE U.STATUS = 'active';";
             try{
                 conn = DatabaseUtils.retrieveConnection();
                 pStmt = conn.prepareStatement(sql);
@@ -249,6 +245,65 @@ public class BillingDAO {
         return homeowners;
     }
     
+    public static boolean generateBillingForAll(){
+        boolean isSuccess = false;
+        // loop around all active homeowners and get their unpaid fees & dues
+        for(int i = 0; i < users.size(); i++){
+            double totaldue = MonthlyDuesDAO.getUnpaidFees(users.get(i).getUserID());
+            double totalpaid = 0;
+            int blocknum = homeowners.get(i).getBlocknum();
+            int lotnum = homeowners.get(i).getLotnum();
+            int precedentBillID = 0;
+            
+            Connection conn = null;
+            PreparedStatement pStmt = null;
+            // gets the precedent billing of a homeowner
+            String sql = "SELECT B.BILLINGID FROM BILLING B WHERE BLOCKNUM = ? AND LOTNUM = ? ORDER BY B.DATE DESC LIMIT 1;"; 
+            try{
+                conn = DatabaseUtils.retrieveConnection();
+                pStmt = conn.prepareStatement(sql);
+                pStmt.setInt(1, blocknum);
+                pStmt.setInt(2, lotnum);
+                //pStmt.setString(2, tryLogin.getPasswd());
+
+                ResultSet rs = pStmt.executeQuery();
+                while(rs.next()){
+                    precedentBillID = rs.getInt(1); // GETS THE LAST BILLING OF THE HOMEOWNER
+                }
+                
+                // inserts a new billing for the homeowner
+                sql = "INSERT INTO BILLING(BLOCKNUM, LOTNUM, PRECEDENTBILLING, TOTALDUE, TOTALPAID, DATE)"
+                        + " VALUES(?, ?, ?, ?, ?, DATE(NOW()))";
+                
+                pStmt = conn.prepareStatement(sql);
+                pStmt.setInt(1, blocknum);
+                pStmt.setInt(2, lotnum);
+                pStmt.setInt(3, precedentBillID);
+                pStmt.setDouble(4, totaldue);
+                pStmt.setDouble(5, totalpaid);
+                
+                int inserted = pStmt.executeUpdate();
+                if(inserted != 0){
+                    System.out.println("Successfully inserted!");
+                    isSuccess = true;
+                }
+
+            }catch(Exception e){
+                e.printStackTrace();
+
+            }finally{
+                if(conn != null){
+                    try{
+                        conn.close();
+                    }catch(Exception e){}
+                }
+            }
+      
+        }
+        
+        return isSuccess;
+    }
+    
     public static void main(String[] args) {
         System.out.println("Start");
         for(Billing b : BillingDAO.getBillings("yutainoue")){
@@ -268,5 +323,6 @@ public class BillingDAO {
             System.out.println(b.getDate());
         }
         System.out.println("End");
+        
     }
 }

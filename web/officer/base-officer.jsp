@@ -4,7 +4,11 @@
     Author     : Ivy Lim
 --%>
 
+<%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+User officer = (User) session.getAttribute("loginUser");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,9 +36,9 @@
               <img src="https://poorishaadi.com/user-icon-png-pnglogocom.png" class="w3-circle w3-margin-right" style="width:46px; margin-top:20px;">
             </div>
             <div class="w3-col s8 w3-bar">
-                <h4><span>Welcome, <strong><%= "user goes here"%></strong></span></h4>
+                <h4><span>Welcome, <strong><%= officer.getfName() + " " + officer.getlName() %></strong></span></h4>
               <p>Officer account</p>
-              <a href="#" class="w3-bar-item w3-button">Log out</a>
+              <a href="Logout" class="w3-bar-item w3-button">Log out</a>
             </div>
           </div>
           <hr>
@@ -44,14 +48,14 @@
           <!-- SIDE BAR MENU OPTIONS -->
           <div class="w3-bar-block">
             <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-home fa-fw"></i>  Overview</a>
+            <a href="OfficerMain" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-home fa-fw"></i>  Overview</a>
             
             <div class="w3-bar-item w3-button" onclick="myAccFunc('account')">
                 <i class="fa fa-user fa-fw"></i>   Account <i class="fa fa-caret-down"></i></div>
                 <div id="account" class="w3-hide w3-white w3-card-4">
-                  <a href="accounts/directory.jsp" class="w3-bar-item w3-button">Directory</a>
+                  <a href="OfficerMain?action=directory" class="w3-bar-item w3-button">Directory</a>
                   <a href="accounts/dues-fees.jsp" class="w3-bar-item w3-button">Dues & Fees</a>
-                  <a href="accounts/registration.jsp" class="w3-bar-item w3-button">Registration</a>
+                  <a href="OfficerMain?action=register" class="w3-bar-item w3-button">Registration</a>
                   <a href="accounts/vacation.jsp" class="w3-bar-item w3-button">Vacation & Moving Out</a>
             </div>
             <div class="w3-bar-item w3-button" onclick="myAccFunc('finance')">

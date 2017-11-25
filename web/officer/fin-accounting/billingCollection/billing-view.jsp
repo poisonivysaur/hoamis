@@ -10,9 +10,12 @@
 <%@page import="model.dao.BillingDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    
-//String hoId = request.getParameter("userid");
-//ArrayList<Billing> bills = BillingDAO.getBillings(hoId);
+String feedback = "test";
+String isSuccess = (String)request.getAttribute("isSuccess");
+if(isSuccess != null)
+if(isSuccess.equals("true")){
+    feedback = "Billings successfully generated for everyone.";
+}
 BillingDAO.getUserHomeowners();
 ArrayList<Homeowner> ho = BillingDAO.getHomeowners();
 ArrayList<User> users = BillingDAO.getUsers();
@@ -35,10 +38,10 @@ ArrayList<User> users = BillingDAO.getUsers();
               <div class="w3-row w3-large w3-light-grey">
                 <div class="w3-col s4">
                   <a href="billing-view.jsp" class="w3-button w3-block w3-grey">View Billings</a>
-                </div>
+                </div><!--
                 <div class="w3-col s4">
                   <a href="billing-generate.jsp" class="w3-button w3-block">Generate Billings</a>
-                </div>
+                </div>-->
                 <div class="w3-col s4">
                   <a href="billing-update.jsp" class="w3-button w3-block">Update Payments</a>
                 </div>
@@ -49,13 +52,18 @@ ArrayList<User> users = BillingDAO.getUsers();
 
             <div class="w3-container">
             <h2 style="text-align: center; float: left;">View Billings of Homeowners</h2>
+            
             <form style="float: right; margin: 10px 20px;">
                     <!-- SEARCH BAR-->
                     <input type="text" id="myInput" onkeyup="filter()" placeholder="Search for homeowner" size="50">
             </form>
             
             </div>
+            
             <div class="w3-container">
+                <h3><%= feedback %></h3>
+                <a href="/hoamis/GenerateBilling"><input class="w3-button w3-teal w3-round" type="submit" name="generate" value="Generate Billings for All Homeowners" style="float:none; margin:0px;"></a>
+                <br><br>
             <table class="w3-table w3-striped w3-white w3-hoverable" id="userTable">
                 <tr>
                     <!--
