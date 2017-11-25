@@ -62,16 +62,33 @@ ArrayList<TransactionReference> transactions = BillingDAO.getTrxRef(billID);
                 <tr>
                     <th>Billing ID: <%= billID %></th>
                     <!--<th>Precedent Billing ID</th>-->
+                    <th></th>
+                    <th></th>
+                    <th></th>
                     <th style="text-align: right;">Total Due: <%= totalDue %></th>
                     <th style="text-align: right;">Total Paid: <%= totalPaid %></th>
                     
                 </tr>
+                <br>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Amount</th>
+                    <th>Interest</th>
+                    <th>Total Amount</th>
+                    <th>Description</th>
+                    <th>Date Created</th>
+                </tr>
             <% 
                 
-                for(int i = 0; i < 9; i++){     
+                for(TransactionReference trx: transactions){     
             %>
                 <tr>
-                    
+                    <td><%= trx.getTrxID() %></td>
+                    <td><%= trx.getAmount()%></td>
+                    <td><%= trx.getInterest()%></td>
+                    <td><%= trx.getTotalamount()%></td>
+                    <td><%= trx.getDescription()%></td>
+                    <td><%= trx.getDate() %></td>
                 </tr>
             
             <% } %>

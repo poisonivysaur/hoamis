@@ -12,6 +12,7 @@ import model.Billing;
 import model.User;
 import model.Homeowner;
 import java.util.ArrayList;
+import java.util.Date;
 import model.TransactionReference;
 
 /**
@@ -128,7 +129,7 @@ public class BillingDAO {
         Connection conn = null;
         PreparedStatement pStmt = null;
         
-        String sql = "SELECT TR.TRXID, TR.AMOUNT, TR.INTEREST, TR.TOTALAMOUNT, TR.DESCRIPTION, TR.DATE "
+        String sql = "SELECT TR.TRXID, TR.AMOUNT, TR.INTEREST, TR.TOTALAMOUNT, TR.DESCRIPTION, TR.DATECREATED "
                 + " FROM TRXREFERENCES TR JOIN BILLINGDETAILS BD ON BD.TRXID = TR.TRXID "
                 + " WHERE BD.BILLINGID = ?;"; //WHERE USERID = ? AND PASSWD = ?;";
         try{
@@ -145,8 +146,9 @@ public class BillingDAO {
                 double interest = rs.getDouble(3);
                 double total = rs.getDouble(4);
                 String desc = rs.getString(5);
-                
-                trx = new TransactionReference(amount, interest, total, desc);
+                String date = rs.getString(6);
+                //System.out.println("DATE FROM DB: "+date);
+                trx = new TransactionReference(id, amount, interest, total, desc, date);
                 transactions.add(trx);
                
             }
@@ -242,6 +244,10 @@ public class BillingDAO {
         
         for(Homeowner b : BillingDAO.getHomeowners()){
             System.out.println(b.getUserID());
+        }
+        
+        for(TransactionReference b : BillingDAO.getTrxRef(1)){
+            System.out.println(b.getDate());
         }
         System.out.println("End");
     }

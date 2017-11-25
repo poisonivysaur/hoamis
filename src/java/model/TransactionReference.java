@@ -27,12 +27,26 @@ public class TransactionReference {
     public double interest;
     public double totalamount;
     public String description;
-
-    public TransactionReference(double amount, double interest, double totalamount, String desc) {
+    public String date;
+    
+    public TransactionReference(){
+        
+    }
+    public TransactionReference(int trxID, double amount, double interest, double totalamount, String desc, String date) {
+        this.trxID = trxID;
         this.amount = amount;
         this.interest = interest;
         this.totalamount = totalamount;
         this.description = desc;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getDescription() {
