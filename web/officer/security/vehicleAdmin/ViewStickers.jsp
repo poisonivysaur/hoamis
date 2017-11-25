@@ -1,8 +1,9 @@
 <%-- 
-    Document   : ViewAllVehicleRecords
-    Created on : Nov 25, 2017, 3:24:58 PM
+    Document   : ViewStickers
+    Created on : Nov 25, 2017, 8:46:57 PM
     Author     : Patrisha
 --%>
+
 <%@ page import="java.util.*" %>
 
 <%@page import="java.sql.SQLException"%>
@@ -55,45 +56,41 @@
                     style="background-color:teal">
                     <b>Vehicle Records</b></td>
             </tr>
+           
             <tr style="background-color:lightgrey;">
                 <td><b>Owner</b></td>
-                <td><b>Sticker ID</b></td>
                 <td><b>Plate No.</b></td>
-                <td><b>Model</b></td>
-                <td><b>Make</b></td>
-                <td><b>Year</b></td>
-                <td><b>Banned</b></td>
+                <td><b>Sticker ID</b></td>
+                <td><b>Sticker Year</b></td>
+                <td><b>Date Issued</b></td>
+                
             </tr>
             <%
             Connection con = null;
             PreparedStatement ps = null;
             Class.forName(driverName);
             con = DriverManager.getConnection(url,user,psw);
-            String sql = "select uv.userid, uv.stickerid, uv.stickerissuedby, v.platenum, v.model, v.make, YEAR(v.year), b.name from vehicles v join banned_ref b on v.banned = b.banned left join user_vehicles uv on v.platenum = uv.plateNum";
+            String sql = "SELECT uv.userid, uv.platenum, uv.stickerid, s.stickeryear, s.datereleased FROM stickerinventory s join user_vehicles uv on s.stickerid=uv.stickerid";
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery(); 
             %>
             <%
             while(rs.next()){
             String user = rs.getString("userid");
-            int sticker = rs.getInt("stickerid");
             String platenum = rs.getString("platenum"); 
-            String model = rs.getString("model");
-            String make = rs.getString("make");
-            String year = rs.getString("YEAR(v.year)");
-            String name = rs.getString("name");
+            int sticker = rs.getInt("stickerid");
+            String year = rs.getString("stickeryear");
+            String date = rs.getString("datereleased");
             %>
              <tr style="background-color:#eeffee;">
                 <td><%=user%></td>
-                <td><%=sticker%></td>
                 <td><%=platenum%></td>
-                <td><%=model%></td>
-                <td><%=make%></td>
+                <td><%=sticker%></td>
                 <td><%=year%></td>
-                <td><%=name%></td>
+                <td><%=date%></td>
             </tr>
             <%
             }
             %>
-     
 </html>
+
