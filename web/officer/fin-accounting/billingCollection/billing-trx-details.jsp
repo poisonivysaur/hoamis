@@ -55,7 +55,7 @@ ArrayList<String> datesPaid = BillingDAO.getDatesPaid();
             
 
             <div class="w3-container">
-                <a href="billing-view-details.jsp?userid=<%= hoId %>&fname=<%= fname %>&lname=<%= lname %>&mname=<%= mname %>"><h4><<< Back to View Billings</h4></a>
+                <a href="/hoamis/OfficerMain?action=billingViewDetails&userid=<%= hoId %>&fname=<%= fname %>&lname=<%= lname %>&mname=<%= mname %>"><h4><<< Back to View Billings</h4></a>
             <h2 style="text-align: center; float: left;">Billing Details</h2>
             
             </div>

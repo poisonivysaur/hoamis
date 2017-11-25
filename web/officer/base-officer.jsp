@@ -61,7 +61,7 @@ User officer = (User) session.getAttribute("loginUser");
             <div class="w3-bar-item w3-button" onclick="myAccFunc('finance')">
                 <i class="fa fa-money fa-fw"></i>  Finance <i class="fa fa-caret-down"></i></div>
                 <div id="finance" class="w3-hide w3-white w3-card-4">
-                    <a href="fin-accounting/billing-collection.jsp" class="w3-bar-item w3-button">Billing & Collection</a>
+                    <a href="officer/fin-accounting/billingCollection/billing-view.jsp" class="w3-bar-item w3-button">Billing & Collection</a>
                     <a href="fin-accounting/fin-documents.jsp" class="w3-bar-item w3-button">Financial Documents & Administration</a>
                     <a href="fin-accounting/accounting.jsp" class="w3-bar-item w3-button">Accounting</a>
                     <a href="fin-accounting/fin-reports.jsp" class="w3-bar-item w3-button">Financial Reports</a>

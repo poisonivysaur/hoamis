@@ -10,7 +10,7 @@
 <%@page import="model.dao.BillingDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-String feedback = "test";
+String feedback = "";
 String isSuccess = (String)request.getAttribute("isSuccess");
 if(isSuccess != null)
 if(isSuccess.equals("true")){
@@ -84,7 +84,7 @@ ArrayList<User> users = BillingDAO.getUsers();
                 
                 for(int i = 0; i < users.size(); i++){     
             %>
-                <tr onmouseover="this.style.cursor='pointer'" onclick="location.href='billing-view-details.jsp?userid=<%= users.get(i).getUserID() %>&fname=<%= users.get(i).getfName() %>&lname=<%= users.get(i).getlName() %>&mname=<%= users.get(i).getmName() %>'">
+                <tr onmouseover="this.style.cursor='pointer'" onclick="location.href='/hoamis/OfficerMain?action=billingViewDetails&userid=<%= users.get(i).getUserID() %>&fname=<%= users.get(i).getfName() %>&lname=<%= users.get(i).getlName() %>&mname=<%= users.get(i).getmName() %>'">
                     <td><%= users.get(i).getUserID() %></td>
                     <td><%= users.get(i).getlName()+", "+users.get(i).getfName()+" "+users.get(i).getmName()+"." %></td>
                     <td><%= ho.get(i).getBlocknum() %></td>

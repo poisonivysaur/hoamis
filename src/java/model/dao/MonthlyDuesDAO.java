@@ -23,13 +23,13 @@ import model.*;
  */
 public class MonthlyDuesDAO{
     
-
+    protected static MonthlyDues md = null;
     //returns current monthly dues based on current month and year
     public static MonthlyDues getCurrentMonthDues(){
         Connection conn = null;
-        
+        conn = DatabaseUtils.retrieveConnection();
         String sql = "SELECT * FROM MONTHLYDUES WHERE MONTH = ? AND YEAR = ?";
-        MonthlyDues md = null;
+        
         try {
             conn = DatabaseUtils.retrieveConnection();
             PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -262,11 +262,7 @@ public class MonthlyDuesDAO{
 
             //get unpaid registration fees USER
             sql =        "SELECT    SUM(TR.AMOUNT)"
-                       + "FROM      TRXREFERENCES TR LEFT JOIN TRXLIST TL                ON TR.TRXID = TL.TRXID"
-                                                  + "JOIN USERS U                   ON TR.TRXID = U.TRXID"
-                       + "WHERE U.USERID = ?"
-                       + "AND   U.STATUS = 'active'"
-                       + "AND   TL.AMOUNTPAID = NULL";
+                       + "FROM      TRXREFERENCES TR u";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userID);
             double registrationFees = pStmt.executeQuery().getInt(1);

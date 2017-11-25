@@ -52,6 +52,27 @@ public class OfficerMain extends HttpServlet {
                     if(action.equals("directory")){
                         forward = "officer/accounts/directory/directory.jsp";
                     }
+                    if(action.equals("billingView")){
+                        forward = "officer/fin-accounting/billingCollection/billing-view.jsp";
+                    }
+                    if(action.equals("billingViewDetails")){
+                        String userid = request.getParameter("userid");
+                        String fname = request.getParameter("fname");
+                        String lname = request.getParameter("lname");
+                        String mname = request.getParameter("mname");
+                        forward = "officer/fin-accounting/billingCollection/billing-view-details.jsp?userid="+userid+"&fname="+fname+"&lname="+lname+"&mname="+mname;
+                    }
+                    
+                    if(action.equals("billingTrxDetails")){
+                        String userid = request.getParameter("userid");
+                        String fname = request.getParameter("fname");
+                        String lname = request.getParameter("lname");
+                        String mname = request.getParameter("mname");
+                        String billingID = request.getParameter("billingID");
+                        String totalDue = request.getParameter("totalDue");
+                        String totalPaid = request.getParameter("totalPaid");
+                        forward = "officer/fin-accounting/billingCollection/billing-trx-details.jsp?billingID="+billingID+"&totaldue="+totalDue+"&totalpaid="+totalPaid+"&userid="+userid+"&fname="+fname+"&lname="+lname+"&mname="+mname;
+                    }
                     request.getRequestDispatcher(forward).forward(request, response);
                 }
                 /*

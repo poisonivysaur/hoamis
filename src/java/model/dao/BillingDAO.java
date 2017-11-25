@@ -250,6 +250,7 @@ public class BillingDAO {
         // loop around all active homeowners and get their unpaid fees & dues
         for(int i = 0; i < users.size(); i++){
             double totaldue = MonthlyDuesDAO.getUnpaidFees(users.get(i).getUserID());
+            //totaldue += MonthlyDuesDAO.getCurrentHomeownerMonthlyDues();
             double totalpaid = 0;
             int blocknum = homeowners.get(i).getBlocknum();
             int lotnum = homeowners.get(i).getLotnum();
@@ -285,8 +286,91 @@ public class BillingDAO {
                 int inserted = pStmt.executeUpdate();
                 if(inserted != 0){
                     System.out.println("Successfully inserted!");
-                    isSuccess = true;
-                }
+                    //isSuccess = true;
+                    String maxBillID = "SELECT BILLINGID FROM BILLING ORDER BY BILLINGID DESC LIMIT 1;";
+                    pStmt = conn.prepareStatement(maxBillID);
+                    ResultSet rsBillID = pStmt.executeQuery();
+                    int BDbillingID = rsBillID.getInt(1);   // gets newly inserted billingID
+                    
+                    
+                    
+                    // GET THE TRANSACTIONS CORRESPONDING TO MONTHLY DUES FOR THE MONTH AND OTHER UNPAID FEES
+                    sql = "SELECT MONTHLYDUES.TRXID " +
+                            " FROM (SELECT TR.TRXID FROM TRXREFERENCES TR" +
+                            " JOIN HOUSEMONTHLYDUES HMD ON TR.TRXID = HMD.TRXID" +
+                            " JOIN MONTHLYDUES MD ON MD.MDID = HMD.MDID" +
+                            " WHERE HMD.BLOCKNUM = ? AND HMD.LOTNUM = ?" +
+                            " AND TR.DESCRIPTION = 'monthly dues'" +
+                            " AND MONTH(TR.DATECREATED) = MONTH(NOW()) AND YEAR(TR.DATECREATED) = YEAR(NOW())) MONTHLYDUES" +
+                            //get unpaid security violation fees USER2USER*/ " +
+                            " LEFT JOIN (SELECT TR.TRXID FROM TRXREFERENCES TR " +
+                            " LEFT JOIN TRXLIST TL 		   ON TR.TRXID = TL.TRXID" +
+                            " JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID" +
+                            " JOIN USER2USER UU              ON UU.SECURITYREPORTID = SV.SECURITYREPORTID" +
+                            " JOIN USERS U                   ON UU.ACCUSED_USERID = U.USERID" +
+                            " WHERE U.USERID = ? " +
+                            " AND   U.STATUS = 'active' " +
+                            " AND   TL.AMOUNTPAID = NULL) SEC1 ON SEC1.TRXID = MONTHLYDUES.TRXID " +
+                            //get unpaid security violation fees USER2ANYONE " +
+                            " LEFT JOIN (SELECT TR.TRXID FROM TRXREFERENCES TR  " +
+                            " LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID " +
+                            " JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID " +
+                            " JOIN USER2ANYONE UA            ON UA.SECURITYREPORTID = SV.SECURITYREPORTID " +
+                            " JOIN USERS U                   ON UA.USERID = U.USERID " +
+                            " WHERE U.USERID = ? " +
+                            " AND   U.STATUS = 'active' " +
+                            " AND   TL.AMOUNTPAID = NULL) SEC2 ON SEC2.TRXID = SEC1.TRXID " +
+                            //get unpaid vehicle pass fees " +
+                            " LEFT JOIN (SELECT TR.TRXID FROM TRXREFERENCES TR  " +
+                            " LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID " +
+                            " JOIN USER_VEHICLES UV          ON UV.TRXID = TR.TRXID " +
+                            " JOIN USERS U                   ON UV.USERID = U.USERID " +
+                            " WHERE U.USERID = ? " +
+                            " AND   U.STATUS = 'active' " +
+                            " AND   TL.AMOUNTPAID = NULL) VEHICLE ON VEHICLE.TRXID = SEC2.TRXID " +
+                            //get unpaid security violation fees VEHICLES2USER " +
+                            " LEFT JOIN (SELECT TR.TRXID FROM TRXREFERENCES TR  " +
+                            " LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID " +
+                            " JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID " +
+                            " JOIN VEHICLE2USER VU           ON VU.SECURITYREPORTID = SV.SECURITYREPORTID " +
+                            " JOIN VEHICLES V                ON V.PLATENUM = VU.PLATENUM " +
+                            " JOIN USER_VEHICLES UV          ON UV.PLATENUM = V.PLATENUM " +
+                            " JOIN USERS U                   ON UV.USERID = U.USERID " +
+                            " WHERE U.USERID = ? " +
+                            " AND   U.STATUS = 'active' " +
+                            " AND   TL.AMOUNTPAID = NULL) VIOLATION ON VIOLATION.TRXID = VEHICLE.TRXID " +
+                            //get unpaid registration fees USER " +
+                            " LEFT JOIN (SELECT TR.TRXID FROM TRXREFERENCES TR  " +
+                            " LEFT JOIN TRXLIST TL ON TR.TRXID = TL.TRXID " +
+                            " JOIN USERS U                   ON TR.TRXID = U.TRXID " +
+                            " WHERE U.USERID = ? " +
+                            " AND   U.STATUS = 'active' " +
+                            " AND   TL.AMOUNTPAID = NULL) REG ON REG.TRXID = VIOLATION.TRXID;";
+                    
+                    pStmt = conn.prepareStatement(sql);
+                    pStmt.setInt(1, blocknum);
+                    pStmt.setInt(2, lotnum);
+                    pStmt.setString(3, users.get(i).getUserID());
+                    pStmt.setString(4, users.get(i).getUserID());
+                    pStmt.setString(5, users.get(i).getUserID());
+                    pStmt.setString(6, users.get(i).getUserID());
+                    pStmt.setString(7, users.get(i).getUserID());
+                    rs = pStmt.executeQuery();
+                    while(rs.next()){
+                        // FOR EVERY TRANSACTION IN trxReferences that has not been paid yet by the user
+                        String insertBillingDetail = "INSERT INTO BILLINGDETAIL(BILLINGID, TRXID)"
+                                + " VALUES(?, ?)";
+                
+                        pStmt = conn.prepareStatement(sql);
+                        pStmt.setInt(1, BDbillingID);
+                        pStmt.setInt(2, rs.getInt(1));
+                        int insertedBD = pStmt.executeUpdate();
+                        if(insertedBD != 0){
+                            System.out.println("Successfully inserted to billing details!");
+                            isSuccess = true;
+                            }
+                        }
+                    }
 
             }catch(Exception e){
                 e.printStackTrace();
