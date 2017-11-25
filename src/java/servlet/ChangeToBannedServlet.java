@@ -1,19 +1,18 @@
+package servlet;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet;
 
 import dao.Database;
+import model.Sticker;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Patrisha
  */
-@WebServlet(name = "SearchServlet", urlPatterns = {"/SearchServlet"})
-public class SearchServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/ChangeToBannedServlet"})
+public class ChangeToBannedServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +43,10 @@ public class SearchServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SearchServlet</title>");            
+            out.println("<title>Servlet ChangeToBannedServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SearchServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ChangeToBannedServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -78,53 +77,51 @@ public class SearchServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {     
+            throws ServletException, IOException {
+        
         Connection conn = Database.getDBConnection();
-        String pid = request.getParameter("pid");
-        String sql = "select v.platenum, v.model, v.make, YEAR(v.year), b.name from vehicles v join banned_ref b on v.banned = b.banned where platenum='" + pid + "' ";
-        Statement st;
-        try {
-            ArrayList al = null;
-            ArrayList pid_list = new ArrayList();
-            System.out.println("query " + sql);
-            st = conn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
- 
-            while (rs.next()) {
-                al = new ArrayList();
- 
-//                out.println(rs.getString(1));
-//                out.println(rs.getString(2));
-//                out.println(rs.getString(3));
-//                out.println(rs.getString(4));
-                al.add(rs.getString(1));
-                al.add(rs.getString(2));
-                al.add(rs.getString(3));
-                al.add(rs.getString(4));
-                al.add(rs.getString(5));
- 
-                System.out.println("al :: " + al);
-                pid_list.add(al);
+       
+        String vehicles = request.getParameter("vehicles");
+        
+        String sql = "UPDATE vehicles SET banned = 1 WHERE platenum = '" + vehicles + "' ";
+        
+        try{            
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            
+            
+            int isUpdated = pStmt.executeUpdate();
+            if (isUpdated != 0){
+                System.out.println("Changed Status!");
             }
- 
-            request.setAttribute("piList", pid_list);
-           
-            System.out.println("Disconnected!");
-        } catch (Exception e) {
-            e.printStackTrace();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+            }
+            /*ResultSet rs = pStmt.executeQuery();
+            while(rs.next()){
+                System.out.println("Student ID: " + rs.getInt(1));
+                System.out.println("Name: " + rs.getString(2));
+                System.out.println("Course: " + rs.getString(3));
+                System.out.println("Year: " + rs.getInt(4));
+                System.out.println("");
+            }*/
+        
+            }
         }
-         request.getRequestDispatcher("SearchView.jsp").forward(request, response);
-    }
- 
-    /** 
+        request.getRequestDispatcher("Output.jsp").forward(request, response);    }
+
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-
 
 }
