@@ -82,14 +82,14 @@ public class RecordVehicleServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        Connection conn = Database.getDBConnection();
-        
+        String owner = request.getParameter("owner");
         String plate = request.getParameter("platenum");
         String model = request.getParameter("model");
         String make = request.getParameter("make");
         String year = request.getParameter("year");
         int banned = Integer.parseInt(request.getParameter("banned"));
         
-        Vehicle sample = new Vehicle(plate, model, make, year, banned);
+        Vehicle sample = new Vehicle(owner, plate, model, make, year, banned);
         String sql = "INSERT INTO vehicles VALUES (?, ?, ?, ?, ?)";
         
         try{            
@@ -105,6 +105,23 @@ public class RecordVehicleServlet extends HttpServlet {
             int isInserted = pStmt.executeUpdate();
             if (isInserted != 0){
                 System.out.println("Vehicle Added!");
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        String sql2 = "INSERT INTO user_vehicles VALUES (?, ?, NULL, NULL, NULL, NULL)";
+        
+        try{            
+            PreparedStatement pStmt2 = conn.prepareStatement(sql2);
+            request.setAttribute("vehicleSample", sample);
+            pStmt2.setString(1, sample.getPlate());
+            pStmt2.setString(2, sample.getOwner());
+            
+            
+            
+            int isInserted = pStmt2.executeUpdate();
+            if (isInserted != 0){
+                System.out.println("Vehicle Added 2!");
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());

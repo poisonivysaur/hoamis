@@ -81,7 +81,7 @@ public class SearchServlet extends HttpServlet {
             throws ServletException, IOException {     
         Connection conn = Database.getDBConnection();
         String pid = request.getParameter("pid");
-        String sql = "select v.platenum, v.model, v.make, YEAR(v.year), b.name from vehicles v join banned_ref b on v.banned = b.banned where platenum='" + pid + "' ";
+        String sql = "select uv.userid, uv.platenum, v.model, v.make, YEAR(v.year), b.name from vehicles v join banned_ref b on v.banned = b.banned join user_vehicles uv on uv.platenum = v.platenum where uv.platenum='" + pid + "' ";
         Statement st;
         try {
             ArrayList al = null;
@@ -102,6 +102,7 @@ public class SearchServlet extends HttpServlet {
                 al.add(rs.getString(3));
                 al.add(rs.getString(4));
                 al.add(rs.getString(5));
+                al.add(rs.getString(6));
  
                 System.out.println("al :: " + al);
                 pid_list.add(al);
