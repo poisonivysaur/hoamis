@@ -19,7 +19,7 @@ import java.sql.Date;
  *
  * 
  *
- * original code: 10-27-17 by J. Singca
+ * original code: 10-27-17 by I. Lim
  * last update:
 */
 public class Homeowner extends User{
