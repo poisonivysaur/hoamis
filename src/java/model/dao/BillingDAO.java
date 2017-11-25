@@ -12,6 +12,7 @@ import model.Billing;
 import model.User;
 import model.Homeowner;
 import java.util.ArrayList;
+import model.TransactionReference;
 
 /**
  * A <b>BillingDAO</b> data access object contains the different 
@@ -77,7 +78,7 @@ public class BillingDAO {
         ArrayList<Billing> billings = new ArrayList();
         Connection conn = null;
         PreparedStatement pStmt = null;
-        model.User loginUser = null;
+        
         String sql = "SELECT B.BILLINGID, B.PRECEDENTBILLING, B.TOTALDUE, B.TOTALPAID, B.DATE "
                 + " FROM BILLING B JOIN REF_PROPERTIES RP ON B.BLOCKNUM = RP.BLOCKNUM AND B.LOTNUM = RP.LOTNUM "
                 + " JOIN HOMEOWNER HO ON RP.BLOCKNUM = HO.BLOCKNUM AND HO.LOTNUM = RP.LOTNUM "
@@ -111,7 +112,7 @@ public class BillingDAO {
             
         }catch(Exception e){
             e.printStackTrace();
-            loginUser = null;
+            
         }finally{
             if(conn != null){
                 try{
@@ -121,6 +122,57 @@ public class BillingDAO {
         }
         return billings;
     }
+    
+    public static ArrayList<Billing> getTrxRef(int billID){
+        ArrayList<TransactionReference> trx = new ArrayList();
+        Connection conn = null;
+        PreparedStatement pStmt = null;
+        
+        String sql = "SELECT TR.TRXID, TR.AMOUNT, TR.INTEREST, TR.TOTALAMOUNT, TR.DESCRIPTION, TR.DATE "
+                + " FROM BILLING B JOIN REF_PROPERTIES RP ON B.BLOCKNUM = RP.BLOCKNUM AND B.LOTNUM = RP.LOTNUM "
+                + " JOIN HOMEOWNER HO ON RP.BLOCKNUM = HO.BLOCKNUM AND HO.LOTNUM = RP.LOTNUM "
+                + " JOIN USERS U ON U.USERID = HO.USERID WHERE HO.USERID = ?;"; //WHERE USERID = ? AND PASSWD = ?;";
+        try{
+            conn = DatabaseUtils.retrieveConnection();
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userid);
+            //pStmt.setString(2, tryLogin.getPasswd());
+            
+            ResultSet rs = pStmt.executeQuery();
+            Billing bill;
+            while(rs.next()){
+                int id = rs.getInt(1);
+                int prev = rs.getInt(2);
+                double due = rs.getDouble(3);
+                double paid = rs.getDouble(4);
+                bill = new Billing();
+                bill.setBillingID(id);
+                bill.setPrecedentBilling(prev);
+                bill.setTotalDue(due);
+                bill.setTotalPaid(paid);
+                //int three = rs.getInt(3);
+                //int four = rs.getInt(4);
+                //int five = rs.getInt(5);
+                
+                //Billing sampleBill = new model.Billing(one ,two, three, four, five);
+                billings.add(bill);
+               
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+            
+        }finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }catch(Exception e){}
+            }
+        }
+        return billings;
+    }
+    
+    
     
     public static void getUserHomeowners(){
         // reset array lists and select from database again

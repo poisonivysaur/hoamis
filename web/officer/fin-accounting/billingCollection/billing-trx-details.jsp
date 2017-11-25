@@ -12,11 +12,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     
-String hoId = request.getParameter("userid");
-String fname = request.getParameter("fname");
-String lname = request.getParameter("lname");
-String mname = request.getParameter("mname");
-ArrayList<Billing> bills = BillingDAO.getBillings(hoId);
+String billID = request.getParameter("billingID");
 
 %>
 <!DOCTYPE html>
@@ -49,8 +45,8 @@ ArrayList<Billing> bills = BillingDAO.getBillings(hoId);
             
 
             <div class="w3-container">
-                <a href="billing-view.jsp"><h4><<< Back to View Billings of Homeowners</h4></a>
-            <h2 style="text-align: center; float: left;">View Billings of <%= lname+", "+fname+" "+mname %></h2>
+                <a href="billing-view-details.jsp"><h4><<< Back to View Billings</h4></a>
+            <h2 style="text-align: center; float: left;">Billing Details</h2>
             
             </div>
             <div class="w3-container">
@@ -72,13 +68,10 @@ ArrayList<Billing> bills = BillingDAO.getBillings(hoId);
                 </tr>
             <% 
                 
-                for(int i = 0; i < bills.size(); i++){     
+                for(int i = 0; i < 9; i++){     
             %>
-                <tr onmouseover="this.style.cursor='pointer'" onclick="location.href='billing-trx-details.jsp?billingID=<%= bills.get(i).getBillingID()%>'">
-                    <td><%= bills.get(i).getBillingID()%></td>
-                    <!--<td><%= bills.get(i).getPrecedentBilling() %></td>-->
-                    <td style="text-align: right;"><%= bills.get(i).getTotalDue()%></td>
-                    <td style="text-align: right;"><%= bills.get(i).getTotalPaid()%></td>
+                <tr>
+                    
                 </tr>
             
             <% } %>
