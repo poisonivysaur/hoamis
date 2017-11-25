@@ -43,7 +43,7 @@
         </style>
     <body>
         <%! String driverName = "com.mysql.jdbc.Driver";%>
-        <%!String url = "jdbc:mysql://localhost:3306/mydb";%>
+        <%!String url = "jdbc:mysql://localhost:3306/hoamis";%>
         <%!String user = "root";%>
         <%!String psw = "password";%>
          <a href ="Dashboard.jsp"> << Go back home </a>

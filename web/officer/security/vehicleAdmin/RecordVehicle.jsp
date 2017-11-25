@@ -4,6 +4,11 @@
     Author     : Patrisha
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.SQLException"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,11 +24,10 @@
             box-sizing: border-box;
         }
         select {
-            width: 100%;
-            padding: 16px 20px;
-            border: none;
+            width: 30%;
+           padding: 12px 20px;
             border-radius: 4px;
-            background-color: #f1f1f1;
+            box-sizing: border-box;
         }
         input[type=submit]{
             background-color: #4CAF50;
@@ -38,7 +42,38 @@
     <body>
          <a href ="Dashboard.jsp"> << Go back home </a>
         <h2> Record a Vehicle </h2>
+        <%! String driverName = "com.mysql.jdbc.Driver";%>
+        <%!String url = "jdbc:mysql://localhost:3306/hoamis";%>
+        <%!String user = "root";%>
+        <%!String psw = "password";%>
+        <%
+            Connection con = null;
+            PreparedStatement ps = null;
+            try
+            {
+            Class.forName(driverName);
+            con = DriverManager.getConnection(url,user,psw);
+            String sql = "SELECT fname, mname, lname, userid FROM users";
+            ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery(); 
+            %>
         <form action ="RecordVehicleServlet" method="POST">
+            Vehicle Owner: <!-- get from db !-->
+            <br>
+            <select name = "owner">
+            <option value=""> --Select a User-- </option>
+            <%
+            while(rs.next()){
+            String fname = rs.getString("fname");
+            String mname = rs.getString("mname");
+            String lname = rs.getString("lname");
+            String userid = rs.getString("userid");
+            %>
+            <option value="<%=userid %>"><%=fname + " " + mname + " " + lname %></option>
+            <%
+            }
+            %>
+            </select> <br>
             <br>Vehicle Plate Number: 
             <br><input type="text" name="platenum" required> 
             <br>
@@ -55,7 +90,15 @@
             <br><input type="radio" name="banned" value=1> Yes 
             <br><input type="radio" name="banned" value=0> No
             <br>
+            
             <input type="submit" value="Submit">
+            <%
+            }
+            catch(SQLException sqe)
+            { 
+            out.println(sqe);
+            }
+            %>
         </form>
     </body>
 </html>

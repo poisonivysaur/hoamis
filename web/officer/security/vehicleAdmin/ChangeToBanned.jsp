@@ -44,7 +44,7 @@
          <a href ="Dashboard.jsp"> << Go back home </a>
         <h2> Ban a Vehicle </h2>
         <%! String driverName = "com.mysql.jdbc.Driver";%>
-        <%!String url = "jdbc:mysql://localhost:3306/mydb";%>
+        <%!String url = "jdbc:mysql://localhost:3306/hoamis";%>
         <%!String user = "root";%>
         <%!String psw = "password";%>
         <form action="ChangeToBannedServlet" method="POST">
