@@ -10,6 +10,7 @@ package model;
  * @author Patrisha
  */
 public class Vehicle {
+    private String owner;
     private String plate;
     private String model;
     private String make;
@@ -19,12 +20,16 @@ public class Vehicle {
     public Vehicle(){
         
     }
-    public Vehicle(String plate, String model, String make, String year, int banned){
+    public Vehicle(String owner, String plate, String model, String make, String year, int banned){
+        this.owner = owner;
         this.plate = plate;
         this.model = model;
         this.make = make;
         this.year = year + "-0" + "-0";
         this.banned = banned;
+    }
+    public String getOwner(){
+        return this.owner;
     }
     public String getPlate(){
         return this.plate;
