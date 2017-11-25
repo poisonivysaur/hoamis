@@ -20,7 +20,7 @@ String mname = request.getParameter("mname");
 int billID = Integer.parseInt(request.getParameter("billingID"));
 double totalDue = Double.parseDouble(request.getParameter("totalDue"));
 double totalPaid = Double.parseDouble(request.getParameter("totalPaid"));
-
+ArrayList<String> datesPaid = BillingDAO.getDatesPaid();
 ArrayList<TransactionReference> transactions = BillingDAO.getTrxRef(billID);
 %>
 <!DOCTYPE html>
@@ -57,11 +57,12 @@ ArrayList<TransactionReference> transactions = BillingDAO.getTrxRef(billID);
             <h2 style="text-align: center; float: left;">Billing Details</h2>
             
             </div>
-            <div class="w3-container">
+            <div id="print" class="w3-container">
             <table class="w3-table w3-striped w3-white w3-hoverable" id="userTable">
                 <tr>
                     <th>Billing ID: <%= billID %></th>
                     <!--<th>Precedent Billing ID</th>-->
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -71,29 +72,42 @@ ArrayList<TransactionReference> transactions = BillingDAO.getTrxRef(billID);
                 </tr>
                 <br>
                 <tr>
-                    <th>Transaction ID</th>
+                    <th>TRX#</th>
                     <th>Amount</th>
                     <th>Interest</th>
                     <th>Total Amount</th>
                     <th>Description</th>
                     <th>Date Created</th>
+                    <th>Date Paid</th>
                 </tr>
             <% 
                 
-                for(TransactionReference trx: transactions){     
+                for(int i = 0; i < transactions.size(); i++){     
             %>
                 <tr>
-                    <td><%= trx.getTrxID() %></td>
-                    <td><%= trx.getAmount()%></td>
-                    <td><%= trx.getInterest()%></td>
-                    <td><%= trx.getTotalamount()%></td>
-                    <td><%= trx.getDescription()%></td>
-                    <td><%= trx.getDate() %></td>
+                    <td><%= transactions.get(i).getTrxID() %></td>
+                    <td><%= transactions.get(i).getAmount()%></td>
+                    <td><%= transactions.get(i).getInterest()%></td>
+                    <td><%= transactions.get(i).getTotalamount()%></td>
+                    <td><%= transactions.get(i).getDescription()%></td>
+                    <td><%= transactions.get(i).getDate() %></td>
+                    <td><%= datesPaid.get(i) %></td>
                 </tr>
             
             <% } %>
             </table>
+            <h3 style="text-align: right;">Outstanding Balance: <%= totalDue - totalPaid %></h3>
+            <input class="w3-button w3-teal w3-round" type="submit" onclick="printPage('print')" name="generate" value="Print" style="float:none; margin:0px;">
             </div>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    function printPage(part) {
+		var restorepage = $('body').html();
+		var printcontent = $('#' + part).clone();
+		$('body').empty().html(printcontent);
+		window.print();
+		$('body').html(restorepage);
+    }
+    </script>
     </body>
 </html>

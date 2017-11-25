@@ -68,6 +68,7 @@ ArrayList<Billing> bills = BillingDAO.getBillings(hoId);
                     <!--<th>Precedent Billing ID</th>-->
                     <th style="text-align: right;">Total Due</th>
                     <th style="text-align: right;">Total Paid</th>
+                    <th style="text-align: right;">Carried Over Balance</th>
                     
                 </tr>
             <% 
@@ -79,6 +80,7 @@ ArrayList<Billing> bills = BillingDAO.getBillings(hoId);
                     <!--<td><%= bills.get(i).getPrecedentBilling() %></td>-->
                     <td style="text-align: right;"><%= bills.get(i).getTotalDue()%></td>
                     <td style="text-align: right;"><%= bills.get(i).getTotalPaid()%></td>
+                    <td style="text-align: right;"><%= bills.get(i).getTotalDue()-bills.get(i).getTotalPaid()%></td>
                 </tr>
             
             <% } %>

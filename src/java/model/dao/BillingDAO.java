@@ -35,8 +35,12 @@ import model.TransactionReference;
  * last update: 11-24-17 by I. Lim - added queries
 */
 public class BillingDAO {
+    
     protected static ArrayList<User> users = new ArrayList();
     protected static ArrayList<Homeowner> homeowners = new ArrayList();
+    protected static ArrayList<String> datesPaid = new ArrayList<>();
+    
+    
     public static ArrayList<Billing> getBillings(){
         ArrayList<Billing> billings = new ArrayList();
         Connection conn = null;
@@ -83,7 +87,8 @@ public class BillingDAO {
         String sql = "SELECT B.BILLINGID, B.PRECEDENTBILLING, B.TOTALDUE, B.TOTALPAID, B.DATE "
                 + " FROM BILLING B JOIN REF_PROPERTIES RP ON B.BLOCKNUM = RP.BLOCKNUM AND B.LOTNUM = RP.LOTNUM "
                 + " JOIN HOMEOWNER HO ON RP.BLOCKNUM = HO.BLOCKNUM AND HO.LOTNUM = RP.LOTNUM "
-                + " JOIN USERS U ON U.USERID = HO.USERID WHERE HO.USERID = ?;"; //WHERE USERID = ? AND PASSWD = ?;";
+                + " JOIN USERS U ON U.USERID = HO.USERID WHERE HO.USERID = ?"
+                + " ORDER BY B.DATE DESC;"; //WHERE USERID = ? AND PASSWD = ?;";
         try{
             conn = DatabaseUtils.retrieveConnection();
             pStmt = conn.prepareStatement(sql);
@@ -128,10 +133,18 @@ public class BillingDAO {
         ArrayList<TransactionReference> transactions = new ArrayList();
         Connection conn = null;
         PreparedStatement pStmt = null;
-        
-        String sql = "SELECT TR.TRXID, TR.AMOUNT, TR.INTEREST, TR.TOTALAMOUNT, TR.DESCRIPTION, TR.DATECREATED "
+        String sql = "SELECT TR.TRXID, TR.AMOUNT, TR.INTEREST, TR.TOTALAMOUNT, TR.DESCRIPTION, TR.DATECREATED,TL.journalID, TJ.trxDate" 
+                + " FROM (SELECT trxReferences.TRXID, AMOUNT, INTEREST, TOTALAMOUNT, DESCRIPTION, DATECREATED "
+                + " FROM TRXREFERENCES JOIN BILLINGDETAILS BD ON BD.TRXID = trxReferences.TRXID "
+                + " WHERE BD.BILLINGID = ?) TR"
+                + " LEFT JOIN TRXLIST TL ON TL.TRXID = TR.TRXID"
+                + " LEFT JOIN TRANSACTION_JOURNAL TJ ON TJ.JournalID = TL.journalID;"; /*
+        String sql = "SELECT TR.TRXID, TR.AMOUNT, TR.INTEREST, TR.TOTALAMOUNT, TR.DESCRIPTION, TR.DATECREATED, TJ.TRXDATE "
                 + " FROM TRXREFERENCES TR JOIN BILLINGDETAILS BD ON BD.TRXID = TR.TRXID "
-                + " WHERE BD.BILLINGID = ?;"; //WHERE USERID = ? AND PASSWD = ?;";
+                + " LEFT JOIN TRXLIST TL ON TL.TRXID = TR.TRXID"
+                + " LEFT JOIN TRANSACTION_JOURNAL TJ ON TJ.JOURNALID = TJ.JOURNALID"
+                + " WHERE BD.BILLINGID = ?"
+                + " ORDER BY TR.DATECREATED DESC;"; //WHERE USERID = ? AND PASSWD = ?;";*/
         try{
             conn = DatabaseUtils.retrieveConnection();
             pStmt = conn.prepareStatement(sql);
@@ -147,6 +160,9 @@ public class BillingDAO {
                 double total = rs.getDouble(4);
                 String desc = rs.getString(5);
                 String date = rs.getString(6);
+                String datePaid = rs.getString(8);
+                datePaid = (datePaid == null) ? "--" : datePaid;
+                datesPaid.add(datePaid); // adds the dates recorded in transaction journal table if any
                 //System.out.println("DATE FROM DB: "+date);
                 trx = new TransactionReference(id, amount, interest, total, desc, date);
                 transactions.add(trx);
@@ -166,7 +182,9 @@ public class BillingDAO {
         return transactions;
     }
     
-    
+    public static ArrayList<String> getDatesPaid(){
+        return datesPaid;
+    }
     
     public static void getUserHomeowners(){
         // reset array lists and select from database again
