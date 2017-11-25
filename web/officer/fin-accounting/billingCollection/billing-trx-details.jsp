@@ -4,6 +4,7 @@
     Author     : Ivy
 --%>
 
+<%@page import="model.TransactionReference"%>
 <%@page import="model.Billing"%>
 <%@page import="model.User"%>
 <%@page import="model.Homeowner"%>
@@ -11,9 +12,15 @@
 <%@page import="model.dao.BillingDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    
-String billID = request.getParameter("billingID");
+String hoId = request.getParameter("userid");
+String fname = request.getParameter("fname");
+String lname = request.getParameter("lname");
+String mname = request.getParameter("mname");
+int billID = Integer.parseInt(request.getParameter("billingID"));
+double totalDue = Double.parseDouble(request.getParameter("totalDue"));
+double totalPaid = Double.parseDouble(request.getParameter("totalPaid"));
 
+ArrayList<TransactionReference> transactions = BillingDAO.getTrxRef(billID);
 %>
 <!DOCTYPE html>
 <html>
@@ -45,25 +52,17 @@ String billID = request.getParameter("billingID");
             
 
             <div class="w3-container">
-                <a href="billing-view-details.jsp"><h4><<< Back to View Billings</h4></a>
+                <a href="billing-view-details.jsp?userid=<%= hoId %>&fname=<%= fname %>&lname=<%= lname %>&mname=<%= mname %>"><h4><<< Back to View Billings</h4></a>
             <h2 style="text-align: center; float: left;">Billing Details</h2>
             
             </div>
             <div class="w3-container">
             <table class="w3-table w3-striped w3-white w3-hoverable" id="userTable">
                 <tr>
-                    <!--
-                    <th>Billing ID</th>
-                    <th>Block</th>
-                    <th>Lot</th>
-                    <th>Precedent Billing</th>
-                    <th>Total Due</th>
-                    <th>Total Paid</th>
-                    -->
-                    <th>Billing ID</th>
+                    <th>Billing ID: <%= billID %></th>
                     <!--<th>Precedent Billing ID</th>-->
-                    <th style="text-align: right;">Total Due</th>
-                    <th style="text-align: right;">Total Paid</th>
+                    <th style="text-align: right;">Total Due: <%= totalDue %></th>
+                    <th style="text-align: right;">Total Paid: <%= totalPaid %></th>
                     
                 </tr>
             <% 

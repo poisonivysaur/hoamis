@@ -26,11 +26,21 @@ public class TransactionReference {
     public double amount;
     public double interest;
     public double totalamount;
+    public String description;
 
-    public TransactionReference(double amount, double interest, double totalamount) {
+    public TransactionReference(double amount, double interest, double totalamount, String desc) {
         this.amount = amount;
         this.interest = interest;
         this.totalamount = totalamount;
+        this.description = desc;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**

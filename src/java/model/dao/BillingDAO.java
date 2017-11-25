@@ -123,39 +123,31 @@ public class BillingDAO {
         return billings;
     }
     
-    public static ArrayList<Billing> getTrxRef(int billID){
-        ArrayList<TransactionReference> trx = new ArrayList();
+    public static ArrayList<TransactionReference> getTrxRef(int billID){
+        ArrayList<TransactionReference> transactions = new ArrayList();
         Connection conn = null;
         PreparedStatement pStmt = null;
         
         String sql = "SELECT TR.TRXID, TR.AMOUNT, TR.INTEREST, TR.TOTALAMOUNT, TR.DESCRIPTION, TR.DATE "
-                + " FROM BILLING B JOIN REF_PROPERTIES RP ON B.BLOCKNUM = RP.BLOCKNUM AND B.LOTNUM = RP.LOTNUM "
-                + " JOIN HOMEOWNER HO ON RP.BLOCKNUM = HO.BLOCKNUM AND HO.LOTNUM = RP.LOTNUM "
-                + " JOIN USERS U ON U.USERID = HO.USERID WHERE HO.USERID = ?;"; //WHERE USERID = ? AND PASSWD = ?;";
+                + " FROM TRXREFERENCES TR JOIN BILLINGDETAILS BD ON BD.TRXID = TR.TRXID "
+                + " WHERE BD.BILLINGID = ?;"; //WHERE USERID = ? AND PASSWD = ?;";
         try{
             conn = DatabaseUtils.retrieveConnection();
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1, userid);
+            pStmt.setInt(1, billID);
             //pStmt.setString(2, tryLogin.getPasswd());
             
             ResultSet rs = pStmt.executeQuery();
-            Billing bill;
+            TransactionReference trx;
             while(rs.next()){
                 int id = rs.getInt(1);
-                int prev = rs.getInt(2);
-                double due = rs.getDouble(3);
-                double paid = rs.getDouble(4);
-                bill = new Billing();
-                bill.setBillingID(id);
-                bill.setPrecedentBilling(prev);
-                bill.setTotalDue(due);
-                bill.setTotalPaid(paid);
-                //int three = rs.getInt(3);
-                //int four = rs.getInt(4);
-                //int five = rs.getInt(5);
+                double amount = rs.getDouble(2);
+                double interest = rs.getDouble(3);
+                double total = rs.getDouble(4);
+                String desc = rs.getString(5);
                 
-                //Billing sampleBill = new model.Billing(one ,two, three, four, five);
-                billings.add(bill);
+                trx = new TransactionReference(amount, interest, total, desc);
+                transactions.add(trx);
                
             }
             
@@ -169,7 +161,7 @@ public class BillingDAO {
                 }catch(Exception e){}
             }
         }
-        return billings;
+        return transactions;
     }
     
     
