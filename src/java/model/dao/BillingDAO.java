@@ -78,7 +78,7 @@ public class BillingDAO {
         Connection conn = null;
         PreparedStatement pStmt = null;
         model.User loginUser = null;
-        String sql = "SELECT B.BILLINGID, B.PRECEDENTBILLING "
+        String sql = "SELECT B.BILLINGID, B.PRECEDENTBILLING, B.TOTALDUE, B.TOTALPAID, B.DATE "
                 + " FROM BILLING B JOIN REF_PROPERTIES RP ON B.BLOCKNUM = RP.BLOCKNUM AND B.LOTNUM = RP.LOTNUM "
                 + " JOIN HOMEOWNER HO ON RP.BLOCKNUM = HO.BLOCKNUM AND HO.LOTNUM = RP.LOTNUM "
                 + " JOIN USERS U ON U.USERID = HO.USERID WHERE HO.USERID = ?;"; //WHERE USERID = ? AND PASSWD = ?;";
@@ -89,19 +89,23 @@ public class BillingDAO {
             //pStmt.setString(2, tryLogin.getPasswd());
             
             ResultSet rs = pStmt.executeQuery();
-            Billing sample;
+            Billing bill;
             while(rs.next()){
-                int one = rs.getInt(1);
-                int two = rs.getInt(2);
-                sample = new Billing();
-                sample.setBillingID(one);
-                sample.setPrecedentBilling(two);
+                int id = rs.getInt(1);
+                int prev = rs.getInt(2);
+                double due = rs.getDouble(3);
+                double paid = rs.getDouble(4);
+                bill = new Billing();
+                bill.setBillingID(id);
+                bill.setPrecedentBilling(prev);
+                bill.setTotalDue(due);
+                bill.setTotalPaid(paid);
                 //int three = rs.getInt(3);
                 //int four = rs.getInt(4);
                 //int five = rs.getInt(5);
                 
                 //Billing sampleBill = new model.Billing(one ,two, three, four, five);
-                billings.add(sample);
+                billings.add(bill);
                
             }
             

@@ -53,6 +53,7 @@ ArrayList<User> users = BillingDAO.getUsers();
                     <!-- SEARCH BAR-->
                     <input type="text" id="myInput" onkeyup="filter()" placeholder="Search for homeowner" size="50">
             </form>
+            
             </div>
             <div class="w3-container">
             <table class="w3-table w3-striped w3-white w3-hoverable" id="userTable">
@@ -75,7 +76,7 @@ ArrayList<User> users = BillingDAO.getUsers();
                 
                 for(int i = 0; i < users.size(); i++){     
             %>
-                <tr onmouseover="this.style.cursor='pointer'" onclick="location.href='billing-view-details.jsp?userid=<%= users.get(i).getUserID() %>'">
+                <tr onmouseover="this.style.cursor='pointer'" onclick="location.href='billing-view-details.jsp?userid=<%= users.get(i).getUserID() %>&fname=<%= users.get(i).getfName() %>&lname=<%= users.get(i).getlName() %>&mname=<%= users.get(i).getmName() %>'">
                     <td><%= users.get(i).getUserID() %></td>
                     <td><%= users.get(i).getlName()+", "+users.get(i).getfName()+" "+users.get(i).getmName()+"." %></td>
                     <td><%= ho.get(i).getBlocknum() %></td>
