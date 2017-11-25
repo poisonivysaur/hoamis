@@ -65,9 +65,9 @@ ArrayList<Billing> bills = BillingDAO.getBillings(hoId);
                     <th>Total Paid</th>
                     -->
                     <th>Billing ID</th>
-                    <th>Precedent Billing ID</th>
-                    <th>Total Due</th>
-                    <th>Total Paid</th>
+                    <!--<th>Precedent Billing ID</th>-->
+                    <th style="text-align: right;">Total Due</th>
+                    <th style="text-align: right;">Total Paid</th>
                     
                 </tr>
             <% 
@@ -76,35 +76,14 @@ ArrayList<Billing> bills = BillingDAO.getBillings(hoId);
             %>
                 <tr>
                     <td><%= bills.get(i).getBillingID()%></td>
-                    <td><%= bills.get(i).getPrecedentBilling() %></td>
-                    <td><%= bills.get(i).getTotalDue()%></td>
-                    <td><%= bills.get(i).getTotalPaid()%></td>
+                    <!--<td><%= bills.get(i).getPrecedentBilling() %></td>-->
+                    <td style="text-align: right;"><%= bills.get(i).getTotalDue()%></td>
+                    <td style="text-align: right;"><%= bills.get(i).getTotalPaid()%></td>
                 </tr>
             
             <% } %>
             </table>
             </div>
-    <script>
-       function filter() {
-            // Declare variables 
-            var input, filter, table, tr, td, i;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("userTable");
-            tr = table.getElementsByTagName("tr");
-
-            // Loop through all table rows, and hide those who don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
-                if (td) {
-                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                } 
-            }
-        }
-    </script>
+    
     </body>
 </html>
