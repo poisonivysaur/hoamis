@@ -99,9 +99,9 @@ User officer = (User) session.getAttribute("loginUser");
             <div class="w3-bar-item w3-button" onclick="myAccFunc('security')">
                 <i class="fa fa-lock fa-fw"></i>  Security  <i class="fa fa-caret-down"></i></div>
                 <div id="security" class="w3-hide w3-white w3-card-4">
-                  <a href="#" class="w3-bar-item w3-button">Visitor Pass</a>
-                  <a href="#" class="w3-bar-item w3-button">Vehicle Pass</a>
-                  <a href="#" class="w3-bar-item w3-button">Security Reports & Violations</a>
+                  <a href="OfficerMain?action=visitor" class="w3-bar-item w3-button">Visitor Pass</a>
+                  <a href="OfficerMain?action=vehicle" class="w3-bar-item w3-button">Vehicle Pass</a>
+                  <a href="OfficerMain?action=security" class="w3-bar-item w3-button">Security Reports & Violations</a>
             </div>
             <br><br><br><br><br><br>
         </nav>

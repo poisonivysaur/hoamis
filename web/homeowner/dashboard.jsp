@@ -53,6 +53,7 @@
                 <h4>Facilities</h4>
               </div>
             </div>-->
+            <a href="HomeownerMain?action=map">
             <div class="w3-third">
               <div class="w3-container w3-deep-purple w3-padding-16">
                 <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
@@ -62,7 +63,7 @@
                 <div class="w3-clear"></div>
                 <h4>Activities</h4>
               </div>
-            </div><!--
+            </div></a><!--
             <div class="w3-third">
               <div class="w3-container w3-light-green w3-text-white w3-padding-16">
                 <div class="w3-left"><i class="fa fa-wrench w3-xxxlarge"></i></div>
