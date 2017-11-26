@@ -139,7 +139,7 @@ public class BillingDAO {
                 + " FROM TRXREFERENCES JOIN BILLINGDETAILS BD ON BD.TRXID = trxReferences.TRXID "
                 + " WHERE BD.BILLINGID = ?) TR"
                 + " LEFT JOIN TRXLIST TL ON TL.TRXID = TR.TRXID"
-                + " LEFT JOIN TRANSACTION_JOURNAL TJ ON TJ.JournalID = TL.journalID;"; 
+                + " LEFT JOIN TRANSACTION_JOURNAL TJ ON TJ.JournalID = TL.journalID"; 
         try{
             conn = DatabaseUtils.retrieveConnection();
             pStmt = conn.prepareStatement(sql);
@@ -584,12 +584,14 @@ public class BillingDAO {
         for(Homeowner b : BillingDAO.getHomeowners()){
             System.out.println(b.getUserID());
         }
-        
+        System.out.println("get TRX REF");
         for(TransactionReference b : BillingDAO.getTrxRef(1)){
             System.out.println(b.getDate());
         }
         System.out.println("End");
+        System.out.println("GENERATE BILLING");
         BillingDAO.generateBillingForAll();
+        System.out.println("PAY BILLING");
         BillingDAO.payBilling(1);
         
     }
