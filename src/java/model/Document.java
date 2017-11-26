@@ -35,6 +35,8 @@ public class Document {
     protected String documentLocation;
     protected Folder folder;
     protected User createUser;
+    
+    public Document(){}
 
     public Document(String description, String documentLocation, Folder folder, User createUser) {
         this.description = description;

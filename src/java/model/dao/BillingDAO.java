@@ -272,6 +272,12 @@ public class BillingDAO {
                     precedentBillID = rs.getInt(1); // GETS THE LAST BILLING OF THE HOMEOWNER
                 }
                 
+
+
+                // if total due is 0, then no need to insert into Billing table
+                if(totaldue > 0){
+                    
+                
                 // inserts a new billing for the homeowner
                 sql = "INSERT INTO BILLING(BLOCKNUM, LOTNUM, PRECEDENTBILLING, TOTALDUE, TOTALPAID, DATE)"
                         + " VALUES(?, ?, ?, ?, ?, DATE(NOW()))";
@@ -286,7 +292,7 @@ public class BillingDAO {
                 int inserted = pStmt.executeUpdate();
                 if(inserted != 0){
                     System.out.println("Successfully inserted!");
-                    //isSuccess = true;
+                    isSuccess = true;
                     String maxBillID = "SELECT BILLINGID FROM BILLING ORDER BY BILLINGID DESC LIMIT 1;";
                     pStmt = conn.prepareStatement(maxBillID);
                     ResultSet rsBillID = pStmt.executeQuery();
@@ -368,9 +374,10 @@ public class BillingDAO {
                         if(insertedBD != 0){
                             System.out.println("Successfully inserted to billing details!");
                             isSuccess = true;
-                            }
                         }
                     }
+                }
+            }
 
             }catch(Exception e){
                 e.printStackTrace();
@@ -386,6 +393,180 @@ public class BillingDAO {
         }
         
         return isSuccess;
+    }
+    
+    public static boolean payBilling(int billID){
+        boolean isPaid = false;
+        Connection conn = null;
+            PreparedStatement pStmt = null;
+            String sql;
+            // gets the total due from billing, then inserts that to the total paid of the same billing
+            try{
+                conn = DatabaseUtils.retrieveConnection();
+                // get the amount due from billing
+                sql = "SELECT TOTALDUE FROM BILLING WHERE BILLINGID = ?";
+                pStmt = conn.prepareStatement(sql);
+                pStmt.setInt(1, billID);
+                ResultSet rs = pStmt.executeQuery();
+                double totaldue = 0;
+                while(rs.next()){
+                     totaldue = rs.getDouble(1);
+                }
+                
+                // update total paid in Billing table with the amount due 
+                sql = "UPDATE BILLING SET TOTALPAID = ? WHERE BILLINGID = ?";
+                pStmt = conn.prepareStatement(sql);
+                pStmt.setDouble(1, totaldue);
+                pStmt.setInt(2, billID);
+                //pStmt.setString(2, tryLogin.getPasswd());
+                
+                int rsPay = pStmt.executeUpdate();
+                if(rsPay != 0){
+                    System.out.println("Successfully updated payments!");
+                    isPaid = true;
+                }
+                
+               // insert into journal also
+               sql = "INSERT INTO TRANSACTION_JOURNAL(TRXDATE, TRXAMNT, TRXAMNTPAID) VALUES(DATE(NOW()), ?, ?)";
+               pStmt = conn.prepareStatement(sql);
+                pStmt.setDouble(1, totaldue);
+                pStmt.setDouble(2, totaldue);
+                
+                int rsJournal = pStmt.executeUpdate();
+                if(rsJournal != 0){
+                    System.out.println("Successfully updated journal!");
+                    isPaid = true;
+                }
+                // then get the journal id of the newly inserted journal 
+                String maxJournal = "SELECT JOURNALID FROM TRANSACTION_JOURNAL ORDER BY JOURNALID DESC LIMIT 1;";
+                pStmt = conn.prepareStatement(maxJournal);
+                ResultSet rsjournalID = pStmt.executeQuery();
+                int maxJournalID = 0;
+                while(rsjournalID.next()){
+                    maxJournalID = rsjournalID.getInt(1);
+                }
+                        
+                // get user id, blocknum, and lotnum from billing needed for inserting into trxList & payment details
+                sql = "SELECT B.BLOCKNUM, B.LOTNUM, U.USERID FROM BILLING B"
+                        + " JOIN HOMEOWNER HO ON HO.BLOCKNUM = B.BLOCKNUM AND HO.LOTNUM = B.LOTNUM"
+                        + " JOIN USERS U ON U.USERID = HO.USERID WHERE B.BILLINGID = ?";
+                pStmt = conn.prepareStatement(sql);
+                pStmt.setInt(1, billID);
+                rs = pStmt.executeQuery();
+                int blocknum = 0, 
+                        lotnum = 0;
+                
+                String userid = "";
+                while(rs.next()){
+                     blocknum = rs.getInt(1);
+                     lotnum = rs.getInt(2);
+                     userid = rs.getString(3);
+                }
+                // loop across every transaction and insert into trxList and payment details
+                // GET THE TRANSACTIONS CORRESPONDING TO MONTHLY DUES FOR THE MONTH AND OTHER UNPAID FEES
+                    sql = "SELECT MONTHLYDUES.TRXID, MONTHLYDUES.TOTALAMOUNT " +
+                            " FROM (SELECT TR.TRXID, TR.TOTALAMOUNT FROM TRXREFERENCES TR" +
+                            " JOIN HOUSEMONTHLYDUES HMD ON TR.TRXID = HMD.TRXID" +
+                            " JOIN MONTHLYDUES MD ON MD.MDID = HMD.MDID" +
+                            " WHERE HMD.BLOCKNUM = ? AND HMD.LOTNUM = ?" +
+                            " AND TR.DESCRIPTION = 'monthly dues'" +
+                            " AND MONTH(TR.DATECREATED) = MONTH(NOW()) AND YEAR(TR.DATECREATED) = YEAR(NOW())) MONTHLYDUES" +
+                            //get unpaid security violation fees USER2USER*/ " +
+                            " LEFT JOIN (SELECT TR.TRXID, TR.TOTALAMOUNT FROM TRXREFERENCES TR " +
+                            " LEFT JOIN TRXLIST TL 		   ON TR.TRXID = TL.TRXID" +
+                            " JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID" +
+                            " JOIN USER2USER UU              ON UU.SECURITYREPORTID = SV.SECURITYREPORTID" +
+                            " JOIN USERS U                   ON UU.ACCUSED_USERID = U.USERID" +
+                            " WHERE U.USERID = ? " +
+                            " AND   U.STATUS = 'active' " +
+                            " AND   TL.AMOUNTPAID = NULL) SEC1 ON SEC1.TRXID = MONTHLYDUES.TRXID " +
+                            //get unpaid security violation fees USER2ANYONE " +
+                            " LEFT JOIN (SELECT TR.TRXID, TR.TOTALAMOUNT FROM TRXREFERENCES TR  " +
+                            " LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID " +
+                            " JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID " +
+                            " JOIN USER2ANYONE UA            ON UA.SECURITYREPORTID = SV.SECURITYREPORTID " +
+                            " JOIN USERS U                   ON UA.USERID = U.USERID " +
+                            " WHERE U.USERID = ? " +
+                            " AND   U.STATUS = 'active' " +
+                            " AND   TL.AMOUNTPAID = NULL) SEC2 ON SEC2.TRXID = SEC1.TRXID " +
+                            //get unpaid vehicle pass fees " +
+                            " LEFT JOIN (SELECT TR.TRXID, TR.TOTALAMOUNT FROM TRXREFERENCES TR  " +
+                            " LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID " +
+                            " JOIN USER_VEHICLES UV          ON UV.TRXID = TR.TRXID " +
+                            " JOIN USERS U                   ON UV.USERID = U.USERID " +
+                            " WHERE U.USERID = ? " +
+                            " AND   U.STATUS = 'active' " +
+                            " AND   TL.AMOUNTPAID = NULL) VEHICLE ON VEHICLE.TRXID = SEC2.TRXID " +
+                            //get unpaid security violation fees VEHICLES2USER " +
+                            " LEFT JOIN (SELECT TR.TRXID, TR.TOTALAMOUNT FROM TRXREFERENCES TR  " +
+                            " LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID " +
+                            " JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID " +
+                            " JOIN VEHICLE2USER VU           ON VU.SECURITYREPORTID = SV.SECURITYREPORTID " +
+                            " JOIN VEHICLES V                ON V.PLATENUM = VU.PLATENUM " +
+                            " JOIN USER_VEHICLES UV          ON UV.PLATENUM = V.PLATENUM " +
+                            " JOIN USERS U                   ON UV.USERID = U.USERID " +
+                            " WHERE U.USERID = ? " +
+                            " AND   U.STATUS = 'active' " +
+                            " AND   TL.AMOUNTPAID = NULL) VIOLATION ON VIOLATION.TRXID = VEHICLE.TRXID " +
+                            //get unpaid registration fees USER " +
+                            " LEFT JOIN (SELECT TR.TRXID, TR.TOTALAMOUNT FROM TRXREFERENCES TR  " +
+                            " LEFT JOIN TRXLIST TL ON TR.TRXID = TL.TRXID " +
+                            " JOIN USERS U                   ON TR.TRXID = U.TRXID " +
+                            " WHERE U.USERID = ? " +
+                            " AND   U.STATUS = 'active' " +
+                            " AND   TL.AMOUNTPAID = NULL) REG ON REG.TRXID = VIOLATION.TRXID;";
+                    
+                    pStmt = conn.prepareStatement(sql);
+                    pStmt.setInt(1, blocknum);
+                    pStmt.setInt(2, lotnum);
+                    pStmt.setString(3, userid);
+                    pStmt.setString(4, userid);
+                    pStmt.setString(5, userid);
+                    pStmt.setString(6, userid);
+                    pStmt.setString(7, userid);
+                    rs = pStmt.executeQuery();
+                    while(rs.next()){
+                        // INSERT INTO PAYMENT DETAILS
+                        String insertPayDetails = "INSERT INTO PAYMENTDETAILS(BILLING_BILLINGID, JOURNALID, TRXID)"
+                                + " VALUES(?, ?, ?)";
+                
+                        pStmt = conn.prepareStatement(insertPayDetails);
+                        pStmt.setInt(1, billID);
+                        pStmt.setInt(2, maxJournalID);
+                        pStmt.setInt(3, rs.getInt(1)); // transaction ID
+                        int insertedPD = pStmt.executeUpdate();
+                        if(insertedPD != 0){
+                            System.out.println("Successfully inserted to payment details!");
+                            isPaid = true;
+                        }
+                        
+                        // INSERT INTO TRANSACTION LIST
+                        String insertTrxList = "INSERT INTO TRXLIST(JOURNALID, TRXID, AMOUNTPAID)"
+                                + " VALUES(?, ?, ?)";
+                
+                        pStmt = conn.prepareStatement(insertTrxList);
+                        pStmt.setInt(1, maxJournalID);
+                        pStmt.setInt(2, rs.getInt(1));// transaction ID
+                        pStmt.setDouble(3, rs.getDouble(2));// transaction amount
+                        
+                        int insertedBD = pStmt.executeUpdate();
+                        if(insertedBD != 0){
+                            System.out.println("Successfully inserted to transaction list!");
+                            isPaid = true;
+                        }
+                    }
+
+            }catch(Exception e){
+                e.printStackTrace();
+
+            }finally{
+                if(conn != null){
+                    try{
+                        conn.close();
+                    }catch(Exception e){}
+                }
+            }  
+        return isPaid;
     }
     
     public static void main(String[] args) {
@@ -407,6 +588,8 @@ public class BillingDAO {
             System.out.println(b.getDate());
         }
         System.out.println("End");
+        
+        BillingDAO.payBilling(1);
         
     }
 }

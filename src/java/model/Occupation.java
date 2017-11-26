@@ -24,7 +24,9 @@ package model;
 public class Occupation {
     private int occupationID;
     protected String occupation;
-
+    
+    public Occupation(){}
+    
     public Occupation(String occupation) {
         this.occupation = occupation;
     }

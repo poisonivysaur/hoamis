@@ -206,68 +206,115 @@ public class MonthlyDuesDAO{
         Connection conn = null;
         conn = DatabaseUtils.retrieveConnection();
         try{
+            String sql;
+            PreparedStatement pStmt;
+            ResultSet rs;
             //get unpaid security violation fees USER2USER
-            String sql = "SELECT    SUM(TR.AMOUNT)"
-                       + "FROM      TRXREFERENCES TR LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID"
-                                                  + "JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID"
-                                                  + "JOIN USER2USER UU              ON UU.SECURITYREPORTID = SV.SECURITYREPORTID"
-                                                  + "JOIN USERS U                   ON UU.ACCUSED_USERID = U.USERID"
-                       + "WHERE U.USERID = ?"
-                       + "AND   U.STATUS = 'active'"
-                       + "AND   TL.AMOUNTPAID = NULL";
-            PreparedStatement pStmt = conn.prepareStatement(sql);
+             sql = "SELECT    SUM(TR.AMOUNT)"
+                       + " FROM      TRXREFERENCES TR LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID"
+                                                  + " JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID"
+                                                  + " JOIN USER2USER UU              ON UU.SECURITYREPORTID = SV.SECURITYREPORTID"
+                                                  + " JOIN USERS U                   ON UU.ACCUSED_USERID = U.USERID"
+                       + " WHERE U.USERID = ?"
+                       + " AND   U.STATUS = 'active'"
+                       + " AND   TL.AMOUNTPAID IS NULL";
+            pStmt = conn.prepareStatement(sql);
         
             pStmt.setString(1, userID);
-            double user2userFees = pStmt.executeQuery().getInt(1);
-
+            double user2userFees = 0;
+            rs = pStmt.executeQuery();
+            while(rs.next()){
+               user2userFees = rs.getDouble(1); 
+            }
+            
             //get unpaid security violation fees USER2ANYONE
             sql =        "SELECT    SUM(TR.AMOUNT)"
-                       + "FROM      TRXREFERENCES TR LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID"
-                                                  + "JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID"
-                                                  + "JOIN USER2ANYONE UA            ON UA.SECURITYREPORTID = SV.SECURITYREPORTID"
-                                                  + "JOIN USERS U                   ON UA.USERID = U.USERID"
-                       + "WHERE U.USERID = ?"
-                       + "AND   U.STATUS = 'active'"
-                       + "AND   TL.AMOUNTPAID = NULL";
+                       + " FROM      TRXREFERENCES TR LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID"
+                                                  + " JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID"
+                                                  + " JOIN USER2ANYONE UA            ON UA.SECURITYREPORTID = SV.SECURITYREPORTID"
+                                                  + " JOIN USERS U                   ON UA.USERID = U.USERID"
+                       + " WHERE U.USERID = ?"
+                       + " AND   U.STATUS = 'active'"
+                       + " AND   TL.AMOUNTPAID IS NULL";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userID);
-            double user2anyoneFees = pStmt.executeQuery().getInt(1);
+            double user2anyoneFees = 0;
+            rs = pStmt.executeQuery();
+            while(rs.next()){
+               user2anyoneFees = rs.getDouble(1); 
+            }
 
             //get unpaid vehicle pass fees
             sql =        "SELECT    SUM(TR.AMOUNT)"
-                       + "FROM      TRXREFERENCES TR LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID"
-                                                  + "JOIN USER_VEHICLES UV          ON UV.TRXID = TR.TRXID"
-                                                  + "JOIN USERS U                   ON UV.USERID = U.USERID"
-                       + "WHERE U.USERID = ?"
-                       + "AND   U.STATUS = 'active'"
-                       + "AND   TL.AMOUNTPAID = NULL";
+                       + " FROM      TRXREFERENCES TR LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID"
+                                                  + " JOIN USER_VEHICLES UV          ON UV.TRXID = TR.TRXID"
+                                                  + " JOIN USERS U                   ON UV.USERID = U.USERID"
+                       + " WHERE U.USERID = ?"
+                       + " AND   U.STATUS = 'active'"
+                       + " AND   TL.AMOUNTPAID IS NULL";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userID);
-            double vehicleRegistrationFees = pStmt.executeQuery().getInt(1);
+            double vehicleRegistrationFees = 0;
+            rs = pStmt.executeQuery();
+            while(rs.next()){
+               vehicleRegistrationFees = rs.getDouble(1); 
+            }
 
             //get unpaid security violation fees VEHICLES2USER
             sql =        "SELECT    SUM(TR.AMOUNT)"
-                       + "FROM      TRXREFERENCES TR LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID"
-                                                  + "JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID"
-                                                  + "JOIN VEHICLE2USER VU           ON VU.SECURITYREPORTID = SV.SECURITYREPORTID"
-                                                  + "JOIN VEHICLES V                ON V.PLATENUM = VU.PLATENUM"
-                                                  + "JOIN USER_VEHICLES UV          ON UV.PLATENUM = V.PLATENUM"
-                                                  + "JOIN USERS U                   ON UA.USERID = U.USERID"
-                       + "WHERE U.USERID = ?"
-                       + "AND   U.STATUS = 'active'"
-                       + "AND   TL.AMOUNTPAID = NULL";
+                       + " FROM      TRXREFERENCES TR LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID"
+                                                  + " JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID"
+                                                  + " JOIN VEHICLE2USER VU           ON VU.SECURITYREPORTID = SV.SECURITYREPORTID"
+                                                  + " JOIN VEHICLES V                ON V.PLATENUM = VU.PLATENUM"
+                                                  + " JOIN USER_VEHICLES UV          ON UV.PLATENUM = V.PLATENUM"
+                                                  + " JOIN USERS U                   ON UV.USERID = U.USERID"
+                       + " WHERE U.USERID = ?"
+                       + " AND   U.STATUS = 'active'"
+                       + " AND   TL.AMOUNTPAID IS NULL";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userID);
-            double vehicleToUserFees = pStmt.executeQuery().getInt(1);
+            double vehicleToUserFees = 0;
+            rs = pStmt.executeQuery();
+            while(rs.next()){
+               vehicleToUserFees = rs.getDouble(1); 
+            }
 
             //get unpaid registration fees USER
-            sql =        "SELECT    SUM(TR.AMOUNT)"
-                       + "FROM      TRXREFERENCES TR u";
+            sql =        "SELECT TR.TRXID FROM TRXREFERENCES TR  " +
+                            " LEFT JOIN TRXLIST TL ON TR.TRXID = TL.TRXID " +
+                            " JOIN USERS U                   ON TR.TRXID = U.TRXID " +
+                            " WHERE U.USERID = ? " +
+                            " AND   U.STATUS = 'active' " +
+                            " AND   TL.AMOUNTPAID = NULL ";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userID);
-            double registrationFees = pStmt.executeQuery().getInt(1);
-
-            totalAmount += user2userFees + user2anyoneFees + vehicleRegistrationFees + vehicleToUserFees + registrationFees;
+            double registrationFees = 0;
+            rs = pStmt.executeQuery();
+            while(rs.next()){
+               registrationFees = rs.getDouble(1); 
+            }
+            
+            
+            
+            //get unpaid monthly dues
+            sql =        "SELECT    SUM(TR.AMOUNT)"
+                       + " FROM      TRXREFERENCES TR LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID"
+                                                  + " JOIN HOUSEMONTHLYDUES HMD      ON HMD.TRXID = TR.TRXID"
+                                                  + " JOIN HOMEOWNER HO             ON HO.BLOCKNUM = HMD.BLOCKNUM AND HO.LOTNUM = HMD.LOTNUM"
+                                                  + " JOIN USERS U                   ON HO.USERID = U.USERID"
+                       + " WHERE U.USERID = ?"
+                       + " AND   U.STATUS = 'active'"
+                       + " AND   TL.AMOUNTPAID IS NULL"
+                        + " AND TR.DESCRIPTION = 'monthly dues'";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userID);
+            double monthlyDues = 0;
+            rs = pStmt.executeQuery();
+            while(rs.next()){
+               monthlyDues = rs.getDouble(1); 
+            }
+            
+            totalAmount += monthlyDues + user2userFees + user2anyoneFees + vehicleRegistrationFees + vehicleToUserFees + registrationFees;
         } catch(SQLException e){
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -312,5 +359,10 @@ public class MonthlyDuesDAO{
             }
         }
         return numOfHO;
+    }
+    
+    public static void main(String[] args) {
+        double total = MonthlyDuesDAO.getUnpaidFees("yutainoue");
+        System.out.println(total);
     }
 }

@@ -99,7 +99,11 @@ ArrayList<String> datesPaid = BillingDAO.getDatesPaid();
             <% } %>
             </table>
             <h3 style="text-align: right;">Outstanding Balance: <%= totalDue - totalPaid %></h3>
-            <input class="w3-button w3-teal w3-round" type="submit" onclick="printPage('print')" name="generate" value="Print" style="float:none; margin:0px;">
+            
+            </div>
+            <div class="w3-container">
+                <input class="w3-button w3-teal w3-round" type="submit" onclick="printPage('print')" name="generate" value="Print" style="float:none; margin:0px;">
+                <a href="/hoamis/PayBilling?billID=<%= billID %>&userid=<%= hoId %>&fname=<%= fname %>&lname=<%= lname %>&mname=<%= mname %>"><input class="w3-button w3-teal w3-round" type="submit" name="payBill" value="Pay Bill" style="float:none; margin:0px;"></a>
             </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>

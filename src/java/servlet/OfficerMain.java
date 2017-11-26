@@ -52,6 +52,7 @@ public class OfficerMain extends HttpServlet {
                     if(action.equals("directory")){
                         forward = "officer/accounts/directory/directory.jsp";
                     }
+                   
                     if(action.equals("billingView")){
                         forward = "officer/fin-accounting/billingCollection/billing-view.jsp";
                     }
