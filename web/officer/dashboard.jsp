@@ -23,26 +23,31 @@
           <style>.w3-third{margin-top:20px;}</style>
           
           <div class="w3-row-padding w3-margin-bottom">
+              <a href="OfficerMain?action=directory">
             <div class="w3-third">
               <div class="w3-container w3-pink w3-padding-16">
                 <div class="w3-left"><i class="fa fa-user w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                  <h3>52</h3>
+                  <h3></h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>Account</h4>
               </div>
             </div>
+              </a>
+            <a href="OfficerMain?action=billingView">
             <div class="w3-third">
               <div class="w3-container w3-blue w3-padding-16">
                 <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                  <h3>99</h3>
+                  <h3></h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>Finance</h4>
               </div>
             </div>
+            </a>
+              <!--
             <div class="w3-third">
               <div class="w3-container w3-teal w3-padding-16">
                 <div class="w3-left"><i class="fa fa-university w3-xxxlarge"></i></div>
@@ -53,16 +58,20 @@
                 <h4>Facilities</h4>
               </div>
             </div>
+            -->
+            <a href="OfficerMain?action=document">
             <div class="w3-third">
               <div class="w3-container w3-deep-purple w3-padding-16">
                 <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                  <h3>23</h3>
+                  <h3></h3>
                 </div>
                 <div class="w3-clear"></div>
-                <h4>Activities</h4>
+                <h4>Community</h4>
               </div>
             </div>
+            </a>
+              <!--
             <div class="w3-third">
               <div class="w3-container w3-light-green w3-text-white w3-padding-16">
                 <div class="w3-left"><i class="fa fa-wrench w3-xxxlarge"></i></div>
@@ -73,6 +82,8 @@
                 <h4>Maintenance</h4>
               </div>
             </div>
+              -->
+              <a href="OfficerMain?action=security">
             <div class="w3-third">
               <div class="w3-container w3-orange w3-text-white w3-padding-16">
                 <div class="w3-left"><i class="fa fa-lock w3-xxxlarge"></i></div>
@@ -83,6 +94,7 @@
                 <h4>Security</h4>
               </div>
             </div>
+              </a>      
           </div>
 
           <!-- Footer --><!--
