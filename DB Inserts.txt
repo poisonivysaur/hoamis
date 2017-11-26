@@ -1,0 +1,90 @@
+-- -----------------------------------------------------
+-- Data for table `hoamis`.`REF_USERTYPE`
+-- -----------------------------------------------------
+USE `hoamis`;
+INSERT INTO `hoamis`.`REF_USERTYPE` (`usertypeid`, `usertype`) VALUES (1, 'Homeowner');
+INSERT INTO `hoamis`.`REF_USERTYPE` (`usertypeid`, `usertype`) VALUES (2, 'Board Member/ Officer');
+INSERT INTO `hoamis`.`REF_USERTYPE` (`usertypeid`, `usertype`) VALUES (3, 'Security Officer');
+INSERT INTO `hoamis`.`REF_USERTYPE` (`usertypeid`, `usertype`) VALUES (4, 'System Administrator');
+INSERT INTO `hoamis`.`REF_USERTYPE` (`usertypeid`, `usertype`) VALUES (5, 'Home Members');
+INSERT INTO `hoamis`.`REF_USERTYPE` (`usertypeid`, `usertype`) VALUES (6, 'Kasambahay');
+
+
+-- -----------------------------------------------------
+-- Data for table `hoamis`.`REF_OCCUPATION`
+-- -----------------------------------------------------
+USE `hoamis`;
+INSERT INTO `hoamis`.`REF_OCCUPATION` (`occupationID`, `occupation`) VALUES (1, 'Kasambahay');
+INSERT INTO `hoamis`.`REF_OCCUPATION` (`occupationID`, `occupation`) VALUES (2, 'Teacher');
+INSERT INTO `hoamis`.`REF_OCCUPATION` (`occupationID`, `occupation`) VALUES (3, 'Plumber');
+INSERT INTO `hoamis`.`REF_OCCUPATION` (`occupationID`, `occupation`) VALUES (4, 'Worker');
+INSERT INTO `hoamis`.`REF_OCCUPATION` (`occupationID`, `occupation`) VALUES (5, 'Slave');
+INSERT INTO `hoamis`.`REF_OCCUPATION` (`occupationID`, `occupation`) VALUES (6, 'Master');
+INSERT INTO `hoamis`.`REF_OCCUPATION` (`occupationID`, `occupation`) VALUES (7, 'Doctor');
+
+
+-- -----------------------------------------------------
+-- Data for table `hoamis`.`DOCUMENTS`
+-- -----------------------------------------------------
+USE `hoamis`;
+INSERT INTO `hoamis`.`DOCUMENTS` (`documentID`, `description`, `documentLocation`, `folderID`, `create_userID`, `DOCUMENTS_documentID`) VALUES (1, 'Default User Image', '/hoamis/uploads/default.png', 1, '1', DEFAULT);
+
+
+
+-- -----------------------------------------------------
+-- Data for table `hoamis`.`trxReferences`
+-- -----------------------------------------------------
+USE `hoamis`;
+INSERT INTO `hoamis`.`trxReferences` (`trxID`, `amount`, `interest`, `totalamount`, `description`, `dateCreated`) VALUES (1, 200, 0, 200, 'monthly dues', '2017-11-25');
+INSERT INTO `hoamis`.`trxReferences` (`trxID`, `amount`, `interest`, `totalamount`, `description`, `dateCreated`) VALUES (2, 200, 0, 200, 'monthly dues', '2017-11-25');
+INSERT INTO `hoamis`.`trxReferences` (`trxID`, `amount`, `interest`, `totalamount`, `description`, `dateCreated`) VALUES (3, 250, 0, 250, 'registration', '2017-11-25');
+-- My Inserts for the Registration
+
+
+-- -----------------------------------------------------
+-- Data for table `hoamis`.`USERS`
+-- -----------------------------------------------------
+USE 'HOAMIS';
+INSERT INTO `hoamis`.`USERS` (`userID`, `passwd`, `usertypeID`, `lname`, `fname`, `mname`, `bDate`, `photoID`, `occupationID`, `movingIn`, `movingOutclearID`, `trxID`, `status`) VALUES ('yutainoue', 'yutainoue', 1, 'Inoue', 'Yuta', 'Canete', '1999-01-01', 1, 2, '2017-01-01', NULL, 3, 'active');
+INSERT INTO `hoamis`.`USERS` (`userID`, `passwd`, `usertypeID`, `lname`, `fname`, `mname`, `bDate`, `photoID`, `occupationID`, `movingIn`, `movingOutclearID`, `trxID`, `status`) VALUES ('ivylim', 'ivylim', 2, 'Ivy', 'Lim', 'Koon', '1999-01-01', 1, 3, '2017-01-01', NULL, NULL, 'active');
+INSERT INTO `hoamis`.`USERS` (`userID`, `passwd`, `usertypeID`, `lname`, `fname`, `mname`, `bDate`, `photoID`, `occupationID`, `movingIn`, `movingOutclearID`, `trxID`, `status`) VALUES ('markbetlee', 'markbetlee', 3, 'Barraquias', 'Mark', 'Betlee', '1999-01-01', 1, 4, '2017-01-01', NULL, NULL, 'active');
+INSERT INTO `hoamis`.`USERS` (`userID`, `passwd`, `usertypeID`, `lname`, `fname`, `mname`, `bDate`, `photoID`, `occupationID`, `movingIn`, `movingOutclearID`, `trxID`, `status`) VALUES ('justinsingca', 'justinsingca', 4, 'Singca', 'Justin', 'Eduard', '1999-01-01', 1, 5, '2017-01-01', NULL, NULL, 'active');
+
+
+
+-- -----------------------------------------------------
+-- Data for table `hoamis`.`REF_PROPERTIES`
+-- -----------------------------------------------------
+USE `hoamis`;
+INSERT INTO `hoamis`.`REF_PROPERTIES` (`blocknum`, `lotnum`, `endlotnum`, `street`, `propertystatusID`, `mappointID`) VALUES (1, 1, 1, NULL, NULL, 1);
+INSERT INTO `hoamis`.`REF_PROPERTIES` (`blocknum`, `lotnum`, `endlotnum`, `street`, `propertystatusID`, `mappointID`) VALUES (1, 2, 2, NULL, NULL, 4);
+INSERT INTO `hoamis`.`REF_PROPERTIES` (`blocknum`, `lotnum`, `endlotnum`, `street`, `propertystatusID`, `mappointID`) VALUES (2, 2, 2, NULL, NULL, 2);
+INSERT INTO `hoamis`.`REF_PROPERTIES` (`blocknum`, `lotnum`, `endlotnum`, `street`, `propertystatusID`, `mappointID`) VALUES (3, 3, 3, NULL, NULL, 3);
+
+
+
+-- -----------------------------------------------------
+-- Data for table `hoamis`.`HOMEOWNER`
+-- -----------------------------------------------------
+USE `hoamis`;
+INSERT INTO `hoamis`.`HOMEOWNER` (`blocknum`, `lotnum`, `userid`) VALUES (1, 1, 'yutainoue')
+
+
+-- -----------------------------------------------------
+-- Data for table `hoamis`.`TRANSACTION_JOURNAL`
+-- -----------------------------------------------------
+USE `hoamis`;
+INSERT INTO `hoamis`.`TRANSACTION_JOURNAL` (`JournalID`, `trxDate`, `trxAmnt`, `trxAmntPaid`) VALUES (1, '2015-01-15', 200.00, 100.00);
+INSERT INTO `hoamis`.`TRANSACTION_JOURNAL` (`JournalID`, `trxDate`, `trxAmnt`, `trxAmntPaid`) VALUES (2, '2015-02-05', 200.00, NULL);
+INSERT INTO `hoamis`.`TRANSACTION_JOURNAL` (`JournalID`, `trxDate`, `trxAmnt`, `trxAmntPaid`) VALUES (3, '2017-11-25', 250, 250);
+--My Inserts for the Registrations
+
+
+-- -----------------------------------------------------
+-- Data for table `hoamis`.`TrxList`
+-- -----------------------------------------------------
+USE `hoamis`;
+INSERT INTO `hoamis`.`TrxList` (`journalID`, `trxID`, `amountpaid`) VALUES (1, 1, 200);
+INSERT INTO `hoamis`.`TrxList` (`journalID`, `trxID`, `amountpaid`) VALUES (1, 2, 200);
+INSERT INTO `hoamis`.`TrxList` (`journalID`, `trxID`, `amountpaid`) VALUES (3, 3, 250);
+--My Inserts for the Registrations

@@ -3,10 +3,10 @@ package model;
 import java.sql.Date;
 /**
  * User Object
- * A <b>user</b> object contains the different attributes of 
+ * A <b>user</b> object contains the different attributes of
  * a user of the system and the different functions it can perform on the system.
  * User is the parent class of HomeOwner, HomeMember, Kasambahay, BoardMember.
- * 
+ *
  * @author justine
  * @version 1.002
  * @since 2017-10-27
@@ -14,27 +14,27 @@ import java.sql.Date;
 
 /* Documentation for developer courtesy of Ivy Lim
  * COMMENTS (please comment any concerns and attach your names thanks!):
- * Please seek Justine first before updating any major parts of this code. 
+ * Please seek Justine first before updating any major parts of this code.
  * generated getters & setters, note that adding of triggers/checkers for the setters/ delete unnecessary setters, etc. are still needed
  *
- * 
+ *
  *
  * original code: 10-27-17 by J. Singca
- * last update: 
+ * last update:
  *   10-28-17 by I. Lim - added getters & setters
  *   11-06-17 by Y. Inoue - Changed userType's Data type to int. Added fields for type of users.
  *   11-24-17 by Y. Inoue - Added status to the class.
 */
 public class User {
     // not everyone has a setter, please consider when generating getters and setter
-    
+
     public static final String USERTYPE1 = "Homeowner";
     public static final String USERTYPE2 = "Board Member";
     public static final String USERTYPE3 = "Security Administrator";
     public static final String USERTYPE4 = "System Administrator";
     public static final String USERTYPE5 = "Home Member";
     public static final String USERTYPE6 = "Kasambahay";
-    
+
     private String fName;
     private String lName;
     private String mName;
@@ -48,7 +48,7 @@ public class User {
     private MovingOutClearance movingOutclear;
     private TransactionReference trx;
     private int status;
-    
+
     public User(){}
 
     public User(String fName, String lName, String mName,
@@ -71,40 +71,40 @@ public class User {
     public User(String fName, String lName, String mName, String passwd, int usertype, Date bDate, TransactionReference trx){
         this(fName, lName, mName, passwd, usertype, bDate, null, null, null, null, trx);
     }
-    
+
     /**
      * returns the transaction reference of the User object when it first registers into the system
-     * 
+     *
      * @param nothing
      * @return TransactioniReference object
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public TransactionReference getTrx() {
         return this.trx;
     }
-    
+
     /**
      * sets the transaction reference of the User object when it first registers into the system
-     * 
+     *
      * @param trx
      * @return nothing
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public void setTrx(TransactionReference trx) {
         this.trx = trx;
         /*  @ To whom it may concern:
-        
+
             just a theory: if it is association, we can only accept objects in the method parameters,
             then set the fields to the field of the object being accepted, for example:
-        
+
             // User attributes
             ...
             protected int trxID;    --> no object in the attributes, so no composition/aggretation, just association in methods
-            
+
             // User methods
             ...
             public void setTrx(TransactionReference trx){   --> accepts an object as param, hence association
@@ -115,11 +115,11 @@ public class User {
 
     /**
      * returns the first name of the User object
-     * 
+     *
      * @param nothing
      * @return String containing the first name of the object
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public String getfName() {
@@ -128,11 +128,11 @@ public class User {
 
     /**
      * sets the first name of the User object
-     * 
+     *
      * @param fName
      * @return nothing
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public void setfName(String fName) {
@@ -141,11 +141,11 @@ public class User {
 
     /**
      * returns the last name of the User object
-     * 
+     *
      * @param nothing
      * @return String containing the last name of the object
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public String getlName() {
@@ -154,11 +154,11 @@ public class User {
 
     /**
      * sets the last name of the User object
-     * 
+     *
      * @param lName
      * @return nothing
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public void setlName(String lName) {
@@ -167,11 +167,11 @@ public class User {
 
     /**
      * returns the middle name of the User object
-     * 
+     *
      * @param nothing
      * @return String containing the middle name of the object
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public String getmName() {
@@ -180,11 +180,11 @@ public class User {
 
     /**
      * sets the middle name of the User object
-     * 
+     *
      * @param mName
      * @return nothing
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public void setmName(String mName) {
@@ -193,11 +193,11 @@ public class User {
 
     /**
      * returns the user ID of the object
-     * 
+     *
      * @param nothing
      * @return nothing
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public String getUserID() {
@@ -206,11 +206,11 @@ public class User {
 
     /**
      * sets the user ID of the object
-     * 
+     *
      * @param userID
      * @return nothing
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public void setUserID(String userID) {
@@ -219,11 +219,11 @@ public class User {
 
     /**
      * returns the password of the object
-     * 
+     *
      * @param nothing
      * @return String containing the password of the object
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public String getPasswd() {
@@ -232,11 +232,11 @@ public class User {
 
     /**
      * sets the password of the object
-     * 
+     *
      * @param passwd
      * @return nothing
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public void setPasswd(String passwd) {
@@ -245,11 +245,11 @@ public class User {
 
     /**
      * returns the user type of the object
-     * 
+     *
      * @param nothing
      * @return UserType
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public int getUsertype() {
@@ -258,11 +258,11 @@ public class User {
 
     /**
      * sets the user type of the object
-     * 
+     *
      * @param usertype
      * @return nothing
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public void setUsertype(int usertype) {
@@ -271,11 +271,11 @@ public class User {
 
     /**
      * returns the birth date of the object
-     * 
+     *
      * @param nothing
      * @return Date containing the birth date of the object
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public Date getbDate() {
@@ -284,11 +284,11 @@ public class User {
 
     /**
      * sets birthday of the object
-     * 
+     *
      * @param bDate
      * @return nothing
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public void setbDate(Date bDate) {
@@ -297,11 +297,11 @@ public class User {
 
     /**
      * returns the photo document of the object
-     * 
+     *
      * @param nothing
      * @return Document object containing the photo of the user object
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public Document getPhoto() {
@@ -310,11 +310,11 @@ public class User {
 
     /**
      * sets the photo document object of the User object
-     * 
+     *
      * @param photo
      * @return nothing
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public void setPhoto(Document photo) {
@@ -323,11 +323,11 @@ public class User {
 
     /**
      * returns the occupation of the object
-     * 
+     *
      * @param nothing
      * @return Occupation object
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public Occupation getOccupation() {
@@ -336,11 +336,11 @@ public class User {
 
     /**
      * sets the occupation of the User object
-     * 
+     *
      * @param occupation
      * @return nothing
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public void setOccupation(Occupation occupation) {
@@ -349,11 +349,11 @@ public class User {
 
     /**
      * returns the date of when the User object moved in
-     * 
+     *
      * @param nothing
      * @return Date object
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public Date getMovingIn() {
@@ -362,11 +362,11 @@ public class User {
 
     /**
      * sets the date of when the User object moved in
-     * 
+     *
      * @param movingIn
      * @return nothing
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public void setMovingIn(Date movingIn) {
@@ -375,11 +375,11 @@ public class User {
 
     /**
      * returns the moving out clearance of the User object
-     * 
+     *
      * @param nothing
      * @return MovingOutClearance object
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public MovingOutClearance getMovingOutclear() {
@@ -388,33 +388,33 @@ public class User {
 
     /**
      * sets the moving out clearance attribute of the User object
-     * 
+     *
      * @param movinOutclear
      * @return nothing
      * @throws nothing
-     * 
+     *
      * @since 10-28-17
      */
     public void setMovingOutclear(MovingOutClearance movingOutclear) {
         this.movingOutclear = movingOutclear;
     }
-    
+
     /**
      * Manages the status of the user corresponding to an event.
-     * 
+     *
      * @param event
      * @return nothing
      * @throws nothing
-     * 
-     * 
+     *
+     *
      */
     public void statusManager(String event){
         //Change status according to the event
     }
-    
+
     /**
      * returns the status in int.
-     * 
+     *
      * @param nothing
      * @thorws nothing
      * @return int
@@ -422,14 +422,25 @@ public class User {
     public int getStatus(){
         return this.status;
     }
-    
+
+    /**
+     * sets the status in int.
+     *
+     * @param status
+     * @thorws nothing
+     * @return nothing
+     */
+    public void setStatus(int status){
+      this.status = status;
+    }
+
     /**
      * returns the user type in string value.
-     * 
+     *
      * @param nothing
      * @return String
      * @throws nothing
-     * 
+     *
      * @since 11-07-17
      */
     public String getUserTypeString(){
@@ -446,6 +457,12 @@ public class User {
                 break;
             case 4:
                 userType = USERTYPE4;
+                break;
+            case 5:
+                userType = USERTYPE5;
+                break;
+            case 6:
+                userType = USERTYPE6;
                 break;
         }
         return userType;
