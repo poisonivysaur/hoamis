@@ -292,7 +292,6 @@ public class BillingDAO {
                 int inserted = pStmt.executeUpdate();
                 if(inserted != 0){
                     System.out.println("Successfully inserted into Billings!");
-                    isSuccess = true;
                     String maxBillID = "SELECT BILLINGID FROM BILLING ORDER BY BILLINGID DESC LIMIT 1;";
                     pStmt = conn.prepareStatement(maxBillID);
                     ResultSet rsBillID = pStmt.executeQuery();
