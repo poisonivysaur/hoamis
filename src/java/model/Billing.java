@@ -40,51 +40,157 @@ public class Billing implements Serializable {
         this.totalDue = totalDue;
         this.totalPaid = totalPaid;
     }
-
+    
+    /**
+     * returns the billing ID of the Billing object
+     *
+     * @param nothing
+     * @return int
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public int getBillingID(){
         return billingID;
     }
     
+    /**
+     * returns the block number of the Billing object to which the billing is generated for the homeowner
+     *
+     * @param nothing
+     * @return int
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public int getBlocknum() {
         return blocknum;
     }
-
+    /**
+     * sets the blocknum ID of the billing object
+     *
+     * @param blocknum
+     * @return nothing
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public void setBlocknum(int blocknum) {
         this.blocknum = blocknum;
     }
 
+    /**
+     * returns the lot number of the Billing object to which the billing is generated for the homeowner
+     *
+     * @param nothing
+     * @return int
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public int getLotnum() {
         return lotnum;
     }
-
+    /**
+     * sets the lotnum ID of the billing object
+     *
+     * @param lotnum
+     * @return nothing
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public void setLotnum(int lotnum) {
         this.lotnum = lotnum;
     }
-
+    
+    /**
+     * returns the lot number of the Billing object to which the billing is generated for the homeowner
+     *
+     * @param nothing
+     * @return int
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public int getPrecedentBilling(){
         return precedentBilling;
     }
-
+    
+    /**
+     * returns the total due amount of the Billing object to which the billing is generated for the homeowner
+     *
+     * @param nothing
+     * @return double
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public double getTotalDue(){
         return totalDue;
     }
-
+    
+    /**
+     * returns the total paid amount of the Billing object to which the billing is generated for the homeowner
+     *
+     * @param nothing
+     * @return double
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public double getTotalPaid(){
         return totalPaid;
     }
-
+    
+    /**
+     * sets the billing ID of the billing object
+     *
+     * @param billingID
+     * @return nothing
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public void setBillingID(int billingID){
         this.billingID = billingID;
     }
-
+    
+    /**
+     * sets the precedent billing ID of the billing object
+     *
+     * @param precedentBilling
+     * @return nothing
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public void setPrecedentBilling(int precedentBilling){
         this.precedentBilling = precedentBilling;
     }
-
+    
+    /**
+     * sets the total due field of the billing object
+     *
+     * @param totalDue
+     * @return nothing
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public void setTotalDue(double totalDue){
         this.totalDue = totalDue;
     }
-
+    
+    /**
+     * sets the total paid field of the billing object
+     *
+     * @param totalPaid
+     * @return nothing
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public void setTotalPaid(double totalPaid){
         this.totalPaid = totalPaid;
     }

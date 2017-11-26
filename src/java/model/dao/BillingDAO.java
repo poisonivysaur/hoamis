@@ -463,72 +463,12 @@ public class BillingDAO {
                      lotnum = rs.getInt(2);
                      userid = rs.getString(3);
                 }
-                // NOT USED CODE SEGMENT
-                // loop across every transaction and insert into trxList and payment details
-                // GET THE TRANSACTIONS CORRESPONDING TO MONTHLY DUES FOR THE MONTH AND OTHER UNPAID FEES
-                /*
-                    sql = "SELECT MONTHLYDUES.TRXID, MONTHLYDUES.TOTALAMOUNT " +
-                            " FROM (SELECT TR.TRXID, TR.TOTALAMOUNT FROM TRXREFERENCES TR" +
-                            " JOIN HOUSEMONTHLYDUES HMD ON TR.TRXID = HMD.TRXID" +
-                            " JOIN MONTHLYDUES MD ON MD.MDID = HMD.MDID" +
-                            " WHERE HMD.BLOCKNUM = ? AND HMD.LOTNUM = ?" +
-                            " AND TR.DESCRIPTION = 'monthly dues'" +
-                            " AND MONTH(TR.DATECREATED) = MONTH(NOW()) AND YEAR(TR.DATECREATED) = YEAR(NOW())) MONTHLYDUES" +
-                            //get unpaid security violation fees USER2USER " +
-                            " LEFT JOIN (SELECT TR.TRXID, TR.TOTALAMOUNT FROM TRXREFERENCES TR " +
-                            " LEFT JOIN TRXLIST TL 		   ON TR.TRXID = TL.TRXID" +
-                            " JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID" +
-                            " JOIN USER2USER UU              ON UU.SECURITYREPORTID = SV.SECURITYREPORTID" +
-                            " JOIN USERS U                   ON UU.ACCUSED_USERID = U.USERID" +
-                            " WHERE U.USERID = ? " +
-                            " AND   U.STATUS = 'active' " +
-                            " AND   TL.AMOUNTPAID = NULL) SEC1 ON SEC1.TRXID = MONTHLYDUES.TRXID " +
-                            //get unpaid security violation fees USER2ANYONE " +
-                            " LEFT JOIN (SELECT TR.TRXID, TR.TOTALAMOUNT FROM TRXREFERENCES TR  " +
-                            " LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID " +
-                            " JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID " +
-                            " JOIN USER2ANYONE UA            ON UA.SECURITYREPORTID = SV.SECURITYREPORTID " +
-                            " JOIN USERS U                   ON UA.USERID = U.USERID " +
-                            " WHERE U.USERID = ? " +
-                            " AND   U.STATUS = 'active' " +
-                            " AND   TL.AMOUNTPAID = NULL) SEC2 ON SEC2.TRXID = SEC1.TRXID " +
-                            //get unpaid vehicle pass fees " +
-                            " LEFT JOIN (SELECT TR.TRXID, TR.TOTALAMOUNT FROM TRXREFERENCES TR  " +
-                            " LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID " +
-                            " JOIN USER_VEHICLES UV          ON UV.TRXID = TR.TRXID " +
-                            " JOIN USERS U                   ON UV.USERID = U.USERID " +
-                            " WHERE U.USERID = ? " +
-                            " AND   U.STATUS = 'active' " +
-                            " AND   TL.AMOUNTPAID = NULL) VEHICLE ON VEHICLE.TRXID = SEC2.TRXID " +
-                            //get unpaid security violation fees VEHICLES2USER " +
-                            " LEFT JOIN (SELECT TR.TRXID, TR.TOTALAMOUNT FROM TRXREFERENCES TR  " +
-                            " LEFT JOIN TRXLIST TL           ON TR.TRXID = TL.TRXID " +
-                            " JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID " +
-                            " JOIN VEHICLE2USER VU           ON VU.SECURITYREPORTID = SV.SECURITYREPORTID " +
-                            " JOIN VEHICLES V                ON V.PLATENUM = VU.PLATENUM " +
-                            " JOIN USER_VEHICLES UV          ON UV.PLATENUM = V.PLATENUM " +
-                            " JOIN USERS U                   ON UV.USERID = U.USERID " +
-                            " WHERE U.USERID = ? " +
-                            " AND   U.STATUS = 'active' " +
-                            " AND   TL.AMOUNTPAID = NULL) VIOLATION ON VIOLATION.TRXID = VEHICLE.TRXID " +
-                            //get unpaid registration fees USER " +
-                            " LEFT JOIN (SELECT TR.TRXID, TR.TOTALAMOUNT FROM TRXREFERENCES TR  " +
-                            " LEFT JOIN TRXLIST TL ON TR.TRXID = TL.TRXID " +
-                            " JOIN USERS U                   ON TR.TRXID = U.TRXID " +
-                            " WHERE U.USERID = ? " +
-                            " AND   U.STATUS = 'active' " +
-                            " AND   TL.AMOUNTPAID = NULL) REG ON REG.TRXID = VIOLATION.TRXID;";*/
+                
                     sql = " SELECT TR.TRXID, TR.AMOUNT FROM TRXREFERENCES TR" +
                             " JOIN BILLINGDETAILS BD ON BD.TRXID = TR.TRXID" +
                             " WHERE BILLINGID = ?; ";
                     pStmt = conn.prepareStatement(sql);
-                    pStmt.setInt(1, billID);/*
-                    pStmt.setInt(2, lotnum);
-                    pStmt.setString(3, userid);
-                    pStmt.setString(4, userid);
-                    pStmt.setString(5, userid);
-                    pStmt.setString(6, userid);
-                    pStmt.setString(7, userid);*/
+                    pStmt.setInt(1, billID);
                     rs = pStmt.executeQuery();
                     while(rs.next()){
                         // INSERT INTO PAYMENT DETAILS
