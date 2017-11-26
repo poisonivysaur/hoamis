@@ -203,10 +203,28 @@ public class BillingDAO {
         return transactions;
     }
     
+    /**
+     * returns the list of dates for all transactions that were already paid for
+     *
+     * @param nothing
+     * @return ArrayList<String>
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public static ArrayList<String> getDatesPaid(){
         return datesPaid;
     }
     
+    /**
+     * sets the list of all Homeowners and Users
+     *
+     * @param nothing
+     * @return void
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public static void getUserHomeowners(){
         // reset array lists and select from database again
         users = new ArrayList();
@@ -263,14 +281,41 @@ public class BillingDAO {
         }
     }
     
+    /**
+     * returns the list of all Users
+     *
+     * @param nothing
+     * @return ArrayList<User>
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public static ArrayList<User> getUsers(){
         return users;
     }
     
+    /**
+     * returns the list of all Homeowners
+     *
+     * @param billID
+     * @return ArrayList<TransactionReference>
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public static ArrayList<Homeowner> getHomeowners(){
         return homeowners;
     }
     
+    /**
+     * generates billing statements for all homeowners
+     *
+     * @param nothing
+     * @return boolean
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public static boolean generateBillingForAll(){
         boolean isSuccess = false;
         // loop around all active homeowners and get their unpaid fees & dues
@@ -422,6 +467,16 @@ public class BillingDAO {
         return isSuccess;
     }
     
+    
+    /**
+     * records payment for a given billing ID
+     *
+     * @param billID
+     * @return boolean
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public static boolean payBilling(int billID){
         boolean isPaid = false;
         Connection conn = null;
