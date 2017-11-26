@@ -27,7 +27,7 @@ INSERT INTO `hoamis`.`REF_OCCUPATION` (`occupationID`, `occupation`) VALUES (7, 
 -- Data for table `hoamis`.`DOCUMENTS`
 -- -----------------------------------------------------
 USE `hoamis`;
-INSERT INTO `hoamis`.`DOCUMENTS` (`documentID`, `description`, `documentLocation`, `folderID`, `create_userID`, `DOCUMENTS_documentID`) VALUES (1, 'Default User Image', '/hoamis/uploads/default.png', 1, '1', DEFAULT);
+INSERT INTO `hoamis`.`DOCUMENTS` (`documentID`, `description`, `documentLocation`, `folderID`, `create_userID`, `DOCUMENTS_documentID`) VALUES (1, 'Default User Image', '/hoamis/uploads/default.png', 0, 'ivylim', DEFAULT);
 
 
 
@@ -88,3 +88,49 @@ INSERT INTO `hoamis`.`TrxList` (`journalID`, `trxID`, `amountpaid`) VALUES (1, 1
 INSERT INTO `hoamis`.`TrxList` (`journalID`, `trxID`, `amountpaid`) VALUES (1, 2, 200);
 INSERT INTO `hoamis`.`TrxList` (`journalID`, `trxID`, `amountpaid`) VALUES (3, 3, 250);
 --My Inserts for the Registrations
+
+
+-- Document Management.
+INSERT INTO `hoamis`.`FOLDERS` (`folderID`, `folderName`, `folderdesc`, `parentID`, `create_userID`) VALUES (0, 'root', 'root folder', 0, 'ivylim');
+
+ALTER TABLE `hoamis`.`folders` CHANGE COLUMN `folderID` `folderID` INT(9) NOT NULL AUTO_INCREMENT ;
+UPDATE `hoamis`.`FOLDERS` SET `folderID`='0' WHERE `folderID`='1';
+
+ALTER TABLE `hoamis`.`documents` CHANGE COLUMN `documentID` `documentID` INT(9) NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `hoamis`.`folders`
+ADD INDEX `parent_idx` (`parentID` ASC);
+ALTER TABLE `hoamis`.`folders`
+ADD CONSTRAINT `parent`
+  FOREIGN KEY (`parentID`)
+  REFERENCES `hoamis`.`folders` (`folderID`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
+ALTER TABLE `hoamis`.`folders`
+ADD INDEX `createUser_idx` (`create_userID` ASC);
+ALTER TABLE `hoamis`.`folders`
+ADD CONSTRAINT `createUser`
+  FOREIGN KEY (`create_userID`)
+  REFERENCES `hoamis`.`users` (`userID`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+  ALTER TABLE `hoamis`.`documents`
+  ADD INDEX `folder_idx` (`folderID` ASC);
+  ALTER TABLE `hoamis`.`documents`
+  ADD CONSTRAINT `folder`
+    FOREIGN KEY (`folderID`)
+    REFERENCES `hoamis`.`folders` (`folderID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+
+    ALTER TABLE `hoamis`.`documents`
+    ADD INDEX `userID_idx` (`create_userID` ASC);
+    ALTER TABLE `hoamis`.`documents`
+    ADD CONSTRAINT `userID`
+      FOREIGN KEY (`create_userID`)
+      REFERENCES `hoamis`.`users` (`userID`)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
