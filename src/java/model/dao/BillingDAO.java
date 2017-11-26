@@ -40,7 +40,15 @@ public class BillingDAO {
     protected static ArrayList<Homeowner> homeowners = new ArrayList();
     protected static ArrayList<String> datesPaid = new ArrayList<>();
     
-    
+    /**
+     * returns the list of all Billing records in the database
+     *
+     * @param nothing
+     * @return ArrayList<Billing>
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public static ArrayList<Billing> getBillings(){
         ArrayList<Billing> billings = new ArrayList();
         Connection conn = null;
@@ -79,6 +87,15 @@ public class BillingDAO {
         return billings;
     }
     
+    /**
+     * returns the list of all Billing records in the database given a user ID
+     *
+     * @param userid
+     * @return ArrayList<Billing>
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public static ArrayList<Billing> getBillings(String userid){
         ArrayList<Billing> billings = new ArrayList();
         Connection conn = null;
@@ -129,6 +146,15 @@ public class BillingDAO {
         return billings;
     }
     
+    /**
+     * returns the list of all transactions included in a given billing statement
+     *
+     * @param billID
+     * @return ArrayList<TransactionReference>
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public static ArrayList<TransactionReference> getTrxRef(int billID){
         ArrayList<TransactionReference> transactions = new ArrayList();
         datesPaid = new ArrayList<>();
@@ -518,10 +544,8 @@ public class BillingDAO {
     * COMMENTS:
     * this main method is for testing purposes.
     *
-    * 
-    *
-    * original code: 10-28-17 by J. Doctolero 
-    * last update: 10-28-17 by I. Lim - added constructor & changed attribute datatypes
+    * original code: 10-28-17 by I. Lim
+    * last update: 10-28-17 by I. Lim - added query methods
    */
     public static void main(String[] args) {
         System.out.println("Start");

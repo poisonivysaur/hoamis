@@ -53,13 +53,13 @@
                   <a href="#" class="w3-bar-item w3-button">Dues & Fees</a>
                   <a href="#" class="w3-bar-item w3-button">Registration</a>
                   <a href="#" class="w3-bar-item w3-button">Vacation & Moving Out</a>
-            </div>
+            </div><!--
             <div class="w3-bar-item w3-button" onclick="myAccFunc('finance')">
                 <i class="fa fa-money fa-fw"></i>  Finance <i class="fa fa-caret-down"></i></div>
                 <div id="finance" class="w3-hide w3-white w3-card-4">
                   <a href="#" class="w3-bar-item w3-button">Accounting</a>
                   <a href="#" class="w3-bar-item w3-button">Financial Reports</a>
-            </div>
+            </div>-->
             <div class="w3-bar-item w3-button" onclick="myAccFunc('facilities')">
                 <i class="fa fa-university fa-fw"></i>  Reserve Facilities  <i class="fa fa-caret-down"></i></div>
                 <div id="facilities" class="w3-hide w3-white w3-card-4">
