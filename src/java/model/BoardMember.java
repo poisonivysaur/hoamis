@@ -2,6 +2,7 @@
 package model;
 
 import java.sql.Date;
+import java.io.Serializable;
 
 /**
  * BoardMember Object
@@ -23,13 +24,15 @@ import java.sql.Date;
  * original code: 10-27-17 by J. Sinca 
  * last update: 10-28-17 by I. Lim - added getters & setters
 */
-public class BoardMember extends User{
+public class BoardMember extends User implements Serializable{
     
     protected BoardPosition position;
     protected Date effectiveDate;
     protected Date endDate;
     protected BoardStatus status;
     protected Election election;
+	
+	public BoardMember(){}
 
     public BoardMember(BoardPosition position, Date effectiveDate, Date endDate, BoardStatus status, Election election, String fName, String lName, String mName, String passwd, UserType usertype, Date bDate, Document photo, Occupation occupation, Date movingIn, MovingOutClearance movingOutclear, TransactionReference trx) {
         super(fName, lName, mName, passwd, usertype, bDate, photo, occupation, movingIn, movingOutclear, trx);

@@ -1,6 +1,8 @@
 
 package model;
 
+import java.io.Serializable;
+
 /**
  * BoardPosition Object
  * A <b>BoardPosition</b> object contains the ID of the board position type and
@@ -21,10 +23,12 @@ package model;
  * original code: 10-27-17
  * last update: 10-28-17 by I. Lim - added getters & setters
 */
-public class BoardPosition {
+public class BoardPosition implements Serializable {
     
     private int positionID;
     protected String position;
+	
+	public BoardPosition(){}
 
     public BoardPosition(int positionID, String position) {
         this.positionID = positionID;

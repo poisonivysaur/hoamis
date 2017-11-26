@@ -1,6 +1,8 @@
 
 package model;
 
+import java.io.Serializable;
+
 /**
  * ElectType Object
  * A <b>ElectType</b> object contains the different attributes of 
@@ -21,12 +23,19 @@ package model;
  * original code: 10-27-17
  * last update:
 */
-public class ElectType {
+public class ElectType implements Serializable {
     
     protected int electTypeID;
     protected String electType;
+	
+	public ElectType(){}
     
     public ElectType(String electType) {
         this.electType = electType;
     }
+	
+	public int getElectTypeID(){return this.electTypeID;}
+	public String getElectType(){return this.electType;}
+	public void setElectTypeID(int electTypeID){this.electTypeID = electTypeID;}
+	public void setElectType(String electType){this.electType = electType;}
 }

@@ -5,11 +5,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Patrisha
  */
-public class Sticker {
+public class Sticker implements Serializable {
     private int year;
     private double cost;
     private String date;

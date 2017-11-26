@@ -2,6 +2,7 @@
 package model;
 
 import java.sql.Date;
+import java.io.Serializable;
 
 /**
  * MovingOutClearance Object
@@ -23,7 +24,7 @@ import java.sql.Date;
  * original code: 10-27-17
  * last update: 10-28-17 by I. Lim - added getters & setters
 */
-public class MovingOutClearance {
+public class MovingOutClearance implements Serializable {
     
     protected int clearanceID;
     protected Date movingoutdate;
@@ -31,6 +32,8 @@ public class MovingOutClearance {
     protected BoardMember securityclear;
     protected BoardMember violationsclear;
     protected TransactionReference trx;
+	
+	public MovingOutClearance(){}
 
     public MovingOutClearance(Date movingoutdate, BoardMember financeclear, BoardMember securityclear, BoardMember violationsclear, TransactionReference trx) {
         this.movingoutdate = movingoutdate;

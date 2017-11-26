@@ -1,6 +1,8 @@
 
 package model;
 
+import java.io.Serializable;
+
 /**
  * A <b>transaction reference</b> is a reference to all the transactions made across 
  * different types of transactions in the system
@@ -20,7 +22,7 @@ package model;
  * original code: 10-28-17
  * last update: 10-28-17 by I. Lim - changed access specifiers
 */
-public class TransactionReference {
+public class TransactionReference implements Serializable {
     
     protected int trxID;
     public double amount;

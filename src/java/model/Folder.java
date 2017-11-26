@@ -1,6 +1,8 @@
 
 package model;
 
+import java.io.Serializable;
+
 /**
  * Folder Object
  * A <b>Folder</b> object contains the different attributes of 
@@ -21,13 +23,15 @@ package model;
  * original code: 10-27-17
  * last update:
 */
-public class Folder {
+public class Folder implements Serializable {
     
     protected int folderID;
     protected String folderName;
     protected String folderdesc;
     protected Folder parentFolder;
     protected User createUser;
+	
+	public Folder(){}
 
     public Folder(String folderName, String folderdesc, Folder parentFolder, User createUser) {
         this.folderName = folderName;

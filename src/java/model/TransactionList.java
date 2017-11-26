@@ -1,6 +1,8 @@
 
 package model;
 
+import java.io.Serializable;
+
 /**
  * A <b>TransactionList</b> object contains a journal entry ID and a transaction ID as well as the amount paid
  * 
@@ -18,10 +20,12 @@ package model;
  * original code: 10-28-17 by I. Lim
  * last update: 10-28-17 by I. Lim - changed access specifiers
 */
-public class TransactionList {
+public class TransactionList implements Serializable {
     protected int journalID;
     protected TransactionReference trx;
     public double amountPaid;
+	
+	public TransactionList(){}
     
     public TransactionList(int journal, TransactionReference trx, double amountPaid){
         this.journalID = journal;

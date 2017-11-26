@@ -1,6 +1,8 @@
 
 package model;
 
+import java.io.Serializable;
+
 /**
  * A <b>Billing</b> object contains the different information of 
  * a billing to a home owner 
@@ -19,7 +21,7 @@ package model;
  * original code: 10-28-17 by J. Doctolero 
  * last update: 10-28-17 by I. Lim - added constructor & changed attribute datatypes
 */
-public class Billing {
+public class Billing implements Serializable {
     private int billingID;
     protected int blocknum;
     protected int lotnum;
@@ -27,9 +29,7 @@ public class Billing {
     protected double totalDue;
     protected double totalPaid;
     
-    public Billing(){
-        
-    }
+    public Billing(){}
 
     
     public Billing(int billingID, int blocknum, int lotnum, int precedentBilling, double totalDue, double totalPaid){

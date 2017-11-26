@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * A <b>BillingDetail</b> object keeps the details of a billing such as the ID and transaction
  * 
@@ -18,10 +20,12 @@ package model;
  * original code: 10-28-17 by I. Lim
  * last update: 
 */
-public class BillingDetail {
+public class BillingDetail implements Serializable {
 
     protected Billing billing;
     protected TransactionReference trx;
+	
+	public BillingDetail(){}
 
     public BillingDetail(Billing billing, TransactionReference trx){
         this.billing = billing;

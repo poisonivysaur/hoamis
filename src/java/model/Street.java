@@ -1,6 +1,8 @@
 
 package model;
 
+import java.io.Serializable;
+
 /**
  * Street Object
  * A <b>Street</b> object contains the street name of the streets in Saint Mary's Homes community
@@ -19,8 +21,10 @@ package model;
  * original code: 10-28-17 by I. Lim
  * last update:
 */
-public class Street {
+public class Street import Serializable {
     public String street;
+	
+	public Street(){}
     
     public Street(String st){
         this.street = st;

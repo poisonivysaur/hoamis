@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.*;
 import DAO.User;
 import java.io.PrintWriter;
+import java.io.Serializable;
 
 /**
  *
@@ -21,7 +22,7 @@ import java.io.PrintWriter;
  * @version 1.0 
  * @since 10/29/2017
  */
-public class Usergroup {
+public class Usergroup implements Serializable {
 
     /**
      *
