@@ -42,7 +42,7 @@ public class duesOfficerServlet extends HttpServlet {
         MonthlyDuesDAO mdd = new MonthlyDuesDAO();
         if(mdd.isOverlappingWithStoredDues(startMonth, startYear, endMonth, endYear)){
             request.setAttribute("message", "This date range is overlapping with one of the date ranges already registered. Please choose another range.");
-            rd = request.getRequestDispatcher("duesFormOfficer.jsp");
+            rd = request.getRequestDispatcher("officer/accounts/duesFees/duesFormOfficer.jsp");
             rd.forward(request, response);
         }
         
@@ -58,12 +58,12 @@ public class duesOfficerServlet extends HttpServlet {
         request.setAttribute("rmdObj", rmd);
         
         if(request.getParameter("submit") != null)
-            rd = request.getRequestDispatcher("duesContOfficer.jsp");
+            rd = request.getRequestDispatcher("officer/accounts/duesFees/duesContOfficer.jsp");
         else if(request.getParameter("submit2") != null){
             double amountPerMonth = Double.parseDouble(request.getParameter("monthDues"));
             try {
                 mdd.insertMonthlyDues(rmd, amountPerMonth);
-                rd = request.getRequestDispatcher("duesSuccessOfficer.jsp");
+                rd = request.getRequestDispatcher("officer/accounts/duesFees/duesSuccessOfficer.jsp");
             } catch (Exception ex) {
                 System.out.println("Unable to insert");
                 System.out.println(ex.getMessage());

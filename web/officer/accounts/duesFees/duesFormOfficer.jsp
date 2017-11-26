@@ -16,12 +16,12 @@
     <body>
         <div class="navbar">
             <h2>MENU</h2>
-            <a href="duesHomeOfficer.jsp"><button type="button">Home</button></a>
-            <a href="duesFormOfficer.jsp"><button type="button">Set Monthly Dues</button></a>
-            <a href="duesViewOfficer.jsp"><button type="button">View All Monthly Dues</button></a>
+            <a href="OfficerMain?action=dues"><button type="button">Home</button></a>
+            <a href="OfficerMain?action=duesForm"><button type="button">Set Monthly Dues</button></a>
+            <a href="OfficerMain?action=duesView"><button type="button">View All Monthly Dues</button></a>
         </div>
         <div class="container">
-            <form action="duesOfficerServlet" method="post">
+            <form action="/hoamis/duesOfficerServlet" method="post">
                 <h2>SET MONTHLY DUES</h2>
                 <div class="row">
                     <div>
