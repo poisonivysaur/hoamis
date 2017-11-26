@@ -49,6 +49,7 @@
         <%!String psw = "password";%>
          <a href ="Dashboard.jsp"> << Go back home </a>
         <h2> View All Records </h2>
+        <!--shows a table which contains all the vehicles with the stickers-->
         <table width="700px" align="center"
                style="border:1px solid #000000;">
             <tr>
