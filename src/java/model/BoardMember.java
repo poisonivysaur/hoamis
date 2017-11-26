@@ -35,7 +35,7 @@ public class BoardMember extends User implements Serializable{
 	public BoardMember(){}
 
     public BoardMember(BoardPosition position, Date effectiveDate, Date endDate, BoardStatus status, Election election, String fName, String lName, String mName, String passwd, UserType usertype, Date bDate, Document photo, Occupation occupation, Date movingIn, MovingOutClearance movingOutclear, TransactionReference trx) {
-        super(fName, lName, mName, passwd, usertype, bDate, photo, occupation, movingIn, movingOutclear, trx);
+        super();
         this.position = position;
         this.effectiveDate = effectiveDate;
         this.endDate = endDate;
@@ -103,15 +103,7 @@ public class BoardMember extends User implements Serializable{
         this.endDate = endDate;
     }
 
-    /**
-     * returns the status of the object
-     * 
-     * @return BoardStatus object
-     * @since 10-28-17
-     */
-    public BoardStatus getStatus() {
-        return status;
-    }
+    
 
     /**
      * sets the status of effectivity of the object

@@ -1,8 +1,6 @@
 
 package model;
 
-import java.io.Serializable;
-
 /**
  * PropertyStatus Object
  * A <b>PropertyStatus</b> object contains the ID of the property status type and
@@ -20,30 +18,64 @@ import java.io.Serializable;
  * 
  *
  * original code: 10-28-17 by I. Lim
- * last update:
+ * last update: 11-25-17 by justine - added documentation
 */
-public class PropertyStatus implements Serializable {
+public class PropertyStatus {
     private int statusID;
     protected String status;
-	
-	public PropertyStatus(){}
 
     public PropertyStatus(String status) {
         this.status = status;
     }
-
+    
+    /**
+     * returns the status id of the property
+     * 
+     * @param nothing
+     * @return int containing the status id of the transaction
+     * @throws nothing
+     * 
+     * @since 10-28-17
+     */
     public int getStatusID() {
         return statusID;
     }
-
+    
+    /**
+     * sets the status id of the property
+     * 
+     * @param statusId
+     * @return nothing
+     * @throws nothing
+     * 
+     * @since 10-28-17
+     */
     public void setStatusID(int statusID) {
         this.statusID = statusID;
     }
-
+    
+    /**
+     * returns the status of the property
+     * 
+     * @param nothing
+     * @return String containing the status of the transaction
+     * @throws nothing
+     * 
+     * @since 10-28-17
+     */
     public String getStatus() {
         return status;
     }
-
+    
+    /**
+     * sets the status  of the property
+     * 
+     * @param status
+     * @return nothing
+     * @throws nothing
+     * 
+     * @since 10-28-17
+     */
     public void setStatus(String status) {
         this.status = status;
     }

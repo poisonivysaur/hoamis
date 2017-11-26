@@ -1,5 +1,5 @@
 
-package DAO;
+package model.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import java.util.*;
-import static DAO.User.getUserID;
+import model.User;
 import java.io.PrintWriter;
 
 
@@ -210,7 +210,7 @@ public class Group {
             Class.forName("com.mysql.jdbc.Driver"); 
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestForumDB","root","root"); 
             PreparedStatement st = con.prepareStatement("select * from TestForumDB.group a join TestForumDB.membership b on a.group_id = b.group_group_id where b.user_user_id=?;"); 
-            st.setInt(1, getUserID(username));
+            //st.setInt(1, getUserID(username));
 
             ResultSet rs = st.executeQuery();
              
@@ -287,7 +287,7 @@ public class Group {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestForumDB","root","root"); 
             PreparedStatement st = con.prepareStatement("INSERT INTO TestForumDB.group(group_id,groupname, creator_id,privacy_set) VALUES (NULL,?,?,?);"); 
             st.setString(1, groupname);
-            st.setInt(2, getUserID(username));
+            //st.setInt(2, getUserID(username));
             st.setInt(3, settings);
            
             st.executeUpdate();
@@ -301,7 +301,7 @@ public class Group {
            
             PreparedStatement stt = con.prepareStatement("INSERT INTO TestForumDB.membership(user_user_id, group_group_id,membership_type) VALUES (?,?,1);"); 
            
-            stt.setInt(1, getUserID(username));
+            //stt.setInt(1, getUserID(username));
             stt.setInt(2, group_id);
             stt.executeUpdate();
             
@@ -309,7 +309,7 @@ public class Group {
             if(members!=null){
                 for (String member_name : members) {
 
-                    sttt.setInt(1, getUserID(member_name));
+                    //sttt.setInt(1, getUserID(member_name));
                     sttt.setInt(2, group_id);
                     sttt.executeUpdate();
                 }
@@ -353,7 +353,7 @@ public class Group {
            
             for (String one : members) {
                 
-                sttt.setInt(1, getUserID(one));
+                //sttt.setInt(1, getUserID(one));
                 sttt.setInt(2, group_id);
                 sttt.executeUpdate();
             }

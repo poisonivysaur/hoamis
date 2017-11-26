@@ -1,0 +1,30 @@
+body{
+    background: rgb(150,150,150);
+    font: Arial 14px;
+}
+.row{
+    margin: 10px;
+}
+.container{
+    background: white;
+    width: 70%;
+    padding: 20px;
+    margin: 20px;
+}
+.navbar{
+    position: absolute;
+    left: 77%;
+    padding: 20px;
+    text-align: center;
+    width: 15%;
+    background: white;
+}
+.navbar button{
+    width: 75%;
+    background: lightsteelblue;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    height: 30px;
+    margin: 5px;
+}
