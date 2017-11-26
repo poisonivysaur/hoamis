@@ -42,12 +42,14 @@
         } 
         </style>
     <body>
+        <!--connection to the db-->
         <%! String driverName = "com.mysql.jdbc.Driver";%>
         <%!String url = "jdbc:mysql://localhost:3306/hoamis";%>
         <%!String user = "root";%>
         <%!String psw = "password";%>
          <a href ="Dashboard.jsp"> << Go back home </a>
         <h2> View All Records </h2>
+        <!--shows the table which contains all vehicle records-->
         <table width="700px" align="center"
                style="border:1px solid #000000;">
             <tr>
