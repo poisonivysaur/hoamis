@@ -463,8 +463,10 @@ public class BillingDAO {
                      lotnum = rs.getInt(2);
                      userid = rs.getString(3);
                 }
+                // NOT USED CODE SEGMENT
                 // loop across every transaction and insert into trxList and payment details
                 // GET THE TRANSACTIONS CORRESPONDING TO MONTHLY DUES FOR THE MONTH AND OTHER UNPAID FEES
+                /*
                     sql = "SELECT MONTHLYDUES.TRXID, MONTHLYDUES.TOTALAMOUNT " +
                             " FROM (SELECT TR.TRXID, TR.TOTALAMOUNT FROM TRXREFERENCES TR" +
                             " JOIN HOUSEMONTHLYDUES HMD ON TR.TRXID = HMD.TRXID" +
@@ -472,7 +474,7 @@ public class BillingDAO {
                             " WHERE HMD.BLOCKNUM = ? AND HMD.LOTNUM = ?" +
                             " AND TR.DESCRIPTION = 'monthly dues'" +
                             " AND MONTH(TR.DATECREATED) = MONTH(NOW()) AND YEAR(TR.DATECREATED) = YEAR(NOW())) MONTHLYDUES" +
-                            //get unpaid security violation fees USER2USER*/ " +
+                            //get unpaid security violation fees USER2USER " +
                             " LEFT JOIN (SELECT TR.TRXID, TR.TOTALAMOUNT FROM TRXREFERENCES TR " +
                             " LEFT JOIN TRXLIST TL 		   ON TR.TRXID = TL.TRXID" +
                             " JOIN SECURITY_VIOLATIONS SV    ON SV.TRXID = TR.TRXID" +
@@ -515,16 +517,18 @@ public class BillingDAO {
                             " JOIN USERS U                   ON TR.TRXID = U.TRXID " +
                             " WHERE U.USERID = ? " +
                             " AND   U.STATUS = 'active' " +
-                            " AND   TL.AMOUNTPAID = NULL) REG ON REG.TRXID = VIOLATION.TRXID;";
-                    
+                            " AND   TL.AMOUNTPAID = NULL) REG ON REG.TRXID = VIOLATION.TRXID;";*/
+                    sql = " SELECT TR.TRXID, TR.AMOUNT FROM TRXREFERENCES TR" +
+                            " JOIN BILLINGDETAILS BD ON BD.TRXID = TR.TRXID" +
+                            " WHERE BILLINGID = ?; ";
                     pStmt = conn.prepareStatement(sql);
-                    pStmt.setInt(1, blocknum);
+                    pStmt.setInt(1, billID);/*
                     pStmt.setInt(2, lotnum);
                     pStmt.setString(3, userid);
                     pStmt.setString(4, userid);
                     pStmt.setString(5, userid);
                     pStmt.setString(6, userid);
-                    pStmt.setString(7, userid);
+                    pStmt.setString(7, userid);*/
                     rs = pStmt.executeQuery();
                     while(rs.next()){
                         // INSERT INTO PAYMENT DETAILS
