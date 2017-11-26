@@ -43,11 +43,13 @@
     <body>
          <a href ="Dashboard.jsp"> << Go back home </a>
         <h2> Ban a Vehicle </h2>
+        <!--to connect to the db-->
         <%! String driverName = "com.mysql.jdbc.Driver";%>
         <%!String url = "jdbc:mysql://localhost:3306/hoamis";%>
         <%!String user = "root";%>
         <%!String psw = "password";%>
         <form action="ChangeToBannedServlet" method="POST">
+            <!--code to get the contents of the dropdown-->
             <%
             Connection con = null;
             PreparedStatement ps = null;
@@ -59,8 +61,9 @@
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery(); 
             %>
+            <!--dropdown-->
          <select name = "vehicles">
-            Banned Vehicles: <!-- get from db !-->
+            Banned Vehicles: 
             <option value=""> --Select a Vehicle-- </option>
             <%
             while(rs.next()){

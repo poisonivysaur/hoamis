@@ -48,6 +48,7 @@
          <a href ="Dashboard.jsp"> << Go back home </a>
         <h2> Unban a Vehicle </h2>
         <form action="ChangeBannedStatusServlet" method="POST">
+            <!--code to get the contents of the dropdown-->
             <%
             Connection con = null;
             PreparedStatement ps = null;
@@ -59,6 +60,7 @@
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery(); 
             %>
+            <!--dropdown-->
          <select name = "vehicles">
             <option value=""> --Select a Banned Vehicle-- </option>
             <%

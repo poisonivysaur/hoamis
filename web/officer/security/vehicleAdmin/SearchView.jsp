@@ -23,6 +23,7 @@
                 <td><b>Year</b></td>
                 <td><b>Banned</b></td>
             </tr>
+            <!--displays a table which contains the result of the search-->
             <%
                 int count = 0;
                 String color = "#F9EBB3";
