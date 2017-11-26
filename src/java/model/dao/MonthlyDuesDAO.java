@@ -8,25 +8,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import model.*;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
- * @author Anne Charlene Cipres
+ * A <b>DAO Object</b> for <b>Monthly Dues</b>
+ * 
+ * @author justine
+ * @version 1.001
+ * @since 2017-11-25
  */
 public class MonthlyDuesDAO{
-    
-    protected static MonthlyDues md = null;
+    /**
+     * Gets the current month's monthly dues
+     * 
+     * @return MonthlyDues object pertaining to the current month's dues
+     * @since 11-25-17
+     */
     //returns current monthly dues based on current month and year
     public static MonthlyDues getCurrentMonthDues(){
         Connection conn = null;
+        MonthlyDues md = null;
         conn = DatabaseUtils.retrieveConnection();
         String sql = "SELECT * FROM MONTHLYDUES WHERE MONTH = ? AND YEAR = ?";
         
@@ -80,7 +84,17 @@ public class MonthlyDuesDAO{
         return md;
     }
     
-    //populates monthlydues and ref_monthlydues tables
+    /**
+     * Populates the REF_MONTHLYDUES, MONTHLYDUES, HOUSEMONTHLYDUES, AND TRXREFERENCES tables with the
+     * given REF_MONTHLYDUES Object and computed amount per month
+     * 
+     * @param rmd 
+     * @param amountPerMonth
+     * @return boolean if the insert was successful or not
+     * @since 11-25-17
+     */
+    
+    //populates monthlydues, ref_monthlydues, trxReferences, and HouseMonthlyDues tables
     public static boolean insertMonthlyDues(Ref_MonthlyDues rmd, double amountPerMonth){
         Connection conn = null;
         conn = DatabaseUtils.retrieveConnection();
@@ -200,6 +214,13 @@ public class MonthlyDuesDAO{
         return true;
     }
     
+    /**
+     * Computes the total amount of unpaid fees excluding previous unpaid monthly dues
+     * 
+     * @param userID
+     * @return double containing the total amount of unpaid fees (excluding monthly dues)
+     * @since 11-25-17
+     */
     public static double getUnpaidFees(String userID){
         double totalAmount = 0;
         
@@ -329,12 +350,26 @@ public class MonthlyDuesDAO{
         return totalAmount;
     }
     
+    /**
+     * Computes for the standard monthly dues of each homeowner for the current month
+     * 
+     * @return double containing the monthly dues of a homeowner for the current month
+     * @since 11-25-17
+     */
     public static double getCurrentHomeownerMonthlyDues(){
-        
+        if(getCurrentMonthDues() == null){
+            return 0;
+        }
         return getCurrentMonthDues().getAmount() / getNumberOfActiveHomeowner();
         
     }
     
+    /**
+     * Gets the number of active homeowners
+     * 
+     * @return int with the number of active homeowners
+     * @since 11-25-17
+     */
     public static int getNumberOfActiveHomeowner(){
         Connection conn = null;
         conn = DatabaseUtils.retrieveConnection();
@@ -361,8 +396,142 @@ public class MonthlyDuesDAO{
         return numOfHO;
     }
     
+    /**
+     * Gets all the entries in the REF_MONTHLYDUES table
+     * 
+     * @return ArrayList of Ref_MonthlyDues Objects
+     * @since 11-25-17
+     */
+    
+    public ArrayList<Ref_MonthlyDues> getAllRangedMonthlyDues(){
+        Connection conn = null;
+        ArrayList<Ref_MonthlyDues> array = new ArrayList<>();
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis", "root", "justine");
+            String sql = "SELECT * FROM REF_MONTHLYDUES";
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            ResultSet rsMD = pStmt.executeQuery();
+            while(rsMD.next()){
+                array.add(new Ref_MonthlyDues(rsMD.getInt(1), rsMD.getInt(2), rsMD.getInt(3), rsMD.getInt(4), rsMD.getInt(5), rsMD.getDouble(6)));
+            }
+            
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            if(conn != null){
+                try{
+                    conn.close();
+                }catch(Exception e){}
+            }
+        }
+        return array;
+    }
+    
+    /**
+     * Compares a given date range with all the registered date ranges and returns a boolean if the date
+     * range overlaps with any of the registered date ranges
+     * 
+     * @param startMonth
+     * @param startYear
+     * @param endMonth
+     * @param endYear
+     * @return boolean indicating if the provided date range overlaps with any of the registered date ranges
+     * @since 11-25-17
+     */
+    public boolean isOverlappingWithStoredDues(int startMonth, int startYear, int endMonth, int endYear){
+        Connection conn = null;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis", "root", "justine");
+            String sql = "SELECT * FROM REF_MONTHLYDUES";
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            ResultSet rsMD = pStmt.executeQuery();
+            
+            Calendar startcal = Calendar.getInstance();
+            startcal.set(Calendar.YEAR, startYear);
+            startcal.set(Calendar.MONTH, startMonth);
+            startcal.set(Calendar.DAY_OF_MONTH, 1);
+            Date dateStart = startcal.getTime();
+
+            Calendar endcal = Calendar.getInstance();
+            endcal.set(Calendar.YEAR, endYear);
+            endcal.set(Calendar.MONTH, endMonth);
+            endcal.set(Calendar.DAY_OF_MONTH, 1);
+            Date dateEnd = endcal.getTime();
+            
+            while(rsMD.next()){
+                Calendar startcal2 = Calendar.getInstance();
+                startcal2.set(Calendar.YEAR, rsMD.getInt(3));
+                startcal2.set(Calendar.MONTH, rsMD.getInt(2));
+                startcal2.set(Calendar.DAY_OF_MONTH, 1);
+                Date dateStart2 = startcal2.getTime();
+
+                Calendar endcal2 = Calendar.getInstance();
+                endcal2.set(Calendar.YEAR, rsMD.getInt(5));
+                endcal2.set(Calendar.MONTH, rsMD.getInt(4));
+                endcal2.set(Calendar.DAY_OF_MONTH, 1);
+                Date dateEnd2 = endcal2.getTime();
+                
+                if((startcal.before(endcal2) || startcal.equals(endcal2)) && (endcal.after(startcal2) || endcal.equals(startcal2))){
+                    return true;
+                }
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            if(conn != null){
+                try{
+                    conn.close();
+                }catch(Exception e){}
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * Gets a REF_MONTHLYDUES Object from the database based on the passed mDuesID
+     * 
+     * @param mDuesID
+     * @return REF_MONTHLYDUES Object with matching mDuesID
+     * @since 11-25-17
+     */
+    public Ref_MonthlyDues getRefMonthlyDues(int mDuesID){
+        Connection conn = null;
+        Ref_MonthlyDues rmd = null;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis", "root", "justine");
+            String sql = "SELECT * FROM REF_MONTHLYDUES WHERE MDUESID = ?";
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            pStmt.setInt(1, mDuesID);
+            ResultSet rsmDues = pStmt.executeQuery();
+            if(rsmDues.next()){
+                rmd = new Ref_MonthlyDues(mDuesID, rsmDues.getInt(2), rsmDues.getInt(3), rsmDues.getInt(4), rsmDues.getInt(5), rsmDues.getDouble(6));
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            if(conn != null){
+                try{
+                    conn.close();
+                }catch(Exception e){}
+            }
+        }
+        return rmd;
+    }
+    
     public static void main(String[] args) {
         double total = MonthlyDuesDAO.getUnpaidFees("yutainoue");
         System.out.println(total);
+        System.out.println("getCurrentMonthDues");
+        System.out.println(MonthlyDuesDAO.getCurrentMonthDues());
+        System.out.println("getNumberOfActiveHomeowner");
+        System.out.println(MonthlyDuesDAO.getNumberOfActiveHomeowner());
+        System.out.println("getCurrentHomeownerMonthlyDues()");
+        System.out.println(MonthlyDuesDAO.getCurrentHomeownerMonthlyDues());
     }
 }

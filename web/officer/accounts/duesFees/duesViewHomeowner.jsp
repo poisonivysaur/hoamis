@@ -24,9 +24,14 @@
             double currentMonthDues = mdd.getCurrentHomeownerMonthlyDues();
             // I'm sorry idk how to get userID based on user that's logged in :(
             double unpaidFees = mdd.getUnpaidFees("userID");
-        %>
-        <p><b>Monthly Dues: <% out.print(currentMonthDues); %></b></p>
-        <p><b>Unpaid Fees: <% out.print(unpaidFees); %></b></p>
-        <p><b>Total Dues for this Month : <% out.print(currentMonthDues + unpaidFees); %></b></p>
+        
+            if (currentMonthDues == 0){
+                out.print("<p>No registered monthly dues for this month. Contact an officer for more details.</p>");
+            }
+            else{
+                out.print("<p><b>Monthly Dues: " + currentMonthDues + "</b></p>");
+                out.print("<p><b>Unpaid Fees: " + unpaidFees + "</b></p>");
+                out.print("<p><b>Total Dues for this Month : " + (currentMonthDues + unpaidFees) + "</b></p>"); %>
+            }
     </body>
 </html>
