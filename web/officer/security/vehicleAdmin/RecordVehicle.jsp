@@ -46,6 +46,7 @@
         <%!String url = "jdbc:mysql://localhost:3306/hoamis";%>
         <%!String user = "root";%>
         <%!String psw = "password";%>
+        <!--connection to db, gets the first name, middle name, and last name of the users for the dropdown-->
         <%
             Connection con = null;
             PreparedStatement ps = null;
@@ -60,7 +61,7 @@
         <form action ="RecordVehicleServlet" method="POST">
             Vehicle Owner: <!-- get from db !-->
             <br>
-            <select name = "owner">
+            <select name = "owner"> <!--dropdown-->
             <option value=""> --Select a User-- </option>
             <%
             while(rs.next()){
@@ -74,19 +75,19 @@
             }
             %>
             </select> <br>
-            <br>Vehicle Plate Number: 
+            <br>Vehicle Plate Number:  <!--platenumber-->
             <br><input type="text" name="platenum" required> 
             <br>
-            <br>Model: 
+            <br>Model: <!-- model-->
             <br><input type="text" name="model" required>
             <br>
-            <br>Make: 
+            <br>Make: <!-- make-->
             <br><input type="text" name="make" required>
             <br>
-            <br>Year: 
+            <br>Year: <!-- year-->
             <br><input type="text" name="year" required>
             <br>
-            <br>Banned: 
+            <br>Banned: <!--radio button-->
             <br><input type="radio" name="banned" value=1> Yes 
             <br><input type="radio" name="banned" value=0> No
             <br>

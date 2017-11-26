@@ -40,10 +40,10 @@
         <a href ="Dashboard.jsp"> << Go back home </a>
         <h2> Add a Sticker</h2>
         <form action="AddStickerServlet" method="POST">
-        <br> Sticker Year: 
+        <br> Sticker Year: <!--sticker year-->
         <br> <input type="text" name="year" required>
         <br>
-        <br> Cost: 
+        <br> Cost: <!--sticker cost-->
         <br><input type="text" name="cost" required>
         <br>
         <input type="submit" value="Submit">
