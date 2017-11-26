@@ -514,6 +514,15 @@ public class BillingDAO {
         return isPaid;
     }
     
+    /* Documentation for developer courtesy of Ivy Lim
+    * COMMENTS:
+    * this main method is for testing purposes.
+    *
+    * 
+    *
+    * original code: 10-28-17 by J. Doctolero 
+    * last update: 10-28-17 by I. Lim - added constructor & changed attribute datatypes
+   */
     public static void main(String[] args) {
         System.out.println("Start");
         for(Billing b : BillingDAO.getBillings("yutainoue")){

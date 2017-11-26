@@ -12,6 +12,7 @@
 <%@page import="model.dao.BillingDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    User loginUser = (User) session.getAttribute("loginUser");
 String hoId = request.getParameter("userid");
 String fname = request.getParameter("fname");
 String lname = request.getParameter("lname");
@@ -103,7 +104,7 @@ ArrayList<String> datesPaid = BillingDAO.getDatesPaid();
             </div>
             <div class="w3-container">
                 <input class="w3-button w3-teal w3-round" type="submit" onclick="printPage('print')" name="generate" value="Print" style="float:none; margin:0px;">
-                <% if(totalDue - totalPaid > 0){%>
+                <% if((totalDue - totalPaid > 0) && !(loginUser.getUserTypeString().equalsIgnoreCase("Homeowner"))){%>
                 <a href="/hoamis/PayBilling?billID=<%= billID %>&userid=<%= hoId %>&fname=<%= fname %>&lname=<%= lname %>&mname=<%= mname %>"><input class="w3-button w3-teal w3-round" type="submit" name="payBill" value="Pay Bill" style="float:none; margin:0px;"></a>
                 <% } %>
             </div>
