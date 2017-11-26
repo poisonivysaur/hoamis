@@ -30,7 +30,7 @@ ArrayList<String> datesPaid = BillingDAO.getDatesPaid();
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <%@ include file="base-officer.jsp" %>
+        <%@ include file="../../base-officer.jsp" %>
     </head>
     <body>
         <!-- !PAGE CONTENT! -->
@@ -38,19 +38,19 @@ ArrayList<String> datesPaid = BillingDAO.getDatesPaid();
             
             <!-- Links (sit on top) -->
             <div class="w3-container">
-                <h1>Billing, Collection & Payments </h1>
+                <h1>Billing, Collection & Payments </h1><!--
               <div class="w3-row w3-large w3-light-grey">
                 <div class="w3-col s4">
                   <a href="billing-view.jsp" class="w3-button w3-block w3-grey">View Billings</a>
-                </div><!--
+                </div>
                 <div class="w3-col s4">
                   <a href="billing-generate.jsp" class="w3-button w3-block">Generate Billings</a>
-                </div>-->
+                </div>
                 <div class="w3-col s4">
                   <a href="billing-update.jsp" class="w3-button w3-block">Update Payments</a>
                 </div>
                   
-              </div>
+              </div>-->
             </div>
             
 

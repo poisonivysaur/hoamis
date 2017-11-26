@@ -56,23 +56,23 @@ User officer = (User) session.getAttribute("loginUser");
                   <a href="OfficerMain?action=directory" class="w3-bar-item w3-button">Directory</a>
                   <a href="accounts/dues-fees.jsp" class="w3-bar-item w3-button">Dues & Fees</a>
                   <a href="OfficerMain?action=register" class="w3-bar-item w3-button">Registration</a>
-                  <a href="accounts/vacation.jsp" class="w3-bar-item w3-button">Vacation & Moving Out</a>
+                  <!--<a href="accounts/vacation.jsp" class="w3-bar-item w3-button">Vacation & Moving Out</a>-->
             </div>
             <div class="w3-bar-item w3-button" onclick="myAccFunc('finance')">
                 <i class="fa fa-money fa-fw"></i>  Finance <i class="fa fa-caret-down"></i></div>
                 <div id="finance" class="w3-hide w3-white w3-card-4">
-                    <a href="officer/fin-accounting/billingCollection/billing-view.jsp" class="w3-bar-item w3-button">Billing & Collection</a>
-                    <a href="fin-accounting/fin-documents.jsp" class="w3-bar-item w3-button">Financial Documents & Administration</a>
-                    <a href="fin-accounting/accounting.jsp" class="w3-bar-item w3-button">Accounting</a>
-                    <a href="fin-accounting/fin-reports.jsp" class="w3-bar-item w3-button">Financial Reports</a>
-            </div>
+                    <a href="OfficerMain?action=billingView" class="w3-bar-item w3-button">Billing & Collection</a>
+                    <a href="#" class="w3-bar-item w3-button">Financial Documents & Administration</a>
+                    <a href="#" class="w3-bar-item w3-button">Accounting</a>
+                    <a href="#" class="w3-bar-item w3-button">Financial Reports</a>
+            </div><!--
             <div class="w3-bar-item w3-button" onclick="myAccFunc('facilities')">
                 <i class="fa fa-university fa-fw"></i>  Reserve Facilities  <i class="fa fa-caret-down"></i></div>
                 <div id="facilities" class="w3-hide w3-white w3-card-4">
                     <a href="#" class="w3-bar-item w3-button">Facilities & Inventory Management</a>
                     <a href="#" class="w3-bar-item w3-button">Reserve Facilities</a>
                     <a href="#" class="w3-bar-item w3-button">Reserve Equipment & Inventory</a>
-            </div>
+            </div>-->
             <div class="w3-bar-item w3-button" onclick="myAccFunc('activities')">
                 <i class="fa fa-users fa-fw"></i>  Community Activities  <i class="fa fa-caret-down"></i></div>
                 <div id="activities" class="w3-hide w3-white w3-card-4">
@@ -86,7 +86,7 @@ User officer = (User) session.getAttribute("loginUser");
                   <a href="#" class="w3-bar-item w3-button">Community Map</a>
                   <a href="#" class="w3-bar-item w3-button">Grievance & Complaints</a>
                   
-            </div>
+            </div><!--
             <div class="w3-bar-item w3-button" onclick="myAccFunc('maintenance')">
                 <i class="fa fa-wrench fa-fw"></i>  Community Maintenance  <i class="fa fa-caret-down"></i></div>
                 <div id="maintenance" class="w3-hide w3-white w3-card-4">
@@ -94,7 +94,7 @@ User officer = (User) session.getAttribute("loginUser");
                   <a href="#" class="w3-bar-item w3-button">Services Monitoring and Billing</a>
                   <a href="#" class="w3-bar-item w3-button">Service Provider Administration</a>
                   <a href="#" class="w3-bar-item w3-button">Construction Permit</a>
-            </div>
+            </div>-->
             <div class="w3-bar-item w3-button" onclick="myAccFunc('security')">
                 <i class="fa fa-lock fa-fw"></i>  Security  <i class="fa fa-caret-down"></i></div>
                 <div id="security" class="w3-hide w3-white w3-card-4">
