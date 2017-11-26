@@ -1,6 +1,8 @@
 
 package model;
 
+import java.io.Serializable;
+
 /**
  * BoardStatus Object
  * A <b>BoardStatus</b> object contains the ID of the board status type and
@@ -21,10 +23,12 @@ package model;
  * original code: 10-27-17
  * last update:
 */
-public class BoardStatus {
+public class BoardStatus implements Serializable {
     
     private int statusID;
     protected String status;
+	
+	public BoardStatus(){}
 
     public BoardStatus(String status) {
         this.status = status;

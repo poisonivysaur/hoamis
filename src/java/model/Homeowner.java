@@ -2,6 +2,7 @@
 package model;
 
 import java.sql.Date;
+import java.io.Serializable;
 
 /**
  * Homeowner Object
@@ -22,7 +23,7 @@ import java.sql.Date;
  * original code: 10-27-17 by I. Lim
  * last update:
 */
-public class Homeowner extends User{
+public class Homeowner extends User implements Serializable{
     
     protected int blocknum;
     protected int lotnum;

@@ -1,6 +1,8 @@
 
 package model;
 
+import java.io.Serializable;
+
 /**
  * Occupation Object
  * A <b>Occupation</b> object contains the different attributes of 
@@ -21,7 +23,7 @@ package model;
  * original code: 10-27-17
  * last update: 10-28-17 by I. Lim - added getters & setters
 */
-public class Occupation {
+public class Occupation implements Serializable {
     private int occupationID;
     protected String occupation;
     

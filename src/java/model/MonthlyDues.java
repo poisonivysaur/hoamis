@@ -1,4 +1,5 @@
 package model;
+import java.io.Serializable;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,13 +11,15 @@ package model;
  *
  * @author Anne Charlene Cipres
  */
-public class MonthlyDues {
+public class MonthlyDues implements Serializable {
     
     protected int mdID;
     protected int month;
     protected int year;
     protected double amount;
     protected Ref_MonthlyDues mdues;
+	
+	public MonthlyDues(){}
 
     public MonthlyDues(int mdID, int month, int year, double amount, Ref_MonthlyDues mdues) {
         this.mdID = mdID;

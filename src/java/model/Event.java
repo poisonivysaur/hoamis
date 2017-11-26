@@ -2,6 +2,7 @@
 package model;
 
 import java.sql.Date;
+import java.io.Serializable;
 
 /**
  * Event Object
@@ -23,7 +24,7 @@ import java.sql.Date;
  * original code: 10-27-17
  * last update:
 */
-public class Event {
+public class Event implements Serializable {
     
     protected int eventID;
     protected String eventName;
@@ -36,6 +37,8 @@ public class Event {
     protected String endTime;
     protected TransactionReference fee;
     protected Date requestDate;
+	
+	public Event(){}
 
     public Event(String eventName, String description, int headcount, Date dateHeld, String location, User organizer, String startTime, String endTime, TransactionReference fee, Date requestDate) {
         this.eventName = eventName;

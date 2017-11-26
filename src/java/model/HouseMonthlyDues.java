@@ -4,16 +4,19 @@
  * and open the template in the editor.
  */
 package model;
+import java.io.Serializable;
 
 /**
  *
  * @author justine
  */
-public class HouseMonthlyDues {
+public class HouseMonthlyDues implements Serializable {
     
     protected Property property;
     protected MonthlyDues mdues;
     protected TransactionReference trx;
+	
+	public HouseMonthlyDues(){}
 
     public HouseMonthlyDues(Property property, MonthlyDues mdues, TransactionReference trx) {
         this.property = property;

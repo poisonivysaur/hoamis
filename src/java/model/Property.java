@@ -1,6 +1,8 @@
 
 package model;
 
+import java.io.Serializable;
+
 /**
  * Property Object
  * A <b>Property</b> object contains the different attributes of 
@@ -20,13 +22,15 @@ package model;
  * original code: 10-28-17 by I. Lim
  * last update:
 */
-public class Property {
+public class Property implements Serializable {
     protected int blocknum;
     protected int lotnum;
     protected int endlotnum;
     protected Street street;
     protected PropertyStatus status;
     protected MapPoint mapppoint;
+	
+	public Property(){}
     
     public Property(int blocknum, int lotnum, int endlotnum, Street street, PropertyStatus status, MapPoint mappoint){
         this.blocknum = blocknum;

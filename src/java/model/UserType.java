@@ -1,5 +1,6 @@
 
 package model;
+import java.io.Serializable;
 
 /**
  * UserType Object
@@ -20,10 +21,12 @@ package model;
  * original code: 10-27-17
  * last update: 10-28-17 by I. Lim - added getters & setters
 */
-public class UserType {
+public class UserType implements Serializable {
     
     private int usertypeid;
     protected String usertype;
+	
+	public UserType(){}
 
     public UserType(String usertype) {
         this.usertype = usertype;

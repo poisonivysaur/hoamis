@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.io.Serializable;
 /**
  * User Object
  * A <b>user</b> object contains the different attributes of
@@ -25,7 +26,7 @@ import java.sql.Date;
  *   11-06-17 by Y. Inoue - Changed userType's Data type to int. Added fields for type of users.
  *   11-24-17 by Y. Inoue - Added status to the class.
 */
-public class User {
+public class User implements Serializable {
     // not everyone has a setter, please consider when generating getters and setter
 
     public static final String USERTYPE1 = "Homeowner";

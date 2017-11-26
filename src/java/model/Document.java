@@ -1,6 +1,8 @@
 
 package model;
 
+import java.io.Serializable;
+
 /**
  * Document Object
  * A <b>Document</b> object contains the different attributes of 
@@ -22,7 +24,7 @@ package model;
  * original code: 10-27-17 by J. Singca
  * last update: 10-28-17 by I. Lim - added getters & setters
 */
-public class Document {
+public class Document implements Serializable {
     
     /**
      * Primary key of the document

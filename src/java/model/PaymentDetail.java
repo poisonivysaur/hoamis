@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * A <b>Billing</b> object contains the different information of 
  * a billing to a home owner 
@@ -19,9 +21,11 @@ package model;
  * original code: 10-28-17 by J. Doctolero 
  * last update: 10-28-17 by I. Lim - changed access specifiers
 */
-public class PaymentDetail {
+public class PaymentDetail implements Serializable {
     protected int billingID;
     protected TransactionList trxList;
+	
+	public PaymentDetail(){}
 
     public PaymentDetail(Billing billing, TransactionList trxList){
         this.billingID = billing.getBillingID();

@@ -2,6 +2,7 @@
 package model;
 
 import java.sql.Date;
+import java.io.Serializable;
 
 /**
  * Election Object
@@ -22,7 +23,7 @@ import java.sql.Date;
  * original code: 10-27-17
  * last update:
 */
-public class Election {
+public class Election implements Serializable {
     
     protected int electionID;
     protected Date electDate;
@@ -31,6 +32,8 @@ public class Election {
     protected BoardMember enablingBoardMember;
     protected String[] choices; //not sure if array or need indiv properties
 
+	public Election(){}
+	
     public Election(Date electDate, ElectType electType, Document electDoc, BoardMember enablingBoardMember) {
         this.electDate = electDate;
         this.electType = electType;

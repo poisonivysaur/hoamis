@@ -3,6 +3,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.io.Serializable;
 
 /**
  * A <b>TransactionJournal</b> object records the paid fees and dues of transactions
@@ -21,11 +22,12 @@ import java.util.Date;
  * original code: 10-28-17 by I. Lim
  * last update: 10-28-17 by I. Lim - changed attributes and access specifiers
 */
-public class TransactionJournal {
+public class TransactionJournal implements Serializable {
     protected int journalID;
     public Date trxDate;
     public ArrayList<TransactionList> trxList;
     
+	public TransactionJournal(){}
     
     public TransactionJournal(int journalID, Date trxDate){
         this.journalID = journalID;

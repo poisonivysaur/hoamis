@@ -5,11 +5,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author justine
  */
-public class Ref_MonthlyDues {
+public class Ref_MonthlyDues implements Serializable {
     
     protected int mduesID;
     protected int startMonth;
@@ -17,6 +19,8 @@ public class Ref_MonthlyDues {
     protected int endMonth;
     protected int endYear;
     protected double amountApproved;
+	
+	public Ref_MonthlyDues(){}
 
     public Ref_MonthlyDues(int mduesID, int startMonth, int startYear, int endMonth, int endYear, double amountApproved) {
         this.mduesID = mduesID;
