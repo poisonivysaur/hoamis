@@ -5,13 +5,11 @@
  */
 package model;
 
-import java.io.Serializable;
-
 /**
  *
  * @author Patrisha
  */
-public class Sticker implements Serializable {
+public class Sticker {
     private int year;
     private double cost;
     private String date;
@@ -19,14 +17,33 @@ public class Sticker implements Serializable {
     public Sticker(){
         
     }
+    /**
+     * Constructs a newly allocated Sticker object that represents the int and the double values indicated by the int and the double parameters.
+     *
+     * @param year sticker year
+     * @param cost sticker cost
+     
+     */
+    
     public Sticker(int year, double cost){
         this.year = year;
         this.cost = cost;
         this.date = date;
     }
+    /**
+     * Returns the sticker year.
+     *
+     * @return an int containing the sticker year.
+     */
     public int getYear(){
+      
         return this.year;
     }
+    /**
+     * Returns the sticker cost.
+     *
+     * @return a double containing the sticker cost.
+     */
     public double getCost(){
         return this.cost;
     }
