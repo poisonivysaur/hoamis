@@ -23,6 +23,7 @@
           <style>.w3-third{margin-top:20px;}</style>
           
           <div class="w3-row-padding w3-margin-bottom">
+              <a href="HomeownerMain?action=directory"> 
             <div class="w3-third">
               <div class="w3-container w3-pink w3-padding-16">
                 <div class="w3-left"><i class="fa fa-user w3-xxxlarge"></i></div>
@@ -32,7 +33,7 @@
                 <div class="w3-clear"></div>
                 <h4>Account</h4>
               </div>
-            </div><!--
+            </div></a><!--
             <div class="w3-third">
               <div class="w3-container w3-blue w3-padding-16">
                 <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
@@ -74,7 +75,7 @@
                 <h4>Maintenance</h4>
               </div>
             </div>-->
-            
+            <a href="HomeownerMain?action=security">
             <div class="w3-third">
               <div class="w3-container w3-orange w3-text-white w3-padding-16">
                 <div class="w3-left"><i class="fa fa-lock w3-xxxlarge"></i></div>
