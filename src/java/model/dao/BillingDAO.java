@@ -291,13 +291,15 @@ public class BillingDAO {
                 
                 int inserted = pStmt.executeUpdate();
                 if(inserted != 0){
-                    System.out.println("Successfully inserted!");
+                    System.out.println("Successfully inserted into Billings!");
                     isSuccess = true;
                     String maxBillID = "SELECT BILLINGID FROM BILLING ORDER BY BILLINGID DESC LIMIT 1;";
                     pStmt = conn.prepareStatement(maxBillID);
                     ResultSet rsBillID = pStmt.executeQuery();
-                    int BDbillingID = rsBillID.getInt(1);   // gets newly inserted billingID
-                    
+                    int BDbillingID = 0;
+                    while(rsBillID.next()){
+                        BDbillingID = rsBillID.getInt(1);   // gets newly inserted billingID
+                    }
                     
                     
                     // GET THE TRANSACTIONS CORRESPONDING TO MONTHLY DUES FOR THE MONTH AND OTHER UNPAID FEES
@@ -364,10 +366,10 @@ public class BillingDAO {
                     rs = pStmt.executeQuery();
                     while(rs.next()){
                         // FOR EVERY TRANSACTION IN trxReferences that has not been paid yet by the user
-                        String insertBillingDetail = "INSERT INTO BILLINGDETAIL(BILLINGID, TRXID)"
+                        String insertBillingDetail = "INSERT INTO BILLINGDETAILS(BILLINGID, TRXID)"
                                 + " VALUES(?, ?)";
                 
-                        pStmt = conn.prepareStatement(sql);
+                        pStmt = conn.prepareStatement(insertBillingDetail);
                         pStmt.setInt(1, BDbillingID);
                         pStmt.setInt(2, rs.getInt(1));
                         int insertedBD = pStmt.executeUpdate();
@@ -588,7 +590,7 @@ public class BillingDAO {
             System.out.println(b.getDate());
         }
         System.out.println("End");
-        
+        BillingDAO.generateBillingForAll();
         BillingDAO.payBilling(1);
         
     }
