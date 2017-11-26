@@ -49,6 +49,12 @@ public class OfficerMain extends HttpServlet {
                     if(action.equals("register")){
                         forward = "officer/accounts/registration/registration.jsp";
                     }
+                    if(action.equals("dues")){
+                        forward = "officer/accounts/duesFees/duesHomeHomeowner.jsp";
+                    }
+                    if(action.equals("duesViewHO")){
+                        forward = "officer/accounts/duesFees/duesViewHomeowner.jsp";
+                    }
                     if(action.equals("directory")){
                         forward = "officer/accounts/directory/directory.jsp";
                     }
