@@ -91,7 +91,7 @@ INSERT INTO `hoamis`.`TrxList` (`journalID`, `trxID`, `amountpaid`) VALUES (3, 3
 
 
 -- Document Management.
-INSERT INTO `hoamis`.`FOLDERS` (`folderID`, `folderName`, `folderdesc`, `parentID`, `create_userID`) VALUES (0, 'root', 'root folder', 0, 'ivylim');
+INSERT INTO `hoamis`.`FOLDERS` (`folderID`, `folderName`, `folderdesc`, `create_userID`) VALUES (0, 'root', 'root folder', 'ivylim');
 
 ALTER TABLE `hoamis`.`folders` CHANGE COLUMN `folderID` `folderID` INT(9) NOT NULL AUTO_INCREMENT ;
 UPDATE `hoamis`.`FOLDERS` SET `folderID`='0' WHERE `folderID`='1';
