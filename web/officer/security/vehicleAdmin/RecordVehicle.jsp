@@ -40,7 +40,7 @@
         } 
         </style>
     <body>
-         <a href ="Dashboard.jsp"> << Go back home </a>
+         <a href ="OfficerMain"> << Go back home </a>
         <h2> Record a Vehicle </h2>
         <%! String driverName = "com.mysql.jdbc.Driver";%>
         <%!String url = "jdbc:mysql://localhost:3306/hoamis";%>

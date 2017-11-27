@@ -42,7 +42,7 @@
         } 
         </style>
     <body>
-        <a href ="Dashboard.jsp"> << Go back home </a>
+        <a href ="OfficerMain"> << Go back home </a>
         <h2> Sticker Purchase</h2>
         <form action="BuyStickerServlet" method="POST">
             
