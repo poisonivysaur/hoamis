@@ -1,0 +1,109 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema TestForumDB
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema TestForumDB
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `TestForumDB` DEFAULT CHARACTER SET utf8 ;
+USE `TestForumDB` ;
+
+-- -----------------------------------------------------
+-- Table `TestForumDB`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `TestForumDB`.`user` (
+  `user_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `usertype` INT(1) NOT NULL,
+  PRIMARY KEY (`user_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `TestForumDB`.`group`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `TestForumDB`.`group` (
+  `group_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `groupname` VARCHAR(45) NOT NULL,
+  `creator_id` INT(11) NOT NULL,
+  `privacy_set` INT(1) NOT NULL,
+  
+  PRIMARY KEY (`group_id`, `creator_id`),
+  INDEX `fk_group_user1_idx` (`creator_id` ASC),
+  CONSTRAINT `fk_group_user1`
+    FOREIGN KEY (`creator_id`)
+    REFERENCES `TestForumDB`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 15
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `TestForumDB`.`group_post`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `TestForumDB`.`group_post` (
+  `post_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(45) NOT NULL,
+  `content` VARCHAR(45) NOT NULL,
+  `create_date` DATETIME NOT NULL,
+  `edit_date` DATETIME NULL DEFAULT NULL,
+  `author_id` INT(11) NOT NULL,
+  `group_id` INT(11) NOT NULL,
+  PRIMARY KEY (`post_id`, `author_id`, `group_id`),
+  INDEX `fk_group_post_user1_idx` (`author_id` ASC),
+  INDEX `fk_group_post_group1_idx` (`group_id` ASC),
+  CONSTRAINT `fk_group_post_group1`
+    FOREIGN KEY (`group_id`)
+    REFERENCES `TestForumDB`.`group` (`group_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_group_post_user1`
+    FOREIGN KEY (`author_id`)
+    REFERENCES `TestForumDB`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `TestForumDB`.`membership`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `TestForumDB`.`membership` (
+  `user_user_id` INT(11) NOT NULL,
+  `group_group_id` INT(11) NOT NULL,
+  `membership_type` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`user_user_id`, `group_group_id`),
+  INDEX `fk_user_has_group_group1_idx` (`group_group_id` ASC),
+  INDEX `fk_user_has_group_user_idx` (`user_user_id` ASC),
+  CONSTRAINT `fk_user_has_group_group1`
+    FOREIGN KEY (`group_group_id`)
+    REFERENCES `TestForumDB`.`group` (`group_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_has_group_user`
+    FOREIGN KEY (`user_user_id`)
+    REFERENCES `TestForumDB`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
