@@ -2,6 +2,10 @@ package model;
 
 import java.sql.Date;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import model.dao.DatabaseUtils;
 /**
  * User Object
  * A <b>user</b> object contains the different attributes of
@@ -71,6 +75,33 @@ public class User implements Serializable {
     // Overloaded constructor to support null values
     public User(String fName, String lName, String mName, String passwd, int usertype, Date bDate, TransactionReference trx){
         this(fName, lName, mName, passwd, usertype, bDate, null, null, null, null, trx);
+    }
+    
+    public User(String userID){
+        try {
+            Connection con = DatabaseUtils.retrieveConnection();
+            PreparedStatement st = con.prepareStatement("select * from hoamis.USERS where userID=?");
+            st.setString(1, userID);
+            
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                this.userID = userID;
+                this.fName = rs.getString("fname");
+                this.lName = rs.getString("lname");
+                this.mName = rs.getString("userID");
+                this.userID = rs.getString("userID");
+                this.passwd = rs.getString("userID");
+                //this.usertype = new UserType(rs.getString("userID"));
+                //this.bDate = rs.getDate("userID");
+                //this.photo = rs.getString("userID");
+                //this.occupation = rs.getString("userID");
+                //this.movingIn = rs.getString("userID");
+                //this.movingOutclear = rs.getString("userID");
+                //this.trx = rs.getInt("userID");
+            }
+        } catch (Exception E) {
+            E.printStackTrace();
+        }
     }
 
     /**

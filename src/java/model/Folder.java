@@ -2,6 +2,10 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import model.dao.DatabaseUtils;
 
 /**
  * Folder Object
@@ -38,6 +42,31 @@ public class Folder implements Serializable {
         this.folderdesc = folderdesc;
         this.parentFolder = parentFolder;
         this.createUser = createUser;
+    }
+    
+    public Folder(int folderID){
+        this.folderID = folderID;
+        try {
+            Connection con = DatabaseUtils.retrieveConnection();
+            PreparedStatement st = con.prepareStatement("select * from hoamis.FOLDERS where folderID=?");
+            st.setInt(1, folderID);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                this.folderName = rs.getString("folderName");
+                this.folderdesc = rs.getString("folderdesc");
+                int parentID = rs.getInt("parentID");
+                if(rs.wasNull()){
+                    this.parentFolder = null;
+                }
+                else{
+                    this.parentFolder = new Folder(parentID);
+                }
+                this.createUser = new User(rs.getString("create_userID"));
+            }
+        } catch (Exception E) {
+            E.printStackTrace();
+        }
     }
 
     public int getFolderID() {

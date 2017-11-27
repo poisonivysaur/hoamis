@@ -2,6 +2,11 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import model.dao.DatabaseUtils;
+import model.dao.DocumentDAO;
 
 /**
  * Document Object
@@ -46,6 +51,36 @@ public class Document implements Serializable {
         this.folder = folder;
         this.createUser = createUser;
     }
+    
+    public Document(int documentID){
+        this.documentID = documentID;
+        try {
+            Connection con = DatabaseUtils.retrieveConnection();
+            PreparedStatement st = con.prepareStatement("select * from hoamis.DOCUMENTS where documentID=?");
+            st.setInt(1, documentID);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                this.description = rs.getString("description");
+                this.documentLocation = rs.getString("documentLocation");
+                this.folder = new Folder(rs.getInt("folderID"));
+                this.createUser = new User(rs.getString("create_userID"));
+            }
+        } catch (Exception E) {
+            E.printStackTrace();
+        }
+    
+    }
+     public static String getImageIcon(String file){
+        String ext = DocumentDAO.getFileExtension(file);
+        if (ext.equals("jpeg") || ext.equals("jpg") || ext.equals("png")){
+            
+        }
+        if (ext.equals("zip") || ext.equals("zip") || ext.equals("png")){
+            
+        }
+        return "default";
+     }
     
     /**
      * returns the document ID of the object

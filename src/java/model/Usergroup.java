@@ -7,9 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import java.util.*;
-import DAO.User;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import model.dao.DatabaseUtils;
 
 /**
  *
@@ -23,8 +23,7 @@ import java.io.Serializable;
  * @since 10/29/2017
  */
 public class Usergroup implements Serializable {
-
-    /**
+/**
      *
      */
     protected String groupname;
@@ -32,20 +31,21 @@ public class Usergroup implements Serializable {
     /**
      *
      */
-    protected int group_id;
+    protected int userGroupID;
 
     /**
      *
      */
-    protected int creator_id;
+    protected String description;
 
     /**
      *
      */
     protected int privacy_set;
+
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public int getPrivacy_set() {
         return privacy_set;
@@ -63,305 +63,357 @@ public class Usergroup implements Serializable {
      *
      * @return
      */
-    public int getGroup_id() {
-        return group_id;
+    public int getUserGroupID() {
+        return userGroupID;
     }
 
-    /**
-     *
-     * @return
-     */
-    public int getCreator_id() {
-        return creator_id;
+    public String getDescription() {
+        return description;
     }
     
+   
+
     /**
-     * Overloaded constructor to be able to be  <b> instantiated and called </b> by other objects without parameters.
+     * Overloaded constructor to be able to be  <b> instantiated and called </b>
+     * by other objects without parameters.
      */
-    public Group() {
+    public Usergroup() {
     }
+
     /**
      * Overloaded constructor to serve as <b> setters</b>
-     * 
+     *
      * @param groupname - group's name
+     * 
+     * last update: 11/07/17 by L. Barraquias - updated query code for hoamis DB
      */
-    public Group(String groupname) {
-        //super constructor!
+    public Usergroup(String groupname) {
+        //super constructor! straight fram da DB
         this.groupname = groupname;
-        try{
-        Class.forName("com.mysql.jdbc.Driver"); 
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestForumDB","root","root"); 
-        PreparedStatement st = con.prepareStatement("select * from TestForumDB.group where groupname=?"); 
-        st.setString(1, groupname);
+        try {
+            Connection con = DatabaseUtils.retrieveConnection();
+            PreparedStatement st = con.prepareStatement("select * from hoamis.USERGROUPS where groupname=?");
+            st.setString(1, groupname);
 
-        ResultSet rs = st.executeQuery();
-        while(rs.next()){
-            this.group_id = rs.getInt("group_id");
-            this.creator_id = rs.getInt("creator_id");
-            this.privacy_set = rs.getInt("privacy_set");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                this.userGroupID = rs.getInt("group_id");
+                this.description = rs.getString("description");
+                this.privacy_set = rs.getInt("privacy_set");
+            }
+        } catch (Exception E) {
+            E.printStackTrace();
         }
-    }catch(Exception E){
-        E.printStackTrace();
+
     }
-        
+    public Usergroup(int groupID) {
+        //super constructor! straight fram da DB
+        this.userGroupID = groupID;
+        try {
+            Connection con = DatabaseUtils.retrieveConnection();
+            PreparedStatement st = con.prepareStatement("select * from hoamis.USERGROUPS where userGroupID=?");
+            st.setInt(1, groupID);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                this.groupname = rs.getString("groupname");
+                this.description = rs.getString("description");
+                this.privacy_set = rs.getInt("privacy_set");
+            }
+        } catch (Exception E) {
+            E.printStackTrace();
+        }
+
     }
+
     /**
-     * Gets result set of users from the database who are not part of a given group.
+     * Gets result set of users from the database who are not part of a given
+     * group.
+     *
      * @param groupid - selected group.
      * @return ResultSet of users
+     * 
+     * 
+     * last update: 11/07/17 by L. Barraquias - updated query code for hoamis DB
      */
-    public static ResultSet getNotMembers (int groupid){
-    ResultSet as= null;
-    try{
-        Class.forName("com.mysql.jdbc.Driver"); 
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestForumDB","root","root"); 
-        PreparedStatement st = con.prepareStatement("select a.* from TestForumDB.user a join TestForumDB.membership b on a.user_id = b.user_user_id " +
-"where a.user_id NOT IN (select c.user_id from TestForumDB.user c join TestForumDB.membership d on c.user_id = d.user_user_id where d.group_group_id=?) " +
-"group by a.user_id;"); 
-        st.setInt(1, groupid);
+    public static ResultSet getNotMembers(int groupid) {
+        ResultSet as = null;
+        try {
+            
+            Connection con = DatabaseUtils.retrieveConnection();
+            PreparedStatement st = con.prepareStatement("select a.* from hoamis.users a join hoamis.usergroupmembers b on a.userID = b.userID "
+                    + "where a.userID NOT IN (select c.userID from hoamis.users c join hoamis.usergroupmembers d on c.userID = d.userID where d.userGroupID=?) "
+                    + "group by a.userID;");
+            st.setInt(1, groupid);
 
-        ResultSet rs = st.executeQuery();
+            ResultSet rs = st.executeQuery();
 
-        return rs;
+            return rs;
 
+        } catch (Exception E) {
+            E.printStackTrace();
+        }
 
-    }catch(Exception E){
-        E.printStackTrace();
+        return as;
     }
-    
-    return as;
-    }
+
     /**
      * Gets result set of users from the database who are part of a given group.
+     *
+     * last update: 11/07/17 by L. Barraquias - updated query code for hoamis DB
      * @param groupid - selected group.
      * @return result set of members
      */
-    public static ResultSet getMembers (int groupid){
-    ResultSet as= null;
-    try{
-        Class.forName("com.mysql.jdbc.Driver"); 
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestForumDB","root","root"); 
-        PreparedStatement st = con.prepareStatement("select * from TestForumDB.user a join TestForumDB.membership b on a.user_id = b.user_user_id where b.group_group_id=?"); 
-        st.setInt(1, groupid);
+    public static ResultSet getMembers(int groupid) {
+        ResultSet as = null;
+        try {
+            Connection con = DatabaseUtils.retrieveConnection();
+            PreparedStatement st = con.prepareStatement("select * from hoamis.user a join hoamis.usergroupmembers b on a.user_id = b.userID where b.userGroupID=?");
+            st.setInt(1, groupid);
 
-        ResultSet rs = st.executeQuery();
+            ResultSet rs = st.executeQuery();
 
-        return rs;
+            return rs;
 
-
-    }catch(Exception E){
-        E.printStackTrace();
+        } catch (Exception E) {
+            E.printStackTrace();
+        }
+        return as;
     }
-    return as;
-    } 
+
     /**
-     * checks if there is a duplicated group name existing to prevent database exception errors.
+     * checks if there is a duplicated group name existing to prevent database
+     * exception errors.
+     *
      * @param groupname - group's name
      * @return boolean
+     * 
+     * last update: 11/07/17 by L. Barraquias - updated query code for hoamis DB
      */
-    public static boolean checkDuplicateName(String groupname){
-        try{
-        Class.forName("com.mysql.jdbc.Driver"); 
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestForumDB","root","root"); 
-        PreparedStatement st = con.prepareStatement("select * from TestForumDB.group where groupname=?" ); 
-        st.setString(1, groupname);
+    public static boolean checkDuplicateName(String groupname) {
+        try {
+            Connection con = DatabaseUtils.retrieveConnection();
+            PreparedStatement st = con.prepareStatement("select * from hoamis.group where groupname=?");
+            st.setString(1, groupname);
 
-        ResultSet rs = st.executeQuery();
-        
-        if(rs.next()){
-            return true;
-        }
+            ResultSet rs = st.executeQuery();
 
-        }
-        catch(Exception E){
+            if (rs.next()) {
+                return true;
+            }
+
+        } catch (Exception E) {
             E.printStackTrace();
         }
         return false;
     }
+
     /**
-     * Gets result set of groups from the database who are public or the user is part of.
+     * Gets result set of groups from the database who are public or the user is
+     * a member of.
+     *
      * @param user_id - selected user identification number
-     * @return 
+     * @return
+     * 
+     * last update: 11/07/17 by L. Barraquias - updated query code for hoamis DB
      */
-    public static ResultSet getAllGroups(int user_id){
-        ResultSet as= null;
-        try{
-            Class.forName("com.mysql.jdbc.Driver"); 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestForumDB","root","root"); 
-            PreparedStatement st = con.prepareStatement("select DISTINCT a.* from TestForumDB.group a left join TestForumDB.membership b on a.group_id = b.group_group_id where a.privacy_set = 1 or b.user_user_id = ? group by 1,2,3;"); 
-            st.setInt(1, user_id);
+    public static ResultSet getAllGroups(String user_id) {
+        ResultSet as = null;
+        try {
+            Connection con = DatabaseUtils.retrieveConnection();
+            PreparedStatement st = con.prepareStatement("select DISTINCT a.* from hoamis.usergroups a left join hoamis.usergroupmembers b on a.userGroupID = b.userGroupID where b.userID = ?;");
+            st.setString(1, user_id);
             ResultSet rs = st.executeQuery();
-             
+
             return rs;
-  
-        }catch(Exception E){
+
+        } catch (Exception E) {
             E.printStackTrace();
         }
         return as;
     }
+
     /**
      * Gets result set of user's groups from the database.
-     * @param username - user's username
-     * @return 
+     *
+     * @param userID - user's username
+     * @return
+     * 
+     * last update: 11/07/17 by L. Barraquias - updated query code for hoamis DB
      */
-    public static ResultSet getUsersGroups(String username){
-        ResultSet as= null;
-        try{
-            Class.forName("com.mysql.jdbc.Driver"); 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestForumDB","root","root"); 
-            PreparedStatement st = con.prepareStatement("select * from TestForumDB.group a join TestForumDB.membership b on a.group_id = b.group_group_id where b.user_user_id=?;"); 
-            st.setInt(1, getUserID(username));
+    public static ResultSet getUsersGroups(int userID) {
+        ResultSet as = null;
+        try {
+            Connection con = DatabaseUtils.retrieveConnection();
+            PreparedStatement st = con.prepareStatement("select * from hoamis.usergroups a join hoamis.usergroupmembers b on a.userGroupID = b.userGroupID where b.userID=?;");
+            st.setInt(1, userID);
 
             ResultSet rs = st.executeQuery();
-             
-            return rs;  
 
-        }catch(Exception E){
+            return rs;
+
+        } catch (Exception E) {
             E.printStackTrace();
         }
         return as;
     }
+
     /**
      * Gets the number of members of a given group including the user.
+     *
      * @param group_id - group's identification number
      * @return int
+     * 
+     * last update: 11/07/17 by L. Barraquias - updated query code for hoamis DB
      */
-    public static int getNumOfMembers(int group_id){
-    try{
-        Class.forName("com.mysql.jdbc.Driver"); 
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestForumDB","root","root"); 
-        PreparedStatement st = con.prepareStatement("select * from membership where group_group_id=?"); 
-        st.setInt(1, group_id);
+    public static int getNumOfMembers(int group_id) {
+        try {
+            Connection con = DatabaseUtils.retrieveConnection();
+            PreparedStatement st = con.prepareStatement("select * from usergroupmembers where userGroupID=?");
+            st.setInt(1, group_id);
 
-        ResultSet rs = st.executeQuery();
-        int ctr=0;
-        while(rs.next()){
-            ctr++;
+            ResultSet rs = st.executeQuery();
+            int ctr = 0;
+            while (rs.next()) {
+                ctr++;
+            }
+            return ctr;
+
+        } catch (Exception E) {
+            E.printStackTrace();
         }
-        return ctr;
+        return 0;
+    }
 
-    }catch(Exception E){
-        E.printStackTrace();
-    }
-    return 0;
-    }
     /**
      * Checks if selected user is part of the selected group group.
+     *
      * @param user_id
      * @param group_id
      * @return boolean
+     * 
+     * last update: 11/07/17 by L. Barraquias - updated query code for hoamis DB
      */
-    public static boolean isAMember(int user_id, int group_id){
-        try{
-        Class.forName("com.mysql.jdbc.Driver"); 
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestForumDB","root","root"); 
-        PreparedStatement st = con.prepareStatement("select * from membership where group_group_id=? and user_user_id=?" ); 
-        st.setInt(1, group_id);
-        st.setInt(2, user_id);
+    public static boolean isAMember(String user_id, int group_id) {
+        try {
+            Connection con = DatabaseUtils.retrieveConnection();
+            PreparedStatement st = con.prepareStatement("select * from usergroupmembers where userGroupID=? and userID=?");
+            st.setInt(1, group_id);
+            st.setString(2, user_id);
 
-        ResultSet rs = st.executeQuery();
-        
-        if(rs.next()){
-            return true;
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            }
+
+        } catch (Exception E) {
+            E.printStackTrace();
         }
 
-    }catch(Exception E){
-        E.printStackTrace();
-    }
-        
         return false;
     }
+
     /**
-     * Adding a new group to the database and also adding the selected members and member groups
+     * Adding a new group to the database and also adding the selected members
+     * and member groups
+     *
      * @param groupname - group's name
-     * @param username - creator's username
-     * @param members - array of members to be added to new group
+     * @param userID - creator's ID
+     * @param members - array of user ids of members to be added to new group
      * @param groups - array of groups to be added to the new group
      * @param settings - privacy settings of the new group
-     * @return 
+     * @return
+     * 
+     * last update: 11/07/17 by L. Barraquias - updated query code for hoamis DB | Change username to userID
      */
-    public static boolean AddGroup(String groupname, String username, String[] members, String[] groups,int settings){
-        
-        try{
-            Class.forName("com.mysql.jdbc.Driver"); 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestForumDB","root","root"); 
-            PreparedStatement st = con.prepareStatement("INSERT INTO TestForumDB.group(group_id,groupname, creator_id,privacy_set) VALUES (NULL,?,?,?);"); 
-            st.setString(1, groupname);
-            st.setInt(2, getUserID(username));
-            st.setInt(3, settings);
-           
+    public static boolean AddGroup(String groupname, String userID, String[] members, String[] groups, int settings) {
+
+        try {
+            Connection con = DatabaseUtils.retrieveConnection();
+            PreparedStatement st = con.prepareStatement("INSERT INTO hoamis.usergroups(userGroupID,description,privacy_set,groupname) VALUES (NULL,'ah qqo',?,?);");
+            st.setInt(1, settings);
+            st.setString(2, groupname);
+
             st.executeUpdate();
             ResultSet rst = st.getGeneratedKeys();
-            int last_inserted_id= 0;
-            if(rst.next())
-            {
-                 last_inserted_id = rst.getInt(1);
+            int last_inserted_id = 0;
+            if (rst.next()) {
+                last_inserted_id = rst.getInt(1);
             }
             int group_id = last_inserted_id;
-           
-            PreparedStatement stt = con.prepareStatement("INSERT INTO TestForumDB.membership(user_user_id, group_group_id,membership_type) VALUES (?,?,1);"); 
-           
-            stt.setInt(1, getUserID(username));
+
+            PreparedStatement stt = con.prepareStatement("INSERT INTO hoamis.usergroupmembers(userID, userGroupID) VALUES (?,?);");
+
+            stt.setString(1, userID);
             stt.setInt(2, group_id);
             stt.executeUpdate();
-            
-            PreparedStatement sttt = con.prepareStatement("INSERT INTO TestForumDB.membership(user_user_id, group_group_id,membership_type) VALUES (?,?,1);"); 
-            if(members!=null){
-                for (String member_name : members) {
 
-                    sttt.setInt(1, getUserID(member_name));
+            PreparedStatement sttt = con.prepareStatement("INSERT INTO hoamis.usergroupmembers(userID, userGroupID) VALUES (?,?);");
+            if (members != null) {
+                for (String member_id : members) {
+
+                    sttt.setString(1, member_id);
                     sttt.setInt(2, group_id);
                     sttt.executeUpdate();
                 }
             }
-            if(groups!=null){
-                for (String group_name : groups){
-                    Group g = new Group(group_name);
+            if (groups != null) {
+                for (String group_name : groups) {
+                    Usergroup g = new Usergroup(group_name);
                     System.out.println("HOOooooooooy ptuangina nyo");
-                    ResultSet group_members = g.getMembers(g.getGroup_id());
-                    while(group_members.next()){
-                        sttt.setInt(1, group_members.getInt("user_id"));
+                    ResultSet group_members = g.getMembers(g.getUserGroupID());
+                    while (group_members.next()) {
+                        sttt.setString(1, group_members.getString("userID"));
                         sttt.setInt(2, group_id);
-                        if(!(g.isAMember(group_members.getInt("user_id"),group_id)))
+                        if (!(g.isAMember(group_members.getString("userID"), group_id))) {
                             sttt.executeUpdate();
+                        }
                     }
                 }
             }
-            
             return true;
 
-        }catch(Exception E){
+        } catch (Exception E) {
             E.printStackTrace();
         }
         return false;
     }
+
     /**
      * Adds invited members to the group
+     *
      * @param group_id group's identification number
      * @param members array of members to be added
-     * @return 
+     * @return
      */
-    public static boolean AddMembers(int group_id, String[] members){
-        
-        try{
-            Class.forName("com.mysql.jdbc.Driver"); 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestForumDB","root","root"); 
-            
-            
-           
-            PreparedStatement sttt = con.prepareStatement("INSERT INTO TestForumDB.membership(user_user_id, group_group_id,membership_type) VALUES (?,?,1);"); 
-           
-            for (String one : members) {
-                
-                sttt.setInt(1, getUserID(one));
+    public static boolean AddMembers(int group_id, String[] members) {
+
+        try {
+            Connection con = DatabaseUtils.retrieveConnection();
+
+            PreparedStatement sttt = con.prepareStatement("INSERT INTO hoamis.usergroupmembers(userID, userGroupID) VALUES (?,?);");
+
+            // TO-DO Array of MemberID instead of names
+            for (String member_id : members) {
+
+                sttt.setString(1, member_id);
                 sttt.setInt(2, group_id);
                 sttt.executeUpdate();
             }
             return true;
 
-        }catch(Exception E){
+        } catch (Exception E) {
             E.printStackTrace();
         }
         return false;
+    }
+    
+    public static void main(String[] args) throws SQLException {
+        ResultSet rs = getAllGroups("yutainoue");
+        while(rs.next()){
+            System.out.println(rs.getString(2));
+            
+        }
     }
 }

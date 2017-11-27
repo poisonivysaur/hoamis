@@ -1,230 +1,208 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 /**
- *
+ *  MapPoint Object
+ * A <b>map point</b> object contains the attributes of a map point that are 
+ * needed in order to display their place on the community map.
+ * 
  * @author Jayvee Gabriel
+ * @version 1.0
+ * 
+ * @since 2017-11-25
+ * 
  */
 public class MapPoint {
     
-    
+    /**
+     * This is the map point ID of this map point.
+     */
     protected int mappointID;
-    protected double xAxis;
-    protected double yAxis;
+    
+    /**
+     * This is the x axis or the latitude of the establishment.
+     */
+    protected String xAxis;
+    
+    /**
+     * This is the y axis or the longitude of the establishment.
+     */
+    protected String yAxis;
+    
+    /**
+     * This is the title or name of the establishment.
+     */
     protected String title;
+    
+    /**
+     * This is a short description of the establishment.
+     */
     protected String description;
+    
+    /**
+     * This is the user ID of the user that owns the establishment.
+     */
     protected String userID;
+    
+    /**
+     * This is date the establishment or map point is created.
+     */
     protected String createDate;
+    
+    /**
+     * This is the category of the establishment. 
+     * It can be stores, playgrounds, and other 
+     * places in the community.
+     */
     protected String mappointcategory;
 
     /**
-     * returns the appoint id of the transaction
+     * Returns the map point ID of this MapPoint.
      * 
-     * @param nothing
-     * @return int containing the appoint id of the transaction
-     * @throws nothing
+     * @return String containing the id of the map point.
      * 
-     * @since 10-28-17
-     */    
+     * @since 2017-11-25
+     */
     public int getMappointID() {
         return mappointID;
     }
 
     /**
-     * sets the appoint id of the transaction
+     * Sets the map point ID of this MapPoint.
      * 
-     * @param mappointID
-     * @return nothing
-     * @throws nothing
+     * @param mappointID.
      * 
-     * @since 10-28-17
-     */    
+     * @since 2017-11-25
+     */
     public void setMappointID(int mappointID) {
         this.mappointID = mappointID;
     }
 
     /**
-     * returns the x axis of the transaction
-     * 
-     * @param nothing
-     * @return Double containing the x-axis of the transaction
-     * @throws nothing
-     * 
-     * @since 10-28-17
-     */ 
-    public double getxAxis() {
+     * Returns the latitude of the location for this Map Point.
+     * @return A string value containing the xAxis or the latitude of this MapPoint.
+     * @since 2017-11-25
+     */
+    public String getxAxis() {
         return xAxis;
     }
 
     /**
-     * sets the x axis of the transaction
-     * 
+     * Sets the xAxis of this MapPoint.
      * @param xAxis
-     * @return nothing
-     * @throws nothing
-     * 
-     * @since 10-28-17
-     */        
-    public void setxAxis(double xAxis) {
+     * @since 2017-11-25
+     */
+    public void setxAxis(String xAxis) {
         this.xAxis = xAxis;
     }
 
     /**
-     * returns the y axis of the transaction
-     * 
-     * @param nothing
-     * @return Double containing the y-axis of the transaction
-     * @throws nothing
-     * 
-     * @since 10-28-17
-     */ 
-    public double getyAxis() {
+     * Returns the longitude of the location for this Map Point.
+     * @return A sting value containing the yAxis or the longitude of this MapPoint.
+     * @since 2017-11-25
+     */
+    public String getyAxis() {
         return yAxis;
     }
-
+    
     /**
-     * sets the y axis of the transaction
-     * 
-     * @param yAxis
-     * @return nothing
-     * @throws nothing
-     * 
-     * @since 10-28-17
-     */     
-    public void setyAxis(double yAxis) {
+     * Sets the yAxis of this MapPoint
+     * @param yAxis 
+     * @since 2017-11-25
+     */
+    public void setyAxis(String yAxis) {
         this.yAxis = yAxis;
     }
 
+    
     /**
-     * returns the title of the transaction
-     * 
-     * @param nothing
-     * @return String containing the title of the transaction
-     * @throws nothing
-     * 
-     * @since 10-28-17
-     */    
+     * Returns the title or the name of the establishment located in this MapPoint.
+     * @return A string value containing the title of the map point.
+     * @since 2017-11-25
+     */
     public String getTitle() {
         return title;
     }
 
     /**
-     * sets the title of the transaction
-     * 
+     * Sets the title of the MapPoint. 
      * @param title
-     * @return nothing
-     * @throws nothing
      * 
-     * @since 10-28-17
-     */        
+     * @since 2017-11-25
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * returns the description of the transaction
-     * 
-     * @param nothing
-     * @return String containing the description of the transaction
-     * @throws nothing
-     * 
-     * @since 10-28-17
-     */    
+     * Returns the description about this map point.
+     * @return A string value containing a short description about this map point.
+     * @since 2017-11-25
+     */
     public String getDescription() {
         return description;
     }
 
     /**
-     * sets the description of the transaction
-     * 
-     * @param decription
-     * @return nothing
-     * @throws nothing
-     * 
-     * @since 10-28-17
-     */     
+     *Sets the description of this map point.
+     * @param description
+     * @since 2017-11-25
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * returns the user if of the user
-     * 
-     * @param nothing
-     * @return String containing the user id of the user
-     * @throws nothing
-     * 
-     * @since 10-28-17
-     */        
+     * Returns the userID of the owner of the establishment.
+     * @return A string value containing the userID of the owner of the establishment.
+     */
     public String getUserID() {
         return userID;
     }
 
     /**
-     * sets the userId of the transaction
-     * 
-     * @param userId
-     * @return nothing
-     * @throws nothing
-     * 
-     * @since 10-28-17
-     */       
+     * Sets the userID of the owner of this establishment.
+     * @param userID
+     * @since 2017-11-25
+     */
     public void setUserID(String userID) {
         this.userID = userID;
     }
 
     /**
-     * returns the create date of the transaction.
-     * 
-     * @param nothing
-     * @return String containing the date of the transaction.
-     * @throws nothing
-     * 
-     * @since 10-28-17
-     */            
+     * Returns the date the establishment is added.
+     * @return A string value containing the create date of the MapPoint.
+     */
     public String getCreateDate() {
         return createDate;
     }
 
     /**
-     * sets the create date of the transaction
-     * 
+     * Sets the date the map point is created.
      * @param createDate
-     * @return nothing
-     * @throws nothing
-     * 
-     * @since 10-28-17
-     */    
+     * @since 2017-11-25
+     */
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 
     /**
-     * returns the appoint category of the transaction.
-     * 
-     * @param nothing
-     * @return String containing the appoint category of the transaction.
-     * @throws nothing
-     * 
-     * @since 10-28-17
-     */      
+     * Returns the category of the map point. 
+     * It can be a store, playground or other establishments 
+     * found inside the community.
+     * @return A string value containing the category of the map point.
+     * @since 2017-11-25
+     */
     public String getMappointcategory() {
         return mappointcategory;
     }
+    
 
     /**
-     * sets the appoint category of the transaction
-     * 
-     * @param mappointCategory
-     * @return nothing
-     * @throws nothing
-     * 
-     * @since 10-28-17
-     */     
+     *  Sets the category of this map point.
+     * @param mappointcategory
+     * @since 2017-11-25
+     */
     public void setMappointcategory(String mappointcategory) {
         this.mappointcategory = mappointcategory;
     }
