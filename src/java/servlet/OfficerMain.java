@@ -89,7 +89,17 @@ public class OfficerMain extends HttpServlet {
                         String totalPaid = request.getParameter("totalPaid");
                         forward = "officer/fin-accounting/billingCollection/billing-trx-details.jsp?billingID="+billingID+"&totaldue="+totalDue+"&totalpaid="+totalPaid+"&userid="+userid+"&fname="+fname+"&lname="+lname+"&mname="+mname;
                     }
-                    request.getRequestDispatcher(forward).forward(request, response);
+                    
+                    if(action.equals("document")){
+                        response.sendRedirect("HomeDocu?fid=" + session.getAttribute("curFolder"));
+                        //forward = "officer/com-mgt/docuMgt/Home.jsp?fid=" + session.getAttribute("curFolder");
+                    }
+                    
+                    if(!action.equals("document")){
+                        request.getRequestDispatcher(forward).forward(request, response);
+                    }
+                    
+                    //request.getRequestDispatcher(forward).forward(request, response);
                 }
                 /*
                 out.print("<p>This is OfficerMain.java</p>");
