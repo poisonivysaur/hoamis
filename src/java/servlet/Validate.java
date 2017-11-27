@@ -1,31 +1,24 @@
+package others;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet;
+
 import java.sql.*;
-/**
- *
- * A class for validating user registration.
- * 
- * <b>IMPORTANT NOTE:</b> this program still does not have the final database object for user accounts.
- * this is <b>NOT</b> a <b>DAO</b> object
- * 
- * @author Leebet Barraquias
- * @version 1.0 
- * @since 10/30/2017
- */
+
 public class Validate {
-    public static boolean checkUser(String username, String password){
+    public static boolean checkUser(String userID, String password){
+        
         try{
             Class.forName("com.mysql.jdbc.Driver"); 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestForumDB","root","root"); 
-            PreparedStatement st = con.prepareStatement("select * from user where username=? and password=?"); 
-            st.setString(1, username);
-            st.setString(2, password);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis","root","password"); 
+            PreparedStatement ps = con.prepareStatement("select * from users where userID= ? and passwd= ?"); 
+            ps.setString(1, userID);
+            ps.setString(2, password);
 
-            ResultSet rs = st.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             return rs.next();
 
@@ -33,5 +26,28 @@ public class Validate {
             E.printStackTrace();
         }
         return false;
+    }
+   
+    
+    public static int checkUserType(String userID, String password){
+        
+        int userTypeCnt = -1;
+        try{
+            Class.forName("com.mysql.jdbc.Driver"); 
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis","root","password"); 
+            PreparedStatement ps = con.prepareStatement("select usertypeID from users where userID=? and passwd=?"); 
+            ps.setString(1, userID);
+            ps.setString(2, password);
+
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()){
+                return Integer.parseInt(rs.getString("usertypeID"));
+            }
+
+        }catch(Exception E){
+            E.printStackTrace();
+        }
+        return userTypeCnt;
     }
 }

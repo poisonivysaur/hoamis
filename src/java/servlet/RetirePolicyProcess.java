@@ -21,14 +21,28 @@ import javax.sql.*;
 
 import dao.User;
 import dao.Policy;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static others.Validate.*;
+import dao.Penalty;
+import dao.Document;
+import static java.lang.System.out;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Calendar;
 
 /**
  *
  * @author Leebet-PC
  */
-@WebServlet(name = "LoginProcess", urlPatterns = {"/LoginProcess"})
-public class LoginProcess extends HttpServlet {
+@WebServlet(name = "RetirePolicyProcess", urlPatterns = {"/RetirePolicyProcess"})
+public class RetirePolicyProcess extends HttpServlet {
 
   
    
@@ -40,30 +54,27 @@ public class LoginProcess extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userID = request.getParameter("username");
-        String pWord = request.getParameter("password");
+        int policyID, penaltyID, documentID;
+        String policyDescription;
+        
+        policyID = Integer.parseInt(request.getParameter("policy"));        
+        
+        HttpSession session=request.getSession();  
+        User user = (User)session.getAttribute("UserObj");
+        String userID = (String)session.getAttribute("userID");
+        
+        System.out.println(policyID);        
 
          /**  && Validate.checkUserType(userID, pWord) == 1 **/ 
-        if (Validate.checkUser(userID, pWord) && Validate.checkUserType(userID, pWord) == 2){
-            HttpSession session=request.getSession();  
-            User user = new User();
+        if(policyID != 0){            
             
-            //user.setUserID(request.getParameter("username"));
+            user.sql_retirePolicy(policyID);
+            RequestDispatcher rs = request.getRequestDispatcher("retirepolicy.jsp");
+            rs.include(request, response);
             
-            session.setAttribute("userID",request.getParameter("username"));
-            session.setAttribute("allPolicies", Policy.sql_getAllPolicies());       
-            
-            //send to admin home
-            session.setAttribute("UserObj", user);
-            System.out.println("Login Successful!");
-            response.sendRedirect("userhome.jsp");            
         }
         else{
-            System.out.println(request.getParameter("username"));
-            System.out.println(request.getParameter("password"));
-	    request.setAttribute("username","bad");
-            RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
-            rs.include(request, response);
+            System.out.print(request.getParameter("ERROR!"));
         } 
     }
     @Override
