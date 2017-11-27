@@ -39,19 +39,55 @@ public class Homeowner extends User implements Serializable{
         this.lotnum = lotnum;
         this.userid = userid;
     }
-
+    
+    /**
+     * returns the block number of the Homeowner object
+     *
+     * @param nothing
+     * @return int
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public int getBlocknum() {
         return blocknum;
     }
 
+    /**
+     * sets the blocknum ID of the Homeowner object
+     *
+     * @param blocknum
+     * @return nothing
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public void setBlocknum(int blocknum) {
         this.blocknum = blocknum;
     }
 
+    /**
+     * returns the lot number of the Billing object
+     *
+     * @param nothing
+     * @return int
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public int getLotnum() {
         return lotnum;
     }
 
+    /**
+     * sets the lot number of the billing object
+     *
+     * @param lotnum
+     * @return nothing
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
     public void setLotnum(int lotnum) {
         this.lotnum = lotnum;
     }
