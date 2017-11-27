@@ -1,4 +1,4 @@
-package others;
+package servlet;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,7 +21,7 @@ import javax.sql.*;
 
 import model.dao.User;
 import dao.Policy;
-import static others.Validate.*;
+import static servlet.Validate.*;
 
 /**
  *

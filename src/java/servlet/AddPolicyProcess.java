@@ -1,4 +1,4 @@
-package others;
+package servlet;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,7 +27,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static others.Validate.*;
+import static servlet.Validate.*;
 import dao.Penalty;
 import dao.Document;
 import java.sql.Connection;
