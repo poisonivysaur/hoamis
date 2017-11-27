@@ -70,6 +70,11 @@ public class Login extends HttpServlet {
         
         if(loginUser != null){
             session.setAttribute("loginUser", loginUser);
+            session.setAttribute("uname", loginUser.getUserID());
+            session.setAttribute("users", UserDAO.getUsers(loginUser.getUserID()));
+            session.setAttribute("groups", Usergroup.getAllGroups(loginUser.getUserID()));
+            session.setAttribute("curFolder", 0);
+            session.setAttribute("UserObj", loginUser);
             response.sendRedirect(getRedirectByUserType(loginUser.getUsertype()));
             /*
             out.print("<p>UserId: " + loginUser.getUserID() + "</p>");
