@@ -4,6 +4,7 @@
     Author     : Patrisha
 --%>
 
+<%@page import="model.dao.DatabaseUtils"%>
 <%@ page import="java.util.*" %>
 
 <%@page import="java.sql.SQLException"%>
@@ -70,7 +71,7 @@
             Connection con = null;
             PreparedStatement ps = null;
             Class.forName(driverName);
-            con = DriverManager.getConnection(url,user,psw);
+            con = DatabaseUtils.retrieveConnection();
             String sql = "SELECT uv.userid, uv.platenum, uv.stickerid, s.stickeryear, s.datereleased FROM stickerinventory s join user_vehicles uv on s.stickerid=uv.stickerid";
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery(); 
