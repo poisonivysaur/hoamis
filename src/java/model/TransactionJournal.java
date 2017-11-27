@@ -73,7 +73,16 @@ public class TransactionJournal implements Serializable {
     public Date getTrxDate() {
         return trxDate;
     }
-
+    
+    /**
+     * sets the transaction date of the object
+     * 
+     * @param trxDate
+     * @return nothing
+     * @throws nothing
+     * 
+     * @since 10-28-17
+     */
     public void setTrxDate(Date trxDate) {
         this.trxDate = trxDate;
     }

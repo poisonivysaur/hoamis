@@ -16,7 +16,7 @@ import java.io.Serializable;
  * Please seek Justine first before updating this code. 
  * generated getters & setters, note that adding of triggers/checkers for the setters/ delete unnecessary setters, etc. are still needed
  *
- * 
+ * This class is unused as of 11-27-17
  *
  * original code: 10-28-17 by J. Doctolero 
  * last update: 10-28-17 by I. Lim - changed access specifiers

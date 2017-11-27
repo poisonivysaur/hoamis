@@ -1,7 +1,7 @@
 
 package servlet;
 
-import DAO.Group;
+import model.dao.Group;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;

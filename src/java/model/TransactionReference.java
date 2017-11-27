@@ -19,8 +19,10 @@ import java.io.Serializable;
  *
  * 
  *
- * original code: 10-28-17
- * last update: 10-28-17 by I. Lim - changed access specifiers
+ * original code: 10-28-17 by I. Lim
+ * last update: 
+    10-28-17 by I. Lim - changed access specifiers
+    11-27-17 by I. lim - added new getters & setters methods for new table fields and javadoc
 */
 public class TransactionReference implements Serializable {
     
@@ -42,19 +44,54 @@ public class TransactionReference implements Serializable {
         this.description = desc;
         this.date = date;
     }
-
+    
+    /**
+     * returns the date of the object
+     * 
+     * @param nothing
+     * @return String containing the date object converted to string
+     * @throws nothing
+     * 
+     * @since 11-27-17
+     */
     public String getDate() {
         return date;
     }
-
+    
+    /**
+     * sets the date of the object
+     * 
+     * @param date
+     * @return nothing
+     * @throws nothing
+     * 
+     * @since 10-28-17
+     */
     public void setDate(String date) {
         this.date = date;
     }
-
+    /**
+     * returns the description of the object
+     * 
+     * @param nothing
+     * @return String containing the description of the transaction
+     * @throws nothing
+     * 
+     * @since 10-28-17
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * sets the description of the transaction object
+     * 
+     * @param description
+     * @return nothing
+     * @throws nothing
+     * 
+     * @since 10-28-17
+     */
     public void setDescription(String description) {
         this.description = description;
     }

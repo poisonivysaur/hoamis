@@ -5,9 +5,9 @@
  */
 package servlet;
 
-import DAO.User;
+import model.dao.User;
 
-import DAO.Group;
+import model.dao.Group;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
