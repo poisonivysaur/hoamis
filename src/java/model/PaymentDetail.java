@@ -3,10 +3,10 @@ package model;
 import java.io.Serializable;
 
 /**
- * A <b>Billing</b> object contains the different information of 
- * a billing to a home owner 
+ * A <b>Payment Detail</b> object contains the different information of 
+ * a payment in terms of a billing
  * 
- * @author jana
+ * @author ivy
  * @version 1.001
  * @since 2017-10-28
  */

@@ -7,7 +7,7 @@ import java.io.Serializable;
  * A <b>Billing</b> object contains the different information of 
  * a billing to a home owner 
  * 
- * @author jana
+ * @author ivy
  * @version 1.001
  * @since 2017-10-28
  */

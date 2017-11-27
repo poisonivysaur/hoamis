@@ -32,6 +32,7 @@ public class BillingDetail implements Serializable {
         this.trx = trx;
     }
     
+    
     public Billing getBilling() {
         return billing;
     }
