@@ -41,12 +41,72 @@ public class HomeownerMain extends HttpServlet {
             if(loginUser.getUsertype() != 1){
                 response.sendError(403, "You have no permission for this Page");
             }else{
-                request.getRequestDispatcher("homeowner/dashboard.jsp").forward(request, response);
-                /*
-                out.print("<p>This is HomeownerMain.java</p>");
-                out.print("<p>First Name:" + loginUser.getfName()  + "</p>");
-                out.print("<p>Last Name: " + loginUser.getlName() + "</p>");
-                */
+                if(request.getParameter("action") == null || request.getParameter("action").equals("")){
+                    request.getRequestDispatcher("homeowner/dashboard.jsp").forward(request, response);
+                }else{
+                    String action = request.getParameter("action");
+                    String forward = "homeowner/dashboard.jsp";
+                    if(action.equals("register")){
+                        forward = "homeowner/accounts/registration/registration.jsp";
+                    }
+                    if(action.equals("dues")){
+                        forward = "homeowner/accounts/duesFees/duesHomeOfficer.jsp";
+                    }
+                    if(action.equals("duesView")){
+                        forward = "homeowner/accounts/duesFees/duesViewOfficer.jsp";
+                    }
+                    if(action.equals("duesCont")){
+                        forward = "homeowner/accounts/duesFees/duesContOfficer.jsp";
+                    }
+                    if(action.equals("duesForm")){
+                        forward = "homeowner/accounts/duesFees/duesFormOfficer.jsp";
+                    }
+                    if(action.equals("duesSuccess")){
+                        forward = "homeowner/accounts/duesFees/duesSuccessOfficer.jsp";
+                    }
+                    if(action.equals("directory")){
+                        forward = "homeowner/accounts/directory/directory.jsp";
+                    }
+                   
+                    if(action.equals("billingView")){
+                        forward = "homeowner/fin-accounting/billingCollection/billing-view.jsp";
+                    }
+                    if(action.equals("billingViewDetails")){
+                        String userid = request.getParameter("userid");
+                        String fname = request.getParameter("fname");
+                        String lname = request.getParameter("lname");
+                        String mname = request.getParameter("mname");
+                        forward = "homeowner/fin-accounting/billingCollection/billing-view-details.jsp?userid="+userid+"&fname="+fname+"&lname="+lname+"&mname="+mname;
+                    }
+                    
+                    if(action.equals("billingTrxDetails")){
+                        String userid = request.getParameter("userid");
+                        String fname = request.getParameter("fname");
+                        String lname = request.getParameter("lname");
+                        String mname = request.getParameter("mname");
+                        String billingID = request.getParameter("billingID");
+                        String totalDue = request.getParameter("totalDue");
+                        String totalPaid = request.getParameter("totalPaid");
+                        forward = "homeowner/fin-accounting/billingCollection/billing-trx-details.jsp?billingID="+billingID+"&totaldue="+totalDue+"&totalpaid="+totalPaid+"&userid="+userid+"&fname="+fname+"&lname="+lname+"&mname="+mname;
+                    }
+                    
+                    if(action.equals("document")){
+                        response.sendRedirect("HomeDocu?fid=" + session.getAttribute("curFolder"));
+                        //forward = "homeowner/com-mgt/docuMgt/Home.jsp?fid=" + session.getAttribute("curFolder");
+                    }
+                    
+                    if(action.equals("vehicle")){
+                        forward = "homeowner/security/vehicleAdmin/ViewVehicles.jsp";
+                    }
+                    
+                    if(!action.equals("document")){
+                        request.getRequestDispatcher(forward).forward(request, response);
+                    }
+                    
+                    
+                    
+                    //request.getRequestDispatcher(forward).forward(request, response);
+                }
             }
         }else{
             response.sendRedirect("Login");
