@@ -1,4 +1,4 @@
-package others;
+package servlet;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,7 +7,7 @@ package others;
  */
 
 
-import dao.User;
+import model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,7 +19,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 import javax.sql.*;
 
-import dao.User;
+import model.User;
 import dao.Policy;
 import java.util.Date;
 import java.text.DateFormat;

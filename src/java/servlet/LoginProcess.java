@@ -7,7 +7,7 @@ package others;
  */
 
 
-import dao.User;
+import model.dao.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,7 +19,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 import javax.sql.*;
 
-import dao.User;
+import model.dao.User;
 import dao.Policy;
 import static others.Validate.*;
 

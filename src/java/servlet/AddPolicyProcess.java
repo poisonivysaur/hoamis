@@ -7,7 +7,7 @@ package others;
  */
 
 
-import model.dao.User;
+import model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,7 +19,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 import javax.sql.*;
 
-import model.dao.User;
+import model.User;
 import dao.Policy;
 import java.util.Date;
 import java.text.DateFormat;
