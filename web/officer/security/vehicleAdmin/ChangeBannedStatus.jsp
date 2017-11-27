@@ -45,7 +45,7 @@
         <%!String url = "jdbc:mysql://localhost:3306/hoamis";%>
         <%!String user = "root";%>
         <%!String psw = "password";%>
-         <a href ="Dashboard.jsp"> << Go back home </a>
+         <a href ="OfficerMain"> << Go back home </a>
         <h2> Unban a Vehicle </h2>
         <form action="ChangeBannedStatusServlet" method="POST">
             <!--code to get the contents of the dropdown-->

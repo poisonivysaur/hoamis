@@ -95,9 +95,15 @@ public class OfficerMain extends HttpServlet {
                         //forward = "officer/com-mgt/docuMgt/Home.jsp?fid=" + session.getAttribute("curFolder");
                     }
                     
+                    if(action.equals("vehicle")){
+                        forward = "officer/security/vehicleAdmin/ViewVehicles.jsp";
+                    }
+                    
                     if(!action.equals("document")){
                         request.getRequestDispatcher(forward).forward(request, response);
                     }
+                    
+                    
                     
                     //request.getRequestDispatcher(forward).forward(request, response);
                 }

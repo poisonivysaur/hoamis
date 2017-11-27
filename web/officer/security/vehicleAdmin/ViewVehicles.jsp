@@ -28,7 +28,7 @@
         </style>
   <body>
       <center>
-          <a href="Dashboard.jsp"> << Go back home </a>
+          <a href="OfficerMain"> << Go back home </a>
       <h2> Search Vehicle </h2><!--search bar to search for a plate number-->
       
     <form action="SearchServlet" method="POST">
