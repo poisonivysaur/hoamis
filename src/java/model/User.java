@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Calendar;
 import model.dao.DatabaseUtils;
 /**
  * User Object
@@ -499,4 +500,149 @@ public class User implements Serializable {
         }
         return userType;
     }
+    
+    /*
+    THE SECTION BELOW IS TAKEN FROM THE USER CLASS OF MIGUEL'S POLICY MODULE
+    TO DO: make a separate DAO for this
+    */
+    
+    /**
+     * returns the userID from the database in int value.
+     * 
+     * @param username
+     * @return int
+     * @throws nothing
+     * 
+     * @since 11-07-17
+     */
+    public static int sql_getUserID(String username){
+        
+        int userCnt = -1;
+        String sqlStatement1 = "SELECT userID FROM user WHERE username = ?";
+        
+        try{
+        Class.forName("com.mysql.jdbc.Driver"); 
+        Connection conn = DatabaseUtils.retrieveConnection();
+        PreparedStatement ps = conn.prepareStatement(sqlStatement1);
+        
+        ps.setString(1, username);
+
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            return Integer.parseInt(rs.getString("userID"));
+        }
+        
+        }catch(Exception E){
+            E.printStackTrace();
+            System.out.println("Error!");
+        }
+        return userCnt;
+    }    
+    
+    /**
+     * Creates a policy entry in the database.
+     * 
+     * @param policyID
+     * @param policyDesc
+     * @param supportingdocumentID
+     * @param penaltyID
+     * @param userID
+     * @return nothing
+     * @throws nothing
+     * 
+     * @since 11-07-17
+     */
+    public void sql_createPolicy(int ppolicyID, String ppolicyDesc, int psupportingdocumentID ,int ppeanltyID, String puserID){    
+        
+        java.sql.Date currDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+        String sqlStatement1 = "INSERT INTO POLICIES(policyID, policydesc, penaltyID, supportingdocumentID, enactmentDate, enablingBoard) VALUES(?,?,?,?,?,?)";
+        
+        try{
+        Class.forName("com.mysql.jdbc.Driver"); 
+        Connection conn = DatabaseUtils.retrieveConnection();
+        PreparedStatement ps = conn.prepareStatement(sqlStatement1);
+        
+        ps.setInt(1, ppolicyID);
+        ps.setString(2, ppolicyDesc);
+        ps.setInt(3, ppeanltyID);
+        ps.setInt(4, psupportingdocumentID);
+        ps.setDate(5, currDate);
+        ps.setString(6, puserID);
+
+        ps.executeUpdate();
+        
+        System.out.println("Successfully Added a Policy!");
+        }catch(Exception E){
+            E.printStackTrace();
+            System.out.println("Error!");
+        }
+        
+    }
+    
+    /**
+     * Creates a document entry in the database.
+     * 
+     * @param description
+     * @param documentlocation
+     * @param fodlerID
+     * @param userID
+     * @return nothing
+     * @throws nothing
+     * 
+     * @since 11-07-17
+     */
+     public void sql_createDocument(String pdescription, String pdocumentlocation, int pfolderID, int puserID){    
+        
+        String sqlStatement1 = "INSERT INTO DOCUMENTS(description, documentlocation, folderID, create_userID) VALUES(?,?,?,?)";
+        
+        try{
+        Class.forName("com.mysql.jdbc.Driver"); 
+        Connection conn = DatabaseUtils.retrieveConnection();
+        PreparedStatement ps = conn.prepareStatement(sqlStatement1);
+        
+        ps.setString(1, pdescription);
+        ps.setString(2, pdocumentlocation);
+        ps.setInt(3, pfolderID);
+        ps.setString(4, this.getUserID());
+
+        ps.executeUpdate();
+        
+        System.out.println("Successfully Added a Thread.");
+        }catch(Exception E){
+            E.printStackTrace();
+            System.out.println("Error!");
+        }
+        
+    }
+     
+     /**
+     * Retires a policy in the database.
+     * 
+     * @param policyID
+     * @return nothing
+     * @throws nothing
+     * 
+     * @since 11-07-17
+     */
+     public void sql_retirePolicy(int ppolicyID){
+         
+        java.sql.Date currDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+        String sqlStatement1 = "UPDATE policies SET stopimplementDate = ? WHERE policyID = ?";
+        
+        try{
+        Class.forName("com.mysql.jdbc.Driver"); 
+        Connection conn = DatabaseUtils.retrieveConnection();
+        PreparedStatement ps = conn.prepareStatement(sqlStatement1);
+        
+        ps.setDate(1, currDate);
+        ps.setInt(2, ppolicyID);
+
+        ps.executeUpdate();
+        
+        System.out.println("Successfully Retired a Policy!");
+        }catch(Exception E){
+            E.printStackTrace();
+            System.out.println("Error!");
+        }
+     }
 }
