@@ -38,5 +38,7 @@
         </center>
       </table>
     </form>
+      <a href="OfficerMain?action=allVehicles"> View All Vehicle Records </a>
+      <a href="OfficerMain?action=sticker"> View Stickers </a>
   </body>
 </html>

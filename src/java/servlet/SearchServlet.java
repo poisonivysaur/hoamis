@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.dao.DatabaseUtils;
 
 /**
  *
@@ -79,7 +80,7 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {     
-        Connection conn = Database.getDBConnection();
+        Connection conn = DatabaseUtils.retrieveConnection();
         String pid = request.getParameter("pid");
         String sql = "select uv.userid, uv.platenum, v.model, v.make, YEAR(v.year), b.name from vehicles v join banned_ref b on v.banned = b.banned join user_vehicles uv on uv.platenum = v.platenum where uv.platenum='" + pid + "' ";
         Statement st;
@@ -114,7 +115,7 @@ public class SearchServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-         request.getRequestDispatcher("SearchView.jsp").forward(request, response);
+         request.getRequestDispatcher("officer/security/vehicleAdmin/SearchView.jsp").forward(request, response);
     }
  
     /** 

@@ -99,6 +99,14 @@ public class OfficerMain extends HttpServlet {
                         forward = "officer/security/vehicleAdmin/ViewVehicles.jsp";
                     }
                     
+                    if(action.equals("allVehicle")){
+                        forward = "officer/security/vehicleAdmin/ViewAllVehicleRecords.jsp";
+                    }
+                    
+                    if(action.equals("sticker")){
+                        forward = "officer/security/vehicleAdmin/ViewStickers.jsp";
+                    }
+                    
                     if(!action.equals("document")){
                         request.getRequestDispatcher(forward).forward(request, response);
                     }
