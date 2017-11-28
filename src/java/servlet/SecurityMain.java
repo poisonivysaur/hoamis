@@ -41,9 +41,45 @@ public class SecurityMain extends HttpServlet {
             if(loginUser.getUsertype() != 3){
                 response.sendError(403, "You have no permission for this Page");
             }else{
-                out.print("<p>This is SecurityMain.java</p>");
-                out.print("<p>First Name:" + loginUser.getfName()  + "</p>");
-                out.print("<p>Last Name: " + loginUser.getlName() + "</p>");
+                if(request.getParameter("action") == null || request.getParameter("action").equals("")){
+                    request.getRequestDispatcher("security/dashboard.jsp").forward(request, response);
+                }else{
+                    String action = request.getParameter("action");
+                    String forward = "security/dashboard.jsp";
+                    if(action.equals("register")){
+                        forward = "security/accounts/registration/registration.jsp";
+                    }
+                    
+                    if(action.equals("vehicle")){
+                        forward = "security/security/vehicleAdmin/ViewVehicles.jsp";
+                    }
+                    
+                    if(action.equals("allVehicles")){
+                        forward = "security/security/vehicleAdmin/ViewAllVehicleRecords.jsp";
+                    }
+                    
+                    if(action.equals("sticker")){
+                        forward = "security/security/vehicleAdmin/ViewStickers.jsp";
+                    }
+                    
+                    if(action.equals("addSticker")){
+                        forward = "security/security/vehicleAdmin/AddSticker.jsp";
+                    }
+                    
+                    if(action.equals("buySticker")){
+                        forward = "security/security/vehicleAdmin/BuySticker.jsp";
+                    }
+                    
+                    if(action.equals("issueSticker")){
+                        forward = "security/security/vehicleAdmin/IssueSticker.jsp";
+                    }
+                    if(action.equals("recordVehicle")){
+                        forward = "security/security/vehicleAdmin/RecordVehicle.jsp";
+                    }
+                    
+                    
+                    request.getRequestDispatcher(forward).forward(request, response);
+                }
             }
         }else{
             response.sendRedirect("Login");
