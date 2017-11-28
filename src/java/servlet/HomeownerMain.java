@@ -99,6 +99,29 @@ public class HomeownerMain extends HttpServlet {
                         forward = "homeowner/security/vehicleAdmin/ViewVehicles.jsp";
                     }
                     
+                    if(action.equals("allVehicles")){
+                        forward = "homeowner/security/vehicleAdmin/ViewAllVehicleRecords.jsp";
+                    }
+                    
+                    if(action.equals("sticker")){
+                        forward = "homeowner/security/vehicleAdmin/ViewStickers.jsp";
+                    }
+                    
+                    if(action.equals("addSticker")){
+                        forward = "homeowner/security/vehicleAdmin/AddSticker.jsp";
+                    }
+                    
+                    if(action.equals("buySticker")){
+                        forward = "homeowner/security/vehicleAdmin/BuySticker.jsp";
+                    }
+                    
+                    if(action.equals("issueSticker")){
+                        forward = "homeowner/security/vehicleAdmin/IssueSticker.jsp";
+                    }
+                    if(action.equals("recordVehicle")){
+                        forward = "homeowner/security/vehicleAdmin/RecordVehicle.jsp";
+                    }
+                    
                     if(!action.equals("document")){
                         request.getRequestDispatcher(forward).forward(request, response);
                     }

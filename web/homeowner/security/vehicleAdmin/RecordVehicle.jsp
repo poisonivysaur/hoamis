@@ -4,6 +4,7 @@
     Author     : Patrisha
 --%>
 
+<%@page import="model.dao.DatabaseUtils"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -40,7 +41,7 @@
         } 
         </style>
     <body>
-         <a href ="Dashboard.jsp"> << Go back home </a>
+         <a href ="HomeownerMain"> << Go back home </a>
         <h2> Record a Vehicle </h2>
         <%! String driverName = "com.mysql.jdbc.Driver";%>
         <%!String url = "jdbc:mysql://localhost:3306/hoamis";%>
@@ -53,12 +54,12 @@
             try
             {
             Class.forName(driverName);
-            con = DriverManager.getConnection(url,user,psw);
+            con = DatabaseUtils.retrieveConnection();
             String sql = "SELECT fname, mname, lname, userid FROM users";
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery(); 
             %>
-        <form action ="RecordVehicleServlet" method="POST">
+        <form action ="/hoamis/RecordVehicleServlet" method="POST">
             Vehicle Owner: <!-- get from db !-->
             <br>
             <select name = "owner"> <!--dropdown-->
