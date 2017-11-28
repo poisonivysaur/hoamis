@@ -3,6 +3,7 @@
     Created on : Nov 25, 2017, 3:24:58 PM
     Author     : Patrisha
 --%>
+<%@page import="model.dao.DatabaseUtils"%>
 <%@ page import="java.util.*" %>
 
 <%@page import="java.sql.SQLException"%>
@@ -47,7 +48,7 @@
         <%!String url = "jdbc:mysql://localhost:3306/hoamis";%>
         <%!String user = "root";%>
         <%!String psw = "password";%>
-         <a href ="Dashboard.jsp"> << Go back home </a>
+         <a href ="SecurityMain"> << Go back home </a>
         <h2> View All Records </h2>
         <!--shows the table which contains all vehicle records-->
         <table width="700px" align="center"
@@ -70,7 +71,7 @@
             Connection con = null;
             PreparedStatement ps = null;
             Class.forName(driverName);
-            con = DriverManager.getConnection(url,user,psw);
+            con = DatabaseUtils.retrieveConnection();
             String sql = "select uv.userid, uv.stickerid, uv.stickerissuedby, v.platenum, v.model, v.make, YEAR(v.year), b.name from vehicles v join banned_ref b on v.banned = b.banned left join user_vehicles uv on v.platenum = uv.plateNum";
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery(); 
