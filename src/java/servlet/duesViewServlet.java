@@ -44,7 +44,7 @@ public class duesViewServlet extends HttpServlet {
         RequestDispatcher rd = null;
         
         request.setAttribute("rmdObj", rmd);
-        rd = request.getRequestDispatcher("duesViewOfficer.jsp");
+        rd = request.getRequestDispatcher("officer/accounts/duesFees/duesViewOfficer.jsp");
         rd.forward(request, response);
     }
 }

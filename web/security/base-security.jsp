@@ -34,7 +34,7 @@
             <div class="w3-col s8 w3-bar">
                 <h4><span>Welcome, <strong><%= "user goes here"%></strong></span></h4>
               <p>Security Officer account</p>
-              <a href="#" class="w3-bar-item w3-button">Log out</a>
+              <a href="Logout" class="w3-bar-item w3-button">Log out</a>
             </div>
           </div>
           <hr>

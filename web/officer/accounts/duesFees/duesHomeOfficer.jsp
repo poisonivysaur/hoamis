@@ -26,7 +26,7 @@
             <%
                 MonthlyDuesDAO mdd = new MonthlyDuesDAO();
                 if(mdd.getCurrentMonthDues() == null){
-                    out.print("<p><a href=\"duesFormOfficer.jsp\">Notification: No monthly dues assigned for the month!</a></p>");
+                    out.print("<p><a href=\"OfficerMain?action=duesForm\">Notification: No monthly dues assigned for the month!</a></p>");
                 }
                 else{
                     out.print("<p>No notifications to display.</p>");

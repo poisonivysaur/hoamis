@@ -72,7 +72,7 @@
             PreparedStatement ps = null;
             Class.forName(driverName);
             con = DatabaseUtils.retrieveConnection();
-            String sql = "select uv.userid, uv.stickerid, uv.stickerissuedby, v.platenum, v.model, v.make, YEAR(v.year), b.name from vehicles v join banned_ref b on v.banned = b.banned left join user_vehicles uv on v.platenum = uv.plateNum";
+            String sql = "select uv.userid, uv.stickerid, uv.stickerissuedby, v.platenum, v.model, v.make, YEAR(v.year), b.name from vehicles v left join banned_ref b on v.banned = b.banned left join user_vehicles uv on v.platenum = uv.plateNum";
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery(); 
             %>

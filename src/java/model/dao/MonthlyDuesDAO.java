@@ -408,7 +408,7 @@ public class MonthlyDuesDAO{
         ArrayList<Ref_MonthlyDues> array = new ArrayList<>();
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis", "root", "justine");
+            conn = DatabaseUtils.retrieveConnection();
             String sql = "SELECT * FROM REF_MONTHLYDUES";
             PreparedStatement pStmt = conn.prepareStatement(sql);
             ResultSet rsMD = pStmt.executeQuery();
@@ -444,7 +444,7 @@ public class MonthlyDuesDAO{
         Connection conn = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis", "root", "justine");
+            conn = DatabaseUtils.retrieveConnection();
             String sql = "SELECT * FROM REF_MONTHLYDUES";
             PreparedStatement pStmt = conn.prepareStatement(sql);
             ResultSet rsMD = pStmt.executeQuery();
@@ -503,7 +503,7 @@ public class MonthlyDuesDAO{
         Ref_MonthlyDues rmd = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis", "root", "justine");
+            conn = DatabaseUtils.retrieveConnection();
             String sql = "SELECT * FROM REF_MONTHLYDUES WHERE MDUESID = ?";
             PreparedStatement pStmt = conn.prepareStatement(sql);
             pStmt.setInt(1, mDuesID);

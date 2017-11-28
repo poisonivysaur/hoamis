@@ -83,7 +83,9 @@ public class RecordVehicleServlet extends HttpServlet {
             throws ServletException, IOException {
        Connection conn = DatabaseUtils.retrieveConnection();
         String owner = request.getParameter("owner");
+        System.out.println("OWNER"+owner);
         String plate = request.getParameter("platenum");
+        System.out.println("PLATE NUM "+plate);
         String model = request.getParameter("model");
         String make = request.getParameter("make");
         String year = request.getParameter("year");

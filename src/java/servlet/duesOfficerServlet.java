@@ -37,7 +37,7 @@ public class duesOfficerServlet extends HttpServlet {
         end = request.getParameter("endYear");
         int startYear = Integer.parseInt(start);
         int endYear = Integer.parseInt(end);
-        
+        System.out.println(startMonth + " "+endMonth);
         RequestDispatcher rd = null;
         MonthlyDuesDAO mdd = new MonthlyDuesDAO();
         if(mdd.isOverlappingWithStoredDues(startMonth, startYear, endMonth, endYear)){
@@ -50,7 +50,7 @@ public class duesOfficerServlet extends HttpServlet {
         
         if(amountApproved < 1){
             request.setAttribute("message", "Input an amount greater than 0");
-            rd = request.getRequestDispatcher("duesFormOfficer.jsp");
+            rd = request.getRequestDispatcher("officer/accounts/duesFees/duesFormOfficer.jsp");
             rd.forward(request, response);
         }
         

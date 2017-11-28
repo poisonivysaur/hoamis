@@ -72,7 +72,7 @@
             PreparedStatement ps = null;
             Class.forName(driverName);
             con = DatabaseUtils.retrieveConnection();
-            String sql = "SELECT uv.userid, uv.platenum, uv.stickerid, s.stickeryear, s.datereleased FROM stickerinventory s join user_vehicles uv on s.stickerid=uv.stickerid";
+            String sql = "SELECT uv.userid, uv.platenum, uv.stickerid, s.stickeryear, s.datereleased FROM stickerinventory s left join user_vehicles uv on s.stickerid=uv.stickerid";
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery(); 
             %>
