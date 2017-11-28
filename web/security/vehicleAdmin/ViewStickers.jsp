@@ -48,7 +48,7 @@
         <%!String url = "jdbc:mysql://localhost:3306/hoamis";%>
         <%!String user = "root";%>
         <%!String psw = "password";%>
-         <a href ="SecurityMain"> << Go back home </a>
+         <a href ="OfficerMain"> << Go back home </a>
         <h2> View All Records </h2>
         <!--shows a table which contains all the vehicles with the stickers-->
         <table width="700px" align="center"
@@ -72,7 +72,7 @@
             PreparedStatement ps = null;
             Class.forName(driverName);
             con = DatabaseUtils.retrieveConnection();
-            String sql = "SELECT uv.userid, uv.platenum, uv.stickerid, s.stickeryear, s.datereleased FROM stickerinventory s join user_vehicles uv on s.stickerid=uv.stickerid";
+            String sql = "SELECT uv.userid, uv.platenum, uv.stickerid, s.stickeryear, s.datereleased FROM stickerinventory s left join user_vehicles uv on s.stickerid=uv.stickerid";
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery(); 
             %>

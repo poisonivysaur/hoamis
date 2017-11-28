@@ -43,7 +43,7 @@
         } 
         </style>
     <body>
-        <a href ="OfficerMain"> << Go back home </a>
+        <a href ="SecurityMain"> << Go back home </a>
         <h2> Sticker Purchase</h2>
         <form action="BuyStickerServlet" method="POST">
             

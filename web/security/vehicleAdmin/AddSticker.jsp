@@ -37,7 +37,7 @@
         } 
         </style>
     <body>
-        <a href ="SecurityMain"> << Go back home </a>
+        <a href ="OfficerMain"> << Go back home </a>
         <h2> Add a Sticker</h2>
         <form action="/hoamis/AddStickerServlet" method="POST">
         <br> Sticker Year: <!--sticker year-->
