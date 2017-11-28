@@ -11,6 +11,7 @@ package dao;
  * @author Miguel
  */
 import java.sql.*;
+import model.dao.DatabaseUtils;
 
 public class Policy {
     
@@ -217,9 +218,8 @@ public class Policy {
         ResultSet fakeRS = null;
         String sqlStatement1 = "SELECT * FROM POLICIES WHERE stopimplementDate is NULL";
         
-        try{        
-            Class.forName("com.mysql.jdbc.Driver"); 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis","root","password"); 
+        try{
+            Connection con = DatabaseUtils.retrieveConnection();
             PreparedStatement st = con.prepareStatement(sqlStatement1); 
 
             ResultSet rs = st.executeQuery();
@@ -245,8 +245,7 @@ public class Policy {
         String sqlStatement1 = "SELECT * FROM POLICIES WHERE stopimplementDate IS NOT NULL";
         
         try{        
-            Class.forName("com.mysql.jdbc.Driver"); 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis","root","password"); 
+            Connection con = DatabaseUtils.retrieveConnection();
             PreparedStatement st = con.prepareStatement(sqlStatement1); 
 
             ResultSet rs = st.executeQuery();
@@ -272,8 +271,7 @@ public class Policy {
         String sqlStatement1 = "SELECT po.policyID, po.policydesc, pe.penaltyLevel, pe.penaltyDescription, pe.penaltyfee, pe.penaltyaction FROM POLICIES po JOIN PENALTIES pe ON po.penaltyID = pe.penaltyID WHERE policyID = ?";
         
         try{        
-            Class.forName("com.mysql.jdbc.Driver"); 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis","root","password"); 
+            Connection con = DatabaseUtils.retrieveConnection();
             PreparedStatement st = con.prepareStatement(sqlStatement1); 
             
             st.setInt(1, policyID);

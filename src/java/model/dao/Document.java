@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import model.dao.DatabaseUtils;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -167,8 +168,7 @@ public class Document {
         String sqlStatement1 = "SELECT * FROM documents";
         
         try{        
-            Class.forName("com.mysql.jdbc.Driver"); 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis","root","password"); 
+            Connection con = DatabaseUtils.retrieveConnection();
             PreparedStatement st = con.prepareStatement(sqlStatement1); 
 
             ResultSet rs = st.executeQuery();
@@ -195,8 +195,7 @@ public class Document {
         String sqlStatement1 = "SELECT documentID FROM documents WHERE description = ?";
         
         try{
-        Class.forName("com.mysql.jdbc.Driver"); 
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis","root","password"); 
+            Connection conn = DatabaseUtils.retrieveConnection();
         PreparedStatement ps = conn.prepareStatement(sqlStatement1);
         
         ps.setString(1, docuDescription);
