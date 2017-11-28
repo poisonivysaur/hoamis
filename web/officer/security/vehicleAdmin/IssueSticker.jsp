@@ -4,7 +4,7 @@
     Author     : Asus
 --%>
 
-<%@page import="dao.Database"%>
+<%@page import="model.dao.DatabaseUtils"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.SQLException"%>
@@ -47,7 +47,7 @@
         <h2> Issue Sticker </h2>
         <form action="IssueStickerServlet" method="POST">
             <%
-            Connection con = Database.getDBConnection();
+            Connection con = DatabaseUtils.retrieveConnection();
             PreparedStatement ps = null;
             try
             {

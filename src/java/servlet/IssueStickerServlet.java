@@ -6,7 +6,7 @@ package servlet;
  * and open the template in the editor.
  */
 
-import dao.Database;
+import model.dao.DatabaseUtils;
 import model.Sticker;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -79,7 +79,7 @@ public class IssueStickerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Connection conn = Database.getDBConnection();
+        Connection conn = DatabaseUtils.retrieveConnection();
        
         String stickers = request.getParameter("stickers");
         
@@ -130,7 +130,7 @@ public class IssueStickerServlet extends HttpServlet {
         
             }
         }
-        request.getRequestDispatcher("IssueSticker.jsp").forward(request, response);
+        request.getRequestDispatcher("officer/security/vehicleAdmin/IssueSticker.jsp").forward(request, response);
     }
     /**
      * Returns a short description of the servlet.

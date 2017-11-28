@@ -39,7 +39,7 @@
     <body>
         <a href ="OfficerMain"> << Go back home </a>
         <h2> Add a Sticker</h2>
-        <form action="AddStickerServlet" method="POST">
+        <form action="/hoamis/AddStickerServlet" method="POST">
         <br> Sticker Year: <!--sticker year-->
         <br> <input type="text" name="year" required>
         <br>

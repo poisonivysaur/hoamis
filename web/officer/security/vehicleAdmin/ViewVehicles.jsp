@@ -39,6 +39,11 @@
       </table>
     </form>
       <a href="OfficerMain?action=allVehicles"> View All Vehicle Records </a><br>
-      <a href="OfficerMain?action=sticker"> View Stickers </a>
+      <a href="OfficerMain?action=recordVehicle"> Record Vehicle</a><br>
+      <a href="OfficerMain?action=sticker"> View Stickers </a><br>
+      <a href="OfficerMain?action=addSticker"> Add Sticker</a><br>
+      <a href="OfficerMain?action=buySticker"> Buy Sticker</a><br>
+      <a href="OfficerMain?action=issueSticker"> Issue Sticker</a><br>
+      
   </body>
 </html>

@@ -4,6 +4,7 @@
     Author     : Patrisha
 --%>
 
+<%@page import="model.dao.DatabaseUtils"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -48,7 +49,7 @@
         <%!String url = "jdbc:mysql://localhost:3306/hoamis";%>
         <%!String user = "root";%>
         <%!String psw = "password";%>
-        <form action="ChangeToBannedServlet" method="POST">
+        <form action="/hoamis/ChangeToBannedServlet" method="POST">
             <!--code to get the contents of the dropdown-->
             <%
             Connection con = null;
@@ -56,7 +57,7 @@
             try
             {
             Class.forName(driverName);
-            con = DriverManager.getConnection(url,user,psw);
+            con = DatabaseUtils.retrieveConnection();
             String sql = "SELECT * FROM vehicles where banned = 0";
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery(); 

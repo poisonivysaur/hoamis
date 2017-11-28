@@ -6,7 +6,7 @@ package servlet;
  * and open the template in the editor.
  */
 
-import dao.Database;
+import model.dao.DatabaseUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -81,7 +81,7 @@ public class RecordVehicleServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       Connection conn = Database.getDBConnection();
+       Connection conn = DatabaseUtils.retrieveConnection();
         String owner = request.getParameter("owner");
         String plate = request.getParameter("platenum");
         String model = request.getParameter("model");
@@ -142,7 +142,7 @@ public class RecordVehicleServlet extends HttpServlet {
         
             }
         }
-        request.getRequestDispatcher("RecordVehicle.jsp").forward(request, response);
+        request.getRequestDispatcher("officer/security/vehicleAdmin/RecordVehicle.jsp").forward(request, response);
         
     }
 

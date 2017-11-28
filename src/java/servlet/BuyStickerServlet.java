@@ -6,7 +6,7 @@ package servlet;
  * and open the template in the editor.
  */
 
-import dao.Database;
+import model.dao.DatabaseUtils;
 import model.Sticker;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -79,7 +79,7 @@ public class BuyStickerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-       Connection conn = Database.getDBConnection();
+       Connection conn = DatabaseUtils.retrieveConnection();
        
         String vehicles = request.getParameter("vehicles");
         double cost = Double.parseDouble(request.getParameter("cost"));
@@ -125,7 +125,7 @@ public class BuyStickerServlet extends HttpServlet {
         
             }
         }
-        request.getRequestDispatcher("BuySticker.jsp").forward(request, response);
+        request.getRequestDispatcher("officer/security/vehicleAdmin/BuySticker.jsp").forward(request, response);
     }
     /**
      * Returns a short description of the servlet.

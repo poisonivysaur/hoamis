@@ -4,10 +4,11 @@
     Author     : Asus
 --%>
 
+<%@page import="model.dao.DatabaseUtils"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="dao.Database"%>
+<%@page import="model.dao.DatabaseUtils"%>
 <%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -47,7 +48,7 @@
         <form action="BuyStickerServlet" method="POST">
             
         <%
-            Connection con = Database.getDBConnection();
+            Connection con = DatabaseUtils.retrieveConnection();
             PreparedStatement ps = null;
             PreparedStatement ps3 = null;
             String firstname = request.getParameter("fname");

@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.dao.DatabaseUtils;
 
 /**
  *
@@ -79,7 +80,7 @@ public class AddStickerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Connection conn = Database.getDBConnection();
+        Connection conn = DatabaseUtils.retrieveConnection();
         
         int year = Integer.parseInt(request.getParameter("year"));
         double cost = Double.parseDouble(request.getParameter("cost"));
@@ -118,7 +119,7 @@ public class AddStickerServlet extends HttpServlet {
         
             }
         }
-        request.getRequestDispatcher("AddSticker.jsp").forward(request, response);
+        request.getRequestDispatcher("officer/security/vehicleAdmin/AddSticker.jsp").forward(request, response);
     }
 
     /**

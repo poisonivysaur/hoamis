@@ -107,6 +107,20 @@ public class OfficerMain extends HttpServlet {
                         forward = "officer/security/vehicleAdmin/ViewStickers.jsp";
                     }
                     
+                    if(action.equals("addSticker")){
+                        forward = "officer/security/vehicleAdmin/AddSticker.jsp";
+                    }
+                    
+                    if(action.equals("buySticker")){
+                        forward = "officer/security/vehicleAdmin/BuySticker.jsp";
+                    }
+                    
+                    if(action.equals("issueSticker")){
+                        forward = "officer/security/vehicleAdmin/IssueSticker.jsp";
+                    }
+                    if(action.equals("recordVehicle")){
+                        forward = "officer/security/vehicleAdmin/RecordVehicle.jsp";
+                    }
                     if(!action.equals("document")){
                         request.getRequestDispatcher(forward).forward(request, response);
                     }
