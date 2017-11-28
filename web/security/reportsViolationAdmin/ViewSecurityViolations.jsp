@@ -21,6 +21,7 @@
 <body>
 
 <div class="container">
+	<a href="${pageContext.request.contextPath}/SecurityMain?action=security">Back</a>
 	<h2 align="center"><font><strong>View Security Violations</strong></font></h2>
 	<hr />
 	
