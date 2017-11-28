@@ -78,7 +78,7 @@
                   <a href="#" class="w3-bar-item w3-button">Election & Voting</a>-->
                   <a href="HomeownerMain?action=map" class="w3-bar-item w3-button">Community Map</a>
                   <a href="HomeownerMain?action=document" class="w3-bar-item w3-button">Document Management</a>
-                  <a href="#" class="w3-bar-item w3-button">Grievance & Complaints</a>
+                  <!--<a href="#" class="w3-bar-item w3-button">Grievance & Complaints</a>-->
                   
             </div><!--
             <div class="w3-bar-item w3-button" onclick="myAccFunc('maintenance')">
