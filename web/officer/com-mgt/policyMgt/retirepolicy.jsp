@@ -6,14 +6,14 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%@ page import="dao.User"%>
+<%@ page import="model.User"%>
 <%@ page import="dao.Policy"%>
 <%@ page import="dao.Penalty"%>
 <%@ page import="dao.Document"%>
 <%@ page import="java.sql.*"%>
 <%  
-    User user = (User)session.getAttribute("UserObj");
-    String userID = (String)session.getAttribute("userID");
+    User user = (User)session.getAttribute("loginUser");
+    String userID = user.getUserID();
     Policy po = new Policy();
     ResultSet allPolicies = po.sql_getAllPolicies();
     
@@ -27,9 +27,9 @@
         <title>Add Policy</title>
     </head>
     <body>
-        <h4><a href="userhome.jsp"> Home </a></h4>
-        <h4><a href="viewpolicies.jsp"> View All Policies </a></h4>
-        <h4><a href="addpolicy.jsp"> Add Policy </a></h4>
+        <h4><a href="OfficerMain?action=policy"> Home </a></h4>
+        <h4><a href="OfficerMain?action=viewAllPolicy"> View All Policies </a></h4>
+        <h4><a href="OfficerMain?action=addPolicy"> Add Policy </a></h4>
         <form action="RetirePolicyProcess" method="POST">
             <fieldset>
                 <h2>Retire Policy</h2>

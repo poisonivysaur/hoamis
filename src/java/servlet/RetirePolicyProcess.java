@@ -19,7 +19,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 import javax.sql.*;
 
-import model.User;
 import dao.Policy;
 import java.util.Date;
 import java.text.DateFormat;
@@ -27,7 +26,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static servlet.Validate.*;
+import static others.Validate.*;
 import dao.Penalty;
 import dao.Document;
 import static java.lang.System.out;
@@ -69,7 +68,7 @@ public class RetirePolicyProcess extends HttpServlet {
         if(policyID != 0){            
             
             user.sql_retirePolicy(policyID);
-            RequestDispatcher rs = request.getRequestDispatcher("retirepolicy.jsp");
+            RequestDispatcher rs = request.getRequestDispatcher("officer/com-mgt/policyMgt/retirepolicy.jsp");
             rs.include(request, response);
             
         }

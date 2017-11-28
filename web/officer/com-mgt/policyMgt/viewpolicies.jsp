@@ -8,12 +8,12 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%@ page import="dao.User"%>
+<%@ page import="model.User"%>
 <%@ page import="dao.Policy"%>
 <%  
     ResultSet rs = Policy.sql_getAllPolicies();
-    User user = (User)session.getAttribute("UserObj");
-    String userID = (String)session.getAttribute("userID");  
+    User user = (User)session.getAttribute("loginUser");
+    String userID = user.getUserID();
 %>
 <!DOCTYPE html>
 <html>
@@ -25,9 +25,9 @@
     <body>
         <h1>All Active Policies</h1>
         <h3>Welcome: <%= userID %></h3>
-        <h4><a href="userhome.jsp"> Home </a></h4>
-        <h4><a href="addpolicy.jsp"> Add Policy </a></h4>     
-        <h4><a href="retirepolicy.jsp"> Retire a Policy </a></h4>     
+        <h4><a href="${pageContext.request.contextPath}/OfficerMain?action=policy"> Home </a></h4>
+        <h4><a href="${pageContext.request.contextPath}/OfficerMain?action=addPolicy"> Add Policy </a></h4>     
+        <h4><a href="${pageContext.request.contextPath}/OfficerMain?action=retirePolicy"> Retire a Policy </a></h4>     
         <% 
         while (rs.next()) { %>
         <div><p>
@@ -36,6 +36,6 @@
         }
         %>
         </p></div>
-        <h4><a href="viewretiredpolicies.jsp"> View All Retired Policies </a></h4>    
+        <h4><a href="${pageContext.request.contextPath}/OfficerMain?action=viewRetirePolicy"> View All Retired Policies </a></h4>    
     </body>
 </html>

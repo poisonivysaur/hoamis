@@ -7,7 +7,6 @@ package servlet;
  */
 
 
-import model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -27,7 +26,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static servlet.Validate.*;
+import static others.Validate.*;
 import dao.Penalty;
 import dao.Document;
 import java.sql.Connection;
@@ -70,13 +69,11 @@ public class AddPolicyProcess extends HttpServlet {
         System.out.println(penaltyID);
         System.out.println(documentID);
         System.out.println(userID);
-        
 
          /**  && Validate.checkUserType(userID, pWord) == 1 **/ 
         if(policyID != 0 && (policyDescription.length() > 0) && penaltyID != 0 && documentID != 0){
-            
             user.sql_createPolicy(policyID, policyDescription, documentID, penaltyID, userID);
-            RequestDispatcher rs = request.getRequestDispatcher("addpolicy.jsp");
+            RequestDispatcher rs = request.getRequestDispatcher("officer/com-mgt/policyMgt/addpolicy.jsp");
             rs.include(request, response);
             
         }

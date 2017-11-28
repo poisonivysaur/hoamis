@@ -8,12 +8,12 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%@ page import="dao.User"%>
+<%@ page import="model.User"%>
 <%@ page import="dao.Policy"%>
 <%  
     ResultSet rs = Policy.sql_getAllRetiredPolicies();
-    User user = (User)session.getAttribute("UserObj");
-    String userID = (String)session.getAttribute("userID");   
+    User user = (User)session.getAttribute("loginUser");
+    String userID = user.getUserID();
 %>
 <!DOCTYPE html>
 <html>
@@ -25,9 +25,9 @@
     <body>
         <h1>Retired Policies</h1>
         <h3>Welcome: <%= userID %></h3>
-        <h4><a href="userhome.jsp"> Home </a></h4>
-        <h4><a href="addpolicy.jsp"> Add Policy </a></h4>     
-        <h4><a href="retirepolicy.jsp"> Retire a Policy </a></h4>     
+        <h4><a href="OfficerMain?action=policy"> Home </a></h4>
+        <h4><a href="OfficerMain?action=addPolicy"> Add Policy </a></h4>     
+        <h4><a href="OfficerMain?action=retirePolicy"> Retire a Policy </a></h4>     
         <% 
         while (rs.next()) { %>
         <div><p>
@@ -36,6 +36,6 @@
         }
         %>
         </p></div>
-        <h4><a href="viewpolicies.jsp"> View All Active Policies </a></h4>
+        <h4><a href="OfficerMain?action=viewAllPolicy"> View All Active Policies </a></h4>
     </body>
 </html>

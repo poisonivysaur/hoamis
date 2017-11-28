@@ -124,9 +124,29 @@ public class OfficerMain extends HttpServlet {
                     if(action.equals("security")){
                         forward = "officer/security/reportsViolationAdmin/homepageSecurityRep.jsp";
                     }
-					
+                    
                     if(action.equals("map")){
                         forward = "officer/com-activity/communityMap/ViewHouses.jsp";
+                    }
+                    
+                    if(action.equals("policy")){
+                        forward = "officer/com-mgt/policyMgt/userhome.jsp";
+                    }
+                    
+                    if(action.equals("viewAllPolicy")){
+                        forward = "officer/com-mgt/policyMgt/viewpolicies.jsp";
+                    }
+                    
+                    if(action.equals("addPolicy")){
+                        forward = "officer/com-mgt/policyMgt/addpolicy.jsp";
+                    }
+                    
+                    if(action.equals("retirePolicy")){
+                        forward = "officer/com-mgt/policyMgt/retirepolicy.jsp";
+                    }
+                    
+                    if(action.equals("viewRetirePolicy")){
+                        forward = "officer/com-mgt/policyMgt/viewretiredpolicies.jsp";
                     }
                     
                     if(!action.equals("document")){
