@@ -26,7 +26,7 @@
             MonthlyDuesDAO mdd = new MonthlyDuesDAO();
             double currentMonthDues = mdd.getCurrentHomeownerMonthlyDues();
             User loginUser = (User) session.getAttribute("loginUser");
-            double unpaidFees = 100;//mdd.getUnpaidFees(loginUser.getUserID());
+            double unpaidFees = mdd.getUnpaidFees(loginUser.getUserID());
         
             if (currentMonthDues == 0){
                 out.print("<p>No registered monthly dues for this month. Contact an officer for more details.</p>");
