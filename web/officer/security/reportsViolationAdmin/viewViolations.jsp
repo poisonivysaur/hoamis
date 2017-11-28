@@ -21,7 +21,7 @@
 <body>
 
 <div class="container">
-    <a href="/${pageContext.request.contextPath}/OfficerMain?action=security">Back</a>
+    <a href="${pageContext.request.contextPath}/OfficerMain?action=security">Back</a>
 	<h2 align="center"><font><strong>View Violations</strong></font></h2>
 	<hr />
 	
