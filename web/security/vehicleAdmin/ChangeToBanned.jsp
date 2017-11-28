@@ -42,7 +42,7 @@
         } 
         </style>
     <body>
-         <a href ="OfficerMain"> << Go back home </a>
+         <a href ="SecurityMain"> << Go back home </a>
         <h2> Ban a Vehicle </h2>
         <!--to connect to the db-->
         <%! String driverName = "com.mysql.jdbc.Driver";%>

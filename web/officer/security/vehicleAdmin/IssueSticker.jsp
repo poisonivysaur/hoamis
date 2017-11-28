@@ -43,7 +43,7 @@
         </style>
     <body>
         
-         <a href ="SecurityMain"> << Go back home </a>
+         <a href ="OfficerMain"> << Go back home </a>
         <h2> Issue Sticker </h2>
         <form action="IssueStickerServlet" method="POST">
             <%

@@ -28,7 +28,7 @@
         </style>
   <body>
       <center>
-          <a href="Login"> << Go back home </a>
+          <a href="OfficerMain"> << Go back home </a>
       <h2> Search Vehicle </h2><!--search bar to search for a plate number-->
       
     <form action="SearchServlet" method="POST">
@@ -38,12 +38,12 @@
         </center>
       </table>
     </form>
-      <a href="SecurityMain?action=allVehicles"> View All Vehicle Records </a><br>
-      <a href="SecurityMain?action=recordVehicle"> Record Vehicle</a><br>
-      <a href="SecurityMain?action=sticker"> View Stickers </a><br>
-      <a href="SecurityMain?action=addSticker"> Add Sticker</a><br>
-      <a href="SecurityMain?action=buySticker"> Buy Sticker</a><br>
-      <a href="SecurityMain?action=issueSticker"> Issue Sticker</a><br>
+      <a href="OfficerMain?action=allVehicles"> View All Vehicle Records </a><br>
+      <a href="OfficerMain?action=recordVehicle"> Record Vehicle</a><br>
+      <a href="OfficerMain?action=sticker"> View Stickers </a><br>
+      <a href="OfficerMain?action=addSticker"> Add Sticker</a><br>
+      <a href="OfficerMain?action=buySticker"> Buy Sticker</a><br>
+      <a href="OfficerMain?action=issueSticker"> Issue Sticker</a><br>
       
   </body>
 </html>
