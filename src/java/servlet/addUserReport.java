@@ -84,7 +84,7 @@ public class addUserReport extends HttpServlet {
                 String boardmemberid = request.getParameter("boardmemberid");
                 String securityID = request.getParameter("securityID");
                 String complaint = request.getParameter("complaint");
-                String resolution = request.getParameter("resolution");
+                String resolution = null;
                 int statusID = Integer.parseInt(request.getParameter("status"));
                 int trxID = Integer.parseInt(request.getParameter("trxID"));
                 int violatedpolicyID = Integer.parseInt(request.getParameter("violatedPolicyID"));

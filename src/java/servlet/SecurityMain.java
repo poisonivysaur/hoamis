@@ -76,6 +76,10 @@ public class SecurityMain extends HttpServlet {
                     if(action.equals("recordVehicle")){
                         forward = "security/vehicleAdmin/RecordVehicle.jsp";
                     }
+					
+					if(action.equals("security")){
+                        forward = "security/reportsViolationAdmin/homepageSecurityRep.jsp";
+                    }
                     
                     
                     request.getRequestDispatcher(forward).forward(request, response);

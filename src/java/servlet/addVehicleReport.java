@@ -51,7 +51,7 @@ public class addVehicleReport extends HttpServlet {
                 String boardmemberid = request.getParameter("boardmemberid");
                 String securityID = request.getParameter("securityID");
                 String complaint = request.getParameter("complaint");
-                String resolution = request.getParameter("resolution");
+                String resolution = null;
                 int trxID = Integer.parseInt(request.getParameter("trxID"));
                 int statusID = Integer.parseInt(request.getParameter("status"));
                 int violatedpolicyID = Integer.parseInt(request.getParameter("violatedPolicyID"));
