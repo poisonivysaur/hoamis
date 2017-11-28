@@ -20,10 +20,10 @@
         <h2><I>Choose what type of incident:</I></h3>
          
         <!-- FOR THE SECURITY PERSONNEL -->
-        <button><a href="userReport.jsp">User & User Incident</button></a>&nbsp; &nbsp; 
-        <button><a href="userReport2.jsp">User & An Other Party Incident</button></a><br>
-        <button><a href="vehicleReport.jsp">Vehicle & A User Incident</button></a>&nbsp; &nbsp; 
-        <button><a href="vehicleReport2.jsp">Vehicle & Vehicle Incident</button></a><br>
+        <button><a href="SecurityMain?action=user1">User & User Incident</button></a>&nbsp; &nbsp; 
+        <button><a href="SecurityMain?action=user2">User & An Other Party Incident</button></a><br>
+        <button><a href="SecurityMain?action=vehicle1">Vehicle & A User Incident</button></a>&nbsp; &nbsp; 
+        <button><a href="SecurityMain?action=vehicle2">Vehicle & Vehicle Incident</button></a><br>
     </center>    
     </body>
 </html>

@@ -26,10 +26,12 @@
         
         <% if (usertypeID.equals("3")) { %> 
         <!-- FOR THE SECURITY PERSONNEL -->
-        
-        <button><a href="security/reportsViolationAdmin/securityReportsNavigate.jsp">Create Report</button></a>&nbsp; &nbsp; 
-        <button><a href="security/reportsViolationAdmin/addResolution.jsp">Add Resolution for a Report</button></a>&nbsp; &nbsp; 
-        <button><a href="security/reportsViolationAdmin/ViewSecurityViolations.jsp">View Security Violation Reports</button></a>
+        <!--security/reportsViolationAdmin/securityReportsNavigate.jsp -->
+        <!-- security/reportsViolationAdmin/addResolution.jsp-->
+        <!-- security/reportsViolationAdmin/ViewSecurityViolations.jsp-->
+        <button><a href="SecurityMain?action=createReport">Create Report</button></a>&nbsp; &nbsp; 
+        <button><a href="SecurityMain?action=addResolutionReport">Add Resolution for a Report</button></a>&nbsp; &nbsp; 
+        <button><a href="SecurityMain?action=viewSecurityViolation">View Security Violation Reports</button></a>
             
         <% } else if (usertypeID.equals("2")) {%>
         <!-- FOR THE BOARD MEMBER-->

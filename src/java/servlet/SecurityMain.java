@@ -76,11 +76,25 @@ public class SecurityMain extends HttpServlet {
                     if(action.equals("recordVehicle")){
                         forward = "security/vehicleAdmin/RecordVehicle.jsp";
                     }
-					
-					if(action.equals("security")){
+                    
+                    
+                    if(action.equals("security")){
                         forward = "security/reportsViolationAdmin/homepageSecurityRep.jsp";
                     }
                     
+                    if(action.equals("createReport")){
+                        forward = "security/reportsViolationAdmin/securityReportsNavigate.jsp";
+                    }
+                    if(action.equals("user1")){forward = "security/reportsViolationAdmin/userReport.jsp";}
+                    if(action.equals("user2")){forward = "security/reportsViolationAdmin/userReport2/jsp";}
+                    if(action.equals("vehicle1")){forward = "security/reportsViolationAdmin/vehicleReport.jsp";}
+                    if(action.equals("vehicle2")){forward = "security/reportsViolationAdmin/vehicleReport.jsp";}
+                    if(action.equals("addResolutionReport")){
+                        forward = "security/reportsViolationAdmin/addResolution.jsp";
+                    }
+                    if(action.equals("viewSecurityViolation")){
+                        forward = "security/reportsViolationAdmin/ViewSecurityViolations.jsp";
+                    }
                     
                     request.getRequestDispatcher(forward).forward(request, response);
                 }
