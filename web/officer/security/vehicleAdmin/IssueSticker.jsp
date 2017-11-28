@@ -53,7 +53,7 @@
             {
            
             String sql = "SELECT * FROM stickerinventory "
-                    + "WHERE stickerinventory.dateReleased > CURDATE()";
+                    + "WHERE stickerinventory.dateReleased <= CURDATE()";
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery(); 
             %>

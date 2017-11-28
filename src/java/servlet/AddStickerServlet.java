@@ -86,15 +86,15 @@ public class AddStickerServlet extends HttpServlet {
         double cost = Double.parseDouble(request.getParameter("cost"));
         
         Sticker sample = new Sticker(year, cost);
-        String sql = "INSERT INTO stickerinventory VALUES (?, ?, NULL)";
+        String sql = "INSERT INTO stickerinventory(STICKERYEAR, COST, DATERELEASED) VALUES (?, ?, DATE(NOW()))";
         
         try{            
             PreparedStatement pStmt = conn.prepareStatement(sql);
             request.setAttribute("stickerSample", sample);
             
             //pStmt.setInt(1, 0);
-            pStmt.setInt(2, sample.getYear());
-            pStmt.setDouble(3, sample.getCost());
+            pStmt.setInt(1, sample.getYear());
+            pStmt.setDouble(2, sample.getCost());
             
             int isInserted = pStmt.executeUpdate();
             if (isInserted != 0){
