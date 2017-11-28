@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlets;
+package servlet;
 
-import DAO.getEstablishments;
-import DAO.getHouses;
+import model.dao.getEstablishments;
+import model.dao.getHouses;
 import Objects.House;
 import Objects.MapPoint;
 import java.io.IOException;

@@ -122,6 +122,10 @@ public class HomeownerMain extends HttpServlet {
                         forward = "homeowner/security/vehicleAdmin/RecordVehicle.jsp";
                     }
                     
+                    if(action.equals("map")){
+                        forward = "homeowner/com-activity/communityMap/ViewHouses.jsp";
+                    }
+                    
                     if(!action.equals("document")){
                         request.getRequestDispatcher(forward).forward(request, response);
                     }
