@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.dao;
+package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,7 +24,8 @@ public class getMapPoints {
     public static ResultSet getMapPoints(){
         ResultSet rs = null;
         try{
-            Connection con = DatabaseUtils.retrieveConnection();
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis","SW-ENGG",null);
 
             Statement ps = con.createStatement();
             rs = ps.executeQuery("SELECT mappointID, xAxis, yAxis, title, description, mappointcategoryID FROM mappoint");

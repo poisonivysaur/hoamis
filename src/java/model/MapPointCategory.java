@@ -1,4 +1,4 @@
-package model;
+package Objects;
 
 /**
  * MapPointCategory Object

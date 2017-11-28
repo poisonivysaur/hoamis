@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.dao;
+package DAO;
 
 import java.sql.*;
 
@@ -22,7 +22,8 @@ public class getHouses {
     public static ResultSet getHouses(){
         ResultSet rs = null;
         try{
-            Connection con = DatabaseUtils.retrieveConnection();
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoamis","SW-ENGG",null);
 
             Statement ps = con.createStatement();
             rs = ps.executeQuery("SELECT m.mappointID, m.xAxis, m.yAxis, u.fname, u.lname FROM mappoint m join ref_mappointcategory rm on m.mappointcategoryID = rm.mappointcategoryID JOIN ref_properties rp on rp.mappointID = m.mappointID join homeowner h on h.blocknum = rp.blocknum AND h.lotnum = rp.lotnum JOIN users u ON u.userID = h.userid WHERE rm.mappointcategoryID = 2");
