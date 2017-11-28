@@ -12,15 +12,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home | Homeowner</title>
         
-        <%@ include file="../../base-officer.jsp" %>
+        <%@ include file="../../base-homeowner.jsp" %>
         <link rel="stylesheet" href="dues.css" type="text/css">
     </head>
     <body>
         <div class="w3-main" style="margin-left:300px;margin-top:43px;">
         <div class="navbar">
             <h2>MENU</h2>
-            <a href="OfficerMain?action=dues"><button type="button">Home</button></a>
-            <a href="OfficerMain?action=duesViewHO"><button type="button">View Current Monthly Dues</button></a>
+            <a href="HomeownerMain?action=dues"><button type="button">Home</button></a>
+            <a href="HomeownerMain?action=duesView"><button type="button">View Current Monthly Dues</button></a>
         </div>
         <div class="container">
             <h1>Home</h1>

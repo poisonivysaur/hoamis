@@ -50,13 +50,13 @@ public class HomeownerMain extends HttpServlet {
                         forward = "homeowner/accounts/registration/registration.jsp";
                     }
                     if(action.equals("dues")){
-                        forward = "homeowner/accounts/duesFees/duesHomeOfficer.jsp";
+                        forward = "homeowner/accounts/duesFees/duesHomeHomeowner.jsp";
                     }
                     if(action.equals("duesView")){
-                        forward = "homeowner/accounts/duesFees/duesViewOfficer.jsp";
+                        forward = "homeowner/accounts/duesFees/duesViewHomeowner.jsp";
                     }
                     if(action.equals("duesCont")){
-                        forward = "homeowner/accounts/duesFees/duesContOfficer.jsp";
+                        forward = "homeowner/accounts/duesFees/duesContHomeowner.jsp";
                     }
                     if(action.equals("duesForm")){
                         forward = "homeowner/accounts/duesFees/duesFormOfficer.jsp";
