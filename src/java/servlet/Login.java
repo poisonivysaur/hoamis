@@ -77,6 +77,8 @@ public class Login extends HttpServlet {
             session.setAttribute("groups", Usergroup.getAllGroups(loginUser.getUserID()));
             session.setAttribute("curFolder", 0);
             session.setAttribute("UserObj", loginUser);
+            session.setAttribute("userID", loginUser.getUserID());
+            session.setAttribute("hey", Integer.toString(loginUser.getUsertype()));
             response.sendRedirect(getRedirectByUserType(loginUser.getUsertype()));
             /*
             out.print("<p>UserId: " + loginUser.getUserID() + "</p>");

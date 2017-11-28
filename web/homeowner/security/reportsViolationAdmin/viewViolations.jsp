@@ -1,0 +1,131 @@
+<%-- 
+    Document   : Dashboard
+    Created on : 11 23, 17, 10:18:54 PM
+    Author     : Austin Pimentel
+--%>
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="model.dao.DatabaseUtils"%>
+
+<!DOCTYPE html">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>ViewViolations</title>
+</head>
+<body>
+
+<div class="container">
+    <a href="${pageContext.request.contextPath}/HomeownerMain?action=security">Back</a>
+	<h2 align="center"><font><strong>View Violations</strong></font></h2>
+	<hr />
+	
+	
+	<%
+	Connection connection = DatabaseUtils.retrieveConnection();
+	Statement statement = null;
+        Statement statement2 = null;
+        Statement statement3 = null;
+        Statement statement4 = null;
+        Statement statement5 = null;
+        Statement statement6 = null;
+        
+	ResultSet resultSet = null;
+        ResultSet resultSet2 = null;
+        ResultSet resultSet3 = null;
+        ResultSet resultSet4 = null;
+        ResultSet resultSet5 = null;
+        ResultSet resultSet6 = null;
+        
+        String securityReportID = null;
+	%>
+	
+	
+	<table class="table" align="center" cellpadding="5" cellspacing="5" border="1" style="margin-top: 10px;">
+	<thead>
+        <th>Complainant</th>
+        <th>Accused</th>
+        <th>Report Date</th>
+        <th>Complaint</th>
+        <th>Amount</th>
+	</thead>
+	<%
+            String userID = "3";//this is the id of the homeowner/user
+	try{ //the codes below gets the security report ID of the tables that has the user as accused and displays the details 
+               
+            
+            statement2=connection.createStatement();
+            String sql2 ="SELECT securityReportID, fname, lname FROM user2user uu JOIN users u on u.userID = uu.accused_userID WHERE uu.accused_userID = "+userID;
+            //this code ggets the details of the user in the user2user table
+            resultSet2 = statement2.executeQuery(sql2);
+            while(resultSet2.next()){
+                out.print("<td>"+resultSet2.getString("fname"));
+                out.print(" "+resultSet2.getString("lname")+"</td>");
+                securityReportID = resultSet2.getString("securityReportID");
+            }
+            statement3=connection.createStatement();
+            String sql3 ="SELECT fname, lname FROM user2user uu JOIN users u on u.userID = uu.complainant_userID WHERE uu.accused_userID ="+userID;
+            //this code gets the complaintant from the user2user table
+            resultSet3 = statement3.executeQuery(sql3);
+            while(resultSet3.next()){
+                out.print("<td>"+resultSet3.getString("fname"));
+                out.print(" "+resultSet3.getString("lname")+"</td>");
+            }
+            
+            statement=connection.createStatement();
+            String sql ="SELECT securityReportID, reportDate, complaint, t.totalamount FROM security_violations sv JOIN trxreferences t on sv.trxID = t.trxID WHERE securityReportID ="+securityReportID+";";
+            //this code gets the details of the security_violation table using the secirity report ID taken from the resultSet2 and displays it
+            resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+
+            %>  
+
+            <td><%=resultSet.getDate("reportDate") %></td>
+            <td><%=resultSet.getString("complaint") %></td>
+            <td><%=resultSet.getString("totalamount") %></td>
+            </tr>
+
+            <%
+              }  
+            statement4=connection.createStatement();
+            String sql4 ="SELECT securityReportID, fname, lname, otherparty FROM user2anyone uu JOIN users u on u.userID = uu.userID WHERE uu.userID ="+userID;
+            //this code gets the details of the user in the user2anyone table
+            resultSet4 = statement4.executeQuery(sql4);
+            while(resultSet4.next()){
+                out.print("<td>"+resultSet4.getString("otherparty")+"</td>");
+                out.print("<td>"+resultSet4.getString("fname"));
+                out.print(" "+resultSet4.getString("lname")+"</td>");
+                securityReportID = resultSet4.getString("securityReportID");
+                
+            }
+            statement=connection.createStatement();
+            String sql5 ="SELECT securityReportID, reportDate, complaint, t.totalamount FROM security_violations sv JOIN trxreferences t on sv.trxID = t.trxID WHERE securityReportID ="+securityReportID+";";
+             //this code gets the details of the security_violation table using the secirity report ID taken from the resultSet4 and displays it
+            resultSet5 = statement.executeQuery(sql5);
+            while(resultSet5.next()){
+
+            %>  
+
+            <td><%=resultSet5.getDate("reportDate") %></td>
+            <td><%=resultSet5.getString("complaint") %></td>
+            <td><%=resultSet5.getString("totalamount") %></td>
+            </tr>
+
+            <%
+              }
+	
+	} catch (Exception e) {
+	e.printStackTrace();
+	}
+	%>
+	</table>
+</div>
+
+</body>
+</html>
