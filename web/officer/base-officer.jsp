@@ -80,10 +80,10 @@ User officer = (User) session.getAttribute("loginUser");
                   <a href="#" class="w3-bar-item w3-button">Community Forum</a>
                   <a href="#" class="w3-bar-item w3-button">Community Groups</a>
                   <a href="#" class="w3-bar-item w3-button">Events</a>-->
-                  <!--<a href="#" class="w3-bar-item w3-button">Public Information Reference</a><!---->
+                  <!--<a href="#" class="w3-bar-item w3-button">Public Information Reference</a>
                   <a href="#" class="w3-bar-item w3-button">Business Establishment & Services</a>
                   <a href="#" class="w3-bar-item w3-button">Election & Voting</a>-->
-                  <a href="officer/com-activity/communityMap/viewHouses.jsp" class="w3-bar-item w3-button">Community Map</a>
+                  <a href="OfficerMain?action=map" class="w3-bar-item w3-button">Community Map</a>
                   <a href="OfficerMain?action=document" class="w3-bar-item w3-button">Document Management</a>
                   <a href="OfficerMain?action=policy" class="w3-bar-item w3-button">Policy Management</a>
                   <!--<a href="#" class="w3-bar-item w3-button">Grievance & Complaints</a>-->

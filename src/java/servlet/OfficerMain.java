@@ -125,7 +125,10 @@ public class OfficerMain extends HttpServlet {
                         forward = "officer/security/reportsViolationAdmin/homepageSecurityRep.jsp";
                     }
 					
-					
+                    if(action.equals("map")){
+                        forward = "officer/com-activity/communityMap/ViewHouses.jsp";
+                    }
+                    
                     if(!action.equals("document")){
                         request.getRequestDispatcher(forward).forward(request, response);
                     }

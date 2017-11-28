@@ -51,7 +51,7 @@
                 <div id="account" class="w3-hide w3-white w3-card-4">
                   <a href="HomeownerMain?action=directory" class="w3-bar-item w3-button">Directory</a>
                   <a href="HomeownerMain?action=dues" class="w3-bar-item w3-button">Dues & Fees</a>
-                  <a href="HomeownerMain?action=register" class="w3-bar-item w3-button">Registration</a>
+                  <!--<a href="HomeownerMain?action=register" class="w3-bar-item w3-button">Registration</a>-->
                   <!--<a href="#" class="w3-bar-item w3-button">Vacation & Moving Out</a>-->
             </div><!--
             <div class="w3-bar-item w3-button" onclick="myAccFunc('finance')">
