@@ -111,6 +111,9 @@ public class MonthlyDuesDAO{
             if(inserted != 0){
                 System.out.println("Successfully inserted!");
             }
+            else{
+                System.out.println("NOT INSERTED TO REF MONTHLY");
+            }
             sql = "SELECT MAX(MDUESID) FROM REF_MONTHLYDUES";
             pStmt = conn.prepareStatement(sql);
             ResultSet rsmDues = pStmt.executeQuery();
