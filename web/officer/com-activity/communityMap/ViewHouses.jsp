@@ -4,8 +4,8 @@
     Author     : Jayvee Gabriel
 --%>
 
-<%@page import="DAO.getHouses"%>
-<%@page import="DAO.getMapPointCategory"%>
+<%@page import="model.dao.getHouses"%>
+<%@page import="model.dao.getMapPointCategory"%>
 <%@page import="Objects.MapPointCategory"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Objects.House"%>

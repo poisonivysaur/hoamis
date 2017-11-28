@@ -70,7 +70,7 @@ String msg = (String)session.getAttribute("msg");
                 Register as: <select name="userTypes" id="userTypes" onchange="changeUserScreen(this.value)">
                     <option value="1" selected>Homeowner</option>
                     <option value="4">System Admin</option>
-                    <!--<option value="2">Officer</option>-->
+                    <option value="2">Officer</option>
                     <option value="3">Security Staff</option>
                     <option value="5">Home member</option>
                     <option value="6">Kasambahay</option>
