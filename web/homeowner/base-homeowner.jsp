@@ -73,7 +73,7 @@
                   <a href="#" class="w3-bar-item w3-button">Community Forum</a>
                   <a href="#" class="w3-bar-item w3-button">Community Groups</a>
                   <a href="#" class="w3-bar-item w3-button">Events</a>-->
-                  <a href="#" class="w3-bar-item w3-button">Public Information Reference</a><!--
+                  <!--<a href="#" class="w3-bar-item w3-button">Public Information Reference</a>
                   <a href="#" class="w3-bar-item w3-button">Business Establishment & Services</a>
                   <a href="#" class="w3-bar-item w3-button">Election & Voting</a>-->
                   <a href="HomeownerMain?action=map" class="w3-bar-item w3-button">Community Map</a>
