@@ -28,7 +28,7 @@
         </style>
   <body>
       <center>
-          <a href="SecurityMain"> << Go back home </a>
+          <a href="Login"> << Go back home </a>
       <h2> Search Vehicle </h2><!--search bar to search for a plate number-->
       
     <form action="SearchServlet" method="POST">
