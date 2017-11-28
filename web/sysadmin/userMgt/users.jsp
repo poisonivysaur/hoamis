@@ -6,6 +6,7 @@
 
 <%@page import="model.dao.DirectoryDAO"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 ArrayList<User> allUsers = DirectoryDAO.getAllUsers();

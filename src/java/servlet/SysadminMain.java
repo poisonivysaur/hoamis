@@ -41,9 +41,21 @@ public class SysadminMain extends HttpServlet {
             if(loginUser.getUsertype() != 4){
                 response.sendError(403, "You have no permission for this Page");
             }else{
+                if(request.getParameter("action") == null || request.getParameter("action").equals("")){
+                    request.getRequestDispatcher("sysadmin/dashboard.jsp").forward(request, response);
+                }else{
+                    String action = request.getParameter("action");
+                    String forward = "sysadmin/dashboard.jsp";
+                    if(action.equals("userManagement")){
+                        forward = "sysadmin/userMgt/users.jsp";
+                    }
+                    request.getRequestDispatcher(forward).forward(request, response);
+                }
+                /*
                 out.print("<p>This is SysadminMain.java</p>");
                 out.print("<p>First Name:" + loginUser.getfName()  + "</p>");
                 out.print("<p>Last Name: " + loginUser.getlName() + "</p>");
+                */
             }
         }else{
             response.sendRedirect("Login");
