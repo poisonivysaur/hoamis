@@ -86,7 +86,7 @@ public class SecurityMain extends HttpServlet {
                         forward = "security/reportsViolationAdmin/securityReportsNavigate.jsp";
                     }
                     if(action.equals("user1")){forward = "security/reportsViolationAdmin/userReport.jsp";}
-                    if(action.equals("user2")){forward = "security/reportsViolationAdmin/userReport2/jsp";}
+                    if(action.equals("user2")){forward = "security/reportsViolationAdmin/userReport2.jsp";}
                     if(action.equals("vehicle1")){forward = "security/reportsViolationAdmin/vehicleReport.jsp";}
                     if(action.equals("vehicle2")){forward = "security/reportsViolationAdmin/vehicleReport.jsp";}
                     if(action.equals("addResolutionReport")){
