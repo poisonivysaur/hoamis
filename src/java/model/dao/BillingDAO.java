@@ -341,6 +341,7 @@ public class BillingDAO {
                 ResultSet rs = pStmt.executeQuery();
                 while(rs.next()){
                     precedentBillID = rs.getInt(1); // GETS THE LAST BILLING OF THE HOMEOWNER
+                    System.out.println("preceding!!!");
                 }
                 
 
