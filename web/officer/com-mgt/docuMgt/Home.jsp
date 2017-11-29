@@ -159,7 +159,7 @@
                         <% if (session.getAttribute("uname")=="null") response.sendRedirect("index.jsp");
                            else out.println(user.getfName() +" "+user.getlName());%>
              
-                               <a href="OfficerMain">Main Menu</a>
+                               <a href="Login">Main Menu</a>
 
                 </div>
 
