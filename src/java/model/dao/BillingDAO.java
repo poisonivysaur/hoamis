@@ -331,7 +331,7 @@ public class BillingDAO {
             Connection conn = null;
             PreparedStatement pStmt = null;
             // gets the precedent billing of a homeowner
-            String sql = "SELECT B.BILLINGID FROM BILLING B WHERE BLOCKNUM = ? AND LOTNUM = ? ORDER BY B.DATE DESC LIMIT 1;"; 
+            String sql = "SELECT B.BILLINGID, B.DATE FROM BILLING B WHERE BLOCKNUM = ? AND LOTNUM = ? ORDER BY B.DATE DESC LIMIT 1;"; 
             try{
                 conn = DatabaseUtils.retrieveConnection();
                 pStmt = conn.prepareStatement(sql);
