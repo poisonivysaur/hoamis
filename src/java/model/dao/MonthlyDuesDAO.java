@@ -188,7 +188,7 @@ public class MonthlyDuesDAO{
                     }
 
                     //insert to houseMonthlyDues
-                    sql = "INSERT INTO HOUSEMONTHLYDUES (blocknum, lotnum, mdID, trID)"
+                    sql = "INSERT INTO HOUSEMONTHLYDUES (blocknum, lotnum, mdID, trxID)"
                             + "VALUES (?, ?, ?, ?)";
                     pStmt = conn.prepareStatement(sql);
                     pStmt.setInt(1, rsHO.getInt(1));
