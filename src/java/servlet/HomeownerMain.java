@@ -46,6 +46,9 @@ public class HomeownerMain extends HttpServlet {
                 }else{
                     String action = request.getParameter("action");
                     String forward = "homeowner/dashboard.jsp";
+                    if(action.equals("security")){
+                        forward = "homeowner/security/reportsViolationAdmin/homepageSecurityRep.jsp";
+                    }
                     if(action.equals("register")){
                         forward = "homeowner/accounts/registration/registration.jsp";
                     }
