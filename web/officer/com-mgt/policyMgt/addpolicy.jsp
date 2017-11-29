@@ -7,9 +7,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@ page import="model.User"%>
-<%@ page import="dao.Policy"%>
-<%@ page import="dao.Penalty"%>
-<%@ page import="dao.Document"%>
+<%@ page import="model.dao.Policy"%>
+<%@ page import="model.dao.Penalty"%>
+<%@ page import="model.dao.Document"%>
 <%@ page import="java.sql.*"%>
 <%  
     User user = (User)session.getAttribute("loginUser");

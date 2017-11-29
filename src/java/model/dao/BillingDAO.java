@@ -102,9 +102,9 @@ public class BillingDAO {
         PreparedStatement pStmt = null;
         
         String sql = "SELECT B.BILLINGID, B.PRECEDENTBILLING, B.TOTALDUE, B.TOTALPAID, B.DATE "
-                + " FROM BILLING B JOIN REF_PROPERTIES RP ON B.BLOCKNUM = RP.BLOCKNUM AND B.LOTNUM = RP.LOTNUM "
-                + " JOIN HOMEOWNER HO ON RP.BLOCKNUM = HO.BLOCKNUM AND HO.LOTNUM = RP.LOTNUM "
-                + " JOIN USERS U ON U.USERID = HO.USERID WHERE HO.USERID = ?"
+                + " FROM BILLING B LEFT JOIN REF_PROPERTIES RP ON B.BLOCKNUM = RP.BLOCKNUM AND B.LOTNUM = RP.LOTNUM "
+                + " LEFT JOIN HOMEOWNER HO ON RP.BLOCKNUM = HO.BLOCKNUM AND HO.LOTNUM = RP.LOTNUM "
+                + " LEFT JOIN USERS U ON U.USERID = HO.USERID WHERE HO.USERID = ?"
                 + " ORDER BY B.DATE DESC;"; //WHERE USERID = ? AND PASSWD = ?;";
         try{
             conn = DatabaseUtils.retrieveConnection();

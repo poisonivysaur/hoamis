@@ -3,9 +3,9 @@
     Created on : 11 7, 17, 10:25:33 PM
     Author     : Miguel
 --%>
-<%@page import="dao.Policy"%>
-<%@page import="dao.Document"%>
-<%@page import="dao.Penalty"%>
+<%@page import="model.dao.Penalty"%>
+<%@page import="model.dao.Policy"%>
+<%@page import="model.dao.Document"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.*;
 
 import model.dao.User;
-import dao.Policy;
+import model.dao.Policy;
 import static servlet.Validate.*;
 
 /**
