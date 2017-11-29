@@ -105,7 +105,7 @@ public class BillingDAO {
                 + " FROM BILLING B LEFT JOIN REF_PROPERTIES RP ON B.BLOCKNUM = RP.BLOCKNUM AND B.LOTNUM = RP.LOTNUM "
                 + " LEFT JOIN HOMEOWNER HO ON RP.BLOCKNUM = HO.BLOCKNUM AND HO.LOTNUM = RP.LOTNUM "
                 + " LEFT JOIN USERS U ON U.USERID = HO.USERID WHERE HO.USERID = ?"
-                + " ORDER BY B.DATE DESC;"; //WHERE USERID = ? AND PASSWD = ?;";
+                + " ORDER BY B.BILLINGID DESC;"; //WHERE USERID = ? AND PASSWD = ?;";
         try{
             conn = DatabaseUtils.retrieveConnection();
             pStmt = conn.prepareStatement(sql);
@@ -165,7 +165,8 @@ public class BillingDAO {
                 + " FROM TRXREFERENCES JOIN BILLINGDETAILS BD ON BD.TRXID = trxReferences.TRXID "
                 + " WHERE BD.BILLINGID = ?) TR"
                 + " LEFT JOIN TRXLIST TL ON TL.TRXID = TR.TRXID"
-                + " LEFT JOIN TRANSACTION_JOURNAL TJ ON TJ.JournalID = TL.journalID"; 
+                + " LEFT JOIN TRANSACTION_JOURNAL TJ ON TJ.JournalID = TL.journalID"
+                + " ORDER BY TR.TRXID DESC"; 
         try{
             conn = DatabaseUtils.retrieveConnection();
             pStmt = conn.prepareStatement(sql);
