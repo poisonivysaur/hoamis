@@ -33,6 +33,7 @@ import model.User2Anyone;
 import model.User2User;
 import model.Vehicle2User;
 import model.Vehicle2Vehicle;
+import model.dao.DatabaseUtils;
 
 /**
  *
@@ -45,7 +46,7 @@ public class addVehicleReport extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-                Connection conn = Database.getDBConnection();
+                Connection conn = DatabaseUtils.retrieveConnection();
                
                 Date date = new Date();
                 String boardmemberid = request.getParameter("boardmemberid");
@@ -144,7 +145,7 @@ public class addVehicleReport extends HttpServlet {
                         System.out.println(e.getMessage());
                     }
                 }
-                request.getRequestDispatcher("forwardedvehicleReport.jsp").forward(request, response);
+                request.getRequestDispatcher("security/reportsViolationAdmin/forwardedvehicleReport.jsp").forward(request, response);
             }
     }
    

@@ -21,7 +21,7 @@
 <body>
 
 <div class="container">
-	<a href="${pageContext.request.contextPath}/SecurityMain?action=security">Back</a>
+    <a href="${pageContext.request.contextPath}/SecurityMain?action=security">Back</a>
 	<h2 align="center"><font><strong>View Security Violations</strong></font></h2>
 	<hr />
 	
@@ -59,7 +59,7 @@
 	try{ 
 
 	statement=connection.createStatement();
-	String sql ="SELECT securityReportID, reportDate, complaint, t.totalamount FROM mydb.security_violations sv JOIN mydb.trxreferences t on sv.trxID = t.trxID WHERE securityID ="+userID+";";
+	String sql ="SELECT securityReportID, reportDate, complaint, t.totalamount FROM security_violations sv JOIN trxreferences t on sv.trxID = t.trxID WHERE securityID ="+userID+";";
 
 	resultSet = statement.executeQuery(sql);
 	while(resultSet.next()){
@@ -74,7 +74,7 @@
 	
 	<% //the codes below gets the accused and complaining from tables using the securityReportid from the first sql statement
             statement2=connection.createStatement();
-            String sql2 ="SELECT fname, lname FROM mydb.user2user uu JOIN users u on u.userID = uu.accused_userID WHERE securityReportID ="+securityReportID;
+            String sql2 ="SELECT fname, lname FROM user2user uu JOIN users u on u.userID = uu.accused_userID WHERE securityReportID ="+securityReportID;
             //this code gets the accused details from user2user table
             resultSet2 = statement2.executeQuery(sql2);
             while(resultSet2.next()){
@@ -82,7 +82,7 @@
                 out.print(" "+resultSet2.getString("lname")+"</td>");
             }
             statement3=connection.createStatement();
-            String sql3 ="SELECT fname, lname FROM mydb.user2user uu JOIN users u on u.userID = uu.complainant_userID WHERE securityReportID ="+securityReportID;
+            String sql3 ="SELECT fname, lname FROM user2user uu JOIN users u on u.userID = uu.complainant_userID WHERE securityReportID ="+securityReportID;
             //this code gets the complaintant details from the user2user table
             resultSet3 = statement3.executeQuery(sql3);
             while(resultSet3.next()){
@@ -90,7 +90,7 @@
                 out.print(" "+resultSet3.getString("lname")+"</td></tr>");
             }
             statement4=connection.createStatement();
-            String sql4 ="SELECT fname, lname, otherparty FROM mydb.user2anyone uu JOIN users u on u.userID = uu.userID WHERE securityReportID ="+securityReportID;
+            String sql4 ="SELECT fname, lname, otherparty FROM user2anyone uu JOIN users u on u.userID = uu.userID WHERE securityReportID ="+securityReportID;
             //this code gets the other party and the user details from user2anyone table 
             resultSet4 = statement4.executeQuery(sql4);
             while(resultSet4.next()){
@@ -100,7 +100,7 @@
                 
             }
             statement5=connection.createStatement();
-            String sql5 ="SELECT fname, lname, platenum FROM mydb.vehicle2user vu JOIN users u on u.userID = vu.userID WHERE securityReportID ="+securityReportID;
+            String sql5 ="SELECT fname, lname, platenum FROM vehicle2user vu JOIN users u on u.userID = vu.userID WHERE securityReportID ="+securityReportID;
             //this code gets the user and the vehichle details from the vehicle 2user table
             resultSet5 = statement5.executeQuery(sql5);
             while(resultSet5.next()){
@@ -110,7 +110,7 @@
             }
             
             statement6=connection.createStatement();
-            String sql6 ="SELECT complainantplatenum, accusedplatenum FROM mydb.vehicle2vehicle vv where securityReportID ="+securityReportID;
+            String sql6 ="SELECT complainantplatenum, accusedplatenum FROM vehicle2vehicle vv where securityReportID ="+securityReportID;
             //this code gets the acccused and complaintant platenumber details from the vehicle2cehicle table
             resultSet6 = statement6.executeQuery(sql6);
             while(resultSet6.next()){

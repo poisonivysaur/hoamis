@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.dao.DatabaseUtils;
 
 /**
  *
@@ -77,7 +78,7 @@ public class updateResolutionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-            Connection conn = Database.getDBConnection();
+            Connection conn = DatabaseUtils.retrieveConnection();
             
             String securityReportID = request.getParameter("securityReportID");
             int reportID = Integer.parseInt(securityReportID);
@@ -103,6 +104,6 @@ public class updateResolutionServlet extends HttpServlet {
         
             }
         }
-        request.getRequestDispatcher("forwardedUpdateResolution.jsp").forward(request, response);    }
+        request.getRequestDispatcher("security/reportsViolationAdmin/forwardedUpdateResolution.jsp").forward(request, response);    }
    
     }

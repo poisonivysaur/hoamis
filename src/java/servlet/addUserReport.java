@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.User2Anyone;
 import model.User2User;
+import model.dao.DatabaseUtils;
 
 /**
  *
@@ -78,7 +79,7 @@ public class addUserReport extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             
-                Connection conn = Database.getDBConnection();
+                Connection conn = DatabaseUtils.retrieveConnection();
                 
                 Date date = new Date();
                 String boardmemberid = request.getParameter("boardmemberid");
@@ -179,7 +180,7 @@ public class addUserReport extends HttpServlet {
                         System.out.println(e.getMessage());
                     }
                 }
-                request.getRequestDispatcher("forwardedUserReport.jsp").forward(request, response);
+                request.getRequestDispatcher("security/reportsViolationAdmin/forwardedUserReport.jsp").forward(request, response);
             }
         }
     
