@@ -18,6 +18,7 @@ String fname = request.getParameter("fname");
 String lname = request.getParameter("lname");
 String mname = request.getParameter("mname");
 String dateIssued = request.getParameter("dateIssued");
+String dateDue = request.getParameter("dateDue");
 
 int billID = Integer.parseInt(request.getParameter("billingID"));
 double totalDue = Double.parseDouble(request.getParameter("totalDue"));
@@ -71,7 +72,7 @@ ArrayList<String> datesPaid = BillingDAO.getDatesPaid();
                     <th></th>
                     <th></th>
                     <th>Date Issued: <%= dateIssued %></th>
-                    <th></th>
+                    <th>Date Due <%= dateDue %></th>
                     <th style="text-align: right;">Total Due: <%= totalDue %></th>
                     <th style="text-align: right;">Total Paid: <%= totalPaid %></th>
                     
