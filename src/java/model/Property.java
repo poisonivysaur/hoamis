@@ -28,6 +28,8 @@ public class Property {
     protected PropertyStatus status;
     protected MapPoint mapppoint;
     
+    public Property(){}
+    
     public Property(int blocknum, int lotnum, int endlotnum, Street street, PropertyStatus status, MapPoint mappoint){
         this.blocknum = blocknum;
         this.lotnum = lotnum;
