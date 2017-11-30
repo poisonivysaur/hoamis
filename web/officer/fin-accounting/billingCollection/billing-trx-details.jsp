@@ -17,6 +17,7 @@ String hoId = request.getParameter("userid");
 String fname = request.getParameter("fname");
 String lname = request.getParameter("lname");
 String mname = request.getParameter("mname");
+String dateIssued = request.getParameter("dateIssued");
 
 int billID = Integer.parseInt(request.getParameter("billingID"));
 double totalDue = Double.parseDouble(request.getParameter("totalDue"));
@@ -57,17 +58,19 @@ ArrayList<String> datesPaid = BillingDAO.getDatesPaid();
 
             <div class="w3-container">
                 <a href="/hoamis/OfficerMain?action=billingViewDetails&userid=<%= hoId %>&fname=<%= fname %>&lname=<%= lname %>&mname=<%= mname %>"><h4><<< Back to View Billings</h4></a>
-            <h2 style="text-align: center; float: left;">Billing Details</h2>
+            <h2 style="text-align: center; float: left;">Billing Details</h2><br><br>
+            
             
             </div>
             <div id="print" class="w3-container">
+                <h5 style="text-align: center;"></h5>
             <table class="w3-table w3-striped w3-white w3-hoverable" id="userTable">
                 <tr>
                     <th>Billing ID: <%= billID %></th>
                     <!--<th>Precedent Billing ID</th>-->
                     <th></th>
                     <th></th>
-                    <th></th>
+                    <th>Date Issued: <%= dateIssued %></th>
                     <th></th>
                     <th style="text-align: right;">Total Due: <%= totalDue %></th>
                     <th style="text-align: right;">Total Paid: <%= totalPaid %></th>

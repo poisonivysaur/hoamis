@@ -72,6 +72,7 @@ ArrayList<Billing> bills = BillingDAO.getBillings(hoId);
                     <th>Total Paid</th>
                     -->
                     <th>Billing ID</th>
+                    <th>Date Issued</th>
                     <!--<th>Precedent Billing ID</th>-->
                     <th style="text-align: right;">Total Due</th>
                     <th style="text-align: right;">Total Paid</th>
@@ -82,8 +83,9 @@ ArrayList<Billing> bills = BillingDAO.getBillings(hoId);
                 
                 for(int i = 0; i < bills.size(); i++){     
             %>
-                <tr onmouseover="this.style.cursor='pointer'" onclick="location.href='/hoamis/OfficerMain?action=billingTrxDetails&billingID=<%= bills.get(i).getBillingID()%>&totalDue=<%= bills.get(i).getTotalDue()%>&totalPaid=<%= bills.get(i).getTotalPaid()%>&userid=<%= hoId %>&fname=<%= fname %>&lname=<%= lname %>&mname=<%= mname %>'">
+                <tr onmouseover="this.style.cursor='pointer'" onclick="location.href='/hoamis/OfficerMain?action=billingTrxDetails&billingID=<%= bills.get(i).getBillingID()%>&totalDue=<%= bills.get(i).getTotalDue()%>&totalPaid=<%= bills.get(i).getTotalPaid()%>&userid=<%= hoId %>&fname=<%= fname %>&lname=<%= lname %>&mname=<%= mname %>&dateIssued=<%= bills.get(i).getDateIssued() %>'">
                     <td><%= bills.get(i).getBillingID()%></td>
+                    <td><%= bills.get(i).getDateIssued()%></td>
                     <!--<td><%= bills.get(i).getPrecedentBilling() %></td>-->
                     <td style="text-align: right;"><%= bills.get(i).getTotalDue()%></td>
                     <td style="text-align: right;"><%= bills.get(i).getTotalPaid()%></td>
