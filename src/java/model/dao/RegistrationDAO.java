@@ -182,28 +182,243 @@ public class RegistrationDAO {
         return mapObj;
     }
     
-    public static boolean insertNewHomeowner(User newHomeowner){
+    public static boolean insertNewHomeowner(User newHomeOwner, String birthday, int occupation, int blocknum, int lotnum){
         boolean isSuccess = false;
+        Connection conn = null;
+        String sql = "INSERT INTO USERS(USERID, PASSWD, USERTYPEID, LNAME, FNAME, MNAME, BDATE, PHOTOID, OCCUPATIONID, MOVINGIN, TRXID, STATUS) VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?, NOW(), ?, ?);";
+        MonthlyDuesDAO d = new MonthlyDuesDAO();
+        try{
+            conn = DatabaseUtils.retrieveConnection();
+            conn.setAutoCommit(false);
+            
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, newHomeOwner.getUserID());
+            pStmt.setString(2, newHomeOwner.getPasswd());
+            pStmt.setInt(3, newHomeOwner.getUsertype());
+            pStmt.setString(4, newHomeOwner.getlName());
+            pStmt.setString(5, newHomeOwner.getfName());
+            pStmt.setString(6, newHomeOwner.getmName());
+            pStmt.setString(7, birthday);
+            pStmt.setInt(8, occupation);
+            pStmt.setInt(9, insertRegistrationTransaction(conn));
+            pStmt.setString(10, "active");
+            
+            int added1 = pStmt.executeUpdate();
+            
+            if(added1 == 1){
+                pStmt = conn.prepareStatement("INSERT INTO HOMEOWNER VALUES (?, ?, ?);");
+                pStmt.setInt(1, blocknum);
+                pStmt.setInt(2, lotnum);
+                pStmt.setString(3, newHomeOwner.getUserID());
+                pStmt.executeUpdate();
+                pStmt = conn.prepareStatement("UPDATE REF_PROPERTIES SET PROPERTYSTATUSID = 4 WHERE BLOCKNUM = ? AND LOTNUM = ?");
+                pStmt.setInt(1, blocknum);
+                pStmt.setInt(2, lotnum);
+                pStmt.executeUpdate();
+                System.out.println("Justin Method: " + d.assignNewUserMonthlyDues(blocknum, lotnum));
+                isSuccess = true;
+            }
+            
+            conn.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                isSuccess = false;
+                conn.rollback();
+            }catch(Exception e2){}
+        }finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                    conn.setAutoCommit(true);
+                }catch(Exception e){}
+            }
+        }
         return isSuccess;
     }
     
-    public static boolean insertNewSystemAdmin(User newSystemAdmin){
+    public static boolean insertNewSystemAdmin(User newSysAdmin, String birthday, int occupation){
         boolean isSuccess = false;
+        Connection conn = null;
+        String sql = "INSERT INTO USERS(USERID, PASSWD, USERTYPEID, LNAME, FNAME, MNAME, BDATE, PHOTOID, OCCUPATIONID, MOVINGIN, STATUS) VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?, NOW(), ?);";
+        try{
+            conn = DatabaseUtils.retrieveConnection();
+            conn.setAutoCommit(false);
+            
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, newSysAdmin.getUserID());
+            pStmt.setString(2, newSysAdmin.getPasswd());
+            pStmt.setInt(3, newSysAdmin.getUsertype());
+            pStmt.setString(4, newSysAdmin.getlName());
+            pStmt.setString(5, newSysAdmin.getfName());
+            pStmt.setString(6, newSysAdmin.getmName());
+            pStmt.setString(7, birthday);
+            pStmt.setInt(8, occupation);
+            pStmt.setString(9, "active");
+            
+            int added1 = pStmt.executeUpdate();
+            if(added1 == 1){
+                isSuccess = true;
+            }
+            
+            conn.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                isSuccess = false;
+                conn.rollback();
+            }catch(Exception e2){}
+        }finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                    conn.setAutoCommit(true);
+                }catch(Exception e){}
+            }
+        }
         return isSuccess;
     }
     
-    public static boolean insertNewSecurity(User newSecurity){
+    public static boolean insertNewSecurity(User newSecurity, String birthday, int occupation){
         boolean isSuccess = false;
+        Connection conn = null;
+        String sql = "INSERT INTO USERS(USERID, PASSWD, USERTYPEID, LNAME, FNAME, MNAME, BDATE, PHOTOID, OCCUPATIONID, MOVINGIN, STATUS) VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?, NOW(), ?);";
+        try{
+            conn = DatabaseUtils.retrieveConnection();
+            conn.setAutoCommit(false);
+            
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, newSecurity.getUserID());
+            pStmt.setString(2, newSecurity.getPasswd());
+            pStmt.setInt(3, newSecurity.getUsertype());
+            pStmt.setString(4, newSecurity.getlName());
+            pStmt.setString(5, newSecurity.getfName());
+            pStmt.setString(6, newSecurity.getmName());
+            pStmt.setString(7, birthday);
+            pStmt.setInt(8, occupation);
+            pStmt.setString(9, "active");
+            
+            int added1 = pStmt.executeUpdate();
+            if(added1 == 1){
+                pStmt = conn.prepareStatement("INSERT INTO SECURITYPERSONNEL VALUES (?)");
+                pStmt.setString(1, newSecurity.getUserID());
+                int added2 = pStmt.executeUpdate();
+                if(added2 == 1){
+                    isSuccess = true;
+                }
+            }
+            
+            conn.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                isSuccess = false;
+                conn.rollback();
+            }catch(Exception e2){}
+        }finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                    conn.setAutoCommit(true);
+                }catch(Exception e){}
+            }
+        }
         return isSuccess;
     }
     
-    public static boolean insertHomeMember(User newMember){
+    public static boolean insertHomeMember(User newMember, String birthday, int occupation, int blocknum, int lotnum){
         boolean isSuccess = false;
+        Connection conn = null;
+        String sql = "INSERT INTO USERS(USERID, PASSWD, USERTYPEID, LNAME, FNAME, MNAME, BDATE, PHOTOID, OCCUPATIONID, MOVINGIN, STATUS) VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?, NOW(), ?);";
+        try{
+            conn = DatabaseUtils.retrieveConnection();
+            conn.setAutoCommit(false);
+            
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, newMember.getUserID());
+            pStmt.setString(2, newMember.getPasswd());
+            pStmt.setInt(3, newMember.getUsertype());
+            pStmt.setString(4, newMember.getlName());
+            pStmt.setString(5, newMember.getfName());
+            pStmt.setString(6, newMember.getmName());
+            pStmt.setString(7, birthday);
+            pStmt.setInt(8, occupation);
+            pStmt.setString(9, "active");
+            
+            int added1 = pStmt.executeUpdate();
+            if(added1 == 1){
+                pStmt = conn.prepareStatement("INSERT INTO HOMEMEMBER VALUES(?, true, ?, ?)");
+                pStmt.setString(1, newMember.getUserID());
+                pStmt.setInt(2, blocknum);
+                pStmt.setInt(3, lotnum);
+                int added2 = pStmt.executeUpdate();
+                if(added2 == 1){
+                    isSuccess = true;
+                }
+            }
+            conn.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                isSuccess = false;
+                conn.rollback();
+            }catch(Exception e2){}
+        }finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                    conn.setAutoCommit(true);
+                }catch(Exception e){}
+            }
+        }
         return isSuccess;
     }
     
-    public static boolean insertKasambahay(User newKasambahay){
+    public static boolean insertKasambahay(User newKasambahay, String birthday, int occupation, int blocknum, int lotnum){
         boolean isSuccess = false;
+        Connection conn = null;
+        String sql = "INSERT INTO USERS(USERID, PASSWD, USERTYPEID, LNAME, FNAME, MNAME, BDATE, PHOTOID, OCCUPATIONID, MOVINGIN, STATUS) VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?, NOW(), ?);";
+        try{
+            conn = DatabaseUtils.retrieveConnection();
+            conn.setAutoCommit(false);
+            
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, newKasambahay.getUserID());
+            pStmt.setString(2, newKasambahay.getPasswd());
+            pStmt.setInt(3, newKasambahay.getUsertype());
+            pStmt.setString(4, newKasambahay.getlName());
+            pStmt.setString(5, newKasambahay.getfName());
+            pStmt.setString(6, newKasambahay.getmName());
+            pStmt.setString(7, birthday);
+            pStmt.setInt(8, occupation);
+            pStmt.setString(9, "active");
+            
+            int added1 = pStmt.executeUpdate();
+            if(added1 == 1){
+                pStmt = conn.prepareStatement("INSERT INTO KASAMBAHAY(USERID, STARTDATE, BLOCKNUM, LOTNUM) VALUES(?, NOW(), ?, ?)");
+                pStmt.setString(1, newKasambahay.getUserID());
+                pStmt.setInt(2, blocknum);
+                pStmt.setInt(3, lotnum);
+                int added2 = pStmt.executeUpdate();
+                if(added2 == 1){
+                    isSuccess = true;
+                }
+            }
+            conn.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                isSuccess = false;
+                conn.rollback();
+            }catch(Exception e2){}
+        }finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                    conn.setAutoCommit(true);
+                }catch(Exception e){}
+            }
+        }
         return isSuccess;
     }
     

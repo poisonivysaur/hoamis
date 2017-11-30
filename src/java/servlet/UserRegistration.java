@@ -73,6 +73,7 @@ public class UserRegistration extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         int userType = Integer.parseInt(request.getParameter("userTypes"));
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -88,7 +89,7 @@ public class UserRegistration extends HttpServlet {
         }else{
             occupation = Integer.parseInt(occupationId);
         }
-        
+        /*
         System.out.println("User Type: " + userType);
         System.out.println("Username: " + username);
         System.out.println("Password: " + password);
@@ -97,27 +98,68 @@ public class UserRegistration extends HttpServlet {
         System.out.println("Middlename: " + middleName);
         System.out.println("Birthday: " + birthDay);
         System.out.println("Occupation: " + occupation);
-        
+        */
+        User newUser = new User();
+        newUser.setUserID(username);
+        newUser.setPasswd(password);
+        newUser.setfName(firstName);
+        newUser.setlName(lastName);
+        newUser.setmName(middleName);
+        newUser.setUsertype(userType);
+        String message = "Error:Uncaught Exception";
         switch(userType){
             case 1:
                 String blocklot = request.getParameter("blockLot");
-                System.out.println("Homeowner:Block Num, Lot Num: " + blocklot);
+                int block = Integer.parseInt(blocklot.split(",")[0]);
+                int lot = Integer.parseInt(blocklot.split(",")[1]);
+                if(RegistrationDAO.insertNewHomeowner(newUser, birthDay, occupation, block, lot)){
+                    message = "Success:New Homeowner Registered!";
+                }else{
+                    message = "Error:Unable to Add New User.";
+                }
                 break;
             case 2:
                 break;
             case 3:
+                if(RegistrationDAO.insertNewSecurity(newUser, birthDay, occupation)){
+                    message = "Success:New Security Personnel Added!";
+                }else{
+                    message = "Error:Unable to Add New User.";
+                }
                 break;
             case 4:
+                if(RegistrationDAO.insertNewSystemAdmin(newUser, birthDay, occupation)){
+                    message = "Success:New System Administrator Added!";
+                }else{
+                    message = "Error:Unable to Add New User.";
+                }
                 break;
             case 5:
                 String hmBlockLot = request.getParameter("homeowner");
+                int block1 = Integer.parseInt(hmBlockLot.split(",")[0]);
+                int lot1 = Integer.parseInt(hmBlockLot.split(",")[1]);
                 System.out.println("Homemember:Block Num, Lot Num: " + hmBlockLot);
+                if(RegistrationDAO.insertHomeMember(newUser, birthDay, occupation, block1, lot1)){
+                    message = "Success:New Home Member Added!";
+                }else{
+                    message = "Error:Unable to Add New User.";
+                }
                 break;
             case 6:
                 String kBlockLot = request.getParameter("homeowner");
+                int block2 = Integer.parseInt(kBlockLot.split(",")[0]);
+                int lot2 = Integer.parseInt(kBlockLot.split(",")[1]); 
+                if(RegistrationDAO.insertKasambahay(newUser, birthDay, occupation, block2, lot2)){
+                    message = "Success:New Kasambahay Added!";
+                }else{
+                    message = "Error:Unable to Add New User.";
+                }
                 System.out.println("Kasambahay:Block Num, Lot Num: " + kBlockLot);
                 break;
         }
+        
+        session.setAttribute("msg", message);
+        response.sendRedirect("OfficerMain?action=register");
     }
 
     /**
