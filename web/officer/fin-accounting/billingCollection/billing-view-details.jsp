@@ -13,10 +13,12 @@
 <%
 String feedback = "";
 String isPaid = (String)request.getAttribute("isPaid");
+
 if(isPaid != null)
 if(isPaid.equals("true")){
     feedback = "Payments successful.";
 }
+
 String hoId = request.getParameter("userid");
 String fname = request.getParameter("fname");
 String lname = request.getParameter("lname");
@@ -61,6 +63,7 @@ ArrayList<Billing> bills = BillingDAO.getBillings(hoId);
             </div>
             <div class="w3-container">
                 <h3><%= feedback %></h3>
+                
             <table class="w3-table w3-striped w3-white w3-hoverable" id="userTable">
                 <tr>
                     <!--

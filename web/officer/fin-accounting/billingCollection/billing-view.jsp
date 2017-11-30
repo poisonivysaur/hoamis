@@ -12,10 +12,13 @@
 <%
 String feedback = "";
 String isSuccess = (String)request.getAttribute("isSuccess");
+String message = (String)request.getAttribute("message");
+message = (message == null)? "":message;
 if(isSuccess != null)
 if(isSuccess.equals("true")){
     feedback = "Billings successfully generated for everyone.";
 }
+
 BillingDAO.getUserHomeowners();
 ArrayList<Homeowner> ho = BillingDAO.getHomeowners();
 ArrayList<User> users = BillingDAO.getUsers();
@@ -62,6 +65,7 @@ ArrayList<User> users = BillingDAO.getUsers();
             
             <div class="w3-container">
                 <h3><%= feedback %></h3>
+                <h3><%= message %></h3>
                 <a href="/hoamis/GenerateBilling"><input class="w3-button w3-teal w3-round" type="submit" name="generate" value="Generate Billings for All Homeowners" style="float:none; margin:0px;"></a>
                 <br><br>
             <table class="w3-table w3-striped w3-white w3-hoverable" id="userTable">

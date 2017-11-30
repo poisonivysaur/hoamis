@@ -38,6 +38,9 @@ public class GenerateBilling extends HttpServlet {
         
         boolean isSuccess = BillingDAO.generateBillingForAll();// this returns true for now
         request.setAttribute("isSuccess", isSuccess+"");
+        String message = BillingDAO.getMessage();
+        System.out.println("MESSAGE AFTER GENERATING BILLS: "+message);
+        request.setAttribute("message", message);
         System.out.println(request.getContextPath());
         RequestDispatcher rd = request.getRequestDispatcher("officer/fin-accounting/billingCollection/billing-view.jsp");
         rd.forward(request, response);
