@@ -76,6 +76,7 @@ ArrayList<Billing> bills = BillingDAO.getBillings(hoId);
                     -->
                     <th>Billing ID</th>
                     <th>Date Issued</th>
+                    
                     <!--<th>Precedent Billing ID</th>-->
                     <th style="text-align: right;">Total Due</th>
                     <th style="text-align: right;">Total Paid</th>

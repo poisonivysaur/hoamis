@@ -56,7 +56,7 @@ public class BillingDAO {
         Connection conn = null;
         PreparedStatement pStmt = null;
         model.User loginUser = null;
-        String sql = "SELECT BILLINGID, BLOCKNUM, LOTNUM, PRECEDENTBILLING, TOTALDUE, TOTALPAID, DATE FROM BILLING"; //WHERE USERID = ? AND PASSWD = ?;";
+        String sql = "SELECT BILLINGID, BLOCKNUM, LOTNUM, PRECEDENTBILLING, TOTALDUE, TOTALPAID, DATEISSUED, DATEDUE FROM BILLING"; //WHERE USERID = ? AND PASSWD = ?;";
         try{
             conn = DatabaseUtils.retrieveConnection();
             pStmt = conn.prepareStatement(sql);
@@ -71,8 +71,9 @@ public class BillingDAO {
                 int prevBill = rs.getInt(4);
                 int due = rs.getInt(5);
                 int paid = rs.getInt(6);
-                String date = rs.getString(7);
-                Billing sampleBill = new model.Billing(id ,block, lot, prevBill, due, paid, date);
+                String dateIssued = rs.getString(7);
+                String dateDue = rs.getString(8);
+                Billing sampleBill = new model.Billing(id ,block, lot, prevBill, due, paid, dateIssued, dateDue);
                 billings.add(sampleBill);
             
             }
@@ -104,7 +105,7 @@ public class BillingDAO {
         Connection conn = null;
         PreparedStatement pStmt = null;
         
-        String sql = "SELECT B.BILLINGID, B.PRECEDENTBILLING, B.TOTALDUE, B.TOTALPAID, B.DATE "
+        String sql = "SELECT B.BILLINGID, B.PRECEDENTBILLING, B.TOTALDUE, B.TOTALPAID, B.DATEISSUED, B.DATEDUE "
                 + " FROM BILLING B LEFT JOIN REF_PROPERTIES RP ON B.BLOCKNUM = RP.BLOCKNUM AND B.LOTNUM = RP.LOTNUM "
                 + " LEFT JOIN HOMEOWNER HO ON RP.BLOCKNUM = HO.BLOCKNUM AND HO.LOTNUM = RP.LOTNUM "
                 + " LEFT JOIN USERS U ON U.USERID = HO.USERID WHERE HO.USERID = ?"
@@ -122,18 +123,16 @@ public class BillingDAO {
                 int prev = rs.getInt(2);
                 double due = rs.getDouble(3);
                 double paid = rs.getDouble(4);
-                String date = rs.getString(5);
+                String dateIssued = rs.getString(5);
+                String dateDue = rs.getString(6);
                 bill = new Billing();
                 bill.setBillingID(id);
                 bill.setPrecedentBilling(prev);
                 bill.setTotalDue(due);
                 bill.setTotalPaid(paid);
-                bill.setDateIssued(date);
-                //int three = rs.getInt(3);
-                //int four = rs.getInt(4);
-                //int five = rs.getInt(5);
+                bill.setDateIssued(dateIssued);
+                bill.setDateDue(dateDue);
                 
-                //Billing sampleBill = new model.Billing(one ,two, three, four, five);
                 billings.add(bill);
                
             }
@@ -341,7 +340,7 @@ public class BillingDAO {
                 conn = DatabaseUtils.retrieveConnection();
                 
                 // Check first if there was already a billing issued this month
-                String sql = "SELECT B.BILLINGID, B.DATE FROM BILLING B WHERE BLOCKNUM = ? AND LOTNUM = ? AND MONTH(B.DATE) = MONTH(DATE(NOW()));";
+                String sql = "SELECT B.BILLINGID, B.DATEISSUED FROM BILLING B WHERE BLOCKNUM = ? AND LOTNUM = ? AND MONTH(B.DATEISSUED) = MONTH(DATE(NOW()));";
                 pStmt = conn.prepareStatement(sql);
                 pStmt.setInt(1, blocknum);
                 pStmt.setInt(2, lotnum);
@@ -350,7 +349,7 @@ public class BillingDAO {
                     isBillGenerated = true;
                     System.out.println("NO BILLINGS GENERATED YET");
                     // gets the precedent billing of a homeowner
-                    sql = "SELECT B.BILLINGID, B.DATE FROM BILLING B WHERE BLOCKNUM = ? AND LOTNUM = ? ORDER BY B.DATE DESC LIMIT 1;"; 
+                    sql = "SELECT B.BILLINGID, B.DATEISSUED FROM BILLING B WHERE BLOCKNUM = ? AND LOTNUM = ? ORDER BY B.DATEISSUED DESC LIMIT 1;"; 
 
                     pStmt = conn.prepareStatement(sql);
                     pStmt.setInt(1, blocknum);
@@ -370,8 +369,8 @@ public class BillingDAO {
 
 
                     // inserts a new billing for the homeowner
-                    sql = "INSERT INTO BILLING(BLOCKNUM, LOTNUM, PRECEDENTBILLING, TOTALDUE, TOTALPAID, DATE)"
-                            + " VALUES(?, ?, ?, ?, ?, DATE(NOW()))";
+                    sql = "INSERT INTO BILLING(BLOCKNUM, LOTNUM, PRECEDENTBILLING, TOTALDUE, TOTALPAID, DATEISSUED, DATEDUE)"
+                            + " VALUES(?, ?, ?, ?, ?, DATE(NOW()), DATE_ADD(date(now()), INTERVAL 30 DAY))";
 
                     pStmt = conn.prepareStatement(sql);
                     pStmt.setInt(1, blocknum);
