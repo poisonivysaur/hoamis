@@ -120,7 +120,7 @@ public class HomeownerMain extends HttpServlet {
                         forward = "homeowner/security/vehicleAdmin/IssueSticker.jsp";
                     }
                     if(action.equals("recordVehicle")){
-                        forward = "homeowner/security/vehicleAdmin/RecordVehicle.jsp";
+                        forward = "homeowner/security/vehicleAdmin/RecordVehicle-HO.jsp";
                     }
                     
                     if(action.equals("map")){
