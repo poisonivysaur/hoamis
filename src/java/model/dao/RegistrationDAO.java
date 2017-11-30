@@ -15,7 +15,10 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Types;
+import model.Homeowner;
+import model.MapPoint;
 import model.Occupation;
+import model.Property;
 import model.User;
 
 /**
@@ -84,6 +87,34 @@ public class RegistrationDAO {
         return homeowners;
     }
     
+    public static ArrayList<Homeowner> getHomeowners(){
+        ArrayList<Homeowner> homeowners = new ArrayList<>();
+        String sql = "SELECT H.BLOCKNUM, H.LOTNUM, H.USERID FROM HOMEOWNER H WHERE (SELECT STATUS FROM USERS WHERE USERID = H.USERID) = 'active';";
+        Connection conn = DatabaseUtils.retrieveConnection();
+        try{
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            ResultSet rs = pStmt.executeQuery();
+            
+            while(rs.next()){
+                Homeowner h = new Homeowner();
+                h.setBlocknum(rs.getInt(1));
+                h.setLotnum(rs.getInt(2));
+                h.setUserID(rs.getString(3));
+                homeowners.add(h);
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }catch(Exception e){}
+            }
+        }
+        return homeowners;
+    }
+    
     public static int insertNewOccupation(String occupation){
         Connection conn = null;
         int occupationId = -1;
@@ -108,6 +139,74 @@ public class RegistrationDAO {
         }
         return occupationId;
     }
+    
+    public static ArrayList<Property> getAvailableProperty(){
+        ArrayList<Property> availProperties = new ArrayList<>();
+        String sql = "SELECT BLOCKNUM, LOTNUM, MAPPOINTID FROM REF_PROPERTIES WHERE PROPERTYSTATUSID = 1";
+        Connection conn = DatabaseUtils.retrieveConnection();
+        try{
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            ResultSet rs = pStmt.executeQuery();
+            
+            while(rs.next()){
+                Property p = new Property();
+                p.setBlocknum(rs.getInt(1));
+                p.setLotnum(rs.getInt(2));
+                p.setMapppoint(getMapPointById(conn, rs.getInt(3)));
+                availProperties.add(p);
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }catch(Exception e){}
+            }
+        }
+        return availProperties;
+    }
+    
+    private static MapPoint getMapPointById(Connection conn, int map) throws Exception{
+        MapPoint mapObj = new MapPoint();
+        PreparedStatement pStmt = conn.prepareStatement("SELECT MAPPOINTID, XAXIS, YAXIS, TITLE FROM MAPPOINT WHERE MAPPOINTID = ? AND REMOVED IS NULL;");
+        pStmt.setInt(1, map);
+        ResultSet rs = pStmt.executeQuery();
+        while(rs.next()){
+            mapObj.setMappointID(rs.getInt(1));
+            mapObj.setxAxis(rs.getString(2));
+            mapObj.setyAxis(rs.getString(3));
+            mapObj.setTitle(rs.getString(4));
+        }
+        return mapObj;
+    }
+    
+    public static boolean insertNewHomeowner(User newHomeowner){
+        boolean isSuccess = false;
+        return isSuccess;
+    }
+    
+    public static boolean insertNewSystemAdmin(User newSystemAdmin){
+        boolean isSuccess = false;
+        return isSuccess;
+    }
+    
+    public static boolean insertNewSecurity(User newSecurity){
+        boolean isSuccess = false;
+        return isSuccess;
+    }
+    
+    public static boolean insertHomeMember(User newMember){
+        boolean isSuccess = false;
+        return isSuccess;
+    }
+    
+    public static boolean insertKasambahay(User newKasambahay){
+        boolean isSuccess = false;
+        return isSuccess;
+    }
+    
     
     public static boolean insertNewSystemUser(User user, String birthday, int occupation, int blocknum, int lotnum){
         boolean isInserted = false;

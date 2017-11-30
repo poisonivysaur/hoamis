@@ -47,7 +47,7 @@ public class OfficerMain extends HttpServlet {
                     String action = request.getParameter("action");
                     String forward = "officer/dashboard.jsp";
                     if(action.equals("register")){
-                        forward = "officer/accounts/registration/registration.jsp";
+                        forward = "officer/accounts/registration/revisedRegistration.jsp";
                     }
                     if(action.equals("dues")){
                         forward = "officer/accounts/duesFees/duesHomeOfficer.jsp";
