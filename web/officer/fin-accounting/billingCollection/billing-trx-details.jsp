@@ -63,7 +63,7 @@ ArrayList<String> datesPaid = BillingDAO.getDatesPaid();
             
             </div>
             <div id="print" class="w3-container">
-                <h5 style="text-align: center;"></h5>
+                <h5 style="text-align: center;"><%= "Homeowner: "+lname+", "+fname+" "+mname %></h5>
             <table class="w3-table w3-striped w3-white w3-hoverable" id="userTable">
                 <tr>
                     <th>Billing ID: <%= billID %></th>
