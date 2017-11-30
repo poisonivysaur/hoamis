@@ -168,6 +168,34 @@ public class RegistrationDAO {
         return availProperties;
     }
     
+    public static ArrayList<Property> getRentedProperty(){
+        ArrayList<Property> availProperties = new ArrayList<>();
+        String sql = "SELECT BLOCKNUM, LOTNUM, MAPPOINTID FROM REF_PROPERTIES WHERE PROPERTYSTATUSID = 4";
+        Connection conn = DatabaseUtils.retrieveConnection();
+        try{
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            ResultSet rs = pStmt.executeQuery();
+            
+            while(rs.next()){
+                Property p = new Property();
+                p.setBlocknum(rs.getInt(1));
+                p.setLotnum(rs.getInt(2));
+                p.setMapppoint(getMapPointById(conn, rs.getInt(3)));
+                availProperties.add(p);
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }catch(Exception e){}
+            }
+        }
+        return availProperties;
+    }
+    
     private static MapPoint getMapPointById(Connection conn, int map) throws Exception{
         MapPoint mapObj = new MapPoint();
         PreparedStatement pStmt = conn.prepareStatement("SELECT MAPPOINTID, XAXIS, YAXIS, TITLE FROM MAPPOINT WHERE MAPPOINTID = ? AND REMOVED IS NULL;");
