@@ -85,6 +85,46 @@ public class BillingDAO {
     }
     
     /**
+     * returns true if a billing is already overdue given a billing ID
+     *
+     * @param billinid
+     * @return boolean
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
+    public static boolean isOverdue(int billid){
+        boolean isOverdue = false;
+        Connection conn = null;
+        PreparedStatement pStmt = null;
+        
+        String sql = "SELECT * FROM BILLING B" +
+                    " WHERE B.TOTALPAID = 0 AND B.DATEDUE < DATE(NOW()) AND B.BILLINGID = ?;";
+        try{
+            conn = DatabaseUtils.retrieveConnection();
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setInt(1, billid);
+            //pStmt.setString(2, tryLogin.getPasswd());
+            
+            ResultSet rs = pStmt.executeQuery();
+            if(rs.next()){
+                isOverdue = true;
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+            
+        }finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }catch(Exception e){}
+            }
+        }
+        return isOverdue;
+    }
+    
+    /**
      * returns the list of all Billing records in the database
      *
      * @param nothing
@@ -281,7 +321,7 @@ public class BillingDAO {
             PreparedStatement pStmt = null;
             String sql = "SELECT U.USERID, U.FNAME, U.LNAME, U.MNAME, HO.BLOCKNUM, HO.LOTNUM"
                     + " FROM USERS U JOIN HOMEOWNER HO ON HO.USERID = U.USERID"
-                    + " WHERE U.STATUS = 'active';";
+                    + " WHERE U.STATUS = 'active' ORDER BY U.USERID;";
             try{
                 conn = DatabaseUtils.retrieveConnection();
                 pStmt = conn.prepareStatement(sql);
