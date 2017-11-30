@@ -28,17 +28,45 @@ public class Billing implements Serializable {
     protected int precedentBilling;
     protected double totalDue;
     protected double totalPaid;
+    protected String dateIssued;
     
     public Billing(){}
 
     
-    public Billing(int billingID, int blocknum, int lotnum, int precedentBilling, double totalDue, double totalPaid){
+    public Billing(int billingID, int blocknum, int lotnum, int precedentBilling, double totalDue, double totalPaid, String date){
         this.billingID = billingID;
         this.blocknum = blocknum;
         this.lotnum = lotnum;
         this.precedentBilling = precedentBilling;
         this.totalDue = totalDue;
         this.totalPaid = totalPaid;
+        this.dateIssued = date;
+    }
+    
+    /**
+     * returns the date issued of the Billing object
+     *
+     * @param nothing
+     * @return String
+     * @throws nothing
+     *
+     * @since 11-28-17
+     */
+    public String getDateIssued() {
+        return dateIssued;
+    }
+    
+    /**
+     * sets the date issued of the billing object
+     *
+     * @param dateIssued
+     * @return nothing
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
+    public void setDateIssued(String dateIssued) {
+        this.dateIssued = dateIssued;
     }
     
     /**
