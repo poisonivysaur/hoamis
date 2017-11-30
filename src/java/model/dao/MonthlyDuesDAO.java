@@ -527,6 +527,98 @@ public class MonthlyDuesDAO{
         return rmd;
     }
     
+    /**
+     * Assigns the monthly dues for new users registered
+     * 
+     * @param blocknum
+     * @param lotnum
+     * @return boolean telling if insert was successful
+     * @since 11-25-17
+     */
+    public boolean assignNewUserMonthlyDues(int blocknum, int lotnum){
+        Connection conn = null;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DatabaseUtils.retrieveConnection();
+            
+            //get current month and year
+            int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+            int year = Calendar.getInstance().get(Calendar.YEAR);
+            System.out.println(month + " " + year);
+            
+            // get current date and convert to SQL format
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM");
+            Date date = new Date();
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+            //get all the MONTHLYDUES entries that need to be inserted
+            //all registered monthly dues from the current month/year and beyond need to be inserted
+            String sql = "SELECT * FROM MONTHLYDUES WHERE MONTH >= ? AND YEAR = ? OR YEAR > ?";
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            pStmt.setInt(1, month);
+            pStmt.setInt(2, year);
+            pStmt.setInt(3, year);
+            ResultSet rsMD = pStmt.executeQuery();
+            
+            if(!rsMD.next()){
+                // feel free to change this part
+                // if there are no registered monthly dues beyond the current date, then no insertion needs to happen
+                return false;
+            }
+            else{
+                do{
+                    //insert to trxRef
+                    sql = "INSERT INTO TRXREFERENCES (amount, interest, totalamount, description, dateCreated)"
+                            + "VALUES (?, 0, ?, 'monthly dues', ?)";
+                    pStmt = conn.prepareStatement(sql);
+                    pStmt.setDouble(1, rsMD.getDouble("amount") / getNumberOfActiveHomeowner());
+                    pStmt.setDouble(2, rsMD.getDouble("amount") / getNumberOfActiveHomeowner());
+                    pStmt.setDate(3, sqlDate);
+                    int inserted = pStmt.executeUpdate();
+                    if(inserted != 0){
+                        System.out.println("Successfully inserted!");
+                    }
+
+
+                    //get latest trxRef
+                    sql = "SELECT MAX(TRXID) FROM TRXREFERENCES";
+                    pStmt = conn.prepareStatement(sql);
+                    ResultSet rstrxID = pStmt.executeQuery();
+                    int trxID = 0;
+                    if(rstrxID.next()){
+                        trxID = rstrxID.getInt(1);
+                    }
+
+                    //insert to houseMonthlyDues
+                    sql = "INSERT INTO HOUSEMONTHLYDUES (blocknum, lotnum, mdID, trxID)"
+                            + "VALUES (?, ?, ?, ?)";
+                    pStmt = conn.prepareStatement(sql);
+                    pStmt.setInt(1, blocknum);
+                    pStmt.setInt(2, lotnum);
+                    pStmt.setInt(3, rsMD.getInt("mdID"));
+                    pStmt.setInt(4, trxID);
+                    inserted = pStmt.executeUpdate();
+                    if(inserted != 0){
+                        System.out.println("Successfully inserted!");
+                    }
+                    
+                }while(rsMD.next());
+            }
+        }catch(ClassNotFoundException | SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            return false;
+        } finally {
+            if(conn != null){
+                try{
+                    conn.close();
+                }catch(Exception e){}
+            }
+        }
+        return true;
+    }
+    
+    
     public static void main(String[] args) {
         double total = MonthlyDuesDAO.getUnpaidFees("yutainoue");
         System.out.println(total);
