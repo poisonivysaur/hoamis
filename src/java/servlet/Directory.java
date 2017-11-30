@@ -38,14 +38,27 @@ public class Directory extends HttpServlet {
         HttpSession session = request.getSession();
         User loginUser = (User) session.getAttribute("loginUser");
         if(loginUser != null){
-            if(request.getParameter("userid") == null || request.getParameter("userid").equals("")){
-                response.sendRedirect("OfficerMain?action=directory");
-            }else{
-                String userId = request.getParameter("userid");
-                User selectedUser = DirectoryDAO.getUserById(userId);
-                request.setAttribute("selectedUser", selectedUser);
-                request.getRequestDispatcher("officer/accounts/directory/home.jsp").forward(request, response);
+            if(loginUser.getUserTypeString().equals("Board Member")){
+                if(request.getParameter("userid") == null || request.getParameter("userid").equals("")){
+                    response.sendRedirect("OfficerMain?action=directory");
+                }else{
+                    String userId = request.getParameter("userid");
+                    User selectedUser = DirectoryDAO.getUserById(userId);
+                    request.setAttribute("selectedUser", selectedUser);
+                    request.getRequestDispatcher("officer/accounts/directory/home.jsp").forward(request, response);
+                }
             }
+            else if(loginUser.getUserTypeString().equals("Homeowner")){
+                if(request.getParameter("userid") == null || request.getParameter("userid").equals("")){
+                    response.sendRedirect("HomeownerMain?action=directory");
+                }else{
+                    String userId = request.getParameter("userid");
+                    User selectedUser = DirectoryDAO.getUserById(userId);
+                    request.setAttribute("selectedUser", selectedUser);
+                    request.getRequestDispatcher("homeowner/accounts/directory/home.jsp").forward(request, response);
+                }
+            }
+            
         }else{
             response.sendRedirect("Login");
         }

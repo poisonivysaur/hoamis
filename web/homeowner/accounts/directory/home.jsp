@@ -4,6 +4,7 @@
     Author     : Yuta
 --%>
 
+<%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 User selectedUser = (User) request.getAttribute("selectedUser");
@@ -12,8 +13,8 @@ User selectedUser = (User) request.getAttribute("selectedUser");
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Officer Directory</title>
-        <%@include file="../../base-officer.jsp" %>
+        <title>Homeowners Directory</title>
+        <%@include file="../../base-homeowner.jsp" %>
     </head>
     <body>
         <div class="w3-container" style="margin-left:300px;margin-top:43px;">

@@ -32,7 +32,7 @@ ArrayList<String> datesPaid = BillingDAO.getDatesPaid();
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <%@ include file="../../base-officer.jsp" %>
+        <%@ include file="../../base-homeowner.jsp" %>
     </head>
     <body>
         <!-- !PAGE CONTENT! -->
@@ -57,7 +57,7 @@ ArrayList<String> datesPaid = BillingDAO.getDatesPaid();
             
 
             <div class="w3-container">
-                <a href="/hoamis/OfficerMain?action=billingViewDetails&userid=<%= hoId %>&fname=<%= fname %>&lname=<%= lname %>&mname=<%= mname %>"><h4><<< Back to View Billings</h4></a>
+                <a href="/hoamis/HomeownerMain?action=billingViewDetails&userid=<%= hoId %>&fname=<%= fname %>&lname=<%= lname %>&mname=<%= mname %>"><h4><<< Back to View Billings</h4></a>
             <h2 style="text-align: center; float: left;">Billing Details</h2><br><br>
             
             
