@@ -22,11 +22,17 @@ import model.Property;
 import model.User;
 
 /**
- *
+ * All methods Involving the Registration is in here and Some methods are not only limited to registration.
+ * 
  * @author Yuta
  */
 public class RegistrationDAO {
     
+    /**
+     * Gets all of the occupation from the Database.
+     * 
+     * @return ArrayList of Occupation
+     */
     public static ArrayList<Occupation> getAllOccupations(){
         Connection conn = null;
         ArrayList<Occupation> occupations = new ArrayList<>();
@@ -56,6 +62,12 @@ public class RegistrationDAO {
         return occupations;
     }
     
+    /**
+     * Gets all of the Homeowners whose accounts are active.
+     * 
+     * @return ArrayList of User
+     * @deprecated Please use getHomeowners() for proper DataType return
+     */
     public static ArrayList<User> getAllHomeowners(){
         Connection conn = null;
         ArrayList<User> homeowners = new ArrayList<>();
@@ -87,6 +99,11 @@ public class RegistrationDAO {
         return homeowners;
     }
     
+    /**
+     * Gets all of the Homeowners whose accounts are active.
+     * 
+     * @return ArrayList of Homeowner
+     */
     public static ArrayList<Homeowner> getHomeowners(){
         ArrayList<Homeowner> homeowners = new ArrayList<>();
         String sql = "SELECT H.BLOCKNUM, H.LOTNUM, H.USERID FROM HOMEOWNER H WHERE (SELECT STATUS FROM USERS WHERE USERID = H.USERID) = 'active';";
@@ -115,6 +132,12 @@ public class RegistrationDAO {
         return homeowners;
     }
     
+    /**
+     * Will simply insert into REF_OCCUPATION.
+     * 
+     * @param occupation
+     * @return The newly inserted occupationId
+     */
     public static int insertNewOccupation(String occupation){
         Connection conn = null;
         int occupationId = -1;
@@ -140,6 +163,11 @@ public class RegistrationDAO {
         return occupationId;
     }
     
+    /**
+     * Gets the existing and available property in the Association.
+     * 
+     * @return ArrayList of Property
+     */
     public static ArrayList<Property> getAvailableProperty(){
         ArrayList<Property> availProperties = new ArrayList<>();
         String sql = "SELECT BLOCKNUM, LOTNUM, MAPPOINTID FROM REF_PROPERTIES WHERE PROPERTYSTATUSID = 1";
@@ -168,6 +196,11 @@ public class RegistrationDAO {
         return availProperties;
     }
     
+    /**
+     * Gets All of the Properties Available in the Association.
+     * 
+     * @return ArrayList of Property
+     */
     public static ArrayList<Property> getRentedProperty(){
         ArrayList<Property> availProperties = new ArrayList<>();
         String sql = "SELECT BLOCKNUM, LOTNUM, MAPPOINTID, PROPERTYSTATUSID FROM REF_PROPERTIES";
@@ -197,6 +230,14 @@ public class RegistrationDAO {
         return availProperties;
     }
     
+    /**
+     * Requires a existing Connection to run this. Will simply retrieve a MapPoint Object specified by the MapID.
+     * 
+     * @param conn Connection
+     * @param map int
+     * @return MapPoint Object
+     * @throws Exception 
+     */
     private static MapPoint getMapPointById(Connection conn, int map) throws Exception{
         MapPoint mapObj = new MapPoint();
         PreparedStatement pStmt = conn.prepareStatement("SELECT MAPPOINTID, XAXIS, YAXIS, TITLE FROM MAPPOINT WHERE MAPPOINTID = ?;");
@@ -211,6 +252,17 @@ public class RegistrationDAO {
         return mapObj;
     }
     
+    /**
+     * Inserts a new Home Owner.
+     * Returns TRUE or FALSE. If success, returns TRUE, else returns FALSE.
+     * 
+     * @param newHomeOwner
+     * @param birthday
+     * @param occupation
+     * @param blocknum
+     * @param lotnum
+     * @return boolean
+     */
     public static boolean insertNewHomeowner(User newHomeOwner, String birthday, int occupation, int blocknum, int lotnum){
         boolean isSuccess = false;
         Connection conn = null;
@@ -266,6 +318,15 @@ public class RegistrationDAO {
         return isSuccess;
     }
     
+    /**
+     * Inserts a new System Administrator.
+     * Returns TRUE or FALSE. If success, returns TRUE, else returns FALSE.
+     * 
+     * @param newSysAdmin
+     * @param birthday
+     * @param occupation
+     * @return boolean
+     */
     public static boolean insertNewSystemAdmin(User newSysAdmin, String birthday, int occupation){
         boolean isSuccess = false;
         Connection conn = null;
@@ -308,6 +369,15 @@ public class RegistrationDAO {
         return isSuccess;
     }
     
+    /**
+     * Inserts a new Security Officer
+     * Returns TRUE or FALSE. If success, returns TRUE, else returns FALSE.
+     * 
+     * @param newSecurity
+     * @param birthday
+     * @param occupation
+     * @return boolean
+     */
     public static boolean insertNewSecurity(User newSecurity, String birthday, int occupation){
         boolean isSuccess = false;
         Connection conn = null;
@@ -355,6 +425,17 @@ public class RegistrationDAO {
         return isSuccess;
     }
     
+    /**
+     * Inserts a new Home Member to its respected Homeower through the block num and lot num.
+     * Returns TRUE or FALSE. If success, returns TRUE, else returns FALSE.
+     * 
+     * @param newMember
+     * @param birthday
+     * @param occupation
+     * @param blocknum
+     * @param lotnum
+     * @return boolean
+     */
     public static boolean insertHomeMember(User newMember, String birthday, int occupation, int blocknum, int lotnum){
         boolean isSuccess = false;
         Connection conn = null;
@@ -403,6 +484,17 @@ public class RegistrationDAO {
         return isSuccess;
     }
     
+    /**
+     * Inserts a new Kasambahay to its respected Homeower through the block num and lot num.
+     * Returns TRUE or FALSE. If success, returns TRUE, else returns FALSE.
+     * 
+     * @param newKasambahay
+     * @param birthday
+     * @param occupation
+     * @param blocknum
+     * @param lotnum
+     * @return boolean
+     */
     public static boolean insertKasambahay(User newKasambahay, String birthday, int occupation, int blocknum, int lotnum){
         boolean isSuccess = false;
         Connection conn = null;
@@ -451,7 +543,16 @@ public class RegistrationDAO {
         return isSuccess;
     }
     
-    
+    /**
+     * Do not use this method.
+     * @deprecated 
+     * @param user
+     * @param birthday
+     * @param occupation
+     * @param blocknum
+     * @param lotnum
+     * @return 
+     */
     public static boolean insertNewSystemUser(User user, String birthday, int occupation, int blocknum, int lotnum){
         boolean isInserted = false;
         Connection conn = null;
@@ -520,7 +621,17 @@ public class RegistrationDAO {
         
         return isInserted;
     }
-        
+    
+    /**
+     * Do not use this method.
+     * @deprecated 
+     * @param user
+     * @param birthday
+     * @param occupation
+     * @param blocknum
+     * @param lotnum
+     * @return 
+     */
     public static boolean insertNormalUser(User user, String birthday, int occupation, int blocknum, int lotnum){
         boolean isInserted = false;
         Connection conn = null;
@@ -588,6 +699,13 @@ public class RegistrationDAO {
         return isInserted;
     }
         
+    /**
+     * Requires a running connection to use this method<br />
+     * Inserts the Registration Fee for the User. Returns the inserted trxId.
+     * @param conn
+     * @return newTrxID
+     * @throws Exception 
+     */
     public static int insertRegistrationTransaction(Connection conn) throws Exception{
         String sql = "INSERT INTO trxreferences (`trxID`, `amount`, `interest`, `totalamount`, `description`, `dateCreated`) VALUES (0, 250, 0, 250, 'registration', NOW());";
         PreparedStatement pStmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -600,6 +718,13 @@ public class RegistrationDAO {
         return newTrx;
     }
     
+    /**
+     * Do not use this method.
+     * @deprecated 
+     * @param conn
+     * @return
+     * @throws Exception 
+     */
     public static int insertRegistrationJournal(Connection conn) throws Exception{
         String sql = "INSERT INTO transaction_journal VALUES(0, NOW(), 250, 250);";
         PreparedStatement pStmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -612,6 +737,14 @@ public class RegistrationDAO {
         return newJournal;
     }
     
+    /**
+     * Do not use this method.
+     * @deprecated 
+     * @param conn
+     * @param journalId
+     * @param trxId
+     * @throws Exception 
+     */
     public static void insertTrxList(Connection conn, int journalId, int trxId) throws Exception{
         String sql = "INSERT INTO TRXLIST VALUES(?, ?, 250);";
         PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -621,6 +754,12 @@ public class RegistrationDAO {
         
     }
     
+    /**
+     * Adds a new Home Property to the Association.
+     * @param map
+     * @param property
+     * @return 
+     */
     public static boolean addNewProperty(MapPoint map, Property property){
         boolean isSuccess = false;
         Connection conn = DatabaseUtils.retrieveConnection();
@@ -684,6 +823,7 @@ public class RegistrationDAO {
         System.out.println(p2.getTitle());
         System.out.println("XAxis: " + p2.getxAxis());
         System.out.println("YAxis: " + p2.getyAxis());
+        getAllHomeowners();
     }
     
 }

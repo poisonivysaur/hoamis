@@ -65,7 +65,8 @@ public class UserRegistration extends HttpServlet {
             throws ServletException, IOException {}
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.<br />
+     * All of the process relating to registration is here such as adding of user and adding of a new Property.
      *
      * @param request servlet request
      * @param response servlet response

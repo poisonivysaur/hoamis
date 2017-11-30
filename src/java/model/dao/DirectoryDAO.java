@@ -14,10 +14,56 @@ import model.Occupation;
 import model.User;
 
 /**
- *
+ * All Process and methods Related to Directory Modules resides within this class.<br />
+ * 
  * @author Yuta
  */
 public class DirectoryDAO {
+    
+    /**
+     * Returns the existing Home Owners whose accounts are active.
+     * 
+     * @return ArrayList of User
+     */
+    public static ArrayList<User> getHomeowners(){
+        ArrayList<User> homeowners = new ArrayList<>();
+        Connection conn = null;
+        String sql = "SELECT USERID, USERTYPEID, LNAME, FNAME, MNAME, BDATE, PHOTOID, OCCUPATIONID FROM USERS WHERE STATUS = 'active' AND USERTYPEID = 1 ORDER BY 4,3 DESC;";
+        try{
+            conn = DatabaseUtils.retrieveConnection();
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            ResultSet rs = pStmt.executeQuery();
+            
+            User u = null;
+            while(rs.next()){
+                u = new User();
+                Document docu = new Document();
+                Occupation occu = new Occupation();
+                occu.setOccupationID(rs.getInt("OCCUPATIONID"));
+                u.setUserID(rs.getString(1));
+                u.setUsertype(rs.getInt(2));
+                u.setlName(rs.getString(3));
+                u.setfName(rs.getString(4));
+                u.setmName(rs.getString(5));
+                u.setbDate(rs.getDate("BDATE"));
+                docu.setDocumentID(rs.getInt("PHOTOID"));
+                docu = getDocumentById(conn, docu);
+                u.setPhoto(docu);
+                u.setOccupation(occu);
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }catch(Exception e){}
+            }
+        }
+        return homeowners;
+    }
+    
     
     public static ArrayList<User> getAllUsers(){
         ArrayList<User> allUsers = new ArrayList<>();
@@ -119,11 +165,5 @@ public class DirectoryDAO {
         }
         return occupation;
     }
-    
-    
-    
-    public static void main(String[] args) {
-        User u = getUserById("markbetlee");
-        System.out.println("UserID: " + u.getUserID() + " 's occupation is " + u.getOccupation().getOccupation());
-    }
+
 }
