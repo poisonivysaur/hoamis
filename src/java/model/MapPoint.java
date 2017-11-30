@@ -1,5 +1,5 @@
 
-package Objects;
+package model;
 
 /**
  *  MapPoint Object
