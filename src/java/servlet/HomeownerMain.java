@@ -71,9 +71,7 @@ public class HomeownerMain extends HttpServlet {
                         forward = "homeowner/accounts/directory/directory.jsp";
                     }
                    
-                    if(action.equals("billingView")){
-                        forward = "homeowner/fin-accounting/billingCollection/billing-view.jsp";
-                    }
+                    
                     if(action.equals("billingViewDetails")){
                         String userid = request.getParameter("userid");
                         String fname = request.getParameter("fname");

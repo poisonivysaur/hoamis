@@ -27,7 +27,7 @@ User selectedUser = (User) request.getAttribute("selectedUser");
             <% } %>
             <h2>User Type: <%= selectedUser.getUserTypeString() %></h2>
             <% if(selectedUser.getUserTypeString() == User.USERTYPE1){ %>
-            <a href="/hoamis/OfficerMain?action=billingViewDetails&userid=<%= selectedUser.getUserID() %>&fname=<%= selectedUser.getfName() %>&lname=<%= selectedUser.getlName() %>&mname=<%= selectedUser.getmName() %>"><button class="w3-button w3-teal w3-round">Check Billing</button></a>
+            <a href="/hoamis/HomeownerMain?action=billingViewDetails&userid=<%= selectedUser.getUserID() %>&fname=<%= selectedUser.getfName() %>&lname=<%= selectedUser.getlName() %>&mname=<%= selectedUser.getmName() %>"><button class="w3-button w3-teal w3-round">Check Billing</button></a>
             <% } %>
             <!--
             <h3>Home Owner</h3>
