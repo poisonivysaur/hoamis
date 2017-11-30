@@ -43,6 +43,48 @@ public class BillingDAO {
     protected static String message = "";
     
     /**
+     * returns true if there are overdue bills given a user id
+     *
+     * @param userid
+     * @return boolean
+     * @throws nothing
+     *
+     * @since 10-28-17
+     */
+    public static boolean isOverdue(String userid){
+        boolean isOverdue = false;
+        Connection conn = null;
+        PreparedStatement pStmt = null;
+        
+        String sql = "SELECT * FROM BILLING B" +
+                    " JOIN HOMEOWNER HO ON HO.BLOCKNUM = B.BLOCKNUM AND HO.LOTNUM = B.LOTNUM" +
+                    " JOIN USERS U ON U.USERID = HO.USERID" +
+                    " WHERE B.TOTALPAID = 0 AND B.DATEDUE < DATE(NOW()) AND U.USERID = ?;";
+        try{
+            conn = DatabaseUtils.retrieveConnection();
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userid);
+            //pStmt.setString(2, tryLogin.getPasswd());
+            
+            ResultSet rs = pStmt.executeQuery();
+            if(rs.next()){
+                isOverdue = true;
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+            
+        }finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }catch(Exception e){}
+            }
+        }
+        return isOverdue;
+    }
+    
+    /**
      * returns the list of all Billing records in the database
      *
      * @param nothing
@@ -55,7 +97,7 @@ public class BillingDAO {
         ArrayList<Billing> billings = new ArrayList();
         Connection conn = null;
         PreparedStatement pStmt = null;
-        model.User loginUser = null;
+        
         String sql = "SELECT BILLINGID, BLOCKNUM, LOTNUM, PRECEDENTBILLING, TOTALDUE, TOTALPAID, DATEISSUED, DATEDUE FROM BILLING"; //WHERE USERID = ? AND PASSWD = ?;";
         try{
             conn = DatabaseUtils.retrieveConnection();
@@ -80,7 +122,7 @@ public class BillingDAO {
             
         }catch(Exception e){
             e.printStackTrace();
-            loginUser = null;
+            
         }finally{
             if(conn != null){
                 try{

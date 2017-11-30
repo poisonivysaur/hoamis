@@ -69,7 +69,7 @@ ArrayList<User> users = BillingDAO.getUsers();
                 <a href="/hoamis/GenerateBilling"><input class="w3-button w3-teal w3-round" type="submit" name="generate" value="Generate Billings for All Homeowners" style="float:none; margin:0px;"></a>
                 <br><br>
             <table class="w3-table w3-striped w3-white w3-hoverable" id="userTable">
-                <tr>
+                <tr class="w3-dark-gray">
                     <!--
                     <th>Billing ID</th>
                     <th>Block</th>
@@ -83,6 +83,33 @@ ArrayList<User> users = BillingDAO.getUsers();
                     <th>Block</th>
                     <th>Lot</th>
                     
+                </tr>
+                <tr class="w3-red">
+                    <th>Homeowners with overdue billings</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            <% 
+                
+                for(int i = 0; i < users.size(); i++){  
+                    if(BillingDAO.isOverdue(users.get(i).getUserID())){
+            %>
+                <tr onmouseover="this.style.cursor='pointer'" onclick="location.href='/hoamis/OfficerMain?action=billingViewDetails&userid=<%= users.get(i).getUserID() %>&fname=<%= users.get(i).getfName() %>&lname=<%= users.get(i).getlName() %>&mname=<%= users.get(i).getmName() %>'">
+                    <td><%= users.get(i).getUserID() %></td>
+                    <td><%= users.get(i).getlName()+", "+users.get(i).getfName()+" "+users.get(i).getmName()+"." %></td>
+                    <td><%= ho.get(i).getBlocknum() %></td>
+                    <td><%= ho.get(i).getLotnum() %></td>
+                </tr>
+            
+            <%      } 
+                }
+            %>
+            <tr class="w3-teal">
+                    <th>All homeowners</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             <% 
                 
@@ -98,6 +125,7 @@ ArrayList<User> users = BillingDAO.getUsers();
             <% } %>
             </table>
             </div>
+            <br><br><br><br><br>
     <script>
        function filter() {
             // Declare variables 
