@@ -8,7 +8,7 @@ package servlet;
 import model.dao.getEstablishments;
 import model.dao.getHouses;
 import Objects.House;
-import Objects.MapPoint;
+import model.MapPoint;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
