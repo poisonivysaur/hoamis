@@ -24,13 +24,13 @@ public class Property {
     protected int blocknum;
     protected int lotnum;
     protected int endlotnum;
-    protected Street street;
-    protected PropertyStatus status;
+    protected String street;
+    protected int status;
     protected MapPoint mapppoint;
     
     public Property(){}
     
-    public Property(int blocknum, int lotnum, int endlotnum, Street street, PropertyStatus status, MapPoint mappoint){
+    public Property(int blocknum, int lotnum, int endlotnum, String street, int status, MapPoint mappoint){
         this.blocknum = blocknum;
         this.lotnum = lotnum;
         this.endlotnum = endlotnum;
@@ -126,7 +126,7 @@ public class Property {
      * 
      * @since 10-28-17
      */    
-    public Street getStreet() {
+    public String getStreet() {
         return street;
     }
 
@@ -139,7 +139,7 @@ public class Property {
      * 
      * @since 10-28-17
      */        
-    public void setStreet(Street street) {
+    public void setStreet(String street) {
         this.street = street;
     }
 
@@ -152,7 +152,7 @@ public class Property {
      * 
      * @since 10-28-17
      */       
-    public PropertyStatus getStatus() {
+    public int getStatus() {
         return status;
     }
 
@@ -165,7 +165,7 @@ public class Property {
      * 
      * @since 10-28-17
      */      
-    public void setStatus(PropertyStatus status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

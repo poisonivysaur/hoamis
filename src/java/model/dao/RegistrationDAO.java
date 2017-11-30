@@ -170,7 +170,7 @@ public class RegistrationDAO {
     
     public static ArrayList<Property> getRentedProperty(){
         ArrayList<Property> availProperties = new ArrayList<>();
-        String sql = "SELECT BLOCKNUM, LOTNUM, MAPPOINTID FROM REF_PROPERTIES WHERE PROPERTYSTATUSID = 4";
+        String sql = "SELECT BLOCKNUM, LOTNUM, MAPPOINTID, PROPERTYSTATUSID FROM REF_PROPERTIES";
         Connection conn = DatabaseUtils.retrieveConnection();
         try{
             PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -181,6 +181,7 @@ public class RegistrationDAO {
                 p.setBlocknum(rs.getInt(1));
                 p.setLotnum(rs.getInt(2));
                 p.setMapppoint(getMapPointById(conn, rs.getInt(3)));
+                p.setStatus(rs.getInt(4));
                 availProperties.add(p);
             }
             
@@ -198,7 +199,7 @@ public class RegistrationDAO {
     
     private static MapPoint getMapPointById(Connection conn, int map) throws Exception{
         MapPoint mapObj = new MapPoint();
-        PreparedStatement pStmt = conn.prepareStatement("SELECT MAPPOINTID, XAXIS, YAXIS, TITLE FROM MAPPOINT WHERE MAPPOINTID = ? AND REMOVED IS NULL;");
+        PreparedStatement pStmt = conn.prepareStatement("SELECT MAPPOINTID, XAXIS, YAXIS, TITLE FROM MAPPOINT WHERE MAPPOINTID = ?;");
         pStmt.setInt(1, map);
         ResultSet rs = pStmt.executeQuery();
         while(rs.next()){
@@ -620,15 +621,69 @@ public class RegistrationDAO {
         
     }
     
-    public static void main(String[] args) {
+    public static boolean addNewProperty(MapPoint map, Property property){
+        boolean isSuccess = false;
         Connection conn = DatabaseUtils.retrieveConnection();
+        String sql = "INSERT INTO MAPPOINT(MAPPOINTID, XAXIS, YAXIS, TITLE, DESCRIPTION, USERID, createDate, REMOVED, mappointcategoryID) VALUES(0, ?, ?, ?, ?, ?, NOW(), FALSE, 2);";
+        String sql2 = "INSERT INTO REF_PROPERTIES VALUES(?, ?, ?, ?, 1, ?);";
         try{
-            System.out.println(insertRegistrationJournal(conn));
+            conn.setAutoCommit(false);
             
-            conn.close();
-        }catch(Exception e){
+            PreparedStatement pStmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pStmt.setString(1, map.getxAxis());
+            pStmt.setString(2, map.getyAxis());
+            pStmt.setString(3, map.getTitle());
+            pStmt.setString(4, map.getDescription());
+            pStmt.setString(5, map.getUserID());
+            int mapPointId = -1;
+            pStmt.executeUpdate();
+            ResultSet rs = pStmt.getGeneratedKeys();
+            while(rs.next()){
+                mapPointId = rs.getInt(1);
+            }
+            
+            pStmt = conn.prepareStatement(sql2);
+            pStmt.setInt(1, property.getBlocknum());
+            pStmt.setInt(2, property.getLotnum());
+            pStmt.setInt(3, property.getEndlotnum());
+            pStmt.setString(4, property.getStreet());
+            pStmt.setInt(5, mapPointId);
+            
+            int added = pStmt.executeUpdate();
+            if(added == 1){
+                isSuccess = true;
+            }
+            
+            conn.commit();
+        }catch(SQLException e){
             e.printStackTrace();
+            System.out.println(e.getMessage());
+            try{
+                isSuccess = false;
+                conn.rollback();
+            }catch(Exception e2){}
+        }finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                    conn.setAutoCommit(true);
+                }catch(Exception e){}
+            }
         }
+        
+        return isSuccess;
+    }
+    
+    public static void main(String[] args) throws Exception {
+        Connection conn = DatabaseUtils.retrieveConnection();
+        MapPoint p =  getMapPointById(conn, 1);
+        MapPoint p2 =  getMapPointById(conn, 7);
+        System.out.println(p.getTitle());
+        System.out.println("XAxis: " + p.getxAxis());
+        System.out.println("YAxis: " + p.getyAxis());
+        System.out.println(p2.getTitle());
+        System.out.println("XAxis: " + p2.getxAxis());
+        System.out.println("YAxis: " + p2.getyAxis());
     }
     
 }

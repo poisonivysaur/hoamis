@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.MapPoint;
+import model.Property;
 import model.User;
 import model.dao.RegistrationDAO;
 
@@ -75,7 +77,7 @@ public class UserRegistration extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         HttpSession session = request.getSession();
-        
+        User loginUser = (User) session.getAttribute("loginUser");
         if(action.equals("userRegister")){
             int userType = Integer.parseInt(request.getParameter("userTypes"));
             String username = request.getParameter("username");
@@ -165,6 +167,33 @@ public class UserRegistration extends HttpServlet {
         }//if
         else if(action.equals("mapPoint")){
             System.out.println("MAPPING");
+            String xAxis = request.getParameter("xAxis");
+            String yAxis = request.getParameter("yAxis");
+            String mapTitle = request.getParameter("mapTitle");
+            String mapDesc = request.getParameter("mapDesc");
+            String propertyStreet = request.getParameter("street");
+            int block = Integer.parseInt(request.getParameter("block"));
+            int lot = Integer.parseInt(request.getParameter("lot"));
+            int endlot = Integer.parseInt(request.getParameter("endlot"));
+            System.out.println("LoginUser: " + loginUser.getUserID());
+            MapPoint map = new MapPoint();
+            map.setxAxis(xAxis);
+            map.setyAxis(yAxis);
+            map.setTitle(mapTitle);
+            map.setDescription(mapDesc);
+            map.setUserID("ivylim");
+            Property property = new Property();
+            property.setBlocknum(block);
+            property.setLotnum(lot);
+            property.setEndlotnum(endlot);
+            property.setStreet(propertyStreet);
+            String message = "";
+            if(RegistrationDAO.addNewProperty(map, property)){
+                message = "Success:New Map Point has been added!";
+            }else{
+                message = "Error:Unable to Add New Map Point.";
+            }
+            session.setAttribute("msg", message);
         }
         
         response.sendRedirect("OfficerMain?action=register");

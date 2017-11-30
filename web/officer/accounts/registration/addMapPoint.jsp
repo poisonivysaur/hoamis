@@ -53,7 +53,7 @@ ArrayList<Property> availProperty = RegistrationDAO.getRentedProperty();
                 <% for(Property p : availProperty){ %>
                 initMarker = new google.maps.Marker({
                     position: {lat: <%= p.getMapppoint().getxAxis()%> , lng: <%= p.getMapppoint().getyAxis()%>},
-                    label: "R",
+                    label: "P",
                     map: map
                 });
                 
@@ -92,8 +92,9 @@ ArrayList<Property> availProperty = RegistrationDAO.getRentedProperty();
             <p>Street: <input type="text" name="street"></p>
             <p>Block Num: <input type="number" name="block"></p>
             <p>Lot Num: <input type="number" name="lot"></p>
-            <input type="hidden" name="xAxis" id="xAxis">
-            <input type="hidden" name="yAxis" id="yAxis">
+            <p>End Lot:<input type="number" name="endlot"></p>
+            <input type="hidden" name="xAxis" id="xAxis" required="">
+            <input type="hidden" name="yAxis" id="yAxis" required="">
             <input type="submit" value="Add Place">
         </form>
         <br /><br />

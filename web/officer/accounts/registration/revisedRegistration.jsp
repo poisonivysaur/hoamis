@@ -33,6 +33,7 @@ String msg = (String)session.getAttribute("msg");
             <h2><%= msg %></h2>
             <% session.removeAttribute("msg");} %>
             <form action="UserRegistration" method="post" id="mainForm">
+                <input type="hidden" name="action" value="userRegister">
                 <p>Register as: 
                     <select name="userTypes" id="userType" onchange="checkUserType(this.value)">
                         <option value="1" selected>Homeowner</option>
@@ -67,6 +68,7 @@ String msg = (String)session.getAttribute("msg");
                         </select>
                     </p>
                 </div>
+                <a href="OfficerMain?action=addMap" class="w3-button w3-teal w3-round">Add New House</a>
                 <div id="homeowners" hidden="true">
                     <p>Select Homeowner to Stay with
                         <select name="homeowner">
