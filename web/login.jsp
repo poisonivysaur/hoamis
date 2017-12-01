@@ -78,7 +78,7 @@ String msg = (String) request.getAttribute("msg");
         </style>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <img style="margin: auto 30%" width="500px" src="skralogo.png">
         <h2>Login Form</h2>
         <% if(msg != null){%>
         <p><strong><%= msg %></strong></p>
