@@ -68,10 +68,18 @@ public class HomeownerMain extends HttpServlet {
                         forward = "homeowner/accounts/duesFees/duesSuccessOfficer.jsp";
                     }
                     if(action.equals("directory")){
-                        forward = "homeowner/accounts/directory/directory.jsp";
+                        forward = "homeowner/accounts/directory/homeownerDirectory.jsp";
                     }
-                   
+                    if(action.equals("petManagement")){
+                        forward = "homeowner/accounts/directory/managePet.jsp";
+                    }
+                    if(action.equals("serviceManagement")){
+                        forward = "homeowner/accounts/directory/manageServices.jsp";
+                    }
                     
+                    if(action.equals("billingView")){
+                        forward = "homeowner/fin-accounting/billingCollection/billing-view.jsp";
+                    }
                     if(action.equals("billingViewDetails")){
                         String userid = request.getParameter("userid");
                         String fname = request.getParameter("fname");
@@ -89,15 +97,6 @@ public class HomeownerMain extends HttpServlet {
                         String totalDue = request.getParameter("totalDue");
                         String totalPaid = request.getParameter("totalPaid");
                         forward = "homeowner/fin-accounting/billingCollection/billing-trx-details.jsp?billingID="+billingID+"&totaldue="+totalDue+"&totalpaid="+totalPaid+"&userid="+userid+"&fname="+fname+"&lname="+lname+"&mname="+mname;
-                    }
-                    
-                    if(action.equals("document")){
-                        response.sendRedirect("HomeDocu?fid=" + session.getAttribute("curFolder"));
-                        //forward = "homeowner/com-mgt/docuMgt/Home.jsp?fid=" + session.getAttribute("curFolder");
-                    }
-                    
-                    if(action.equals("vehicle")){
-                        forward = "homeowner/security/vehicleAdmin/ViewVehicles.jsp";
                     }
                     
                     if(action.equals("allVehicles")){
@@ -127,13 +126,26 @@ public class HomeownerMain extends HttpServlet {
                         forward = "homeowner/com-activity/communityMap/ViewHouses.jsp";
                     }
                     
+                    if(action.equals("document")){
+                        response.sendRedirect("HomeDocu?fid=" + session.getAttribute("curFolder"));
+                        //forward = "homeowner/com-mgt/docuMgt/Home.jsp?fid=" + session.getAttribute("curFolder");
+                    }
+                    
+                    if(action.equals("vehicle")){
+                        forward = "homeowner/security/vehicleAdmin/ViewVehicles.jsp";
+                    }
+                    
                     if(!action.equals("document")){
                         request.getRequestDispatcher(forward).forward(request, response);
                     }
-                    
-                    
-                    
+
                     //request.getRequestDispatcher(forward).forward(request, response);
+
+                    /*
+                    out.print("<p>This is HomeownerMain.java</p>");
+                    out.print("<p>First Name:" + loginUser.getfName()  + "</p>");
+                    out.print("<p>Last Name: " + loginUser.getlName() + "</p>");
+                    */
                 }
             }
         }else{
