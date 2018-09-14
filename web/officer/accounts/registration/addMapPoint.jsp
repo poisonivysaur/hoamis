@@ -71,7 +71,7 @@ ArrayList<Property> availProperty = RegistrationDAO.getRentedProperty();
                 }
                 var marker = new google.maps.Marker({
                     position: location,
-                    label: "!",
+                    label: "(/*v*)/",
                     map: map
                 });
                 markers.push(marker);
