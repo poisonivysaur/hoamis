@@ -68,7 +68,7 @@ public class HomeownerMain extends HttpServlet {
                         forward = "homeowner/accounts/duesFees/duesSuccessOfficer.jsp";
                     }
                     if(action.equals("directory")){
-                        forward = "homeowner/accounts/directory/directory.jsp";
+                        forward = "homeowner/accounts/directory/homeownerDirectory.jsp";
                     }
                    
                     
